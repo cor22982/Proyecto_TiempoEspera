@@ -1,0 +1,33 @@
+.logo {
+  position: relative;
+  bottom: -100px;
+  opacity: 0; /* Inicialmente, la imagen está oculta */
+  animation: fadeIn 2s ease forwards 1s, slide-up 2s ease forwards 1s, fadeOut 1s ease forwards 3s; /* Agrega las tres animaciones con retrasos adecuados */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Empieza con opacidad 0 (oculto) */
+  }
+  to {
+    opacity: 1; /* Termina con opacidad 1 (visible) */
+  }
+}
+
+@keyframes slide-up {
+  from {
+    bottom: -100px;
+  }
+  to {
+    bottom: 0;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1; /* Empieza con opacidad 1 (visible) */
+  }
+  to {
+    opacity: 0; /* Termina con opacidad 0 (oculto) */
+  }
+}
