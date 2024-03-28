@@ -1,10 +1,7 @@
 import express from 'express'
 import { validationResult } from 'express-validator'
 import cors from 'cors'
-import {
-  getAllPersonal
-// eslint-disable-next-line import/extensions
-} from './db.js'
+
 
 const app = express()
 const validateRequest = (req, res, next) => {
