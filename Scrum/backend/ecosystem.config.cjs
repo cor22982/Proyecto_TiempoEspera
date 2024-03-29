@@ -1,9 +1,9 @@
 module.exports = {
   apps: [{
-    name: 'Deimos',
+    name: 'DeimosAPI',
     script: 'npm',
     args: 'start',
-    log_file: './Deimos.txt',
+    log_file: './logs/logs_deimos.txt',
     merge_logs: true,
   }],
 }
