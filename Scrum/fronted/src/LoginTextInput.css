@@ -1,0 +1,83 @@
+/* Contenedor principal */
+.text-input-container {
+    display: flex;
+    max-width: 100%;
+    padding: 50px;
+    padding-top: 0px;
+    max-height: 15%;
+}
+
+.icono-blanco {
+    filter: brightness(0) invert(1);
+}
+
+
+/* Contenedor de imagen */
+.image-container{
+    display: flex;
+    background-color: #0069AD;
+    border: 5px solid #044c7c;
+    border-right: 0px solid #0069AD;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    width: 20%;
+    user-select: none;
+}
+
+.image-container img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+/* Contenedor del texto */
+.text-container {
+    display: flex;
+    background-color: #ECECEC;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    width: 80%;
+    font-weight: bold
+}
+
+.text-container input[type="text"] {
+    display: flex;
+    background-color: #ECECEC;
+    color: #6580A5;
+    text-align: center;
+    border: 5px solid #CCCCCC;
+    border-left: 0px solid #ECECEC;
+    outline: none;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    width: 100%;
+    font-size: 2em;
+    font-weight: bold
+}
+
+
+.text-container input[type="text"]::placeholder {
+    display: flex;
+    color: #6580A5;
+    text-align: center;
+    font-weight: bold
+}
+
+.text-container input[type="text"]:focus {
+    border: 5px solid #CCCCCC;
+    border-left: 0px solid #ECECEC;
+}
+
+/* Media Queries para hacerlo responsive */
+@media screen and (max-width: 768px) {
+    .text-input-container {
+        flex-direction: column;
+    }
+    .image-container, .text-container {
+        width: 100%;
+        border-radius: 0;
+    }
+    .text-container input[type="text"], .text-container input[type="text"]::placeholder {
+        font-size: 1em;
+    }
+}

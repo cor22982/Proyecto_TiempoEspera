@@ -1,12 +1,13 @@
 import './App.css'
 import Logo from './Logo'
-function App() {
+import Login from './Login'
 
+function App() {
   return (
     <>
-      <Logo/>
+      <Login />
     </>
-  )
+  );
 }
 
 export default App

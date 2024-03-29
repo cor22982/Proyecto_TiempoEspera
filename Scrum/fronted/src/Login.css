@@ -1,0 +1,53 @@
+/* Contenedor principal */
+.login-container {
+  display: flex;
+}
+
+/* Contenedor izquierdo */
+.login-left-side {
+  align-items: center;
+  background-color: #0069AD;
+  display: flex;
+  flex: 1;
+  height: 100vh;
+  justify-content: center; 
+  user-select: none;
+}
+
+/* Imagen del contenedor izquierdo */
+.login-left-side img {
+  max-width: 100%;
+  height: auto;
+  padding: 0 10%; 
+}
+
+/* Contenedor derecho */
+.login-right-side {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  height: 100vh;
+  flex: 2;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* Titulo Lado derecho */
+.login-title{
+  font-size: 5em;
+  color: #00367E;
+  padding: 10px;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+  .login-container {
+    flex-direction: column; 
+  }
+
+  .login-left-side,
+  .login-right-side {
+    flex: 1; 
+    width: 100%;
+  }
+}
