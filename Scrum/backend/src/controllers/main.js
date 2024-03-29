@@ -4,16 +4,14 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import { register } from '../database/db.js';
 import { getUserLoginInfo } from '../database/auth.js';
-import md5 from 'crypto-js/md5'; // Importar la función MD5 de crypto-js
+import { MD5 } from 'crypto-js'; // Importa MD5 de crypto-js
 
 const app = express();
 const PORT = 5000;
 
 // Middleware
-app.use(express.json()); // Para analizar el cuerpo de las solicitudes JSON
-app.use(cors()); // Para permitir solicitudes desde cualquier origen
-
-// Middleware para analizar el cuerpo de las solicitudes
+app.use(express.json());
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -49,8 +47,8 @@ app.post('/login', async (req, res) => {
 
     // Verificar si se encontró la información de inicio de sesión
     if (userLoginInfo) {
-      // Cifrar la contraseña proporcionada con MD5
-      const hashedPassword = md5(password).toString(); // Calcular MD5 y convertir a string
+      // Cifrar la contraseña proporcionada con MD5 de crypto-js
+      const hashedPassword = MD5(password).toString();
       // Verificar la contraseña
       if (userLoginInfo.password === hashedPassword) {
         // Autenticación exitosa
