@@ -8,7 +8,7 @@ export async function register(pi,name, lastname,password_md5,age,type_user) {
     await conn.query('INSERT INTO userroles (id_role,pi) values (2,$1)',[pi]);
   }
   if (type_user==='empleador'){
-    await conn.query('INSERT INTO userroles (id_role,pi) values (3,$1)',[pi]);
+    await conn.query('INSERT INTO userroles (id_role,pi) VALUES (3,$1);',[pi]);
   }
   return result.rows
 }
