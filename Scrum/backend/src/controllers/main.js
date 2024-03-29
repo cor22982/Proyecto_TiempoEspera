@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import { register } from '../database/db.js';
 import { getUserLoginInfo } from '../database/auth.js';
+import md5 from 'crypto-js/md5'; // Importar la función MD5 de crypto-js
 
 const app = express();
 const PORT = 5000;
@@ -49,7 +50,7 @@ app.post('/login', async (req, res) => {
     // Verificar si se encontró la información de inicio de sesión
     if (userLoginInfo) {
       // Cifrar la contraseña proporcionada con MD5
-      const hashedPassword = md5(password);
+      const hashedPassword = md5(password).toString(); // Calcular MD5 y convertir a string
       // Verificar la contraseña
       if (userLoginInfo.password === hashedPassword) {
         // Autenticación exitosa
