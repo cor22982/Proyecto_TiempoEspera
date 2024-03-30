@@ -1,11 +1,22 @@
 import './App.css'
+import React, { useState, useEffect } from 'react';
 import Logo from './Logo'
 import Login from './Login'
 
 function App() {
+  const [mostrarComponente1, setMostrarComponente1] = useState(true);
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setMostrarComponente1(false);
+    }, 3000);
+
+    return () => clearTimeout(timeout);
+  }, []);
   return (
     <>
-      <Login />
+    <div>
+      {mostrarComponente1 ? <Logo /> : <Login />}
+    </div>
     </>
   );
 }

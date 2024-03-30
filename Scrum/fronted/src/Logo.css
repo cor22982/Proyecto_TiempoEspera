@@ -2,7 +2,7 @@
   position: relative;
   bottom: -100px;
   opacity: 0; /* Inicialmente, la imagen está oculta */
-  animation: fadeIn 2s ease forwards 1s, slide-up 2s ease forwards 1s, fadeOut 1s ease forwards 3s; /* Agrega las tres animaciones con retrasos adecuados */
+  animation: fadeIn 1s ease forwards 1s, slide-up 1s ease forwards 1s, fadeOut 1s ease forwards 2s; /* Agrega las tres animaciones con retrasos adecuados */
 }
 
 @keyframes fadeIn {

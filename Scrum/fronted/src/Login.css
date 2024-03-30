@@ -1,6 +1,7 @@
 /* Contenedor principal */
 .login-container {
   display: flex;
+  animation: fadeIn 1s ;
 }
 
 /* Contenedor izquierdo */
@@ -12,6 +13,7 @@
   height: 100vh;
   justify-content: center; 
   user-select: none;
+  
 }
 
 /* Imagen del contenedor izquierdo */
@@ -19,6 +21,7 @@
   max-width: 100%;
   height: auto;
   padding: 0 10%; 
+  
 }
 
 /* Contenedor derecho */
@@ -49,5 +52,14 @@
   .login-right-side {
     flex: 1; 
     width: 100%;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Empieza con opacidad 0 (oculto) */
+  }
+  to {
+    opacity: 1; /* Termina con opacidad 1 (visible) */
   }
 }
