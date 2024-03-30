@@ -1,7 +1,7 @@
 import React from 'react';
 import './Login.css';
 import LoginTextInput from './LoginTextInput';
-import CustomButton from './CustomButton'; // Importa el componente CustomButton
+import CustomButton from './CustomButton';
 
 const Login = () => {
 
