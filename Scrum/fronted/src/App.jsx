@@ -2,6 +2,7 @@ import './App.css'
 import React, { useState, useEffect } from 'react';
 import Logo from './Logo'
 import Login from './Login'
+import Registro from './Registro/Registro'
 
 function App() {
   const [mostrarComponente1, setMostrarComponente1] = useState(true);
@@ -15,7 +16,7 @@ function App() {
   return (
     <>
     <div>
-      {mostrarComponente1 ? <Logo /> : <Login />}
+      {mostrarComponente1 ? <Logo /> : <Registro />}
     </div>
     </>
   );
