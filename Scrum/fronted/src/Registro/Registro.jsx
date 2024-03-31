@@ -16,11 +16,11 @@ const Register = () => {
       <div className='login-right-side'>
         <h1 className='login-title'>Registro</h1>
         {/* Utiliza el componente LoginTextInput */}
-        <LoginTextInput imageUrl='../assets/Login/pi.png' placeholder='Ingrese su nombre de usuario' />
-        <LoginTextInput imageUrl='../assets/Login/pi.png' placeholder='Ingrese su correo electrónico' />
-        <LoginTextInput imageUrl='../assets/Login/pi.png' placeholder='Ingrese su DPI/CUI' />
-        <LoginTextInput imageUrl='../assets/Login/password.png' placeholder='Ingrese su contraseña' />
-        <LoginTextInput imageUrl='../assets/Login/role.png' placeholder='Ingrese su rol' />
+        <LoginTextInput imageUrl='../src/assets/Login/pi.png' placeholder='Usuario' />
+        <LoginTextInput imageUrl='../src/assets/Login/pi.png' placeholder='Correo' />
+        <LoginTextInput imageUrl='../src/assets/Login/pi.png' placeholder='DPI/CUI' />
+        <LoginTextInput imageUrl='../src/assets/Login/password.png' placeholder='Contraseña' />
+        <LoginTextInput imageUrl='../src/assets/Login/role.png' placeholder='Ingrese su rol' />
         
         {/* Utiliza el componente CustomButton y pasa el texto y la función de clic */}
         <CustomButton buttonText='Registrarse' onClick={click} />

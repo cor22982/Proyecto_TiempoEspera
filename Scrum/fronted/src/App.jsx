@@ -16,7 +16,7 @@ function App() {
   return (
     <>
     <div>
-      {mostrarComponente1 ? <Logo /> : <Registro />}
+      {mostrarComponente1 ? <Logo /> : <Login />}
     </div>
     </>
   );
