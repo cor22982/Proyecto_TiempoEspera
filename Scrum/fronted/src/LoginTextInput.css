@@ -37,7 +37,8 @@
 }
 
 .text-container input[type="text"],
-.text-container input[type="password"] {
+.text-container input[type="password"],
+.text-container input[type="number"] {
     display: flex;
     background-color: #ECECEC;
     color: #6580A5;
@@ -51,7 +52,8 @@
 
 
 .text-container input[type="text"]::placeholder,
-.text-container input[type="password"]::placeholder {
+.text-container input[type="password"]::placeholder,
+.text-container input[type="number"]::placeholder {
     display: flex;
     color: #6580A5;
     text-align: center;
@@ -59,7 +61,8 @@
 }
 
 .text-container input[type="text"]:focus,
-.text-container input[type="password"]:focus {
+.text-container input[type="password"]:focus,
+.text-container input[type="number"]:focus {
     border: transparent;
 }
 

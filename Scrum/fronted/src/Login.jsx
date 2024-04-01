@@ -1,13 +1,15 @@
 import React from 'react';
 import './Login.css';
-import { useState } from 'react'
+import { useContext,useState } from 'react'
 import LoginTextInput from './LoginTextInput';
 import CustomButton from './CustomButton';
 import Dropdowncustom from './Dropdowncustom';
 import { md5 } from 'js-md5'
+import LoginContext from './LoginContext';
 const Login = () => {
   const [formState, setFormState] = useState({ pi: '',type_user: '', password: '' })
   const [errorMessage, setErrorMessage] = useState('')
+  const { setLoggedIn } = useContext(LoginContext)
 
   const setValue = (name, value) => {
     setFormState({
@@ -35,6 +37,7 @@ const Login = () => {
     // Aquí puedes agregar la lógica que desees ejecutar cuando el botón sea clicado
     if (response.ok) {
       console.log('success!')
+      setLoggedIn(true)
       setErrorMessage('')
       return
     }
