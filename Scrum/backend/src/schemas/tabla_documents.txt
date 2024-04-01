@@ -1,0 +1,2 @@
+CREATE TABLE Documents (id_document int PRIMARY KEY, name VARCHAR(120), description TEXT);
+INSERT INTO documents (id_document, name, description) VALUES(1,'DPI','Documento personal de identificacion');
