@@ -3,7 +3,7 @@ import './Login.css';
 import { useContext,useState } from 'react'
 import LoginTextInput from './LoginTextInput';
 import CustomButton from './CustomButton';
-import Dropdowncustom from './Dropdowncustom';
+import { Link } from 'react-router-dom';
 import { md5 } from 'js-md5'
 import LoginContext from './LoginContext';
 const Login = () => {
@@ -18,9 +18,7 @@ const Login = () => {
     })
   }
 
-  const handleDropdownChange = (selectedItem) => {
-    setValue('type_user', selectedItem);
-  }
+
   const handleClick = async () => {
     const body = { }
     body.pi = formState.pi
@@ -68,8 +66,10 @@ const Login = () => {
         <LoginTextInput imageUrl='../src/assets/Login/password.png' placeholder='Contraseña' type='password'
           value={formState.password} onChange={(value) => setValue('password', value)}
         />
-        <Dropdowncustom nombre="Seleccionar rol" lista = {['usuario_comun', 'empleador']}
-        onChange={handleDropdownChange}></Dropdowncustom>
+        
+        <p style={{ fontSize: '30px' }}>
+          ¿No te has registrado aún? <Link to="/register" style={{ fontSize: '30px', fontWeight: 'bold' }}>Regístrate aquí</Link>
+        </p>
         
         {
           /* Utiliza el componente CustomButton y pasa el texto y la función de clic */}
