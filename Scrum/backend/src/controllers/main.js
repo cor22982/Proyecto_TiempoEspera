@@ -52,7 +52,7 @@ app.post('/login', async (req, res) => {
       // Verificar la contraseña
       if (userLoginInfo.password === hashedPassword) {
         // Autenticación exitosa
-        res.json({ success: true, message: 'Inicio de sesión exitoso' });
+        res.status(200).json({ success: true, message: 'Inicio de sesión exitoso' });
       } else {
         // Contraseña incorrecta
         res.status(401).json({ success: false, message: 'Contraseña incorrecta' });
