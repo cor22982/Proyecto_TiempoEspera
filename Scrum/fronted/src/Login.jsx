@@ -2,7 +2,7 @@ import React from 'react';
 import './Login.css';
 import LoginTextInput from './LoginTextInput';
 import CustomButton from './CustomButton';
-
+import Dropdowncustom from './Dropdowncustom';
 const Login = () => {
 
   const handleClick = () => {
@@ -19,9 +19,9 @@ const Login = () => {
       <div className='login-right-side'>
         <h1 className='login-title'>Iniciar sesión</h1>
         {/* Utiliza el componente LoginTextInput */}
-        <LoginTextInput imageUrl='../src/assets/Login/pi.png' placeholder='DPI/CUI' />
-        <LoginTextInput imageUrl='../src/assets/Login/password.png' placeholder='Contraseña' />
-        
+        <LoginTextInput imageUrl='../src/assets/Login/pi.png' placeholder='DPI/CUI' type='text'/>
+        <LoginTextInput imageUrl='../src/assets/Login/password.png' placeholder='Contraseña' type='password'/>
+        <Dropdowncustom nombre="Seleccionar rol" lista = {['usuario_comun', 'empleador']}></Dropdowncustom>
         
         {/* Utiliza el componente CustomButton y pasa el texto y la función de clic */}
         <CustomButton buttonText="Iniciar sesión" onClick={handleClick} />

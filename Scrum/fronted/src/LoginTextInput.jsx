@@ -1,7 +1,7 @@
 import React from 'react';
 import './LoginTextInput.css';
 
-const LoginTextInput = ({ imageUrl, placeholder }) => {
+const LoginTextInput = ({ imageUrl, placeholder, type,onChange,value  }) => {
   return (
     <div className='text-input-container'>
       
@@ -12,7 +12,10 @@ const LoginTextInput = ({ imageUrl, placeholder }) => {
 
       <div className='text-container'>
         {/* Renderizar el texto recibido como prop */}
-        <input type="text" placeholder={placeholder} />
+        <input type={type} placeholder={placeholder} 
+          onChange={({ target: { value }}) => onChange(value)}
+          value={value}
+        />
       </div>
 
     </div>

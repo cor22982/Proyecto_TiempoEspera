@@ -1,0 +1,24 @@
+.dropdown-container {
+  display: flex;
+  max-width: 40%;
+  max-height: 10%;
+  padding: 0px;
+  padding-top: 0px;
+}
+
+.dropdown-toggle {
+  font-size: 1.5em; /* Ajusta el tamaño de la fuente del botón */
+  background-color: #0069AD; /* Cambia el color de fondo del botón */
+  color: white;
+}
+.dropdown-toggle:focus,
+.dropdown-toggle:hover {
+  background-color: #024069; /* Mantén el mismo color de fondo al enfocar o activar */
+  color: white; /* Mantén el mismo color de texto al enfocar o activar */
+}
+
+.dropdown-menu {
+  font-size: 1em; /* Ajusta el tamaño de la fuente del menú desplegable */
+  max-height: 200px; /* Ajusta la altura máxima del menú desplegable */
+  overflow-y: auto; /* Permite hacer scroll si el contenido es más largo que la altura máxima */
+}

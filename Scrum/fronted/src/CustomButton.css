@@ -1,7 +1,7 @@
 /* Contenedor principal */
 .custom-button-container {
-    padding-bottom: 3.5em;
-    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    padding-top: 6em;
     display: flex;
     justify-content: center;
 }
@@ -13,16 +13,16 @@
     align-items: center;
     background-color: #00367E;
     color: white;
-    min-width: 10em;
-    padding: 1em 2em;
+    min-width: 8em; /* Ajusta el ancho mínimo */
+    padding: 1em 2em; /* Ajusta el padding */
     border: none;
-    border-radius: 15px;
-    font-size: 2.5em;
+    border-radius: 15px; /* Redondea los bordes */
+    font-size: 2em; /* Ajusta el tamaño de la fuente */
     cursor: pointer;
     outline: none;
     transition: background-color 0.3s;
     white-space: nowrap; 
-    font-weight: bold
+    font-weight: bold;
 }
 
 .custom-button:hover {
