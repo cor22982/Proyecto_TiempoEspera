@@ -1,0 +1,108 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 16.2
+-- Dumped by pg_dump version 16.2
+
+-- Started on 2024-03-28 16:35:56
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 215 (class 1259 OID 24577)
+-- Name: intitutions; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.intitutions (
+    id_institutions integer NOT NULL,
+    name character varying(1000),
+    adress character varying(1000)
+);
+
+
+ALTER TABLE public.intitutions OWNER TO postgres;
+
+--
+-- TOC entry 4831 (class 0 OID 24577)
+-- Dependencies: 215
+-- Data for Name: intitutions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.intitutions (id_institutions, name, adress) FROM stdin;
+1	Agencia Tributaria Galerías Prima	Calzada Roosevelt 14-82 zona 7, Centro Comercial Galerías Prima, primer Nivel Local 130 Guatemala, Guatemala.
+2	Agencia Tributaria zona 09	7a. Av. 3-73, Zona 9, Lobby (1er. Nivel), Edificio Torre SAT, Guatemala, Guatemala.
+3	Agencia Tributaria No. 01	26 calle 7-25 zona 11, Interior Aduana Central, Colonia Granai Townson 2, Parque Global 3, Guatemala, Guatemala.
+4	Agencia Tributaria No. 02	2a. Avenida 4-17 zona 10 edificio Ministerio de Relaciones Exteriores.
+5	Ventanilla Anexa a la Agencia Tributaria Dubai en el Edificio El Jade (especies fiscales y papel protocolo)	7 Avenida entre10 y 9 calle zona 9.
+6	Agencia Tributaria San Rafael	Kilómetro 7.5 carretera al Atlántico Centro Comercial Plaza San Rafael Local 108 primer Nivel, Guatemala, Guatemala
+7	Agencia Tributaria Pacific Villa Hermosa	23 calle 20-00, zona 7, San Miguel Petapa, Villa Hermosa I, Centro Comercial Pacific Villa Hermosa, 2do.
+8	Agencia Tributaria Montserrat	Centro Comercial Montserrat, 2do Nivel, Locales 56 A,B, y C, zona 4 de Mixco.
+9	Agencia Tributaria Dubai	13 Calle 1a. avenida zona 10, Edifício Dubai Center.
+10	Agencia Tributaria Carretera a El Salvador	Kilómetro 18.5 C.C. Portal Solé, Carretera a El Salvador.
+11	Delegación Registro Mercantil	7a. avenida 7-61 zona 4, Guatemala, Guatemala.
+12	Recepción de Documentos	7a avenida 3-73 zona 9, Edificio Torre SAT, 1er. Nivel.
+13	Oficina Tributaria Chimaltenango	2 calle 1-34 zona 3, Chimaltenango, Chimaltenango.
+14	Oficina Tributaria El Progreso	3a. avenida entre 5a. y 6a. calle, Barrio las Joyas Guastatoya, El Progreso.
+15	Oficina Tributaria Sacatepéquez	Finca Pavón, Lote No. 1, Antigua Guatemala, Sacatepéquez.
+16	Delegación Zona 10	13 Calle 1a. avenida zona 10, Edifício Dubai Center, Nivel 12, Oficina 1202
+17	Oficina Tributaria Zacapa	3a. Calle 14-36 Zona 1 Zacapa
+18	Oficina Tributaria Baja Verapaz	8a. Avenida 6-44 Zona 1 Barrio El Centro Salama, Baja Verapaz.
+19	Oficina Tributaria Alta Verapaz	2da. Calle 6-54 Zona 1 Coban, Alta Verapaz
+20	Oficina Tributaria Jalapa	6a. Avenida y Calle Transito Rojas Zona 6 Jalapa, Jalapa.
+21	Oficina Tributaria Petén	Avenida Flores a un costado del Teatro Municipal Valentín del Valle Góngora, Ciudad Flores Petén.
+22	Agencia Tributaria Poptún	7a. Avenida 10-12 Zona 1 Barrio El Centro Poptún, Petén
+23	Oficina Tributaria Izabal	9a. Calle y 1a. Avenida final Barrio las Champas, Puerto Barrios, Izabal.
+24	Delegación Livingston	Calle principal 2do. Nivel Edificio Municipal Livingston, Izabal.
+25	Oficina Tributaria Chiquimula	3a. Calle 6-21 Zona 1 Chiquimula.
+26	Delegación Esquipulas	3a. Avenida 6-26 Zona 1 Esquipulas, Chiquimula.
+27	Oficina Tributaria Quetzaltenango	13 avenida y 7 calle esquina, zona 1, Quetzaltenango, Quetzaltenango.
+28	Agencia Tributaria Coatepeque	3 Avenida, 9-74 zona 2, primer nivel locales 11 al 16 Centro Comercial Internacional Coatepeque, Quetzaltenango
+29	Oficina Tributaria Huehuetenango	4 avenida “A”, 2-45 zona 1, Huehuetenango, Huehuetenango.
+30	Oficina Tributaria Quiché	0 avenida, 1-24 zona 1, Santa Cruz del Quiche, Quiche.
+31	Oficina Tributaria Sololá	10 calle y 5 Avenida, zona 1, Sololá, Sololá.
+32	Delegación Tributaria Panajachel	Calle Principal. 2-59 zona 2, Panajachel, Sololá.
+33	Oficina Tributaria Totonicapán	8 avenida y 7 calle, zona 3 Totonicapán, Totonicapán.
+34	Oficina Tributaria San Marcos	7ma avenida “A” 10-04 zona 1 San Marcos, San Marcos.
+35	Agencia Tributaria Malacatan	6 Calle, Zona 1, Cantón San Miguel, Malacatan San Marcos.
+36	Delegación Tributaria El Carmen	Kilómetro 290 Carretera Centroamericana CA-2-OCC, Aldea El Carmen, Frontera Malacatán, San Marcos.
+37	Delegación Tributaria Tecún Umán II	Kilómetro 251 Carretera, Aduana Tecún Umán II, Aldea El Triunfo, Ayutla, San Marcos
+38	Sede Región Sur	3a Av. 8-32, Zona 1, Escuintla.
+39	Oficina Tributaria Escuintla	4 Avenida 15-64 Zona 1, Local 41 Nivel 2, Centro Comercial Mary Center , Escuintla
+40	Agencia Tributaria Santa Lucía Cotzumalguapa	03 Avenida 4-10 zona 1, Santa Lucía Cotzumalguapa, Escuintla.
+41	Oficina Tributaria Retalhuleu	Centro Comercial Paseo Las Palmas Locales del 19 al 23, Avenida Circunvalación 8-30 zona 6.
+42	Oficina Tributaria Jutiapa	6ta. Calle 5-13, zona 1, Barrio Latino, Jutiapa.
+43	Oficina Tributaria Santa Rosa	2a. Avenida 5a Calle Zona 1, Frente al Parque Central, Barrio El Centro, Santa Rosa, Cuilapa.
+44	Oficina Tributaria Suchitepéquez	7a Av. 7-01, Zona 1, Mazatenango, Suchitepéquez.
+45	Agencia Tributaria Mazatenango	Centro Comercial Plaza las América Millenium, locales 204 y 205 segundo nivel kilómetro 158 Mazatenango, Suchitepéquez.
+\.
+
+
+--
+-- TOC entry 4687 (class 2606 OID 24581)
+-- Name: intitutions intitutions_id; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.intitutions
+    ADD CONSTRAINT intitutions_id PRIMARY KEY (id_institutions);
+
+
+-- Completed on 2024-03-28 16:35:56
+
+--
+-- PostgreSQL database dump complete
+--
+
