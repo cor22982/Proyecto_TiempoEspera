@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import './Dropdowncustom.css';
 
-const Dropdowncustom = ({ nombre, lista }) => {
+const Dropdowncustom = ({ nombre, lista,onChange }) => {
   const [dropdown, setDropdown] = useState(false);
   const [tituloSeleccionado, setTituloSeleccionado] = useState(nombre);
 
@@ -13,6 +13,7 @@ const Dropdowncustom = ({ nombre, lista }) => {
 
   const seleccionarItem = (item) => {
     setTituloSeleccionado(item);
+    onChange(item)
     setDropdown(false); // Cerrar el Dropdown después de seleccionar un item
   };
 
