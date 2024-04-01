@@ -39,11 +39,11 @@ app.post('/register', validateRequest, async (req, res) => {
 
 // Endpoint para el inicio de sesión
 app.post('/login', async (req, res) => {
-  const { pi, type_user, password } = req.body;
+  const { pi, password } = req.body;
 
   try {
     // Obtener la información de inicio de sesión del usuario
-    const userLoginInfo = await getUserLoginInfo(pi, type_user);
+    const userLoginInfo = await getUserLoginInfo(pi);
 
     // Verificar si se encontró la información de inicio de sesión
     if (userLoginInfo) {
