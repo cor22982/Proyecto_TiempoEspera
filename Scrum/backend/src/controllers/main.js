@@ -53,10 +53,7 @@ app.post('/login', async (req, res) => {
       if (userLoginInfo.password === hashedPassword) {
         const user = {
           dpi: pi,
-          rol: rol,
-          name: userLoginInfo.name,
-          lastname: userLoginInfo.lastname,
-          age: userLoginInfo.age  
+          rol: rol
         }
         const token = generateToken(user)
         // Autenticación exitosa
