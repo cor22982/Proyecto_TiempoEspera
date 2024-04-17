@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import { register } from '../database/db.js';
 import { getUserLoginInfo } from '../database/auth.js';
-
+import { generateToken } from './jwt.js';
 
 const app = express();
 const PORT = 5000;
@@ -39,20 +39,28 @@ app.post('/register', validateRequest, async (req, res) => {
 
 // Endpoint para el inicio de sesión
 app.post('/login', async (req, res) => {
-  const { pi, password } = req.body;
+  const { pi, password , rol} = req.body;
 
   try {
     // Obtener la información de inicio de sesión del usuario
-    const userLoginInfo = await getUserLoginInfo(pi);
-
+    const userLoginInfo = await getUserLoginInfo(pi, rol);
+    
     // Verificar si se encontró la información de inicio de sesión
     if (userLoginInfo) {
       // Cifrar la contraseña proporcionada con MD5 de crypto-js
       const hashedPassword = password;
       // Verificar la contraseña
       if (userLoginInfo.password === hashedPassword) {
+        const user = {
+          dpi: pi,
+          rol: rol,
+          name: userLoginInfo.name,
+          lastname: userLoginInfo.lastname,
+          age: userLoginInfo.age  
+        }
+        const token = generateToken(user)
         // Autenticación exitosa
-        res.status(200).json({ success: true, message: 'Inicio de sesión exitoso' });
+        res.status(200).json({ success: true, message: 'Inicio de sesión exitoso', acces_token: token });
       } else {
         // Contraseña incorrecta
         res.status(401).json({ success: false, message: 'Contraseña incorrecta' });
