@@ -26,8 +26,9 @@ const Login = () => {
   const handleClick = async () => {
     const body = { }
     body.pi = formState.pi
-    body.type_user = formState.type_user
+    body.rol = formState.type_user
     body.password = md5(formState.password)
+    console.table(body)
     const fetchOptions = {
       method: 'POST',
       body: JSON.stringify(body),

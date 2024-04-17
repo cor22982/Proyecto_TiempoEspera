@@ -7,6 +7,25 @@
     max-height: 15%;
 }
 
+.eye {
+    margin-top: 15px;
+    right: 10px;
+    bottom: 10px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 30px;
+    transform: translateX(-30px);
+    color: #0069AD
+  }
+
+  .eye.closed {
+    opacity: 0.4;
+  }
+  
+  .eye.open {
+    opacity: 1;
+  }
+
 .icono-blanco {
     filter: brightness(0) invert(1);
 }
