@@ -1,11 +1,11 @@
 import React from 'react';
-import '../Login.css';
-import LoginTextInput from '../LoginTextInput';
-import CustomButton from '../CustomButton';
-import Dropdowncustom from '../Dropdowncustom';
+import '../Login/Login.css';
+import LoginTextInput from '@components/LoginTextInput';
+import CustomButton from '@components/CustomButton';
+import Dropdowncustom from '@components/Dropdowncustom';
 import { md5 } from 'js-md5';
 import { useContext,useState } from 'react';
-import LoginContext from '../LoginContext';
+import LoginContext from '../LoginContex/LoginContext';
 const Register = () => {
   const [formState, setFormState] = useState({ pi: '',name: '', lastname: '',password_md5: '',age: '',type_user: '' })
   const [errorMessage, setErrorMessage] = useState('')

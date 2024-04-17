@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Login from './Login';
+import Login from './Login/Login';
 import Registro from './Registro/Registro';
-import LoginContext from './LoginContext';
-import Logo from './Logo'; // Importa el componente Logo
+import LoginContext from './LoginContex/LoginContext';
+import Logo from '@components/Logo'; // Importa el componente Logo
 function App() {
   const [showLogo, setShowLogo] = useState(true);
   const [loggedin, setLoggedIn] = useState(localStorage.getItem('loggedin') === 'true');

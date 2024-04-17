@@ -1,16 +1,20 @@
 import React from 'react';
 import './Login.css';
 import { useContext,useState } from 'react'
-import LoginTextInput from './LoginTextInput';
-import CustomButton from './CustomButton';
+import LoginTextInput from '@components/LoginTextInput';
+import CustomButton from '@components/CustomButton';
 import { Link } from 'react-router-dom';
 import { md5 } from 'js-md5'
-import LoginContext from './LoginContext';
+import LoginContext from '../LoginContex/LoginContext';
+import Dropdowncustom from '@components/Dropdowncustom';
 const Login = () => {
   const [formState, setFormState] = useState({ pi: '',type_user: '', password: '' })
   const [errorMessage, setErrorMessage] = useState('')
   const { setLoggedIn } = useContext(LoginContext)
 
+  const handleDropdownChange = (selectedItem) => {
+    setValue('type_user', selectedItem);
+  }
   const setValue = (name, value) => {
     setFormState({
       ...formState,
@@ -57,7 +61,7 @@ const Login = () => {
             {errorMessage}
           </div>
         ) : null
-        }
+        } 
 
         {/* Utiliza el componente LoginTextInput */}
         <LoginTextInput imageUrl='../src/assets/Login/pi.png' placeholder='DPI/CUI' type='text'
@@ -66,10 +70,12 @@ const Login = () => {
         <LoginTextInput imageUrl='../src/assets/Login/password.png' placeholder='Contraseña' type='password'
           value={formState.password} onChange={(value) => setValue('password', value)}
         />
-        
+         <Dropdowncustom nombre="Seleccionar rol" lista = {['usuario_comun', 'empleador']}
+        onChange={handleDropdownChange}></Dropdowncustom>
         <p style={{ fontSize: '30px' }}>
           ¿No te has registrado aún? <Link to="/register" style={{ fontSize: '30px', fontWeight: 'bold' }}>Regístrate aquí</Link>
         </p>
+        
         
         {
           /* Utiliza el componente CustomButton y pasa el texto y la función de clic */}
