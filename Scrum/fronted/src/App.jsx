@@ -5,6 +5,7 @@ import Login from './Login/Login';
 import Registro from './Registro/Registro';
 import LoginContext from './LoginContex/LoginContext';
 import Logo from '@components/Logo'; // Importa el componente Logo
+import Pages from './Pages/Pages';
 function App() {
   const [showLogo, setShowLogo] = useState(true);
   const [loggedin, setLoggedIn] = useState(localStorage.getItem('loggedin') === 'true');
@@ -36,8 +37,8 @@ function App() {
           {showLogo && <Logo />} {/* Muestra el logo solo si showLogo es true */}
           {!showLogo && (
             <Routes>
-              <Route path="/" element={loggedin ? <h1>HOME</h1> : <Login />} />
-              <Route path="/register" element={loggedin ? <h1>HOME</h1> : <Registro />} />
+              <Route path="/" element={loggedin ? <Pages></Pages> : <Login />} />
+              <Route path="/register" element={loggedin ? <Pages></Pages> : <Registro />} />
             </Routes>
           )}
         </div>

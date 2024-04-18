@@ -1,0 +1,40 @@
+.contenedor-principal {
+  width: 100vw;
+  height: 100vh;
+  background-color: #E4E4E4;
+  display: grid;
+  grid-template-columns: 1.3fr 6fr;
+}
+
+.opciones {
+  grid-column: 1;
+  background-color: #00367E;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding-left: 20px;
+  min-height: 100px;
+  flex-shrink: 0; /* Establece una altura mínima de 100px (o el valor que desees) */
+}
+
+.interfaz{
+  grid-column: 2;
+  display: grid;
+  grid-template-rows: 1fr 6fr;
+}
+
+.cabecera {
+  grid-row: 1;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+}
+
+.cuerpo {
+  grid-row: 2;
+}
+
+.imagen-portada{
+  height: 130px;
+}

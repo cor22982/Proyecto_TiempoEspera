@@ -36,4 +36,4 @@ const LoginTextInput = ({ imageUrl, placeholder, type,onChange,value  }) => {
   );
 }
 
-export default LoginTextInput;
+export default LoginTextInput; 
