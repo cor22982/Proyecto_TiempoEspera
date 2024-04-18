@@ -4,4 +4,23 @@
   background: #EFEFEF;
   border: 1px solid #838383;
   border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 5px;
+
+}
+
+.icon-serchad {
+  color: #737373;
+  width: 25px;
+  height: 25px;
+
+}
+
+.input-search {
+  width: 483px;
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
 }
