@@ -1,0 +1,29 @@
+.contenido{
+  
+  display: grid;
+  grid-template-rows: 1fr 6fr;
+
+}
+
+.cabecera{
+  
+  grid-row: 1;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+}
+
+.componentes{
+  max-height: 800px;
+  margin-top: 20px;
+  grid-row: 2;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: auto;
+}
+
+
+.componentes > :not(:last-child) {
+  margin-bottom: 20px; /* Ajusta el espacio entre los elementos */
+}

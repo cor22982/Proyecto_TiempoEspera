@@ -2,10 +2,9 @@ import './Pages.css'
 import MenuButton from '@components/MenuButton';
 import { faUser, faHome, faSave, faGear, faBell, faRightFromBracket, faSearch } from '@fortawesome/free-solid-svg-icons';
 import '../assets/Login/logotipo.png'
-import SearchInput from '@components/SearchInput';
 import { Route, Routes } from 'react-router-dom';
 import Logout from '../Login/Logout';
-
+import Page_Main from '../User_Common/Page_Main';
 const Pages = () => {
 
 
@@ -32,19 +31,17 @@ const Pages = () => {
       </div>
 
       <div className='interfaz'>
-         <div className='cabecera'>
-          <SearchInput icono={faSearch} placeholder='Buscar tramite'></SearchInput>
-         </div>
-         <div className='cuerpo'>
-         <Routes>
-            <Route path="/" element={<HomePage />} />
+        
+        
+         <Routes>  
+            <Route path="/" element={<Page_Main/>} />
             <Route path="/cuenta" element={<CuentaPage />} />
             <Route path="/guardados" element={<GuardadosPage />} />
             <Route path="/configuracion" element={<ConfiguracionPage />} />
             <Route path="/notificaciones" element={<NotificacionesPage />} />
             <Route path='/salir' element={<Logout/>}></Route>
           </Routes>   
-         </div>
+        
 
       </div>
     </div>

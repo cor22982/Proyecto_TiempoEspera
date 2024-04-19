@@ -1,30 +1,30 @@
 /* Contenedor principal */
 .container {
   display: grid;
-  grid-template-areas:
-      "image info";
+  grid-template-areas: "image info";
   grid-template-columns: 1fr 2fr; /* Adjust column widths as needed */
-  width: 535px;
-  height: 235px;
+  width: 400px;
+  height: 195px;
   top: 164px;
   left: 312px;
   border-radius: 10px;
-  border: 1px solid gray;
+  background-color: white;
+  border: 1px solid transparent;
 }
 
 /* contenedor de la imagen */
-.image-container {
-  grid-area: image;
+.imagen-conteiner{
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
 /* Reglas para la imagen */
 .institution-image {
-  max-width: 100%;
-  height: auto;
-  padding: 0 10%;
+  width: 159px;
+  height: 169px;
+  
+  border-radius: 20px;
 }
 
 /* Contendor derecho */
@@ -33,17 +33,32 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  background-color: white;
+  align-items: start;
+  background-color: transparent;
   border-radius: 0 10px 10px 0;
   overflow-y: auto;
+  padding-left: 10px;
+  
 }
 
 /*texto */
 .heading {
   color: #00367E;
   font-family: inika-regular, sans-serif;
-
+  font-size: 20px;
 }
 
+.heading1 {
+  color: #00367E;
+  font-family: inika-regular, sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+}
 
+.timelapmse {
+  font-family: 'Inika';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 44px;
+  color: #00367E;
+}
