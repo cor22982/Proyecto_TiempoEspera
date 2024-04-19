@@ -1,0 +1,23 @@
+/* Contenedor principal */
+.container {
+  display: grid;
+  width: 535px;
+  height: 235px;
+  top: 164px;
+  left: 312px;
+  border-radius: 10px;
+}
+
+/* contenedor de la imagen */
+
+.image-container {
+  max-width: 100%;
+  height: auto;
+  padding: 0 10%;
+}
+
+/*contenedor del texto */
+
+.info-container {
+    
+}
