@@ -19,3 +19,8 @@ export async function getProcedureInfo(name){
   const result = await conn.query('SELECT intitutions.name, intitutions.adress FROM procedures p join institutionsprocedures ip on p.id = ip."id procedure" join intitutions on ip."id intitution" = intitutions.id_institutions where p.name ilike $1;',[likePattern]);
   return result.rows
 }
+
+export async function getAllInstitutionInfo(){
+  const result = await conn.query('SELECT * FROM intitutions;');
+  return result.rows
+}
