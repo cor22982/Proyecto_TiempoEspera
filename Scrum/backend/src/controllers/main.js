@@ -2,7 +2,7 @@ import express from 'express';
 import { validationResult } from 'express-validator';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { register } from '../database/db.js';
+import { register, getProcedureInfo } from '../database/db.js';
 import { getUserLoginInfo } from '../database/auth.js';
 import { generateToken } from './jwt.js';
 
@@ -71,6 +71,24 @@ app.post('/login', async (req, res) => {
     res.status(500).json({ success: false, message: 'Error en el servidor' });
   }
 });
+
+//Endpoint de búsqueda de instituciones
+
+app.get('/institutions/:name', async (req, res) => {
+  const { name } = req.params;
+  try{
+    const { name } = req.params;
+    const institutions = await getProcedureInfo(name);
+    res.status(200).json(institutions);
+  }
+  catch (error){
+    console.error('Error en la búsqueda de instituciones:', error);
+    res.status(500).send('Error del servidor :(');
+  }
+});
+
+
+
 
 // Manejo de rutas no implementadas
 app.use((req, res) => {
