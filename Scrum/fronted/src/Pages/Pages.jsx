@@ -4,6 +4,13 @@ import { faUser, faHome, faSave, faGear, faBell, faRightFromBracket, faSearch } 
 import '../assets/Login/logotipo.png'
 import SearchInput from '@components/SearchInput';
 const Pages = () => {
+
+  const logout = () => {
+    localStorage.clear()
+    window.location.href = '/';
+
+  }
+
   return (
     <div className="contenedor-principal">
       <div className='opciones'>
@@ -17,7 +24,7 @@ const Pages = () => {
         <br></br> 
        
         <br></br>   
-        <MenuButton nombre='Salir' icono={faRightFromBracket}></MenuButton>
+        <MenuButton nombre='Salir' icono={faRightFromBracket} onclick={logout}></MenuButton>
       </div>
 
       <div className='interfaz'>

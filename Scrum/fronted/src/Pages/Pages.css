@@ -4,6 +4,7 @@
   background-color: #E4E4E4;
   display: grid;
   grid-template-columns: 1.4fr 6fr;
+  animation: fadeIn 1s ;
 
 }
 
@@ -39,4 +40,13 @@
 
 .imagen-portada{
   height: 130px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Empieza con opacidad 0 (oculto) */
+  }
+  to {
+    opacity: 1; /* Termina con opacidad 1 (visible) */
+  }
 }

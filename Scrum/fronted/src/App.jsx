@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Login from './Login/Login';
-import Registro from './Registro/Registro';
-import LoginContext from './LoginContex/LoginContext';
 import Logo from '@components/Logo'; // Importa el componente Logo
-import Pages from './Pages/Pages';
+import { TokenProvider } from '@hooks/useToken'
+import Indice from './Pages/Indice';
+
 function App() {
   const [showLogo, setShowLogo] = useState(true);
-  const [loggedin, setLoggedIn] = useState(localStorage.getItem('loggedin') === 'true');
+  
 
-  useEffect(() => {
-    localStorage.setItem('loggedin', loggedin);
-  }, [loggedin]);
+
+  
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -22,28 +19,21 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleLogin = () => {
-    setLoggedIn(true);
-  };
 
-  const handleLogout = () => {
-    setLoggedIn(false);
-  };
 
   return (
-    <LoginContext.Provider value={{ loggedin, setLoggedIn }}>
-      <Router>
-        <div className="app-container">
-          {showLogo && <Logo />} {/* Muestra el logo solo si showLogo es true */}
-          {!showLogo && (
-            <Routes>
-              <Route path="/" element={loggedin ? <Pages></Pages> : <Login />} />
-              <Route path="/register" element={loggedin ? <Pages></Pages> : <Registro />} />
-            </Routes>
-          )}
-        </div>
-      </Router>
-    </LoginContext.Provider>
+   
+      <TokenProvider>
+        
+          <div className="app-container">
+            {showLogo && <Logo />} {/* Muestra el logo solo si showLogo es true */}
+            {!showLogo && (
+              <Indice></Indice>
+            )}
+          </div>
+        
+      </TokenProvider>
+  
   );
 }
 

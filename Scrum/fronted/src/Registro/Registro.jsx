@@ -3,13 +3,12 @@ import '../Login/Login.css';
 import LoginTextInput from '@components/LoginTextInput';
 import CustomButton from '@components/CustomButton';
 import Dropdowncustom from '@components/Dropdowncustom';
+
 import { md5 } from 'js-md5';
-import { useContext,useState } from 'react';
-import LoginContext from '../LoginContex/LoginContext';
-const Register = () => {
+import { useState } from 'react';
+const Registro = () => {
   const [formState, setFormState] = useState({ pi: '',name: '', lastname: '',password_md5: '',age: '',type_user: '' })
   const [errorMessage, setErrorMessage] = useState('')
-  const { setLoggedIn } = useContext(LoginContext)
   const setValue = (name, value) => {
     setFormState({
       ...formState,
@@ -40,8 +39,8 @@ const Register = () => {
     const response = await fetch('https://deimoss.web05.lol/register', fetchOptions)
     
     if (response.ok) {
+      window.location.href = '/';
       console.log('success!')
-      setLoggedIn(true)
       setErrorMessage('')
       return
     }else{
@@ -94,4 +93,4 @@ const Register = () => {
 
 }
 
-export default Register;
+export default Registro;

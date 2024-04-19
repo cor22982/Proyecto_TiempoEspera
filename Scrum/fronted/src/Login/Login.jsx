@@ -7,10 +7,12 @@ import { Link } from 'react-router-dom';
 import { md5 } from 'js-md5'
 import LoginContext from '../LoginContex/LoginContext';
 import Dropdowncustom from '@components/Dropdowncustom';
+import  useToken from '@hooks/useToken'
 const Login = () => {
   const [formState, setFormState] = useState({ pi: '',type_user: '', password: '' })
   const [errorMessage, setErrorMessage] = useState('')
   const { setLoggedIn } = useContext(LoginContext)
+  const { setToken } = useToken() 
 
   const handleDropdownChange = (selectedItem) => {
     setValue('type_user', selectedItem);
@@ -37,9 +39,11 @@ const Login = () => {
       }
     }
     const response = await fetch('https://deimoss.web05.lol/login', fetchOptions)
+    const {  acces_token } = await response.json()
     // Aquí puedes agregar la lógica que desees ejecutar cuando el botón sea clicado
     if (response.ok) {
-      console.log('success!')
+      setToken( acces_token)
+      console.log(acces_token)
       setLoggedIn(true)
       setErrorMessage('')
       return
