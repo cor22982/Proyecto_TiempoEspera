@@ -3,7 +3,7 @@
   display: grid;
   grid-template-areas: "image info";
   grid-template-columns: 1fr 2fr; /* Adjust column widths as needed */
-  width: 400px;
+  width: 450px;
   height: 195px;
   top: 164px;
   left: 312px;
