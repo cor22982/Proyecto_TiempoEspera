@@ -10,6 +10,8 @@
   border-radius: 10px;
   background-color: white;
   border: 1px solid transparent;
+  animation: fadeIn 0.5s ;
+ 
 }
 
 /* contenedor de la imagen */
@@ -61,4 +63,13 @@
   font-weight: 400;
   font-size: 44px;
   color: #00367E;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Empieza con opacidad 0 (oculto) */
+  }
+  to {
+    opacity: 1; /* Termina con opacidad 1 (visible) */
+  }
 }
