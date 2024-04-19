@@ -1,23 +1,49 @@
 /* Contenedor principal */
 .container {
   display: grid;
+  grid-template-areas:
+      "image info";
+  grid-template-columns: 1fr 2fr; /* Adjust column widths as needed */
   width: 535px;
   height: 235px;
   top: 164px;
   left: 312px;
   border-radius: 10px;
+  border: 1px solid gray;
 }
 
 /* contenedor de la imagen */
-
 .image-container {
+  grid-area: image;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Reglas para la imagen */
+.institution-image {
   max-width: 100%;
   height: auto;
   padding: 0 10%;
 }
 
-/*contenedor del texto */
-
+/* Contendor derecho */
 .info-container {
-    
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 0 10px 10px 0;
+  overflow-y: auto;
 }
+
+/*texto */
+.heading {
+  color: #00367E;
+  font-family: inika-regular, sans-serif;
+
+}
+
+

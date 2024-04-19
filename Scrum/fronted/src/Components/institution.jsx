@@ -10,8 +10,8 @@ const insttutionComponent = ({name, image, onClick, tiempo}) =>{
             </div>
             <div className = 'info-container'>
                 <h1 className="heading">{name}</h1>
-                <h2 className = "timetitle">Tiempo Promedio</h2>
-                <h3 className="time">{tiempo}</h3>
+                <h2 className = "heading">Tiempo Promedio</h2>
+                <h3 className="heading">{tiempo}</h3>
             </div>
 
         </div>
