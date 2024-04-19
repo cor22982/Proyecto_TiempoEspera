@@ -9,7 +9,7 @@ const Indice = () => {
     <Router>
       <Routes>
         {token ? (
-          <Route path="/" element={<Pages />} />
+          <Route path="*" element={<Pages />} />
         ) : (
           <>
             <Route path="/" element={<Login />} />

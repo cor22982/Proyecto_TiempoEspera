@@ -1,20 +1,17 @@
-.btn-outlined {
-  background: transparent;
-  border: none;
-  outline: none;
+
+
+.link-menu{
   cursor: pointer;
   font-size: 26px;
   color: white;
-  
   font-family: 'Inter';
   font-style: normal;
-  margin-top: 20px;
-
-
-
-
+  text-decoration: none;
+  margin-left: 10px;
 }
-.btn-outlined:hover{
+
+
+.link-menu:hover{
   color: gray;
 }
 

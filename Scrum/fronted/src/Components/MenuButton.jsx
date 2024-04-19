@@ -1,15 +1,13 @@
 import './MenuButton.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-const MenuButton = ({type,nombre, onclick, icono}) => {
+import { Link } from 'react-router-dom';
+const MenuButton = ({nombre, goto, icono}) => {
   return(
     <div>
      <FontAwesomeIcon icon={icono} className="icon" />
-     <button 
-      type={type} 
-      className="btn-outlined"
-      onClick={onclick}
-      >{nombre}</button>  
+     <Link 
+      to={goto} 
+      className='link-menu'>{nombre}</Link>
     </div>
     
   );
