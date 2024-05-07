@@ -8,6 +8,10 @@
  .link-menu-option:hover{
   color: rgb(147, 147, 182);
  }
- .link-menu-option:active {
+ .link-menu-option:focus {
   text-decoration: underline; /* Subrayado al hacer clic */
+  text-decoration-color: #277ae0;
+  text-underline-offset: 2px; /* Offset para hacer el subrayado más grueso */
+  text-decoration-thickness: 2px; /* Grosor del subrayado */
+  margin-top: 4px;
 }
