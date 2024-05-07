@@ -9,21 +9,17 @@
   
   grid-row: 1;
   background-color: white;
+  height: 60px;
   display: flex;
   align-items: center;
-  padding-left: 30px;
+  padding-left: 40px;
+  box-shadow: 5px 5px 10px 0 rgb(204, 204, 204);
+
+  
 }
 
-.componentes{
+.paginas{
   max-height: 800px;
   margin-top: 20px;
-  grid-row: 2;
-  display: flex;
-  flex-wrap: wrap;
-  overflow-y: auto;
-}
 
-
-.componentes > :not(:last-child) {
-  margin-bottom: 20px; /* Ajusta el espacio entre los elementos */
 }

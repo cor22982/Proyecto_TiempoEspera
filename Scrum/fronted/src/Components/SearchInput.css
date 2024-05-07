@@ -1,8 +1,7 @@
 .searched {
   width: 433px;
-  height: 40px;
-  background: #EFEFEF;
-  border: 1px solid #838383;
+  height: 35px;
+  border: 1px solid #b6b6b6;
   border-radius: 15px;
   display: flex;
   flex-direction: row;
@@ -11,10 +10,14 @@
 
 }
 
+.searched:hover{
+  border: 2px solid #277ae0;
+}
+
 .icon-serchad {
   color: #737373;
-  width: 25px;
-  height: 25px;
+  width: 23px;
+  height: 23px;
 
 }
 
@@ -23,4 +26,8 @@
   background-color: transparent;
   border-color: transparent;
   cursor: pointer;
+  border: none;
+  outline: none;
 }
+
+

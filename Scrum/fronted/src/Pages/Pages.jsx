@@ -34,7 +34,7 @@ const Pages = () => {
         
         
          <Routes>  
-            <Route path="/" element={<Page_Main/>} />
+            <Route path="*" element={<Page_Main/>} />
             <Route path="/cuenta" element={<CuentaPage />} />
             <Route path="/guardados" element={<GuardadosPage />} />
             <Route path="/configuracion" element={<ConfiguracionPage />} />

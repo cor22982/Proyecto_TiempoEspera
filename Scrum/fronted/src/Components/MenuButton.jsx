@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 const MenuButton = ({nombre, goto, icono}) => {
   return(
-    <div>
+    <div className='contenedor'>
      <FontAwesomeIcon icon={icono} className="icon" />
      <Link 
       to={goto} 

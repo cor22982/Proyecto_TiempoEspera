@@ -11,7 +11,12 @@
   background-color: white;
   border: 1px solid transparent;
   animation: fadeIn 0.5s ;
- 
+  cursor: pointer;
+  transition: filter 0.3s; 
+}
+
+.container:hover{
+  filter: brightness(80%); /* Reducción del brillo al 80% */
 }
 
 /* contenedor de la imagen */
