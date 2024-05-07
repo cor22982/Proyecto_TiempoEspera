@@ -1,0 +1,13 @@
+ .link-menu-option{
+  font-size: 22px;
+  cursor: pointer;
+  color: rgb(42, 41, 70);
+  text-decoration: none;
+ }
+
+ .link-menu-option:hover{
+  color: rgb(147, 147, 182);
+ }
+ .link-menu-option:active {
+  text-decoration: underline; /* Subrayado al hacer clic */
+}

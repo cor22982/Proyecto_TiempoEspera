@@ -1,7 +1,7 @@
 import Principal from './Principal';
 import useApi from '@hooks/useApi';
 import { useState } from 'react';
-import Pagina from './Pagina';
+import Informacion from './Informacion';
 import SearchInput from '../Components/SearchInput';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -38,7 +38,7 @@ const Page_Main = () => {
       { pantalla ? (
         <Principal ira={setPantalla} datos={datos}></Principal>
       ) : (
-        <Pagina></Pagina>
+        <Informacion></Informacion>
       )
 
       }
