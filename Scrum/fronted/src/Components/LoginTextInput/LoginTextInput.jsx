@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import React from 'react';
 import './LoginTextInput.css';
-
+ 
 const LoginTextInput = ({ imageUrl, placeholder, type,onChange,value  }) => {
   const [ eyeClosed, setEyeClosed ] = useState(true) 
   return (
