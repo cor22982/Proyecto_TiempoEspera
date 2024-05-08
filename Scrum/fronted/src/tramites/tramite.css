@@ -1,0 +1,71 @@
+.identificacion-chat {
+    width: 46px; 
+    height: 46px; 
+    border-radius: 50%;
+    background: #0069AD;
+    border: none; 
+    color: white; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; 
+    outline: none; 
+  }
+
+.identificacion-chat:hover{
+    background: #005a96;
+}
+  
+  .identificacion {
+    display: flex;
+    align-items: center;
+  }
+  
+  .icon-star {
+    margin: 15px 15px 15px 0;
+
+  }
+
+  .identificacion-name {
+    margin-right: 10px;
+    color: #00367E;
+    font-family: Inika;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 39.09px;
+    text-align: left;
+    font-weight: bold;
+    
+  }
+  
+  .identificacion-chat {
+    margin-left: 10px;
+    align-items: center;
+  }
+
+  .text-bold {
+    font-weight: bold;
+
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    color: #00367E;
+    font-family: Inika;
+  }
+  
+  .info-item {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  .info-titulo {
+    width: 150px; 
+  }
+  
+  .info-dato {
+    flex: 1; 
+    text-align: left;
+  }
+  
