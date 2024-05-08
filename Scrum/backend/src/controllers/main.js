@@ -2,7 +2,7 @@ import express from 'express';
 import { validationResult } from 'express-validator';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { register, getProcedureInfo, getAllInstitutionInfo } from '../database/db.js';
+import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements} from '../database/db.js';
 import { getUserLoginInfo } from '../database/auth.js';
 import { generateToken } from './jwt.js';
 
@@ -94,6 +94,19 @@ app.get('/institutions', async (req, res) => {
   }
   catch (error){
     console.error('Error en la búsqueda de instituciones:', error);
+    res.status(500).send('Error del servidor :(');
+  }
+});
+
+app.get('/requirements/:id_procedure', async (req, res) => {
+  try {
+    const { id_procedure } = req.params;
+    const requirements = await getProcedureRequierements(id_procedure);
+    res.status(200).json(requirements);
+
+  }
+  catch(error){
+    console.error('Error en la búsqueda de requisitos:', error);
     res.status(500).send('Error del servidor :(');
   }
 });
