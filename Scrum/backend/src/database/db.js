@@ -16,12 +16,18 @@ export async function register(pi,name, lastname,password_md5,age,type_user) {
 
 export async function getProcedureInfo(name){
   const likePattern = `%${name}%`
-  const result = await conn.query('SELECT intitutions.name, intitutions.adress FROM procedures p join institutionsprocedures ip on p.id = ip."id procedure" join intitutions on ip."id intitution" = intitutions.id_institutions where p.name ilike $1;',[likePattern]);
+  const result = await conn.query('SELECT intitutions.name, intitutions.adress, intitutions.id_institutions FROM procedures p join institutionsprocedures ip on p.id = ip."id procedure" join intitutions on ip."id intitution" = intitutions.id_institutions where p.name ilike $1;',[likePattern]);
   return result.rows
 }
 
 export async function getAllInstitutionInfo(){
   const result = await conn.query('SELECT * FROM intitutions;');
+  return result.rows
+}
+
+
+export async function getInstitutionByID(id){
+  const result = await conn.query('SELECT * FROM intitutions WHERE id_institutions = $1;', [id]);
   return result.rows
 }
 
@@ -33,9 +39,10 @@ export async function getProcedureRequierements(id_procedure){
 
 
 export async function getComments(){
-
+  const result = await conn.query('')
+  
 }
 
 export async function createComment(){
-  
+
 }
