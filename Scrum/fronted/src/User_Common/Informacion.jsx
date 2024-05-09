@@ -4,11 +4,11 @@ import { Route, Routes } from 'react-router-dom';
 import Dashboard from './Info_Pages/Dashboard';
 import Comentarios from './Info_Pages/Comentarios';
 import Requisitos from './Info_Pages/Requisitos';
-const Informacion = ({institution}) => {
+const Informacion = () => {
 
   return (
     <div className='contenedor-info'>
-      <h3 className="titulo-info">{institution}</h3>
+      <h3 className="titulo-info">sf</h3>
       <div className='menu-info'>
         <MenuOption nombre='Dashboard' goto='/'></MenuOption>
         <MenuOption nombre='Comentarios' goto='/comentarios'></MenuOption>

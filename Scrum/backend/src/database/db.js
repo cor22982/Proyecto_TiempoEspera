@@ -16,7 +16,7 @@ export async function register(pi,name, lastname,password_md5,age,type_user) {
 
 export async function getProcedureInfo(name){
   const likePattern = `%${name}%`
-  const result = await conn.query('SELECT intitutions.name, intitutions.adress, intitutions.id_institutions FROM procedures p join institutionsprocedures ip on p.id = ip."id procedure" join intitutions on ip."id intitution" = intitutions.id_institutions where p.name ilike $1;',[likePattern]);
+  const result = await conn.query('SELECT intitutions.name, intitutions.adress, intitutions.id_institutions, p.id as id_procedure FROM procedures p join institutionsprocedures ip on p.id = ip."id procedure" join intitutions on ip."id intitution" = intitutions.id_institutions where p.name ilike $1;',[likePattern]);
   return result.rows
 }
 

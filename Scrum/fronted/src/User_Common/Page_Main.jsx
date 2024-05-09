@@ -11,7 +11,7 @@ const Page_Main = () => {
   const [pantalla, setPantalla] = useState(true)
   const {  llamadowithoutbody } = useApi(`https://deimoss.web05.lol/institutions/${busqueda}`);
   const [datos , setDatos] = useState([]);
-  const [id_institucion, setinstitucion] = useState(0)
+  const [object_datos, setobject_datos] = useState(null)
 
   const onSearch = async () => {
     const busquedaParseada = busqueda.toLowerCase().replace(/ /g, '%20');
@@ -31,17 +31,16 @@ const Page_Main = () => {
       <SearchInput 
         icono={faSearch} 
         placeholder='Buscar tramite'
-        value={busqueda}
+        value={busqueda} 
         onChange={(value) => setBusqueda(value)}
         onpressenter={onSearch}
         ></SearchInput>
     </div>
       <div className='paginas'>
       { pantalla ? (
-        <Principal ira={setPantalla} datos={datos} setid={setinstitucion}></Principal>
+        <Principal ira={setPantalla} datos={datos} setobj={setobject_datos}></Principal>
       ) : (
-        <Informacion
-          institution={id_institucion}></Informacion>
+        <Informacion></Informacion>
       )
 
       }

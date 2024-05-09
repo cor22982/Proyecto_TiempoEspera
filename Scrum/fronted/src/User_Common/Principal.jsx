@@ -1,9 +1,13 @@
 import InsttutionComponent from "../Components/InsttutionComponent"
 import './Principal.css'
-const Principal = ({ira, datos, setid}) => {
-  const onclick = (id) => {
+const Principal = ({ira, datos, setobj}) => {
+  const onclick = (id_i, id_p) => {
     ira(false)
-    setid(id)
+    const objeto_ids = {
+      id_institutions: id_i,
+      id_procedure: id_p
+    }
+    setobj(objeto_ids)
   } 
 
   return (
