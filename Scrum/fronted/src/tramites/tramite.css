@@ -1,7 +1,6 @@
 .identificacion-chat {
     height: 2em;
     width: 2em;
-    
     border-radius: 50%;
     background: #0069AD;
     color: white; 
@@ -21,17 +20,23 @@
     display: flex;
     align-items: center;
   }
-  
-  .icon-star {
-    margin: 15px 15px 15px 0;
 
+  .icon-star {
+    padding-left: 1em;
+    font-size: 2em;
+    
+  }
+
+  .far.fa-star {
+    padding-left: 1em;
+    font-size: 2em;
   }
 
   .identificacion-name {
     margin-right: 10px;
     color: #00367E;
     font-family: Inika;
-    font-size: 3em;
+    font-size: 6em;
     text-align: left;
     font-weight: bold;
     
@@ -52,6 +57,8 @@
     flex-direction: column;
     color: #00367E;
     font-family: Inika;
+    padding-top: 2em;
+    padding-bottom: 2em;
   }
   
   .info-item {
@@ -60,29 +67,52 @@
   }
   
   .info-titulo {
-    width: 150px; 
+    width: 10em;
+    padding-right: 2em; 
+    font-size: 2.5em;
   }
   
   .info-dato {
     flex: 1; 
     text-align: left;
+    font-size: 2em;
   }
   
   .stats {
     font-family: Inika;
     color: #00367E;
-    padding-top: 50px;
+    width: 100%;
+  }
+  .stats-name{
+    font-size: 2.5em;
+    padding-bottom: 2em;
+
   }
 
   .mapa {
     font-size: Inika;
     color: #00367E;
-    padding-top: 50px;
+    padding-top: 2em;
+  }
+
+  .mapa_titulo {
+    font-size: Inika;
+    color: #00367E;
+    font-size: 2.5em;
+    padding-bottom: 1em;
   }
 
   .header img{
     width: 100%;
-    max-height: 200px;
+    max-height: 15em;
+    object-fit: cover;
+    overflow: hidden;
+    padding-bottom: 1em;
+  }
+
+  .mapa_api {
+    width: 100%;
+    max-height: 40em;
     object-fit: cover;
     overflow: hidden;
   }

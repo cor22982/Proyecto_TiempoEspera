@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faComment , faStarHalfAlt, faStar } from '@fortawesome/free-solid-svg-icons'
+import {faStarHalfAlt, faStar } from '@fortawesome/free-solid-svg-icons'
 import '@fortawesome/fontawesome-free/css/all.css';
 import './tramite.css'
 import Imagen from '../Components/Image/Image'
@@ -33,7 +33,6 @@ const Tramite = ({ institucion }) => {
             <div className='puntuacion'> {calcularEstrellas()} </div>
             <div className='identificacion'>
                 <div className='identificacion-name'> {institucion.nombre} </div>
-                <div className='identificacion-chat'> <FontAwesomeIcon className='icon' icon={faComment} /> </div>
             </div>
             <div className='info'>
                 <div className='info-item'>
@@ -60,7 +59,7 @@ const Tramite = ({ institucion }) => {
             </div>
             <div className='mapa'>
                 <div className='mapa_titulo'>Cómo llegar</div>
-                <div className='mapa_api'>AQUI VA UN MAPA</div>
+                <div className='mapa_api'><Imagen src={institucion.mapa} alt='Imagen prueba'/></div>
             </div>
         </div>
     )

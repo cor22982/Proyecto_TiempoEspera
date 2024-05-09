@@ -1,5 +1,6 @@
 import Tramite from './tramite'
 import image from '../assets/calle.jpg'
+import mapa from '../assets/mapa_croquis.jpg'
 
 export default {
   component: Tramite
@@ -13,8 +14,9 @@ export const TramiteDefault = {
         telefono: '24161900',
         direccion: '9A Calle 0-05',
         horario: 'Lunes a Viernes 7:00 am a 8:00 pm',
-        puntuacion: 4.5,
+        puntuacion: 2.5,
         img: image,
+        mapa: mapa,
         dias: {
           Lunes: 100,
           Martes: 50,

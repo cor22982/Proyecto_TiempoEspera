@@ -1,6 +1,9 @@
 .stats-container {
-    display: inline-flex; /* Usamos inline-flex para alinear los componentes horizontalmente */
-    flex-direction: row; /* Dirección horizontal */
+    display: flex; /* Usamos inline-flex para alinear los componentes horizontalmente */
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 2em;
+    padding-bottom: 2em;
   }
   
   .bar-container {
@@ -9,15 +12,17 @@
     align-items: center;
     justify-content: flex-end;
     margin-right: 30px;
+    width: 100%;
   }
   
   .bar {
-    width: 20px;
+    height: 5em;
+    min-width: 30px;
     background-color: #0069AD;
-    ;
   }
   
   .day, .label {
     margin-top: 5px;
+    font-size: 1.8em;
   }
   
