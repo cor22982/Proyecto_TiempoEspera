@@ -1,9 +1,9 @@
 .identificacion-chat {
-    width: 46px; 
-    height: 46px; 
+    height: 2em;
+    width: 2em;
+    
     border-radius: 50%;
     background: #0069AD;
-    border: none; 
     color: white; 
     display: flex; 
     justify-content: center;
@@ -11,6 +11,7 @@
     cursor: pointer; 
     outline: none; 
   }
+
 
 .identificacion-chat:hover{
     background: #005a96;
@@ -30,9 +31,7 @@
     margin-right: 10px;
     color: #00367E;
     font-family: Inika;
-    font-size: 30px;
-    font-weight: 700;
-    line-height: 39.09px;
+    font-size: 3em;
     text-align: left;
     font-weight: bold;
     
@@ -69,3 +68,21 @@
     text-align: left;
   }
   
+  .stats {
+    font-family: Inika;
+    color: #00367E;
+    padding-top: 50px;
+  }
+
+  .mapa {
+    font-size: Inika;
+    color: #00367E;
+    padding-top: 50px;
+  }
+
+  .header img{
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    overflow: hidden;
+  }

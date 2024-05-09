@@ -3,6 +3,7 @@ import { faBars, faComment , faStarHalfAlt, faStar } from '@fortawesome/free-sol
 import '@fortawesome/fontawesome-free/css/all.css';
 import './tramite.css'
 import Imagen from '../Components/Image/Image'
+import Stats from '../Components/Stats/stats'
 
 const Tramite = ({ institucion }) => {
     // Función para calcular las estrellas
@@ -55,10 +56,12 @@ const Tramite = ({ institucion }) => {
 
             <div className='stats'>
                 <div className='stats-name'> Flujo de personas </div>
-                <div className='stats-dias'> grafica dias </div>
-
+                <Stats datos={institucion.dias} />
             </div>
-            <div className='mapa'>Cómo llegar</div>
+            <div className='mapa'>
+                <div className='mapa_titulo'>Cómo llegar</div>
+                <div className='mapa_api'>AQUI VA UN MAPA</div>
+            </div>
         </div>
     )
 }

@@ -1,0 +1,23 @@
+.stats-container {
+    display: inline-flex; /* Usamos inline-flex para alinear los componentes horizontalmente */
+    flex-direction: row; /* Dirección horizontal */
+  }
+  
+  .bar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 30px;
+  }
+  
+  .bar {
+    width: 20px;
+    background-color: #0069AD;
+    ;
+  }
+  
+  .day, .label {
+    margin-top: 5px;
+  }
+  
