@@ -30,3 +30,12 @@ export async function getProcedureRequierements(id_procedure){
   const result = await conn.query('SELECT d.name, d.description FROM proceduresdocuments pd JOIN procedures p on pd."id preocedure" = p.id JOIN documents d on pd."id documents" = d.id_document WHERE p.id = $1;', [id_procedure]);
   return result.rows
 }
+
+
+export async function getComments(){
+
+}
+
+export async function createComment(){
+  
+}
