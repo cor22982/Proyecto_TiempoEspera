@@ -8,16 +8,16 @@ const Informacion = ({data}) => {
 
   return (
     <div className='contenedor-info'>
-      <h3 className="titulo-info">sf</h3>
+      <h3 className="titulo-info"></h3>
       <div className='menu-info'>
-        <MenuOption nombre='Dashboard' goto='/'></MenuOption>
+        <MenuOption nombre='Información' goto='/institucion'></MenuOption>
         <MenuOption nombre='Comentarios' goto='/comentarios'></MenuOption>
         <MenuOption nombre='Requisitos' goto='/requisitos'></MenuOption>
         
       </div>
       <div className='informacion-contenido'>
         <Routes>
-          <Route path='/' element={<Dashboard></Dashboard>}></Route>
+          <Route path='/institucion' element={<Dashboard data={data}></Dashboard>}></Route>
           <Route path='/comentarios' element={<Comentarios></Comentarios>}></Route>
           <Route path='/requisitos' element={<Requisitos data={data}></Requisitos>}></Route>
         </Routes>

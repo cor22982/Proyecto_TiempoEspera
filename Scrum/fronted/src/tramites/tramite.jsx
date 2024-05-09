@@ -11,21 +11,22 @@ const Tramite = ({ institucion }) => {
         const puntuacionTotal = 5;
         const puntuacionEntera = Math.floor(institucion.puntuacion);
         const puntuacionDecimal = institucion.puntuacion - puntuacionEntera;
-
+    
         const estrellasEnteras = Array.from({ length: puntuacionEntera }, (_, index) => (
-            <FontAwesomeIcon key={index} className='icon-star' icon={faStar} />
+            <FontAwesomeIcon key={`full-${index}`} className='icon-star' icon={faStar} />
         ));
-
+    
         if (puntuacionDecimal >= 0.5) {
             estrellasEnteras.push(<FontAwesomeIcon key={'half'} className='icon-star' icon={faStarHalfAlt} />);
         }
-
+    
         const estrellasRestantes = Array.from({ length: puntuacionTotal - estrellasEnteras.length }, (_, index) => (
-            <i key={index} className="far fa-star"></i>
+            <i key={`empty-${index}`} className="far fa-star"></i>
         ));
-
+    
         return [...estrellasEnteras, ...estrellasRestantes];
     };
+    
 
     return (
         <div className='tramite-container'>
