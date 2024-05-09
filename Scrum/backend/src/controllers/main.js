@@ -2,7 +2,7 @@ import express from 'express';
 import { validationResult } from 'express-validator';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements} from '../database/db.js';
+import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, getInstitutionByID} from '../database/db.js';
 import { getUserLoginInfo } from '../database/auth.js';
 import { generateToken } from './jwt.js';
 
@@ -84,6 +84,17 @@ app.get('/institutions/:name', async (req, res) => {
   catch (error){
     console.error('Error en la búsqueda de instituciones:', error);
     res.status(500).send('Error del servidor :(');
+  }
+});
+
+app.get('/institution/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const institution = await getInstitutionByID(id);
+    res.json(institution);
+  } catch (error) {
+    console.error('Error al obtener la institución:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
   }
 });
 

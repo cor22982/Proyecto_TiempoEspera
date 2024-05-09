@@ -1,3 +1,5 @@
+import Tramite from '../../tramites/tramite'
+
 const Dashboard = () => {
   return(
   <div>
