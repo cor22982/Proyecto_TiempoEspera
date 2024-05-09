@@ -24,7 +24,7 @@ const Page_Main = () => {
     }
   }
 
-  console.log(id_institucion)
+
   return (
     <div className='contenido'>
       <div className='cabecera'>
@@ -40,7 +40,7 @@ const Page_Main = () => {
       { pantalla ? (
         <Principal ira={setPantalla} datos={datos} setobj={setobject_datos}></Principal>
       ) : (
-        <Informacion></Informacion>
+        <Informacion data={object_datos}></Informacion>
       )
 
       }

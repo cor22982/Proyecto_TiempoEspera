@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import Dashboard from './Info_Pages/Dashboard';
 import Comentarios from './Info_Pages/Comentarios';
 import Requisitos from './Info_Pages/Requisitos';
-const Informacion = () => {
+const Informacion = ({data}) => {
 
   return (
     <div className='contenedor-info'>
@@ -19,7 +19,7 @@ const Informacion = () => {
         <Routes>
           <Route path='/' element={<Dashboard></Dashboard>}></Route>
           <Route path='/comentarios' element={<Comentarios></Comentarios>}></Route>
-          <Route path='/requisitos' element={<Requisitos></Requisitos>}></Route>
+          <Route path='/requisitos' element={<Requisitos data={data}></Requisitos>}></Route>
         </Routes>
       </div>
       
