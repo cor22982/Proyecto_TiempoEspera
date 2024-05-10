@@ -14,5 +14,6 @@ export default defineConfig({
       '@pages': '/src/Pages',
       '@hooks': '/src/hooks'
     }
-  }
+  },
+  base: '', 
 })
