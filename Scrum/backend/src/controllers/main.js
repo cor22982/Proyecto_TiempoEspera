@@ -134,6 +134,8 @@ app.get('/comments/:id_institution', async (req, res) => {
   }
 });
 
+app.post 
+
 
 
 // Manejo de rutas no implementadas
