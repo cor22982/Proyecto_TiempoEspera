@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, getInstitutionByID, getComments, createComment} from '../database/db.js';
 import { getUserLoginInfo } from '../database/auth.js';
-import { generateToken } from './jwt.js';
+import { generateToken, decodeToken } from './jwt.js';
 
 const app = express();
 const PORT = 5000;
@@ -136,8 +136,10 @@ app.get('/comments/:id_institution', async (req, res) => {
 
 app.post('/comment', async (req, res) => {
   try {
-    const { username, content, conversation_id } = req.body;
-    await createComment(username, content, conversation_id);
+    const { token, content, conversation_id } = req.body;
+    const payload = decodeToken(token)
+    const { dpi } = payload;
+    await createComment(dpi, content, conversation_id);
     res.status(200).json({ message: 'Comentario creado' });
   }
   catch(error){

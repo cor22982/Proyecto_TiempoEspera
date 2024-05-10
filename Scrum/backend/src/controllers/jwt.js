@@ -15,4 +15,13 @@ const validateToken = (token) => {
   }
 }
 
-export { generateToken, validateToken }
+const decodeToken = (token) => {
+  try{
+    return jwt.decode(token);
+  } catch (error) {
+    console.error('Error decoding token:', error);
+    return null;
+  }
+}
+
+export { generateToken, validateToken, decodeToken }
