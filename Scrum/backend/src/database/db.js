@@ -21,7 +21,7 @@ export async function getProcedureInfo(name){
 }
 
 export async function getAllInstitutionInfo(){
-  const result = await conn.query('SELECT * FROM intitutions;');
+  const result = await conn.query('SELECT i.id_institutions, i.name, i.address, c.id conversation FROM intitutions i join conversations c on i.id_institutions = c.id_institution;');
   return result.rows
 }
 
