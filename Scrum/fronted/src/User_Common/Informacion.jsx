@@ -11,17 +11,17 @@ const Informacion = ({data}) => {
       <h3 className="titulo-info">{name_institutions}</h3>
 
       <div className='menu-info'>
-        <MenuOption nombre='Información' goto='/institucion'></MenuOption>
+        <MenuOption nombre='Información' goto='/'></MenuOption>
         <MenuOption nombre='Comentarios' goto='/comentarios'></MenuOption>
         <MenuOption nombre='Requisitos' goto='/requisitos'></MenuOption>
         
       </div>
       <div className='informacion-contenido'>
         <Routes>
-          <Route path='/institucion' element={<Dashboard data={data}></Dashboard>}></Route>
+          <Route path='/' element={<Dashboard data={data}></Dashboard>}></Route>
           <Route path='/comentarios' element={<Comentarios></Comentarios>}></Route>
           <Route path='/requisitos' element={<Requisitos data={data}></Requisitos>}></Route>
-        </Routes>
+        </Routes> 
       </div>
       
     </div>
