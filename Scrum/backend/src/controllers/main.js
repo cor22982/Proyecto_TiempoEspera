@@ -2,7 +2,7 @@ import express from 'express';
 import { validationResult } from 'express-validator';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, getInstitutionByID, getComments} from '../database/db.js';
+import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, getInstitutionByID, getComments, createComment} from '../database/db.js';
 import { getUserLoginInfo } from '../database/auth.js';
 import { generateToken } from './jwt.js';
 
@@ -134,7 +134,17 @@ app.get('/comments/:id_institution', async (req, res) => {
   }
 });
 
-app.post 
+app.post('/comment', async (req, res) => {
+  try {
+    const { username, content, conversation_id } = req.body;
+    await createComment(username, content, conversation_id);
+    res.status(200).json({ message: 'Comentario creado' });
+  }
+  catch(error){
+    console.error('Error al crear comentario:', error);
+    res.status(500).send('Error del servidor :(');
+  }
+});
 
 
 
