@@ -1,8 +1,7 @@
 .contenido{
-  
   display: grid;
   grid-template-rows: 1fr 6fr;
-
+  overflow-y: scroll;
 }
 
 .cabecera{

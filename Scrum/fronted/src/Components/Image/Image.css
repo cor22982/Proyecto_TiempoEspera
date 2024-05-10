@@ -1,11 +1,10 @@
 .image-container {
-    max-width: 100%;
+    width: 100%;
     height: auto;
-    overflow: hidden;
+    background-color: #e5e4e5;
 }
 
 .image {
     width: 100%;
-    height: auto;
-    display: block;
+    height: auto; 
 }

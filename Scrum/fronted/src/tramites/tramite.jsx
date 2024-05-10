@@ -33,7 +33,7 @@ const Tramite = ({ institucion }) => {
             <div className='header'> <Imagen src={institucion.img} alt='Imagen prueba'/></div>
             <div className='puntuacion'> {calcularEstrellas()} </div>
             <div className='identificacion'>
-                <div className='identificacion-name'> {institucion.nombre} </div>
+                {/*<div className='identificacion-name'> {institucion.nombre} </div>*/}
             </div>
             <div className='info'>
                 <div className='info-item'>

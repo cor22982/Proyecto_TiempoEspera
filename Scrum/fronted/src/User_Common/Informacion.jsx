@@ -5,10 +5,11 @@ import Dashboard from './Info_Pages/Dashboard';
 import Comentarios from './Info_Pages/Comentarios';
 import Requisitos from './Info_Pages/Requisitos';
 const Informacion = ({data}) => {
-
+  const {name_institutions} = data
   return (
     <div className='contenedor-info'>
-      <h3 className="titulo-info"></h3>
+      <h3 className="titulo-info">{name_institutions}</h3>
+
       <div className='menu-info'>
         <MenuOption nombre='Información' goto='/institucion'></MenuOption>
         <MenuOption nombre='Comentarios' goto='/comentarios'></MenuOption>

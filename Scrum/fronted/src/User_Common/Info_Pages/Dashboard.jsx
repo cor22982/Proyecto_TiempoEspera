@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Tramite from '../../tramites/tramite' 
 import image from '../../assets/calle.jpg'
 import mapa from '../../assets/mapa_croquis.jpg'
+import './Dashboard.css'
 
 const Dashboard = ({ data }) => {
   const [institutionData, setInstitutionData] = useState(null);
@@ -43,7 +44,7 @@ const Dashboard = ({ data }) => {
   }, [data.id_institutions]);
 
   return (
-    <div>
+    <div className='dasboard-container'>
       {institutionData && (
         <Tramite institucion={institutionData} />
       )}
