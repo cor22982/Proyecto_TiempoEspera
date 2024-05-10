@@ -5,7 +5,7 @@ const Requisitos = ({data}) => {
   const { id_procedure } = data
   const {  llamadowithoutbody } = useApi(`https://deimoss.web05.lol/requirements/${id_procedure}`);
   const [requeriments , setRequeriments] = useState([]);
-
+ 
   useEffect(() => {
     const fetchData = async () => {
       const requisitos = await llamadowithoutbody('GET');

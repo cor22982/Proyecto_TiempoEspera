@@ -1,28 +1,34 @@
 import TextArea from "@components/TextArea";
 import './Comentarios.css'
 import Coment from "@components/Coment";
-const Comentarios = () => {
+import useApi from '@hooks/useApi';
+import { useEffect,useState } from 'react';
+
+const Comentarios = ({data}) => {
+  const {  llamadowithoutbody } = useApi(`https://deimoss.web05.lol/comments/${data.id_institutions}`);   
+  const [coments , setComents] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const coment = await llamadowithoutbody('GET');
+      setComents(coment)
+    };
+
+    fetchData();
+  }, [llamadowithoutbody]);
   return (
     <div>
       <TextArea placeholder="Agregar Comentario"></TextArea>
       <br></br>
       <div className="coments">
-        <Coment 
-          from="Luís Perez"
-          date="08/05/2024"
-          coment="Asistí a renovar mi DPI, el trámite fue rápido,15 a 20 minutos, el personal fue muy amable y atento.En una semana me lo entregaron, excelente!"></Coment>
-        <Coment 
-          from="Luís Perez"
-          date="08/05/2024"
-          coment="Asistí a renovar mi DPI, el trámite fue rápido,15 a 20 minutos, el personal fue muy amable y atento.En una semana me lo entregaron, excelente!"></Coment>
-        <Coment 
-          from="Luís Perez"
-          date="08/05/2024"
-          coment="Asistí a renovar mi DPI, el trámite fue rápido,15 a 20 minutos, el personal fue muy amable y atento.En una semana me lo entregaron, excelente!"></Coment>
-        <Coment 
-          from="Luís Perez"
-          date="08/05/2024"
-          coment="Asistí a renovar mi DPI, el trámite fue rápido,15 a 20 minutos, el personal fue muy amable y atento.En una semana me lo entregaron, excelente!"></Coment>
+        {
+          coments.map( (com, index) => (
+            <Coment 
+              key={index}
+              from={com.name}
+              date={com.date.substring(0, com.date.indexOf("T"))}
+              coment={com.content}></Coment>
+          ))
+        }
       </div>
       
     </div>

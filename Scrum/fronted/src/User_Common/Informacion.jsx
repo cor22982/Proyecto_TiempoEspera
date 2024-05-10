@@ -19,7 +19,7 @@ const Informacion = ({data}) => {
       <div className='informacion-contenido'>
         <Routes>
           <Route path='/' element={<Dashboard data={data}></Dashboard>}></Route>
-          <Route path='/comentarios' element={<Comentarios></Comentarios>}></Route>
+          <Route path='/comentarios' element={<Comentarios data={data}></Comentarios>}></Route>
           <Route path='/requisitos' element={<Requisitos data={data}></Requisitos>}></Route>
         </Routes> 
       </div>
