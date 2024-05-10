@@ -2,7 +2,7 @@ import express from 'express';
 import { validationResult } from 'express-validator';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, getInstitutionByID} from '../database/db.js';
+import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, getInstitutionByID, getComments} from '../database/db.js';
 import { getUserLoginInfo } from '../database/auth.js';
 import { generateToken } from './jwt.js';
 
@@ -121,6 +121,7 @@ app.get('/requirements/:id_procedure', async (req, res) => {
     res.status(500).send('Error del servidor :(');
   }
 });
+
 
 
 
