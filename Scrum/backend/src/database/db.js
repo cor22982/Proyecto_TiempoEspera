@@ -27,7 +27,7 @@ export async function getAllInstitutionInfo(){
 
 
 export async function getInstitutionByID(id){
-  const result = await conn.query('SELECT i.name, i.adress, i.id_institutions, c."id conversation" FROM intitutions i join conversations c on c.id_institution = i.id_institutions WHERE id_institutions = $1;', [id]);
+  const result = await conn.query('SELECT i.name, i.adress, i.id_institutions, c."id conversation" as id_conversation FROM intitutions i join conversations c on c.id_institution = i.id_institutions WHERE id_institutions = $1;', [id]);
   return result.rows
 }
 

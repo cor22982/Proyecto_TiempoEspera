@@ -12,7 +12,7 @@ const Dashboard = ({ data }) => {
       try {
         const response = await fetch(`https://deimoss.web05.lol/institution/${data.id_institutions}`);
         const jsonData = await response.json();
-
+        data.id_conversation =  jsonData[0].id_conversation;
         // Convertir los datos en el formato deseado
         const formattedData = {
           nombre: jsonData[0].name,
@@ -33,6 +33,7 @@ const Dashboard = ({ data }) => {
             Domingo: 100,
           }
         };
+
 
         setInstitutionData(formattedData);
       } catch (error) {

@@ -12,7 +12,7 @@ const Comentarios = ({data}) => {
   useEffect(() => {
     const fetchData = async () => {
       const coment = await llamadowithoutbody('GET');
-      setConver(coment[0].conversation_id)
+      setConver(data.id_conversation)
       setComents(coment)
     };
 
