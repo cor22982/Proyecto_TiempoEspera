@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './TextArea.css'
-const TextArea = ({placeholder, onChange, value }) => {
+const TextArea = ({placeholder, onChange, value, onclick }) => {
   const [change, setChange] = useState(true)
 
   const oncancel = () => {
@@ -27,7 +27,9 @@ const TextArea = ({placeholder, onChange, value }) => {
         <button 
           className='button-textarea1'
           onClick={oncancel}>Cancelar</button>
-        <button className='button-textarea'>Enviar</button>
+        <button 
+          className='button-textarea'
+          onClick={onclick}>Enviar</button>
         </div> 
       </div>
       )
