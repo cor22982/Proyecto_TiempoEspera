@@ -1,5 +1,5 @@
 /* Contenedor principal */
-.text-input-container {
+.text-input-container-login {
     display: flex;
     max-width: 60%;
     padding: 40px;
@@ -28,12 +28,12 @@
     opacity: 1;
   }
 
-.icono-blanco {
+.icono-blanco-1 {
     filter: brightness(0) invert(1);
 }
 
 /* Contenedor de imagen */
-.image-container{
+.image-container-1{
     display: flex;
     background-color: #0069AD;
     border: transparent;
@@ -43,23 +43,23 @@
     justify-content: center;
 }
     
-.image-container img {
+.image-container-1 img {
     height: 70%;  
     width: auto;
     object-fit: contain;
 }
 
 /* Contenedor del texto */
-.text-container {
+.text-container-1 {
     display: flex;
     background-color: #ECECEC;
     width: 80%;
     font-weight: bold
 }
 
-.text-container input[type="text"],
-.text-container input[type="password"],
-.text-container input[type="number"] {
+.text-container-1 input[type="text"],
+.text-container-1 input[type="password"],
+.text-container-1 input[type="number"] {
     display: flex;
     background-color: #ECECEC;
     color: #6580A5;
@@ -72,31 +72,31 @@
 }
 
 
-.text-container input[type="text"]::placeholder,
-.text-container input[type="password"]::placeholder,
-.text-container input[type="number"]::placeholder {
+.text-container-1 input[type="text"]::placeholder,
+.text-container-1 input[type="password"]::placeholder,
+.text-container-1 input[type="number"]::placeholder {
     display: flex;
     color: #6580A5;
     text-align: center;
     font-weight: bold
 }
 
-.text-container input[type="text"]:focus,
-.text-container input[type="password"]:focus,
-.text-container input[type="number"]:focus {
+.text-container-1 input[type="text"]:focus,
+.text-container-1 input[type="password"]:focus,
+.text-container-1 input[type="number"]:focus {
     border: transparent;
 }
 
 /* Media Queries para hacerlo responsive */
 @media screen and (max-width: 768px) {
-    .text-input-container {
+    .text-input-container-login {
         flex-direction: column;
     }
-    .image-container, .text-container {
+    .image-container-1, .text-container-1 {
         width: 100%;
         border-radius: 0;
     }
-    .text-container input[type="text"], .text-container input[type="text"]::placeholder {
+    .text-container-1 input[type="text"], .text-container input[type="text"]::placeholder {
         font-size: 1em;
     }
 }

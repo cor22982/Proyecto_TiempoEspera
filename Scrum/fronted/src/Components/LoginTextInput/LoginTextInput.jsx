@@ -5,14 +5,14 @@ import './LoginTextInput.css';
 const LoginTextInput = ({ imageUrl, placeholder, type,onChange,value  }) => {
   const [ eyeClosed, setEyeClosed ] = useState(true) 
   return (
-    <div className='text-input-container'>
+    <div className='text-input-container-login'>
       
-      <div className='image-container'>
+      <div className='image-container-1'>
         {/* Renderizar la imagen recibida como prop */}
-        <img src={imageUrl} alt='Logo' className="icono-blanco" ></img>   
+        <img src={imageUrl} alt='Logo' className="icono-blanco-1" ></img>   
       </div>
 
-      <div className='text-container'>
+      <div className='text-container-1'>
         {/* Renderizar el texto recibido como prop */}
         <input 
           type={!eyeClosed && type === 'password' ? 'text' : type }
