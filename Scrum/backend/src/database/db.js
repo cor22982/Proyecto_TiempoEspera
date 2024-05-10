@@ -39,7 +39,7 @@ export async function getProcedureRequierements(id_procedure){
 
 
 export async function getComments(id_institution){
-  const result = await conn.query('select u.name, u.lastname, m.content, m.date from messages m join conversations c on m.conversation_id = c."id conversation" join users u on m.pi = u.pi where c.id_institution = $1;', [id_institution])
+  const result = await conn.query('select u.name, u.lastname, m.content, m.date, m.conversation_id from messages m join conversations c on m.conversation_id = c."id conversation" join users u on m.pi = u.pi where c.id_institution = $1;', [id_institution])
   return result.rows
   
 }
