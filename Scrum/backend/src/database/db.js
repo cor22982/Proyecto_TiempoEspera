@@ -21,13 +21,13 @@ export async function getProcedureInfo(name){
 }
 
 export async function getAllInstitutionInfo(){
-  const result = await conn.query('SELECT i.id_institutions, i.name, i.address, c."id conversation" FROM intitutions i join conversations c on i.id_institutions = c.id_institution;');
+  const result = await conn.query('SELECT * FROM intitutions;');
   return result.rows
 }
 
 
 export async function getInstitutionByID(id){
-  const result = await conn.query('SELECT * FROM intitutions WHERE id_institutions = $1;', [id]);
+  const result = await conn.query('SELECT i.name, i.adress, i.id_institutions, c."id conversation" FROM intitutions i join conversations c on c.id_institution = i.id_institutions WHERE id_institutions = $1;', [id]);
   return result.rows
 }
 
