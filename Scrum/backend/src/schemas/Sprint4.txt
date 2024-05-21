@@ -1,0 +1,3 @@
+ALTER TABLE institutions
+ADD horario TIME, 
+ADD telefono VARCHAR(20);
