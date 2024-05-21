@@ -48,3 +48,9 @@ export async function createComment(username, content, conversation_id){
   const result = await conn.query('INSERT INTO messages (pi, content, conversation_id) VALUES ($1, $2, $3);', [username, content, conversation_id]);
   return result.rows
 }
+
+
+export async function getsteps (id_procedure) {
+  const result = await conn.query('SELECT pasos FROM procedures WHERE id = $1;', [id_procedure]);    
+  return result.rows
+}

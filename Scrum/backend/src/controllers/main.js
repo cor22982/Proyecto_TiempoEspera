@@ -2,7 +2,7 @@ import express from 'express';
 import { validationResult } from 'express-validator';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, getInstitutionByID, getComments, createComment} from '../database/db.js';
+import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, getInstitutionByID, getComments, createComment, getsteps} from '../database/db.js';
 import { getUserLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken } from './jwt.js';
 
@@ -113,7 +113,8 @@ app.get('/requirements/:id_procedure', async (req, res) => {
   try {
     const { id_procedure } = req.params;
     const requirements = await getProcedureRequierements(id_procedure);
-    res.status(200).json(requirements);
+    const steps = await getsteps(id_procedure)
+    res.status(200).json(requirements, steps);
 
   }
   catch(error){
