@@ -2,7 +2,7 @@ import express from 'express';
 import { validationResult } from 'express-validator';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, getInstitutionByID, getComments, createComment, getsteps} from '../database/db.js';
+import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, getInstitutionByID, getComments, createComment, getsteps, getUserByPi} from '../database/db.js';
 import { getUserLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken } from './jwt.js';
 
@@ -35,6 +35,22 @@ app.post('/register', validateRequest, async (req, res) => {
   const { pi, name, lastname, password_md5, age, type_user } = req.body;
   await register(pi, name, lastname, password_md5, age, type_user);
   res.send('{ "message": "user created" }');
+});
+
+app.post('/getUserByPi', async (req, res) => {
+  const { pi } = req.body;
+
+  try {
+    const user = await getUserByPi(pi);
+    if (user.length > 0) {
+      res.status(200).json(user);
+    } else {
+      res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+  } catch (error) {
+    console.error('Error al obtener el usuario:', error);
+    res.status(500).json({ message: 'Error en el servidor' });
+  }
 });
 
 // Endpoint para el inicio de sesión

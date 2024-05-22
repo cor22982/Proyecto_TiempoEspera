@@ -3,34 +3,27 @@ import useToken from '@hooks/useToken'
 import Login from '../Login/Login';
 import Registro from '../Registro/Registro';
 import Pages from './Pages';
-import { useState, useEffect } from 'react';
+import { parseJwt } from '@hooks/useToken';
+
 const Indice = () => {
-  const [pi, setPi] = useState(localStorage.getItem('pi') || "");
-  const { token } = useToken() 
+  const { token } = useToken();
 
-  useEffect(() => {
-    localStorage.setItem('pi', pi); // Actualiza el valor de pi en el localStorage cuando cambia
-  }, [pi]);
-
-    // Función para actualizar el valor de pi
-    const actualizarPi = (nuevoPi, lugar) => {
-      //console.log("me actualizaron desde ", lugar)
-      //console.log("pi antes:", pi)
-      setPi(nuevoPi)
-    };
-
-    //console.log("pi despues:", pi, "susurro: debería ser: 12345")
-
-
+  let dpi;
+  if (token) {
+    const decodedToken = parseJwt(token);
+    dpi = decodedToken.dpi;
+    //console.log("mi token es:", token);
+    //console.log("mi dpi desde token es:", dpi);
+  }
 
   return (
     <Router>
       <Routes>
         {token ? (
-          <Route path="*" element={<Pages pi={pi}/>} />
+          <Route path="*" element={<Pages pi={dpi}/>} />
         ) : ( 
           <>
-            <Route path="/" element={<Login setPi={actualizarPi} />} />
+            <Route path="/" element={<Login />} />
             <Route path="/register" element={<Registro />} />
           </>
         )}

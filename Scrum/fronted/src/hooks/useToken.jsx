@@ -44,4 +44,4 @@ const useToken = () => {
 
 
 export default useToken
-export { TokenContext, TokenProvider }
+export { TokenContext, TokenProvider, parseJwt  }

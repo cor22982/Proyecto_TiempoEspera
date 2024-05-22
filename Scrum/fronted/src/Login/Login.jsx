@@ -46,8 +46,6 @@ const Login = ({ setPi }) => {
       console.log(acces_token)
       setLoggedIn(true)
       setErrorMessage('')
-      //console.log("voy a actualizar pi")
-      setPi(formState.pi, "login")
       return
     }
     setErrorMessage('Incorrect user or password')
