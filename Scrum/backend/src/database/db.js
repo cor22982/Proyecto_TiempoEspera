@@ -13,15 +13,11 @@ export async function register(pi,name, lastname,password_md5,age,type_user) {
   return result.rows
 }
 
-const getUserByPi = async (pi) => {
-  try {
-    const res = await pool.query('SELECT * FROM users WHERE pi = $1', [pi]);
-    return res.rows;
-  } catch (err) {
-    console.error('Error executing query', err.stack);
-    throw err;
-  }
-};
+export async function getUserByPi(pi) {
+  const result = await conn.query('SELECT pi, name, lastname, age, type_user FROM users WHERE pi = $1', [pi]);
+  return result.rows;
+}
+
  
 export async function getProcedureInfo(name){
   const likePattern = `%${name}%`

@@ -37,18 +37,14 @@ app.post('/register', validateRequest, async (req, res) => {
   res.send('{ "message": "user created" }');
 });
 
-app.post('/getUserByPi', async (req, res) => {
-  const { pi } = req.body;
-
+// Endpoint para obtener un usuario por su PI
+app.get('/users/:pi', async (req, res) => {
+  const { pi } = req.params;
   try {
-    const user = await getUserByPi(pi);
-    if (user.length > 0) {
-      res.status(200).json(user);
-    } else {
-      res.status(404).json({ message: 'Usuario no encontrado' });
-    }
+    const users = await getUserByPi(pi);
+    res.json(users);
   } catch (error) {
-    console.error('Error al obtener el usuario:', error);
+    console.error('Error al buscar usuario por PI:', error);
     res.status(500).json({ message: 'Error en el servidor' });
   }
 });
