@@ -6,7 +6,7 @@ import SearchInput from '../Components/SearchInput';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import './Page_Main.css'
-const Page_Main = () => {
+const Page_Main = ({ pi }) => {
   const [busqueda, setBusqueda] = useState('')
   const [pantalla, setPantalla] = useState(true)
   const {  llamadowithoutbody } = useApi(`https://deimoss.web05.lol/institutions/${busqueda}`);
@@ -15,16 +15,14 @@ const Page_Main = () => {
 
   const onSearch = async () => {
     const busquedaParseada = busqueda.toLowerCase().replace(/ /g, '%20');
-    console.log(busquedaParseada)
     try {
       const response = await llamadowithoutbody('GET')
-      setDatos(response) 
+      setDatos(response)
     } catch (e) {
       setDatos([])
     }
   }
-
-
+  console.log(pi)
   return (
     <div className='contenido'>
       <div className='cabecera'>

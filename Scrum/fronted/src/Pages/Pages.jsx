@@ -5,7 +5,7 @@ import '../assets/Login/logotipo.png'
 import { Route, Routes } from 'react-router-dom';
 import Logout from '../Login/Logout';
 import Page_Main from '../User_Common/Page_Main';
-const Pages = () => {
+const Pages = ({ pi }) => {
 
 
   return (
@@ -34,7 +34,7 @@ const Pages = () => {
         
         
          <Routes>  
-            <Route path="*" element={<Page_Main/>} />
+            <Route path="*" element={<Page_Main pi={pi}/>} />
             <Route path="/cuenta" element={<CuentaPage />} />
             <Route path="/guardados" element={<GuardadosPage />} />
             <Route path="/configuracion" element={<ConfiguracionPage />} />

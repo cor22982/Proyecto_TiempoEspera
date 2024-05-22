@@ -8,12 +8,12 @@ import { md5 } from 'js-md5'
 import LoginContext from '../LoginContex/LoginContext';
 import Dropdowncustom from '@components/Dropdowncustom';
 import  useToken from '@hooks/useToken'
-const Login = () => {
+const Login = ({ setPi }) => {
   const [formState, setFormState] = useState({ pi: '',type_user: '', password: '' })
   const [errorMessage, setErrorMessage] = useState('')
   const { setLoggedIn } = useContext(LoginContext)
   const { setToken } = useToken() 
-
+  
   const handleDropdownChange = (selectedItem) => {
     setValue('type_user', selectedItem);
   }
@@ -46,6 +46,8 @@ const Login = () => {
       console.log(acces_token)
       setLoggedIn(true)
       setErrorMessage('')
+      //console.log("voy a actualizar pi")
+      setPi(formState.pi, "login")
       return
     }
     setErrorMessage('Incorrect user or password')
