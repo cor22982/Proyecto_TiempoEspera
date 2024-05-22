@@ -22,7 +22,7 @@ const Page_Main = ({ pi }) => {
       setDatos([])
     }
   }
-  console.log(pi)
+  
   return (
     <div className='contenido'>
       <div className='cabecera'>
@@ -36,7 +36,7 @@ const Page_Main = ({ pi }) => {
     </div>
       <div className='paginas'>
       { pantalla ? (
-        <Principal ira={setPantalla} datos={datos} setobj={setobject_datos}></Principal>
+        <Principal ira={setPantalla} datos={datos} setobj={setobject_datos} pi={pi}></Principal>
       ) : (
         <Informacion data={object_datos}></Informacion>
       )

@@ -5,6 +5,7 @@ import './tramite.css'
 import Imagen from '../Components/Image/Image'
 import Stats from '../Components/Stats/stats'
 
+
 const Tramite = ({ institucion }) => {
     // Función para calcular las estrellas
     const calcularEstrellas = () => {
