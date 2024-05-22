@@ -19,7 +19,7 @@ const Requisitos = ({ data }) => {
   }, [llamadowithoutbody]);
 
   return (
-    <div style={{ overflowY: 'auto', maxHeight: '600px' }}>
+    <div style={{ overflowY: 'auto', maxHeight: '450px' }}>
       <h4>Pasos</h4>
       
         {pasos.map((paso, index) => (
