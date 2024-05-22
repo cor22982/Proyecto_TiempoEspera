@@ -113,11 +113,14 @@ app.get('/requirements/:id_procedure', async (req, res) => {
   try {
     const { id_procedure } = req.params;
     const requirements = await getProcedureRequierements(id_procedure);
-    const steps = await getsteps(id_procedure)
-    res.status(200).json(requirements, steps);
+    const steps = await getsteps(id_procedure);
 
-  }
-  catch(error){
+    // Combina los datos en un solo objeto
+    const data = { requirements, steps };
+
+    res.status(200).json(data);
+
+  } catch(error) {
     console.error('Error en la búsqueda de requisitos:', error);
     res.status(500).send('Error del servidor :(');
   }
