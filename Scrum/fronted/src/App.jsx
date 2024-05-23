@@ -7,10 +7,6 @@ import Indice from './Pages/Indice';
 function App() {
   const [showLogo, setShowLogo] = useState(true);
   
-
-
-  
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowLogo(false);
@@ -20,11 +16,8 @@ function App() {
   }, []);
 
 
-
   return (
-   
       <TokenProvider>
-        
           <div className="app-container">
             {showLogo && <Logo />} {/* Muestra el logo solo si showLogo es true */}
             {!showLogo && (
@@ -33,10 +26,7 @@ function App() {
           </div>
         
       </TokenProvider>
-  
   );
 }
-
-
 
 export default App;

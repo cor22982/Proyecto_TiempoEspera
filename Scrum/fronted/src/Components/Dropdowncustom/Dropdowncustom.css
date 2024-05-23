@@ -1,24 +1,76 @@
+/* Estilos generales */
 .dropdown-container {
   display: flex;
-  max-width: 40%;
-  max-height: 10%;
-  padding: 0px;
-  padding-top: 0px;
+  width: 100%;
+  min-width: 100%;
+
+  justify-content: center;
 }
 
 .dropdown-toggle {
-  font-size: 1.5em; /* Ajusta el tamaño de la fuente del botón */
-  background-color: #0069AD; /* Cambia el color de fondo del botón */
+  font-family: var(--title-inika);
+  font-size: 1.5rem;
+  background-color: #0069AD;
   color: white;
+  padding: 0.5rem 1rem; /* Añadimos padding para mejorar el diseño */
+  border: none; /* Eliminamos el borde predeterminado */
+  border-radius: 0.25rem; /* Redondeamos las esquinas */
+  cursor: pointer; /* Cambiamos el cursor al pasar sobre el botón */
 }
+
 .dropdown-toggle:focus,
 .dropdown-toggle:hover {
-  background-color: #024069; /* Mantén el mismo color de fondo al enfocar o activar */
-  color: white; /* Mantén el mismo color de texto al enfocar o activar */
+  background-color: #024069;
+  color: white;
 }
 
 .dropdown-menu {
-  font-size: 1em; /* Ajusta el tamaño de la fuente del menú desplegable */
-  max-height: 200px; /* Ajusta la altura máxima del menú desplegable */
-  overflow-y: auto; /* Permite hacer scroll si el contenido es más largo que la altura máxima */
+  width: 100%;
+  font-size: 1rem;
+  max-height: 15rem;
+  overflow-y: auto;
+  background-color: white; /* Añadimos un fondo blanco para el menú */
+  border: 1px solid #cccccc; /* Añadimos un borde al menú */
+  border-radius: 0.25rem; /* Redondeamos las esquinas */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añadimos una sombra para dar profundidad */
+  z-index: 1000; /* Aseguramos que el menú aparezca encima de otros elementos */
+}
+
+/* Estilos responsivos */
+@media (max-width: 1024px) {
+  .dropdown-toggle {
+    font-size: 1.25rem; /* Reducimos el tamaño de la fuente en pantallas medianas */
+    padding: 0.5rem; /* Ajustamos el padding */
+  }
+
+  .dropdown-menu {
+    font-size: 0.9rem; /* Reducimos el tamaño de la fuente en el menú */
+  }
+}
+
+@media (max-width: 768px) {
+  .dropdown-toggle {
+    font-size: 1rem; /* Reducimos aún más el tamaño de la fuente en pantallas pequeñas */
+    padding: 0.5rem; /* Ajustamos el padding */
+  }
+
+  .dropdown-menu {
+    font-size: 0.8rem; /* Reducimos el tamaño de la fuente en el menú */
+  }
+}
+
+@media (max-width: 480px) {
+  .dropdown-container {
+    flex-direction: column; /* Cambiamos a una disposición vertical en pantallas muy pequeñas */
+  }
+
+  .dropdown-toggle {
+    font-size: 0.875rem; /* Reducimos el tamaño de la fuente en pantallas muy pequeñas */
+    padding: 0.5rem; /* Ajustamos el padding */
+  }
+
+  .dropdown-menu {
+    font-size: 0.75rem; /* Reducimos el tamaño de la fuente en el menú */
+    max-height: 10rem; /* Reducimos la altura máxima del menú */
+  }
 }

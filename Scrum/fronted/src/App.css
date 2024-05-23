@@ -1,5 +1,7 @@
-.App {
+.app-container {
   display: flex;
+  height: 100vh; /* Establece la altura al 100% de la ventana del navegador */
   justify-content: center;
   align-items: center;
+  border: 1px solid black;
 }

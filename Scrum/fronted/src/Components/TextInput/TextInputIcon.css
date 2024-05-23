@@ -1,20 +1,23 @@
+@import "../../styles/fonts.css";
 .input-icon {
   position: relative;
   display: flex;
   align-items: center;
   width: 100%;
+  height: auto;
   color: white;
-  border: 1px solid #e5e4e5;
+  border: 1px solid #cccccc;
   border-radius: 0.1rem;
   background-color: #0069AD;
 }
 
+.icon-font-condition input,
 .input-icon input {
   flex: 1;
   border: none;
-  border-radius: 0.1rem;
   padding: 0.5rem;
-  font-family: 'Inika';
+  padding-right: 3rem;
+  font-family: var(--title-inika);
   font-size: 2rem;
   font-weight: bold;
   white-space: nowrap; /* Evita el salto de línea */
@@ -22,6 +25,18 @@
   text-overflow: ellipsis; /* Añade puntos suspensivos para indicar texto truncado */
   background-color: #e5e4e5;
   color: #6580A5;
+}
+
+.icon-font-condition {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+  font-family: var(--title-inika);
+  font-size: 2rem;
+  min-width: 2rem;
+  color: black;
+  background-color: transparent;
 }
 
 .input-icon input:focus {
