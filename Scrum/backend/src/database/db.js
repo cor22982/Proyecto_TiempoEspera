@@ -66,4 +66,6 @@ export async function insertNewRating(institution, rating, pi){
 }
 
 export async function getRating(id_institution){
+  const result = await conn.query('SELECT rating FROM intitutions WHERE id_institutions = $1;', [id_institution]);
+  return result.rows
 }
