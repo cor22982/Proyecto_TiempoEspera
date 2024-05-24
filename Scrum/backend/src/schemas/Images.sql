@@ -102,3 +102,9 @@ WHERE id_institutions = 24;
 UPDATE intitutions
 SET imagen = 'https://lh5.googleusercontent.com/p/AF1QipOwWcJ5SL9rYBejBM3uLR212csiET3k5UriNHTG=w408-h306-k-no'
 WHERE id_institutions = 25;
+
+
+
+UPDATE intitutions
+SET imagen = 'https://lh5.googleusercontent.com/p/AF1QipN0-BfQVabHcmpr_Co7YUFFvH2ox6VHPcj1HPxL=w408-h725-k-no'
+WHERE id_institutions = 35;

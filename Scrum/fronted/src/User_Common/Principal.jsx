@@ -8,7 +8,7 @@ const Principal = ({ira, datos, setobj, pi}) => {
       id_procedure: id_p,
       name_institutions: nam_i,
       name_procedure: nam_p,
-      pi_user: pi
+      pi_user: pi,
     }
     setobj(objeto_ids)
   } 
