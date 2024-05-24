@@ -22,7 +22,7 @@ const Dashboard = ({ data }) => {
           direccion: jsonData[0].adress,
           horario: 'Lunes a Viernes de ' + jsonData[0].hora_apertura + ' a ' + jsonData[0].hora_cierre, // Puedes establecer el horario según tus necesidades
           puntuacion: jsonData[0].rating, // Puedes establecer la puntuación según tus necesidades
-          img: image, // Puedes establecer la imagen según tus necesidades
+          img: jsonData[0].imagen, // Puedes establecer la imagen según tus necesidades
           mapa: { lat: jsonData[0].longitud, lng: jsonData[0].latitud }, // Puedes establecer el mapa según tus necesidades
           dias: { 
             Lunes: 100, // Puedes establecer la disponibilidad para cada día según tus necesidades
