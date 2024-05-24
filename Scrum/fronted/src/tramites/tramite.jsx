@@ -1,38 +1,63 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faStarHalfAlt, faStar } from '@fortawesome/free-solid-svg-icons'
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStarHalfAlt, faStar } from '@fortawesome/free-solid-svg-icons';
 import '@fortawesome/fontawesome-free/css/all.css';
-import './tramite.css'
-import Imagen from '../Components/Image/Image'
-import Stats from '../Components/Stats/stats'
-
-
+import './tramite.css';
+import Imagen from '../Components/Image/Image';
+import Stats from '../Components/Stats/stats';
+import MapView from '../Components/MapView/MapView';
 const Tramite = ({ institucion }) => {
-    // Función para calcular las estrellas
+    const [rating, setRating] = useState(0); // Default to 5 stars
+
+    const handleStarClick = (index) => {
+        setRating(index + 1); // Update the rating based on the clicked star
+        console.log(index +1)
+    };
+
     const calcularEstrellas = () => {
         const puntuacionTotal = 5;
-        const puntuacionEntera = Math.floor(institucion.puntuacion);
-        const puntuacionDecimal = institucion.puntuacion - puntuacionEntera;
-    
+        const puntuacionEntera = Math.floor(rating);
+        const puntuacionDecimal = rating - puntuacionEntera;
+
         const estrellasEnteras = Array.from({ length: puntuacionEntera }, (_, index) => (
-            <FontAwesomeIcon key={`full-${index}`} className='icon-star' icon={faStar} />
+            <FontAwesomeIcon
+                key={`full-${index}`}
+                className='icon-star'
+                icon={faStar}
+                onClick={() => handleStarClick(index)}
+            />
         ));
-    
+
         if (puntuacionDecimal >= 0.5) {
-            estrellasEnteras.push(<FontAwesomeIcon key={'half'} className='icon-star' icon={faStarHalfAlt} />);
+            estrellasEnteras.push(
+                <FontAwesomeIcon
+                    key={'half'}
+                    className='icon-star'
+                    icon={faStarHalfAlt}
+                    onClick={() => handleStarClick(puntuacionEntera)}
+                />
+            );
         }
-    
+
         const estrellasRestantes = Array.from({ length: puntuacionTotal - estrellasEnteras.length }, (_, index) => (
-            <i key={`empty-${index}`} className="far fa-star"></i>
+            <i
+                key={`empty-${index}`}
+                className="far fa-star icon-star"
+                onClick={() => handleStarClick(puntuacionEntera + index)}
+            ></i>
         ));
-    
+
         return [...estrellasEnteras, ...estrellasRestantes];
     };
-    
 
     return (
         <div className='tramite-container'>
-            <div className='header'> <Imagen src={institucion.img} alt='Imagen prueba'/></div>
-            <div className='puntuacion'> {calcularEstrellas()} </div>
+            <div className='header'>
+                <Imagen src={institucion.img} alt='Imagen prueba' />
+            </div>
+            <div className='puntuacion'>
+                {calcularEstrellas()}
+            </div>
             <div className='identificacion'>
                 {/*<div className='identificacion-name'> {institucion.nombre} </div>*/}
             </div>
@@ -53,18 +78,20 @@ const Tramite = ({ institucion }) => {
                     <div className='info-titulo'>Horarios</div>
                     <div className='info-dato'><span className='text-bold'>{institucion.horario}</span></div>
                 </div>
-                </div>
+            </div>
 
             <div className='stats'>
-                <div className='stats-name'> Flujo de personas </div>
+                <div className='stats-name'>Flujo de personas</div>
                 <Stats datos={institucion.dias} />
             </div>
             <div className='mapa'>
                 <div className='mapa_titulo'>Cómo llegar</div>
-                <div className='mapa_api'><Imagen src={institucion.mapa} alt='Imagen prueba'/></div>
+                <div className='mapa_api'>
+                    <MapView></MapView>                  
+                </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Tramite;

@@ -11,6 +11,9 @@
     outline: none; 
   }
 
+.mapa_api{
+  padding-top: 30px;
+}
 
 .identificacion-chat:hover{
     background: #005a96;
@@ -24,7 +27,14 @@
   .icon-star {
     padding-left: 1em;
     font-size: 2em;
-    
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    color:#005a96
+  }
+
+  .icon-star:hover{
+    opacity: 0.6; 
+    cursor: pointer;
   }
 
   .far.fa-star {
