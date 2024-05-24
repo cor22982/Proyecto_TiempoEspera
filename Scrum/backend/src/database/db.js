@@ -60,8 +60,9 @@ export async function getsteps (id_procedure) {
   return result.rows
 }
 
-export async function insertNewRating(){
-
+export async function insertNewRating(institution, rating, pi){
+  const result = await conn.query('INSERT INTO user_rating (id_institution, rating, user_pi) VALUES ($1, $2, $3);', [institution, rating, pi]);
+  return result.rows
 }
 
 export async function getRating(id_institution){
