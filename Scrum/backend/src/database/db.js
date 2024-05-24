@@ -59,3 +59,13 @@ export async function getsteps (id_procedure) {
   const result = await conn.query('SELECT pasos FROM procedures WHERE id = $1;', [id_procedure]);    
   return result.rows
 }
+
+export async function insertNewRating(institution, rating, pi){
+  const result = await conn.query('INSERT INTO user_rating (id_institution, rating, user_pi) VALUES ($1, $2, $3);', [institution, rating, pi]);
+  return result.rows
+}
+
+export async function getRating(id_institution){
+  const result = await conn.query('SELECT rating FROM intitutions WHERE id_institutions = $1;', [id_institution]);
+  return result.rows
+}

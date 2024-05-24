@@ -1,76 +1,118 @@
+@import "../styles/fonts.css";
+
+/* Animación básica */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 /* Contenedor principal */
 .login-container {
   display: flex;
-  animation: fadeIn 1s ;
+  width: 100%; /* Asegura que ocupe todo el ancho disponible */
+  animation: fadeIn 1s;
+  overflow-y: auto; /* Permite desplazamiento si el contenido es más alto que la pantalla */
 }
 
 /* Contenedor izquierdo */
 .login-left-side {
-  align-items: center;
-  background-color: #0069AD;
   display: flex;
-  flex: 1;
-  height: 100vh;
-  justify-content: center; 
+  flex: 1.2; /* Ajustable según la proporción deseada */
+  padding: 1rem;
+  align-items: center;
+  justify-content: center;
   user-select: none;
-  
+  background-color: #0069AD;
 }
 
-/* Imagen del contenedor izquierdo */
+/* Imagen en el contenedor izquierdo */
 .login-left-side img {
-  max-width: 100%;
+  width: 100%;
   height: auto;
-  padding: 0 10%; 
-  
 }
 
 /* Contenedor derecho */
 .login-right-side {
-  align-items: center;
-  background-color: white;
   display: flex;
   height: 100vh;
-  flex: 2;
+  align-items: center;
+  flex: 2; /* Ajustable para mantener la proporción en diferentes pantallas */
+  background-color: white;
   flex-direction: column;
-  overflow-y: auto;
+  overflow-y: auto; /* Permite desplazamiento en el contenido del contenedor */
+  padding: 2rem 0; /* Espacio superior e inferior */
 }
 
-/* Titulo Lado derecho */
-.login-title{
-  font-size: 5em;
+/* Nuevo contenedor lado derecho */
+.content-right-side {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh; /* Altura completa de la ventana del visor */
+  gap: 2rem;
+  border: 5px solid black;
+}
+
+/* Título en lado derecho */
+.login-title {
+  font-family: var(--title-inika);
+  font-weight: bold;
+  font-size: 6em; /* Ajuste para dispositivos más pequeños en la consulta de medios */
   color: #00367E;
-  padding: 10px;
 }
 
+/* Mensaje de error estilizado */
 .error-message {
   border: 1px solid #e34850;
   color: #e34850;
   background-color: #e3485033;
-  border-radius: 5px;
-  max-width: 50%;
-  min-width: 50%;
-  padding: 10px 5px;
-  padding-bottom: 10px;
+  border-radius: 0.3rem;
+  width: 100%;
+  padding: 0.5rem;
 }
 
-/* Media Queries */
-@media screen and (max-width: 768px) {
-  .login-container {
-    flex-direction: column; 
-  }
+/* Contenedores para formularios */
+.login-dpi-container,
+.login-password-container,
+.login-rol-container,
+.login-button-container {
+  width: 100%;
+  max-width: 80%;
+  margin: auto; /* Centrado horizontal */
+}
 
+/* Registro y otros contenedores de texto */
+.login-register-container,
+.text-register-container,
+.text-info-register-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-family: var(--title-inika);
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Consultas de medios para responsividad */
+@media (max-width: 768px) {
+  .login-container,
   .login-left-side,
-  .login-right-side {
-    flex: 1; 
-    width: 100%;
+  .login-right-side,
+  .content-right-side {
+    flex-direction: column; /* Cambio a vertical en pantallas pequeñas */
+    width: 100%; /* Ocupa todo el ancho */
+    flex: none; /* Sin flexibilidad para evitar distorsiones */
   }
-}
 
-@keyframes fadeIn {
-  from {
-    opacity: 0; /* Empieza con opacidad 0 (oculto) */
+  .login-title {
+    font-size: 3em; /* Tamaño de fuente reducido para pantallas más pequeñas */
   }
-  to {
-    opacity: 1; /* Termina con opacidad 1 (visible) */
+
+  .login-dpi-container,
+  .login-password-container,
+  .login-rol-container,
+  .login-button-container {
+    max-width: 80%; /* Mayor uso del espacio disponible en pantallas pequeñas */
   }
 }

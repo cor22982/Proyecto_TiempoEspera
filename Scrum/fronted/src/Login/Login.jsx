@@ -7,12 +7,24 @@ import { Link } from 'react-router-dom';
 import { md5 } from 'js-md5'
 import LoginContext from '../LoginContex/LoginContext';
 import Dropdowncustom from '@components/Dropdowncustom';
-import  useToken from '@hooks/useToken'
-const Login = ({ setPi }) => {
+import useToken from '@hooks/useToken'
+import {faUser, faEye, faEyeSlash, faLock } from '@fortawesome/free-solid-svg-icons'
+import TextInputIcon from '../Components/TextInput/TextInputIcon';
+import useFormLogin from '../hooks/useFormLogin'
+
+
+const Login = () => {
   const [formState, setFormState] = useState({ pi: '',type_user: '', password: '' })
+  const [showPassword, setShowPassword] = useState(false)
+
   const [errorMessage, setErrorMessage] = useState('')
+  const { formData, handleChange } = useFormLogin({ pi: '', password: '' })
   const { setLoggedIn } = useContext(LoginContext)
-  const { setToken } = useToken() 
+  const { setToken } = useToken()
+  
+  const handlePasswordVisibility = () => {
+    setShowPassword(!showPassword)
+  }
   
   const handleDropdownChange = (selectedItem) => {
     setValue('type_user', selectedItem);
@@ -27,9 +39,9 @@ const Login = ({ setPi }) => {
 
   const handleClick = async () => {
     const body = { }
-    body.pi = formState.pi
+    body.pi = formData.pi
     body.rol = formState.type_user
-    body.password = md5(formState.password)
+    body.password = md5(formData.password)
     console.table(body)
     const fetchOptions = {
       method: 'POST',
@@ -58,33 +70,62 @@ const Login = ({ setPi }) => {
       </div>
 
       <div className='login-right-side'>
-        <h1 className='login-title'>Iniciar sesión</h1>
+        <div className='content-right-side'>
+          <h1 className='login-title'>Iniciar sesión</h1>
+          {
+          errorMessage !== '' ? (
+            <div className='error-message' onClick={() => setErrorMessage('')}>
+              {errorMessage}
+            </div>
+          ) : null
+          } 
 
-        {
-        errorMessage !== '' ? (
-          <div className='error-message' onClick={() => setErrorMessage('')}>
-            {errorMessage}
+          <div className='login-dpi-container'>
+          <TextInputIcon
+              type='text'
+              name='pi'
+              placeholder='Ingrese su DPI/CUI'
+              value={formData.pi}
+              onChange={handleChange}
+              icon={faUser}
+          />
           </div>
-        ) : null
-        } 
 
-        {/* Utiliza el componente LoginTextInput */}
-        <LoginTextInput imageUrl='../src/assets/Login/pi.png' placeholder='DPI/CUI' type='text'
-          value={formState.pi} onChange={(value) => setValue('pi', value)}
-        />
-        <LoginTextInput imageUrl='../src/assets/Login/password.png' placeholder='Contraseña' type='password'
-          value={formState.password} onChange={(value) => setValue('password', value)}
-        />
-         <Dropdowncustom nombre="Seleccionar rol" lista = {['usuario_comun', 'empleador']}
-        onChange={handleDropdownChange}></Dropdowncustom>
-        <p style={{ fontSize: '30px' }}>
-          ¿No te has registrado aún? <Link to="/register" style={{ fontSize: '30px', fontWeight: 'bold' }}>Regístrate aquí</Link>
-        </p>
-        
-        
-        {
-          /* Utiliza el componente CustomButton y pasa el texto y la función de clic */}
-        <CustomButton buttonText="Iniciar sesión" onClick={handleClick} />
+          <div className='login-password-container'>
+          <TextInputIcon
+              type='password'
+              name='password'
+              placeholder='Ingrese su contraseña'
+              value={formData.password}
+              onChange={handleChange}
+              icon={faLock}
+              iconOnClick={showPassword ? faEye: faEyeSlash}
+              onIconClick={handlePasswordVisibility}
+          />
+          </div>
+
+          <div className='login-rol-container'>
+          <Dropdowncustom 
+            nombre="Seleccionar rol" 
+            lista = {['usuario_comun', 'empleador']}
+            onChange={handleDropdownChange} 
+          />
+          </div>
+
+          <div className='login-register-container'>
+          <div className='text-info-register-container'>
+            ¿No te has registrado aún?
+          </div>
+          <div className='text-register-container'>
+            <Link to="/register">Regístrate aquí</Link>
+          </div>
+          </div>
+
+          <div className='login-button-container'>
+            <CustomButton buttonText="Iniciar sesión" onClick={handleClick} />
+          </div>
+
+        </div>
       </div>
     </div>
   );

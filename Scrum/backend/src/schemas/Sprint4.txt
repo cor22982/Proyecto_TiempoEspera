@@ -1,3 +1,29 @@
 ALTER TABLE institutions
-ADD horario TIME, 
-ADD telefono VARCHAR(20);
+RENAME COLUMN horario TO hora_apertura;
+
+ALTER TABLE institutions
+ADD COLUMN hora_cierre TIME;
+
+ ALTER TABLE intitutions
+ADD COLUMN coordenadas geometry(Point);
+
+Updates
+UPDATE intitutions
+SET hora_apertura = '08:00:00', hora_cierre = '16:00:00', telefono = '+502 23297070'
+WHERE id_institutions = 1;
+
+UPDATE intitutions
+SET hora_apertura = '08:00:00', hora_cierre = '16:00:00', telefono = '+502 23297070'
+WHERE id_institutions = 2;
+
+UPDATE intitutions
+SET hora_apertura = '08:00:00', hora_cierre = '16:00:00'
+WHERE id_institutions = 3;
+
+UPDATE intitutions
+SET hora_apertura = '08:00:00', hora_cierre = '16:00:00', telefono = '+502 24100000'
+WHERE id_institutions = 4;
+
+UPDATE intitutions
+SET hora_apertura = '08:00:00', hora_cierre = '16:00:00'
+WHERE id_institutions = 5;
