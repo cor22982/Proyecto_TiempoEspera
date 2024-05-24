@@ -59,3 +59,10 @@ export async function getsteps (id_procedure) {
   const result = await conn.query('SELECT pasos FROM procedures WHERE id = $1;', [id_procedure]);    
   return result.rows
 }
+
+export async function insertNewRating(){
+
+}
+
+export async function getRating(id_institution){
+}
