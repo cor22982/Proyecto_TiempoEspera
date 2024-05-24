@@ -2,7 +2,7 @@ import express from 'express';
 import { validationResult } from 'express-validator';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, getInstitutionByID, getComments, createComment, getsteps, getUserByPi} from '../database/db.js';
+import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating} from '../database/db.js';
 import { getUserLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken } from './jwt.js';
 
@@ -160,6 +160,18 @@ app.post('/comment', async (req, res) => {
   }
   catch(error){
     console.error('Error al crear comentario:', error);
+    res.status(500).send('Error del servidor :(');
+  }
+});
+
+app.get('/rating/:id_institution', async (req, res) => {
+  try {
+    const { id_institution } = req.params;
+    const rating = await getRating(id_institution);
+    res.status(200).json(rating);
+  }
+  catch(error){
+    console.error('Error en la búsqueda de comentarios:', error);
     res.status(500).send('Error del servidor :(');
   }
 });
