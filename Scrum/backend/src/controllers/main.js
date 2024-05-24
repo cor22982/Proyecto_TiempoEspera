@@ -178,8 +178,10 @@ app.get('/rating/:id_institution', async (req, res) => {
 
 app.post('/rating', async (req, res) => {
   try {
-    const { institution, rating, pi } = req.body;
-    await insertNewRating(institution, rating, pi);
+    const { institution, rating, token } = req.body;
+    const payload = decodeToken(token)
+    const { dpi } = payload;
+    await insertNewRating(institution, rating, dpi);
     res.status(200).json({ succes: true });
   }
   catch(error){

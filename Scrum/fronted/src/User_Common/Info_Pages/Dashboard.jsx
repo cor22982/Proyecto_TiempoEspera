@@ -17,13 +17,13 @@ const Dashboard = ({ data }) => {
         const formattedData = {
           nombre: jsonData[0].name,
           t_promedio: '1:00:00', // Puedes establecer el tiempo promedio según tus necesidades
-          telefono: '24161900', // Puedes establecer el número de teléfono según tus necesidades
+          telefono: jsonData[0].telefono, // Puedes establecer el número de teléfono según tus necesidades
           direccion: jsonData[0].adress,
-          horario: 'Lunes a Viernes 7:00 am a 8:00 pm', // Puedes establecer el horario según tus necesidades
-          puntuacion: 2.5, // Puedes establecer la puntuación según tus necesidades
+          horario: 'Lunes a Viernes de ' + jsonData[0].hora_apertura + ' a ' + jsonData[0].hora_cierre, // Puedes establecer el horario según tus necesidades
+          puntuacion: jsonData[0].rating, // Puedes establecer la puntuación según tus necesidades
           img: image, // Puedes establecer la imagen según tus necesidades
-          mapa: mapa, // Puedes establecer el mapa según tus necesidades
-          dias: {
+          mapa: { lat: jsonData[0].longitud, lng: jsonData[0].latitud }, // Puedes establecer el mapa según tus necesidades
+          dias: { 
             Lunes: 100, // Puedes establecer la disponibilidad para cada día según tus necesidades
             Martes: 50,
             Miércoles: 90,

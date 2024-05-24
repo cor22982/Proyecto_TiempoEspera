@@ -4,8 +4,8 @@ import "leaflet/dist/leaflet.css";
 import osm from "./osm-providers"; // Ensure this is correctly imported
 
 const MapView = ({ position }) => {
-    const [center, setCenter] = useState(position || { lat: 13.084622, lng: 80.248357 });
-    const ZOOM_LEVEL = 22;
+    const [center, setCenter] = useState(position);
+    const ZOOM_LEVEL = 122;
     const mapRef = useRef();
 
     return (

@@ -6,8 +6,15 @@ import './tramite.css';
 import Imagen from '../Components/Image/Image';
 import Stats from '../Components/Stats/stats';
 import MapView from '../Components/MapView/MapView';
+import useApi from '@hooks/useApi';
+import useToken from '@hooks/useToken';
+
 const Tramite = ({ institucion }) => {
+    const { llamado } = useApi('https://deimoss.web05.lol/rating');
     const [rating, setRating] = useState(0); // Default to 5 stars
+    const { token } = useToken()
+
+    
 
     const handleStarClick = (index) => {
         setRating(index + 1); // Update the rating based on the clicked star
@@ -63,7 +70,11 @@ const Tramite = ({ institucion }) => {
             </div>
             <div className='info'>
                 <div className='info-item'>
-                    <div className='info-titulo'>Tiempo promedio</div>
+                    <div className='info-titulo'>Ranking</div>
+                    <div className='info-dato'><span className='text-bold'>{institucion.puntuacion}</span></div>
+                </div>
+                <div className='info-item'>
+                    <div className='info-titulo'>Tiempo</div>
                     <div className='info-dato'><span className='text-bold'>{institucion.t_promedio}</span></div>
                 </div>
                 <div className='info-item'>
@@ -79,7 +90,7 @@ const Tramite = ({ institucion }) => {
                     <div className='info-dato'><span className='text-bold'>{institucion.horario}</span></div>
                 </div>
             </div>
-
+ 
             <div className='stats'>
                 <div className='stats-name'>Flujo de personas</div>
                 <Stats datos={institucion.dias} />
@@ -87,7 +98,7 @@ const Tramite = ({ institucion }) => {
             <div className='mapa'>
                 <div className='mapa_titulo'>Cómo llegar</div>
                 <div className='mapa_api'>
-                    <MapView></MapView>                  
+                    <MapView position={institucion.mapa}></MapView>                  
                 </div>
             </div>
         </div>
