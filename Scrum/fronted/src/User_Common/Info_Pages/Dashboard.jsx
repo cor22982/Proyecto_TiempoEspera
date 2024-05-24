@@ -8,7 +8,7 @@ const Dashboard = ({ data }) => {
   const [institutionData, setInstitutionData] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async () => { 
       try {
         const response = await fetch(`https://deimoss.web05.lol/institution/${data.id_institutions}`);
         const jsonData = await response.json();

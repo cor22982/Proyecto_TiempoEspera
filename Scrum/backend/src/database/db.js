@@ -24,7 +24,7 @@ export async function getProcedureInfo(name){
   const result = await conn.query('SELECT intitutions.name, intitutions.adress, intitutions.id_institutions, p.id as id_procedure, p.name as name_procedure FROM procedures p join institutionsprocedures ip on p.id = ip."id procedure" join intitutions on ip."id intitution" = intitutions.id_institutions where p.name ilike $1;',[likePattern]);
   return result.rows
 }
-
+ 
 export async function getAllInstitutionInfo(){
   const result = await conn.query('SELECT * FROM intitutions;');
   return result.rows
@@ -32,7 +32,7 @@ export async function getAllInstitutionInfo(){
 
 
 export async function getInstitutionByID(id){
-  const result = await conn.query('SELECT i.name, i.adress, i.id_institutions, c."id conversation" as id_conversation FROM intitutions i join conversations c on c.id_institution = i.id_institutions WHERE id_institutions = $1;', [id]);
+  const result = await conn.query('SELECT i.name, i.adress, i.id_institutions, i.hora_apertura, i.telefono, i.hora_cierre, i.rating, ST_X(coordenadas) AS longitud, ST_Y(coordenadas) AS latitud c."id conversation" as id_conversation FROM intitutions i join conversations c on c.id_institution = i.id_institutions WHERE id_institutions = $1;', [id]);
   return result.rows
 }
 
