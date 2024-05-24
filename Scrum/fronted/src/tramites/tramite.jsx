@@ -14,11 +14,19 @@ const Tramite = ({ institucion }) => {
     const [rating, setRating] = useState(0); // Default to 5 stars
     const { token } = useToken()
 
-    
 
-    const handleStarClick = (index) => {
+
+    const handleStarClick = async (index) => {
         setRating(index + 1); // Update the rating based on the clicked star
         console.log(index +1)
+        const body = {
+            token: token,
+            institution: institucion.id,
+            rating: rating
+        }
+        const {succes} = await llamado(body,'POST')
+        
+        console.log(succes)
     };
 
     const calcularEstrellas = () => {

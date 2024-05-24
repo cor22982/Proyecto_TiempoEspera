@@ -15,6 +15,7 @@ const Dashboard = ({ data }) => {
         data.id_conversation =  jsonData[0].id_conversation;
         // Convertir los datos en el formato deseado
         const formattedData = {
+          id: data.id_institutions,
           nombre: jsonData[0].name,
           t_promedio: '1:00:00', // Puedes establecer el tiempo promedio según tus necesidades
           telefono: jsonData[0].telefono, // Puedes establecer el número de teléfono según tus necesidades
