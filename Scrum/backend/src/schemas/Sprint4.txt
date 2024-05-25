@@ -71,3 +71,63 @@ WHERE id_institutions = 15;
 UPDATE intitutions
 SET hora_apertura = '08:00:00', hora_cierre = '16:00:00'
 WHERE id_institutions = 16;
+
+UPDATE intitutions
+SET hora_apertura = '08:00:00', hora_cierre = '16:00:00',telefono = '+502 23297070'
+WHERE id_institutions = 17;
+
+UPDATE intitutions
+SET hora_apertura = '08:00:00', hora_cierre = '16:00:00','+502 23297070'
+WHERE id_institutions = 18;
+
+UPDATE intitutions
+SET hora_apertura = '08:00:00', hora_cierre = '16:00:00','+502 23297070'
+WHERE id_institutions = 19;
+
+UPDATE intitutions
+SET hora_apertura = '08:00:00', hora_cierre = '16:00:00','+502 23297070'
+WHERE id_institutions = 20;
+
+UPDATE intitutions
+SET hora_apertura = '08:00:00', hora_cierre = '16:00:00','+502 23297070'
+WHERE id_institutions = 21;
+
+UPDATE intitutions
+SET hora_apertura = '08:00:00', hora_cierre = '16:00:00','+502 23297070'
+WHERE id_institutions = 22;
+
+UPDATE intitutions
+SET hora_apertura = '08:00:00', hora_cierre = '16:00:00','+502 23297070'
+WHERE id_institutions = 23;
+
+UPDATE intitutions
+SET hora_apertura = '08:00:00', hora_cierre = '16:00:00','+502 23297070'
+WHERE id_institutions = 24;
+
+UPDATE intitutions
+SET hora_apertura = '08:00:00', hora_cierre = '16:00:00','+502 23297070'
+WHERE id_institutions = 25;
+
+UPDATE intitutions
+SET hora_apertura = '08:00:00', hora_cierre = '16:00:00','+502 23297070'
+WHERE id_institutions = 26;
+
+UPDATE intitutions
+SET hora_apertura = '08:00:00', hora_cierre = '16:00:00','+502 23297070'
+WHERE id_institutions = 27;
+
+UPDATE intitutions
+SET hora_apertura = '08:00:00', hora_cierre = '16:00:00','+502 77754002'
+WHERE id_institutions = 28;
+
+UPDATE intitutions
+SET hora_apertura = '08:00:00', hora_cierre = '16:00:00','+502 77754002'
+WHERE id_institutions = 28;
+
+UPDATE intitutions
+SET hora_apertura = '08:00:00', hora_cierre = '16:00:00','+502 77641206'
+WHERE id_institutions = 29;
+
+UPDATE intitutions
+SET hora_apertura = '08:00:00', hora_cierre = '16:00:00','+502 77553143'
+WHERE id_institutions = 30;
