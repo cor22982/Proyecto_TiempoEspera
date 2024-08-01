@@ -2,7 +2,7 @@ import Principal from './Principal';
 import useApi from '@hooks/useApi';
 import { useState } from 'react';
 import Informacion from './Informacion';
-import SearchInput from '../Components/SearchInput';
+import SearchInput from '../../Components/SearchInput';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import './Page_Main.css'

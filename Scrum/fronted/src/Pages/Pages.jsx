@@ -4,10 +4,9 @@ import { faUser, faHome, faSave, faGear, faBell, faRightFromBracket, faSearch } 
 import '../assets/Login/logotipo.png'
 import { Route, Routes } from 'react-router-dom';
 import Logout from '../Login/Logout';
-import Page_Main from '../User_Common/Page_Main';
+import Page_Main from '../User_Common/PaginaPrincipal/Page_Main';
+import Guardados from '../User_Common/Guardados/Guardados';
 const Pages = ({ pi }) => {
-
-
   return (
     <div className="contenedor-principal">
       <div className='opciones'>
@@ -36,7 +35,7 @@ const Pages = ({ pi }) => {
          <Routes>  
             <Route path="*" element={<Page_Main pi={pi}/>} />
             <Route path="/cuenta" element={<CuentaPage />} />
-            <Route path="/guardados" element={<GuardadosPage />} />
+            <Route path="/guardados" element={<Guardados/>} />
             <Route path="/configuracion" element={<ConfiguracionPage />} />
             <Route path="/notificaciones" element={<NotificacionesPage />} />
             <Route path='/salir' element={<Logout/>}></Route>
@@ -51,7 +50,6 @@ const Pages = ({ pi }) => {
 
 const HomePage = () => <h1>Contenido de la página principal</h1>;
 const CuentaPage = () => <h1>Contenido de la página de cuenta</h1>;
-const GuardadosPage = () => <h1>Contenido de la página de guardados</h1>;
 const ConfiguracionPage = () => <h1>Contenido de la página de configuración</h1>;
 const NotificacionesPage = () => <h1>Contenido de la página de notificaciones</h1>;
 

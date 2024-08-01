@@ -4,9 +4,9 @@ import { Route, Routes } from 'react-router-dom';
 import Dashboard from './Info_Pages/Dashboard';
 import Comentarios from './Info_Pages/Comentarios';
 import Requisitos from './Info_Pages/Requisitos';
-import Cita from '../agendar/Cita'
+import Cita from '../../agendar/Cita'
 
-
+ 
 const Informacion = ({data}) => {
   const {name_institutions} = data
 

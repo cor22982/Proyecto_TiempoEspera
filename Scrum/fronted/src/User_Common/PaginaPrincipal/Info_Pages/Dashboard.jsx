@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import Tramite from '../../tramites/tramite' 
-import './Dashboard.css'
+import Tramite from '../../../tramites/tramite';
+import './Dashboard.css' 
  
 const Dashboard = ({ data }) => {
   const [institutionData, setInstitutionData] = useState(null);

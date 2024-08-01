@@ -1,4 +1,4 @@
-import InsttutionComponent from "../Components/InsttutionComponent"
+import InsttutionComponent from "../../Components/InsttutionComponent"
 import './Principal.css'
 const Principal = ({ira, datos, setobj, pi}) => {
   const onclick = (id_i, id_p, nam_i, nam_p, pi) => {
