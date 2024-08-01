@@ -6,15 +6,16 @@ import {faCalendar, faClock, faFile, faUser } from '@fortawesome/free-solid-svg-
 import { useEffect, useState } from 'react'
 import useFormCita from '../hooks/useFormCita'
 import PopUpAgendar from '../User_Common/Info_Pages/PopUpAgendar/PopUpAgendar';
-
+import PopUpAgendarError from '../User_Common/Info_Pages/PopUpAgendar/PopUpAgendarError';
 const Cita = ({ data }) => {
     const [userData, setUserData] = useState(null);
     const { llamadowithoutbody } = useApi(`https://deimoss.web05.lol/users/${data.pi_user}`);
     const { formData, handleChange } = useFormCita({ hora: '', fecha: '', name_user: '', procedure: '' })
     const [agendar, setAgendar] = useState(false);
+    const [erragendar , setErrAgendar] = useState(false);
     const onClick = () => {
         console.log("Se agendó la cita");
-        setAgendar(true);
+        setErrAgendar(true);
     }
     
     useEffect(() => {
@@ -87,6 +88,7 @@ const Cita = ({ data }) => {
                 <Button onClick={onClick} buttonText='Agendar Cita'/>
             </div>     
             <PopUpAgendar activar={agendar} setActivar={setAgendar}></PopUpAgendar>
+            <PopUpAgendarError activar={erragendar} setActivar={setErrAgendar}></PopUpAgendarError>
         </div>
     );
 };

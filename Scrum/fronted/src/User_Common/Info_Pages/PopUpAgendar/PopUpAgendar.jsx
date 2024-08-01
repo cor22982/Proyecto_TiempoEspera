@@ -4,7 +4,7 @@ import {faCheckCircle} from '@fortawesome/free-solid-svg-icons';
 const PopUpAgendar = ({activar, setActivar}) => {
   return(
       <PopUp trigger={activar} setTrigger={setActivar}>
-        <div style={{display:'flex', flexDirection: 'column'}}>
+        <div style={{display:'flex', flexDirection: 'column', alignItems: 'center'}}>
           <h2>CITA AGENDADA EXITOSAMENTE</h2>
           <div style={{fontSize: '90px', display: 'flex', justifyContent: 'center', color: '#03B100'}}>
             <FontAwesomeIcon icon={faCheckCircle}/>
