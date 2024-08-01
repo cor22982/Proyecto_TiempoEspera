@@ -1,6 +1,9 @@
+import SavedComponent from "@components/SavedComponent";
 const Guardados = () => {
   return(
-    <div>GUARDADOS</div>
+    <div>
+      
+    </div>
   );
 }
 
