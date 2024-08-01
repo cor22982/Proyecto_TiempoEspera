@@ -15,7 +15,7 @@ const Cita = ({ data }) => {
     const [erragendar , setErrAgendar] = useState(false);
     const onClick = () => {
         console.log("Se agendó la cita");
-        setErrAgendar(true);
+        setAgendar(true);
     }
     
     useEffect(() => {

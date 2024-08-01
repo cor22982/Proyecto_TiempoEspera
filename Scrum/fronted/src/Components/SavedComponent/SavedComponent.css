@@ -1,0 +1,41 @@
+.container-saved{
+  height: 120px;
+  width: 100%;
+  background-color: rgb(253, 253, 253);
+  box-shadow: 5px 5px 10px 0 rgb(204, 204, 204);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  cursor: pointer;
+  transition: filter 0.4s;
+  padding-bottom: 10px;
+  padding-top: 10px; 
+}
+.container-saved:hover{
+  filter: brightness(90%);
+}
+
+.imagen-institution{
+  height: 110px;
+  width: 150px;
+  object-fit: fill;
+}
+
+.saved-information{
+  margin-left: 5px;
+  height: 110px;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.titulo-information{
+  font-size: 40px;
+}
+
+.description-information{
+  font-size: 20px;
+}
