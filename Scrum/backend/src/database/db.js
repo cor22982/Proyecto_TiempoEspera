@@ -69,3 +69,8 @@ export async function getRating(id_institution){
   const result = await conn.query('SELECT rating FROM intitutions WHERE id_institutions = $1;', [id_institution]);
   return result.rows
 }
+
+export async function create_new_appointment(date, time, procedure, pi){
+  const result = await conn.query('INSERT INTO appointments ("id institution procedure", date, time) values )$1, $2, $3);', [procedure, date, time]);
+  return result.rows
+}
