@@ -200,7 +200,7 @@ app.post('/newAppointment', async (req, res) => {
   }
   catch(error){
     console.error('Error al hacer una nueva reservación :(', error);
-    res.status(500),json({succes: false});
+    res.status(500).json({succes: false});
   }
 
 });
