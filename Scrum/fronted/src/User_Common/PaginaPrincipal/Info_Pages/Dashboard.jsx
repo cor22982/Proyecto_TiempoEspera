@@ -48,7 +48,7 @@ const Dashboard = ({ data }) => {
       {institutionData && (
         <Tramite institucion={institutionData} />
       )}
-    </div>
+    </div> 
   );
 };
 

@@ -20,7 +20,7 @@ const Informacion = ({data}) => {
         <MenuOption nombre='Comentarios' goto='/comentarios'></MenuOption>
         <MenuOption nombre='Requisitos' goto='/requisitos'></MenuOption>
         <MenuOption nombre='Agendar' goto='/agendar'></MenuOption>
-        
+         
       </div>
       <div className='informacion-contenido'>
         <Routes>

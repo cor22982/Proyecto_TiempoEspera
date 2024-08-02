@@ -1,6 +1,6 @@
 import './Pages.css'
 import MenuButton from '@components/MenuButton';
-import { faUser, faHome, faSave, faGear, faBell, faRightFromBracket, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faHome, faSave, faGear, faBell, faRightFromBracket, faSearch, faFire } from '@fortawesome/free-solid-svg-icons';
 import '../assets/Login/logotipo.png'
 import { Route, Routes } from 'react-router-dom';
 import Logout from '../Login/Logout';
@@ -18,9 +18,14 @@ const Pages = ({ pi }) => {
         <br></br>
         <MenuButton nombre='Guardados' icono={faSave} goto='/guardados'></MenuButton>
         <br></br>
+        <MenuButton nombre='Notificaciones' icono={faBell} goto='/notificaciones'></MenuButton>
+        <br></br>
+        <MenuButton nombre='Recomendados' icono={faFire} goto='/recomendados'></MenuButton>
+        <br></br>
         <MenuButton nombre='Configuracion' icono={faGear} goto='/configuracion'></MenuButton>
         <br></br>
-        <MenuButton nombre='Notificaciones' icono={faBell} goto='/notificaciones'></MenuButton>
+        <br></br>
+        <br></br>
         <br></br>
         <br></br>
         <br></br>
@@ -38,6 +43,7 @@ const Pages = ({ pi }) => {
             <Route path="/guardados" element={<Guardados/>} />
             <Route path="/configuracion" element={<ConfiguracionPage />} />
             <Route path="/notificaciones" element={<NotificacionesPage />} />
+            <Route path="/recomendados" element={<Recomendados></Recomendados>} />
             <Route path='/salir' element={<Logout/>}></Route>
           </Routes>   
         
@@ -48,7 +54,7 @@ const Pages = ({ pi }) => {
 
 }
 
-const HomePage = () => <h1>Contenido de la página principal</h1>;
+const Recomendados = () => <h1>Contenido de Recomendados</h1>;
 const CuentaPage = () => <h1>Contenido de la página de cuenta</h1>;
 const ConfiguracionPage = () => <h1>Contenido de la página de configuración</h1>;
 const NotificacionesPage = () => <h1>Contenido de la página de notificaciones</h1>;

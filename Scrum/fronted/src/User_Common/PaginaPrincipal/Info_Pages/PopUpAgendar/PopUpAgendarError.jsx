@@ -9,7 +9,8 @@ const PopUpAgendarError = ({activar, setActivar}) => {
         <div style={{fontSize: '90px', display: 'flex', justifyContent: 'center', color: 'red'}}>
           <FontAwesomeIcon icon={faCircleExclamation}/>
         </div>
-        <p style={{fontSize: '20px', display: 'flex'}}>SE AGENDO UNA CITA PARA Agencia Tributaria Galerias primas el dia DD/MM/AA a las HH:MM</p>          
+        <p style={{fontSize: '20px', display: 'flex'}}>No se pudo agendar la cita ocurrio un erro</p>          
+        
       </div>
     </PopUp>
 ); 

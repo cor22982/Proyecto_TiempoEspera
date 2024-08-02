@@ -1,23 +1,43 @@
 import './Cita.css';
-import useApi from '@hooks/useApi'
-import TextInputIcon from '../Components/TextInput/TextInputIcon'
-import Button from '../Components/CustomButton/CustomButton'
-import {faCalendar, faClock, faFile, faUser } from '@fortawesome/free-solid-svg-icons'
-import { useEffect, useState } from 'react'
-import useFormCita from '../hooks/useFormCita' 
+import useApi from '@hooks/useApi';
+import TextInputIcon from '../Components/TextInput/TextInputIcon';
+import Button from '../Components/CustomButton/CustomButton';
+import { faCalendar, faClock, faFile, faUser } from '@fortawesome/free-solid-svg-icons';
+import { useEffect, useState } from 'react';
+import useFormCita from '../hooks/useFormCita';
 import PopUpAgendar from '../User_Common/PaginaPrincipal/Info_Pages/PopUpAgendar/PopUpAgendar';
 import PopUpAgendarError from '../User_Common/PaginaPrincipal/Info_Pages/PopUpAgendar/PopUpAgendarError';
+
 const Cita = ({ data }) => {
     const [userData, setUserData] = useState(null);
     const { llamadowithoutbody } = useApi(`https://deimoss.web05.lol/users/${data.pi_user}`);
-    const { formData, handleChange } = useFormCita({ hora: '', fecha: '', name_user: '', procedure: '' })
+    const { llamado } = useApi('https://deimoss.web05.lol/newAppointment');
+    const { formData, handleChange } = useFormCita({ time: '', date: '', name_user: '', procedure_name: '', pi: data.pi_user });
     const [agendar, setAgendar] = useState(false);
     const [erragendar , setErrAgendar] = useState(false);
-    const onClick = () => {
-        console.log("Se agendó la cita");
-        setAgendar(true);
-    }
-    
+    const [showacepted, setShowAcepted]= useState('')
+    const onClick = async() => {
+        
+        // Crea una copia de formData excluyendo name_user y procedure_name
+        const { name_user, procedure_name, ...filteredFormData } = formData;
+        // Agrega id_procedure y institution a la copia de formData
+        const updatedFormData = {
+          ...filteredFormData,
+          id_procedure: data.id_procedure,
+          institution: data.id_institutions
+        };
+        const { succes } = await llamado(updatedFormData, 'POST');
+        console.log(succes); // Muestra `formData` con `id_procedure` y `institution` añadidos
+        if (succes) {
+            setShowAcepted(`SE AGENDO UNA CITA PARA ${data.name_institutions} el dia ${formData.date} a las ${formData.time}`)
+            setAgendar(true);
+        }
+        else{
+            setErrAgendar(true);
+        }
+        
+    };
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -30,7 +50,6 @@ const Cita = ({ data }) => {
 
         fetchData();
 
-        // Limpieza del efecto
         return () => {
             setUserData(null);
         };
@@ -54,7 +73,7 @@ const Cita = ({ data }) => {
                 <div className='procedure-container'>
                     <TextInputIcon
                         type='text'
-                        name='procedure'
+                        name='procedure_name'
                         placeholder={data.name_procedure}
                         value={data.name_procedure}
                         onChange={handleChange}
@@ -66,9 +85,9 @@ const Cita = ({ data }) => {
                 <div className='hora-container'>
                     <TextInputIcon
                         type='time'
-                        name='hora'
+                        name='time'
                         placeholder='Ingrese la hora'
-                        value={formData.hora}
+                        value={formData.time}
                         onChange={handleChange}
                         icon={faClock}
                     />
@@ -76,9 +95,9 @@ const Cita = ({ data }) => {
                 <div className='fecha-container'>
                     <TextInputIcon
                         type='date'
-                        name='fecha'
+                        name='date'
                         placeholder='Ingrese la fecha'
-                        value={formData.fecha}
+                        value={formData.date}
                         onChange={handleChange}
                         icon={faCalendar}
                     />
@@ -87,7 +106,10 @@ const Cita = ({ data }) => {
             <div className='button-cita-container'>
                 <Button onClick={onClick} buttonText='Agendar Cita'/>
             </div>     
-            <PopUpAgendar activar={agendar} setActivar={setAgendar}></PopUpAgendar>
+            <PopUpAgendar 
+                activar={agendar} 
+                setActivar={setAgendar}
+                description={showacepted}></PopUpAgendar>
             <PopUpAgendarError activar={erragendar} setActivar={setErrAgendar}></PopUpAgendarError>
         </div>
     );

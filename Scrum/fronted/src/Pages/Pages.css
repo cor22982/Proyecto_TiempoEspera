@@ -3,7 +3,7 @@
   height: 100vh;
   background-color: #E4E4E4;
   display: grid;
-  grid-template-columns: 1fr 6fr;
+  grid-template-columns: 1.5fr 6fr;
   animation: fadeIn 1s ;
 
 }
@@ -11,7 +11,7 @@
 .opciones {
   grid-column: 1;
   background-color: #00367E;
-  width: 220px;
+  width: fill ;
   display: flex;
   flex-direction: column;
   align-items: start;

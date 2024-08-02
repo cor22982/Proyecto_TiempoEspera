@@ -33,7 +33,7 @@ const Page_Main = ({ pi }) => {
         onChange={(value) => setBusqueda(value)}
         onpressenter={onSearch}
         ></SearchInput>
-    </div>
+    </div> 
       <div className='paginas'>
       { pantalla ? (
         <Principal ira={setPantalla} datos={datos} setobj={setobject_datos} pi={pi}></Principal>
