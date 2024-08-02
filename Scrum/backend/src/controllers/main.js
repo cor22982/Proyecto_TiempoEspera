@@ -2,7 +2,9 @@ import express from 'express';
 import { validationResult } from 'express-validator';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, insertNewRating, create_new_appointment} from '../database/db.js';
+import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, 
+  getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, 
+  insertNewRating, create_new_appointment, get_appointments} from '../database/db.js';
 import { getUserLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken } from './jwt.js';
 
@@ -204,6 +206,18 @@ app.post('/newAppointment', async (req, res) => {
   }
 
 });
+
+app.get('/userAppointments/:pi', async (req, res) =>{
+  try {
+    const {pi} = req.params;
+    const procedures = await get_appointments(pi);
+    res.status(200).json(procedures);
+  }
+  catch(error){
+    console.error('Error al obtener los datos que buscas :(', error);
+    res.status(500).send('ERROR :((');
+  }
+})
 
 
 
