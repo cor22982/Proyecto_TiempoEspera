@@ -194,9 +194,7 @@ app.post('/rating', async (req, res) => {
 
 app.post('/newAppointment', async (req, res) => {
   try {
-    const {date, time, procedure, token} = req.body;
-    const payload = decodeToken(token)
-    const {pi} = payload;
+    const {date, time, procedure, token, pi} = req.body;
     await create_new_appointment(date, time, procedure, pi);
     res.status(200).json({succes: true});
   }
@@ -211,7 +209,7 @@ app.get('/userAppointments/:pi', async (req, res) =>{
   try {
     const {pi} = req.params;
     const procedures = await get_appointments(pi);
-    res.status(200).json(procedures);
+    res.status(200).json()
   }
   catch(error){
     console.error('Error al obtener los datos que buscas :(', error);
