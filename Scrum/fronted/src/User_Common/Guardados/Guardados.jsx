@@ -5,7 +5,7 @@ import useApi from '@hooks/useApi';
 
 const Guardados = ({ pi }) => {
   const [showsave, setShowSave] = useState(false);
-  const [information, setInformation] = useState({ title: '', information: '' });
+  const [information, setInformation] = useState({ title: '', information: '' , imagen:'', address: '' });
   const { llamadowithoutbody } = useApi(`https://deimoss.web05.lol/userAppointments/${pi}`);
   const [saved, setSaved] = useState([]);
 
@@ -27,7 +27,9 @@ const Guardados = ({ pi }) => {
 
   const pressOnSave = (save) => {
     setValue('title', save.name);
-    setValue('information', `Se agendo una cita para ${save.name}`);
+    setValue('information', `Se agendo una cita para ${save.institution_name} para el ${save.date} a las ${save.time} `);
+    setValue('imagen', save.imagen);
+    setValue('address', `La direccion de la institucion es en  "${save.adress}`);
     setShowSave(true);
   };
 
@@ -48,6 +50,8 @@ const Guardados = ({ pi }) => {
         setActivar={setShowSave}
         nombre={information.title}
         description={information.information}
+        image={information.imagen}
+        address={information.address}
       />
     </div>
   );
