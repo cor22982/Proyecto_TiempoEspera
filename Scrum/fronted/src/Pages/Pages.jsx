@@ -40,7 +40,7 @@ const Pages = ({ pi }) => {
          <Routes>  
             <Route path="*" element={<Page_Main pi={pi}/>} />
             <Route path="/cuenta" element={<CuentaPage />} />
-            <Route path="/guardados" element={<Guardados/>} />
+            <Route path="/guardados" element={<Guardados pi={pi}/>} />
             <Route path="/configuracion" element={<ConfiguracionPage />} />
             <Route path="/notificaciones" element={<NotificacionesPage />} />
             <Route path="/recomendados" element={<Recomendados></Recomendados>} />
