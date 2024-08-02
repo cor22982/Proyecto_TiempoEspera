@@ -144,3 +144,9 @@ dist
 *.sw?
 
 *storybook.log
+
+
+# Variables de entorno y llaves
+.env
+*.pem
+
