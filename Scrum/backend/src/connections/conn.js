@@ -1,16 +1,21 @@
 import dotenv from 'dotenv';
 import pg from 'pg';
 
-dotenv.config();
+// Carga las variables del archivo .env
+dotenv.config({ path: '../../../.env' });
 
 const { Client } = pg;
-const connectionData = {
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_DATABASE,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
-}
-const client = new Client(connectionData);
-client.connect();
+
+const client = new Client({
+  user: process.env.DB_OWNER_USER,
+  host: process.env.DB_OWNER_HOST,
+  database: process.env.DB_OWNER_DATABASE,
+  password: process.env.DB_OWNER_PASSWORD,
+  port: parseInt(process.env.DB_OWNER_PORT, 10),
+});
+
+client.connect()
+  .then(() => console.log('Database connected successfully (Owner)'))
+  .catch(err => console.error('Error connecting to the database (Owner):', err.stack));
+
 export default client;
