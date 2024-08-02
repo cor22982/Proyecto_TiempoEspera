@@ -76,7 +76,7 @@ export async function create_new_appointment(date, time, procedure, pi){
 }
 
 export async function get_appointments(pi){
-  const result = await conn.query('select a.date, a.time, i.imagen, p.name from appointments a join userappointments us on us."id appointment" = a.id join institutionsprocedures ip on a."id institution procedure" = ip."id institution procedure" join intitutions i on i.id_institutions = ip."id intitution" join procedures p on p.id = ip."id procedure" where us.pi = $1 and a.date >= CURRENT_DATE;', [pi]);
+  const result = await conn.query('select a.date::DATE, a.time::TIME, i.imagen, p.name from appointments a join userappointments us on us."id appointment" = a.id join institutionsprocedures ip on a."id institution procedure" = ip."id institution procedure" join intitutions i on i.id_institutions = ip."id intitution" join procedures p on p.id = ip."id procedure" where us.pi = $1 and a.date >= CURRENT_DATE;', [pi]);
   return result.rows
 }
 
