@@ -86,7 +86,7 @@ export async function get_appointments(pi){
 }
 
 export async function getprocedure_id(id_procedure, institution){
-  const result = await conn.query('select "id institution procedure" from institutionsprocedures where "id procedure" = $1 and "id intitution" = $2;', [id_procedure, id_institution]);
+  const result = await conn.query('select "id institution procedure" from institutionsprocedures where "id procedure" = $1 and "id intitution" = $2;', [id_procedure,institution]);
   return result.rows
 }
 
