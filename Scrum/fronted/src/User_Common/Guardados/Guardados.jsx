@@ -27,7 +27,7 @@ const Guardados = ({ pi }) => {
 
   const pressOnSave = (save) => {
     setValue('title', save.name);
-    setValue('information', 'INFORMACION ADICIONADA');
+    setValue('information', `Se agendo una cita para ${save.name}`);
     setShowSave(true);
   };
 
