@@ -1,12 +1,16 @@
+import dotenv from 'dotenv';
 import pg from 'pg';
+
+dotenv.config();
+
 const { Client } = pg;
 const connectionData = {
-  user: 'owner',
-  host: 'localhost',
-  database: 'deimos',
-  password: '36L8W7Nm',
-  port: 5432,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
 }
-const client = new Client(connectionData)
+const client = new Client(connectionData);
 client.connect();
 export default client;
