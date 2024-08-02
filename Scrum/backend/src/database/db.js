@@ -85,10 +85,17 @@ export async function get_appointments(pi){
   return formattedRows;
 }
 
-export async function getprocedure_id(id_procedure, institution){
-  const result = await conn.query('select "id institution procedure" from institutionsprocedures where "id procedure" = $1 and "id intitution" = $2;', [parseInt(id_procedure),parseInt(institution)]);
-  return parseInt(result.rows[0])
+export async function getprocedure_id(id_procedure, institution) {
+  const result = await conn.query('SELECT "id institution procedure" FROM institutionsprocedures WHERE "id procedure" = $1 AND "id institution" = $2;', [parseInt(id_procedure), parseInt(institution)]);
+  
+  // Verificar si hay resultados
+  if (result.rows.length > 0) {
+    // Extraer el valor y convertirlo a número
+    return parseInt(result.rows[0]["id institution procedure"], 10);
+  } else {
+    // Manejar el caso en que no se encuentren resultados
+    return null; // O lanzar un error según tu necesidad
+  }
 }
-
 
 
