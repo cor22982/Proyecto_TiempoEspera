@@ -194,7 +194,7 @@ app.post('/rating', async (req, res) => {
 
 app.post('/newAppointment', async (req, res) => {
   try {
-    const {date, time, procedure, token, pi} = req.body;
+    const {date, time, procedure, pi} = req.body;
     await create_new_appointment(date, time, procedure, pi);
     res.status(200).json({succes: true});
   }
