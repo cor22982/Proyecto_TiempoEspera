@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, 
   getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, 
-  insertNewRating, create_new_appointment, get_appointments} from '../database/db.js';
+  insertNewRating, create_new_appointment, get_appointments, getprocedure_id} from '../database/db.js';
 import { getUserLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken } from './jwt.js';
 
@@ -194,7 +194,8 @@ app.post('/rating', async (req, res) => {
 
 app.post('/newAppointment', async (req, res) => {
   try {
-    const {date, time, procedure, pi} = req.body;
+    const {date, time, id_procedure, institution, pi} = req.body;
+    procedure = await getprocedure_id(id_procedure, institution); 
     await create_new_appointment(date, time, procedure, pi);
     res.status(200).json({succes: true});
   }
