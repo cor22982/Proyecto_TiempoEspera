@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, 
   getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, 
-  insertNewRating, create_new_appointment, get_appointments, getprocedure_id} from '../database/db.js';
+  insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData} from '../database/db.js';
 import { getUserLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken } from './jwt.js';
 
@@ -216,6 +216,18 @@ app.get('/userAppointments/:pi', async (req, res) =>{
   catch(error){
     console.error('Error al obtener los datos que buscas :(', error);
     res.status(500).send('ERROR :((');
+  }
+})
+
+app.get('/userInfo/:pi', async(req, res)=>{
+  try{
+    const {pi} = req.params;
+    const data = await getUserData(pi);
+    res.status(200).json(data);
+  }
+  catch(error){
+    console.log('Error al obtener datos del usuario :(', error);
+    res.status(500).send('ERROR :(')
   }
 })
 
