@@ -6,6 +6,6 @@ export default {
 
 export const ButtonDefault = {
     args: {
-        buttonText: 'HOLASDAJDOSJDOSA'
+        buttonText: 'CLICK ME'
     }
 }
