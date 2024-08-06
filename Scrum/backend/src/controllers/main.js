@@ -8,9 +8,10 @@ import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequiere
 import { getUserLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken } from './jwt.js';
 
+
 const app = express();
 const PORT = 5000;
-
+export default app;
 // Middleware
 app.use(express.json());
 app.use(cors());
@@ -36,7 +37,7 @@ app.post('/register', validateRequest, async (req, res) => {
   console.log("body", req.body);
   const { pi, name, lastname, password_md5, age, type_user } = req.body;
   await register(pi, name, lastname, password_md5, age, type_user);
-  res.send('{ "message": "user created" }');
+  res.json({ message: 'user created' });
 });
 
 // Endpoint para obtener un usuario por su PI
