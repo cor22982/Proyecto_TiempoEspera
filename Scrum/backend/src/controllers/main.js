@@ -224,6 +224,7 @@ app.get('/userInfo/:pi', async(req, res)=>{
   try{
     const {pi} = req.params;
     const data = await getUserData(pi);
+    console.log("Datos obtenidos")
     res.status(200).json(data);
   }
   catch(error){
