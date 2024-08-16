@@ -12,7 +12,7 @@ import {faUser, faEye, faEyeSlash, faLock } from '@fortawesome/free-solid-svg-ic
 import TextInputIcon from '../Components/TextInput/TextInputIcon';
 import useFormLogin from '../hooks/useFormLogin'
 
-
+ 
 const Login = () => {
   const [formState, setFormState] = useState({ pi: '',type_user: '', password: '' })
   const [showPassword, setShowPassword] = useState(false)
@@ -122,7 +122,7 @@ const Login = () => {
           </div>
 
           <div className='login-button-container'>
-            <CustomButton buttonText="Iniciar sesión" onClick={handleClick} />
+            <CustomButton buttonText="Iniciar sesion" onClick={handleClick} />
           </div>
 
         </div>
