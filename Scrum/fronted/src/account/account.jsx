@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import useToken from '@hooks/useToken';
 import useApi from '@hooks/useApi';
 import { parseJwt } from '@hooks/useToken';
-import './account.css';
+import './account.css'; // Asume que los estilos están definidos en este archivo CSS
 
 const Account = () => {
     const { token } = useToken();
@@ -39,7 +39,10 @@ const Account = () => {
 
     return (
       <div className="account-container">
-        <h1 className="account-title">Perfil del Usuario</h1>
+        <div className="profile-image">
+          <img src={userData?.imageUrl || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'} alt="Profile" />
+        </div>
+        <h1 className="account-title">{`${userData.name} ${userData.lastname}`}</h1>
         {error && <p className="error">{error}</p>}
         {userData ? (
           <div className="user-info">
