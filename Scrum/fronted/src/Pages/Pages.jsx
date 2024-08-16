@@ -6,6 +6,10 @@ import { Route, Routes } from 'react-router-dom';
 import Logout from '../Login/Logout';
 import Page_Main from '../User_Common/PaginaPrincipal/Page_Main';
 import Guardados from '../User_Common/Guardados/Guardados';
+import Account from '../account/account';
+
+
+
 const Pages = ({ pi }) => {
   return (
     <div className="contenedor-principal">
@@ -39,7 +43,7 @@ const Pages = ({ pi }) => {
         
          <Routes>  
             <Route path="*" element={<Page_Main pi={pi}/>} />
-            <Route path="/cuenta" element={<CuentaPage />} />
+            <Route path="/cuenta" element={<Account />} />
             <Route path="/guardados" element={<Guardados pi={pi}/>} />
             <Route path="/configuracion" element={<ConfiguracionPage />} />
             <Route path="/notificaciones" element={<NotificacionesPage />} />
@@ -53,9 +57,7 @@ const Pages = ({ pi }) => {
   );
 
 }
-
 const Recomendados = () => <h1>Contenido de Recomendados</h1>;
-const CuentaPage = () => <h1>Contenido de la página de cuenta</h1>;
 const ConfiguracionPage = () => <h1>Contenido de la página de configuración</h1>;
 const NotificacionesPage = () => <h1>Contenido de la página de notificaciones</h1>;
 

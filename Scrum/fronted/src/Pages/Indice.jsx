@@ -12,6 +12,7 @@ const Indice = () => {
   if (token) {
     const decodedToken = parseJwt(token);
     dpi = decodedToken.dpi;
+
     //console.log("mi token es:", token);
     //console.log("mi dpi desde token es:", dpi);
   }
