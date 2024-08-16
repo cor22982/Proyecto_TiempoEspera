@@ -2,19 +2,19 @@ import { useEffect, useState } from 'react';
 import useToken from '@hooks/useToken';
 import useApi from '@hooks/useApi';
 import { parseJwt } from '@hooks/useToken';
-import './account.css'; // Asume que los estilos están definidos en este archivo CSS
+import './account.css';
 
 const Account = () => {
     const { token } = useToken();
     const [userData, setUserData] = useState(null);
     const [error, setError] = useState(null);
-    
+
     let dpi;
     if (token) {
-      const decodedToken = parseJwt(token);
-      dpi = decodedToken.dpi;
+        const decodedToken = parseJwt(token);
+        dpi = decodedToken.dpi;
     }
-    
+
     const { llamadowithoutbody } = useApi(`https://deimoss.web05.lol/userInfo/${dpi}`);
 
     useEffect(() => {
@@ -38,25 +38,25 @@ const Account = () => {
     }, [dpi, llamadowithoutbody]);
 
     return (
-      <div className="account-container">
-        <div className="profile-image">
-          <img src={userData?.imageUrl || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'} alt="Profile" />
+        <div className="account-container">
+            <div className="profile-image">
+                <img src={userData?.imageUrl || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'} alt="Profile" />
+            </div>
+            <h1 className="account-title">{userData ? `${userData.name} ${userData.lastname}` : 'Perfil del Usuario'}</h1>
+            {error && <p className="error">{error}</p>}
+            {userData ? (
+                <div className="user-info">
+                    <p><strong>DPI:</strong> {dpi}</p>
+                    <p><strong>ID del Usuario:</strong> {userData.pi}</p>
+                    <p><strong>Email:</strong> {userData.email||"-No has vinculado tu email-"}</p>
+                    <p><strong>Nombre Completo:</strong> {`${userData.name} ${userData.lastname}`}</p>
+                    <p><strong>Rol:</strong> {userData.type_user}</p>
+                    <p><strong>Edad:</strong> {userData.age}</p>
+                </div>
+            ) : (
+                <p>Cargando datos del usuario...</p>
+            )}
         </div>
-        <h1 className="account-title">{`${userData.name} ${userData.lastname}`}</h1>
-        {error && <p className="error">{error}</p>}
-        {userData ? (
-          <div className="user-info">
-            <p><strong>DPI:</strong> {dpi}</p>
-            <p><strong>ID del Usuario:</strong> {userData.pi}</p>
-            <p><strong>Email:</strong> {userData.email}</p>
-            <p><strong>Nombre Completo:</strong> {`${userData.name} ${userData.lastname}`}</p>
-            <p><strong>Rol:</strong> {userData.type_user}</p>
-            <p><strong>Edad:</strong> {userData.age}</p>
-          </div>
-        ) : (
-          <p>Cargando datos del usuario...</p>
-        )}
-      </div>
     );
 }
 
