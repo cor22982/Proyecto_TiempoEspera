@@ -1,4 +1,4 @@
-function dijkstra(graph, start) {
+export function dijkstra(graph, start) {
 
   let distances = {};
 
