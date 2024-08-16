@@ -48,7 +48,7 @@ const Account = () => {
                 <div className="user-info">
                     <p><strong>DPI:</strong> {dpi}</p>
                     <p><strong>ID del Usuario:</strong> {userData.pi}</p>
-                    <p><strong>Email:</strong> {userData.email||"-No has vinculado tu email-"}</p>
+                    <p><strong>Email:</strong> {userData.email||"-No hay email-"}</p>
                     <p><strong>Nombre Completo:</strong> {`${userData.name} ${userData.lastname}`}</p>
                     <p><strong>Rol:</strong> {userData.type_user}</p>
                     <p><strong>Edad:</strong> {userData.age}</p>
