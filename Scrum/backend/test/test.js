@@ -12,6 +12,8 @@ function generateRandom13DigitNumber() {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+const genPI = generateRandom13DigitNumber().toString()
+
 
 
 describe('API Endpoints', () => {
@@ -21,7 +23,7 @@ describe('API Endpoints', () => {
       const response = await request(API_BASE_URL)
         .post('/register')
         .send({
-          pi: generateRandom13DigitNumber().toString(),
+          pi: genPI,
           name: 'John',
           lastname: 'Doe',
           password_md5: 'passwordhash',
@@ -40,7 +42,7 @@ describe('API Endpoints', () => {
       const response = await request(API_BASE_URL)
         .post('/login')
         .send({
-          pi: '3834734839834',
+          pi: genPI,
           password: 'passwordhash',
           rol: 'usuario_comun'
         });
@@ -54,7 +56,7 @@ describe('API Endpoints', () => {
   });
 
   describe('GET /rating/:id_institution', () => {
-    it('should a rating from an institution', async () => {
+    it('should get rating from an institution', async () => {
       const response = await request(API_BASE_URL)
         .get('/rating/26');
 
@@ -64,4 +66,23 @@ describe('API Endpoints', () => {
     });
     
   });
+
+
+  describe('GET /institutions/:name', () =>{
+    it('should return the information of an institution based in the institution name ', async() =>{
+      const sub = 'con';
+      const response = await request(API_BASE_URL)
+        .get(`/institutions/${sub}`);
+
+      expect(response.status).to.equal(200);
+      expect(response.body).to.be.an('array');
+      expect(response.body).to.have.lengthOf.above(0);
+      expect(response.body[0].name_procedure.toLowerCase()).to.include(sub);
+    })
+  })
+
+  describe('POST /comment', () =>{
+    
+  })
+
 });
