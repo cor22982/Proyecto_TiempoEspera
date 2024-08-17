@@ -2,12 +2,9 @@ import { test, expect, vi } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import App from '../App';
 
-
-
 test('Search procedure', async () => {
-  render(
-      <App />
-  );
+  render(<App />);
+
   await waitFor(() => {
     expect(document.querySelector('.logo')).toBeNull();
   }, { timeout: 4000 }); 
@@ -22,9 +19,12 @@ test('Search procedure', async () => {
   });
 
   fireEvent.change(screen.getByPlaceholderText('Buscar tramite'), { target: { value: 'cita controlada' } });
-  fireEvent.keyDown(screen.getByPlaceholderText('Buscar tramite'), { key: 'Enter', code: 'Enter', charCode: 13 });
+  
 
-  await {timeout: 5000}
-  screen.debug(); 
- 
+  fireEvent.keyDown(screen.getByPlaceholderText('Buscar tramite'), { key: 'Enter', code: 'Enter', charCode: 13 });
+  
+  await waitFor(() => {
+    expect(document.querySelector('.institution-image')).toBeInTheDocument();
+  });
+
 });
