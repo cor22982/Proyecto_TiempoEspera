@@ -1,4 +1,4 @@
-name: Run tests
+name: Run tests and backend
 
 on:
   pull_request:
@@ -7,19 +7,47 @@ on:
   workflow_dispatch:
 
 jobs:
-  tests:
+  frontend-tests:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup Node
+      - name: Setup Node for Frontend
         uses: actions/setup-node@v3
         with:
           node-version: 18.19.1
 
-      - name: Install Dependencies
-        run: cd Scrum/fronted && npm install
-      - name: Run tests
-        run: cd Scrum/fronted && npm test
+      - name: Install Frontend Dependencies
+        run: |
+          cd Scrum/fronted
+          npm install
+
+      - name: Run Frontend Tests
+        run: |
+          cd Scrum/fronted
+          npm test
+
+  backend-tests:
+    runs-on: ubuntu-latest
+    needs: frontend-tests
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node for Backend
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.19.1
+
+      - name: Install Backend Dependencies
+        run: |
+          cd Scrum/backend
+          npm install
+
+      - name: Run Backend Tests
+        run: |
+          cd Scrum/backend
+          npm test
