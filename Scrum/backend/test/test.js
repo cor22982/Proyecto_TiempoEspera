@@ -4,6 +4,7 @@ import { expect } from 'chai';
 
 
 const API_BASE_URL = 'https://deimoss.web05.lol/'; 
+let token = '';
 
 
 function generateRandom13DigitNumber() {
@@ -14,7 +15,7 @@ function generateRandom13DigitNumber() {
 
 const genPI = generateRandom13DigitNumber().toString()
 
-
+const defaultName = 'John'
 
 describe('API Endpoints', () => {
 
@@ -51,6 +52,7 @@ describe('API Endpoints', () => {
       expect(response.body).to.have.property('success', true);
       expect(response.body).to.have.property('message', 'Inicio de sesión exitoso');
       expect(response.body).to.have.property('acces_token');
+      token = response.body.acces_token
     });
     
   });
@@ -82,7 +84,35 @@ describe('API Endpoints', () => {
   })
 
   describe('POST /comment', () =>{
-    
+    it('Should post a new comment in an institution', async() =>{
+      console.log(token)
+      const def_content = 'Hola';
+      const response = await request(API_BASE_URL)
+      .post('/comment')
+      .send({
+        token: token,
+        content: def_content,
+        conversation_id: 1
+      });
+
+      expect(response.status).to.equal(200);
+      expect(response.body).to.have.property('message', 'Comentario creado');
+
+      const response2 = await request(API_BASE_URL)
+      .get('/comments/1')
+
+      expect(response2.status).to.equal(200);
+      expect(response2.body).to.be.an('array');
+      expect(response2.body).to.have.lengthOf.above(0);
+
+      const result = response2.body.find(item => item.name === defaultName); 
+
+      expect(result).to.not.be.undefined; 
+      expect(result.content).to.equal(def_content);
+    })
   })
 
 });
+
+
+
