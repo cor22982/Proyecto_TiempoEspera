@@ -1,4 +1,4 @@
-name: Run tests
+name: Run backend
 
 on:
   pull_request:
@@ -21,5 +21,5 @@ jobs:
 
       - name: Install Dependencies
         run: cd Scrum/backend && npm install
-      - name: Run tests
+      - name: Run backend
         run: cd Scrum/backend && npm test
