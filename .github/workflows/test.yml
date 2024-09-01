@@ -17,9 +17,9 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 18.19.1
 
       - name: Install Dependencies
         run: cd Scrum/fronted && npm install
       - name: Run tests
-        run: npm test
+        run: cd Scrum/fronted && npm test
