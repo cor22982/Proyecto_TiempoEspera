@@ -8,7 +8,7 @@ const Account = () => {
     const { token } = useToken();
     const [userData, setUserData] = useState(null);
     const [error, setError] = useState(null);
-
+ 
     let dpi;
     if (token) {
         const decodedToken = parseJwt(token);

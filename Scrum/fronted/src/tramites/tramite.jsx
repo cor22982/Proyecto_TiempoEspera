@@ -53,7 +53,7 @@ const Tramite = ({ institucion }) => {
                 />
             );
         }
-
+ 
         const estrellasRestantes = Array.from({ length: puntuacionTotal - estrellasEnteras.length }, (_, index) => (
             <i
                 key={`empty-${index}`}
