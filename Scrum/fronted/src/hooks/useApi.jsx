@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 const useApi = (link) => {
   const [error, setError] = useState({});
-  
+   
   const llamado = async (body,metodo) => {
     const fetchOptions = {
       method: metodo,
