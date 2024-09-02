@@ -14,6 +14,7 @@ function generateRandom13DigitNumber() {
 }
 
 const genPI = generateRandom13DigitNumber().toString()
+console.log(genPI)
 
 const defaultName = 'John'
 
@@ -150,7 +151,16 @@ describe('API Endpoints', () => {
   })
 
   describe('POST /rating', () =>{
-    it('should post a rating for an institution')
+    it('should post a rating for an institution', async() =>{
+
+    })
+  })
+
+  //Eliminar todos los registros creados para las pruebas. 
+  after(async() =>{
+    await request(API_BASE_URL)
+    .delete(`/user/${genPI}`)
+    .expect(200)
   })
 
 });
