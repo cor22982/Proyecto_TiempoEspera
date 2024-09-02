@@ -233,7 +233,7 @@ app.get('/userInfo/:pi', async(req, res)=>{
   }
 })
 
-app.delete('user/:pi', async(req, res) =>{
+app.delete('/user/:pi', async(req, res) =>{
   try {
     const {pi} = req.params;
     const result = await deleteUser(pi);
