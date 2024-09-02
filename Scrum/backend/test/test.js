@@ -134,6 +134,21 @@ describe('API Endpoints', () => {
     })
   })
 
+  describe('GET /rating/:id_institution', () =>{
+    it('should get the rating of a specific institution', async() =>{
+      const institution_id = Math.floor(Math.random() * (20 - 0 + 1)) + 0;
+      console.log(institution_id)
+      const response = await request(API_BASE_URL)
+      .get(`/rating/${institution_id}`)
+
+      expect(response.status).to.equal(200);
+      expect(response.body).to.be.an('array');
+      expect(response.body[0]).to.have.property('rating');
+      expect(response.body[0]['rating']).to.be.a('number').and.to.be.within(0.0, 5.0);
+
+    })
+  })
+
 });
 
 
