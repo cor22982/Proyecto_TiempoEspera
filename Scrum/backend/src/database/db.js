@@ -103,4 +103,9 @@ export async function getUserData(pi){
   return result.rows
 }
 
+export async function deleteUser(pi){
+  const result = await conn.query('DELETE FROM users WHERE pi = $1', [pi])
+  return result.rows
+}
+
 

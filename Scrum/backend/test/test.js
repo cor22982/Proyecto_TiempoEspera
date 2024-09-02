@@ -85,7 +85,6 @@ describe('API Endpoints', () => {
 
   describe('POST /comment', () =>{
     it('Should post a new comment in an institution', async() =>{
-      console.log(token)
       const def_content = 'Hola';
       const response = await request(API_BASE_URL)
       .post('/comment')
@@ -110,6 +109,48 @@ describe('API Endpoints', () => {
       expect(result).to.not.be.undefined; 
       expect(result.content).to.equal(def_content);
     })
+  })
+
+  describe('GET /requirements/id:procedure', () =>{
+    it('should get te requirements for a procedure given the procedure ID', async() =>{
+      const response = await request(API_BASE_URL)
+      .get('/requirements/4')
+
+      expect(response.status).to.equal(200);
+      expect(response.body).to.be.an('object');
+      expect(response.body).to.not.be.empty;
+    })
+
+  })
+
+  describe('GET /institutions', () =>{
+    it('should get all the information form all institutions', async() =>{
+      const response = await request(API_BASE_URL)
+      .get('/institutions')
+
+      expect(response.status).to.equal(200);
+      expect(response.body).to.be.an('array');
+      expect(response.body).to.have.lengthOf.above(0);
+    })
+  })
+
+  describe('GET /rating/:id_institution', () =>{
+    it('should get the rating of a specific institution', async() =>{
+      const institution_id = Math.floor(Math.random() * (20 - 0 + 1)) + 0;
+      console.log(institution_id)
+      const response = await request(API_BASE_URL)
+      .get(`/rating/${institution_id}`)
+
+      expect(response.status).to.equal(200);
+      expect(response.body).to.be.an('array');
+      expect(response.body[0]).to.have.property('rating');
+      expect(response.body[0]['rating']).to.be.a('number').and.to.be.within(0.0, 5.0);
+
+    })
+  })
+
+  describe('POST /rating', () =>{
+    it('should post a rating for an institution')
   })
 
 });
