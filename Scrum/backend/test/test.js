@@ -85,7 +85,6 @@ describe('API Endpoints', () => {
 
   describe('POST /comment', () =>{
     it('Should post a new comment in an institution', async() =>{
-      console.log(token)
       const def_content = 'Hola';
       const response = await request(API_BASE_URL)
       .post('/comment')
@@ -111,6 +110,20 @@ describe('API Endpoints', () => {
       expect(result.content).to.equal(def_content);
     })
   })
+
+  describe('GET /requirements/id:procedure', () =>{
+    it('should get te requirements for a procedure given the procedure ID', async() =>{
+      const response = await request(API_BASE_URL)
+      .get('/requirements/4')
+
+      expect(response.status).to.equal(200);
+      expect(response.body).to.be.an('object');
+      expect(response.body).to.not.be.empty;
+    })
+
+  })
+
+  describe()
 
 });
 
