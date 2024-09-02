@@ -149,6 +149,10 @@ describe('API Endpoints', () => {
     })
   })
 
+  describe('POST /rating', () =>{
+    it('should post a rating for an institution')
+  })
+
 });
 
 

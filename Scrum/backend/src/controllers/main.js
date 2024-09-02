@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, 
   getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, 
-  insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData} from '../database/db.js';
+  insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser} from '../database/db.js';
 import { getUserLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken } from './jwt.js';
 
@@ -229,6 +229,19 @@ app.get('/userInfo/:pi', async(req, res)=>{
   }
   catch(error){
     console.log('Error al obtener datos del usuario :(', error);
+    res.status(500).send('ERROR :(')
+  }
+})
+
+app.delete('user/:pi', async(req, res) =>{
+  try {
+    const {pi} = req.params;
+    const result = await deleteUser(pi);
+    console.log("Usuario eliminado con exito")
+    res.status(200).json({success: true})
+  }
+  catch(error){
+    console.log('Error al borrar el usuario :(', error)
     res.status(500).send('ERROR :(')
   }
 })

@@ -1,5 +1,5 @@
-#Usar la versión 20 de node
-FROM node:20
+#Usar la última versión de node
+FROM node
 #Indicar el directorio de trabajo
 WORKDIR /usr/src/app
 #Copiar el package json
