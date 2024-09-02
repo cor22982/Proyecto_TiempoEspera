@@ -152,7 +152,15 @@ describe('API Endpoints', () => {
 
   describe('POST /rating', () =>{
     it('should post a rating for an institution', async() =>{
+      const response = await request(API_BASE_URL)
+      .post('/rating')
+      .send({institution: Math.floor(Math.random() * (20 - 0 + 1)) + 0,
+        rating: Math.random() * (5.0 - 0.0 ) + 0.0,
+        token: token}
+      )
 
+      expect(response.status).to.equal(200);
+      expect(response.body).to.have.property('succes', true);
     })
   })
 
