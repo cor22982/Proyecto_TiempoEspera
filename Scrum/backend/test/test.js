@@ -123,7 +123,16 @@ describe('API Endpoints', () => {
 
   })
 
-  describe()
+  describe('GET /institutions', () =>{
+    it('should get all the information form all institutions', async() =>{
+      const response = await request(API_BASE_URL)
+      .get('/institutions')
+
+      expect(response.status).to.equal(200);
+      expect(response.body).to.be.an('array');
+      expect(response.body).to.have.lengthOf.above(0);
+    })
+  })
 
 });
 
