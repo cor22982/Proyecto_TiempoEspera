@@ -30,5 +30,5 @@ const Principal = ({ira, datos, setobj, pi}) => {
 
   )
 }
-
+ 
 export default Principal

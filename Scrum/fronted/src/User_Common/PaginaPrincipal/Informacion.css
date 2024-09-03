@@ -1,4 +1,8 @@
-
+.header_institution{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
 .contenedor-info{
   margin-left: 22px;
   animation: fadeIn 0.5s ;

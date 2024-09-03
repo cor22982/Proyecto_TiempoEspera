@@ -14,6 +14,7 @@ const Page_Main = ({ pi }) => {
   const [object_datos, setobject_datos] = useState(null)
 
   const onSearch = async () => {
+    setPantalla(true)
     const busquedaParseada = busqueda.toLowerCase().replace(/ /g, '%20');
     try {
       const response = await llamadowithoutbody('GET')
@@ -26,19 +27,19 @@ const Page_Main = ({ pi }) => {
   return (
     <div className='contenido'>
       <div className='cabecera'>
-      <SearchInput 
-        icono={faSearch} 
-        placeholder='Buscar tramite'
-        value={busqueda} 
-        onChange={(value) => setBusqueda(value)}
-        onpressenter={onSearch}
-        ></SearchInput>
-    </div> 
+        <SearchInput 
+          icono={faSearch} 
+          placeholder='Buscar tramite'
+          value={busqueda} 
+          onChange={(value) => setBusqueda(value)}
+          onpressenter={onSearch}
+          ></SearchInput>
+      </div> 
       <div className='paginas'>
       { pantalla ? (
         <Principal ira={setPantalla} datos={datos} setobj={setobject_datos} pi={pi}></Principal>
       ) : (
-        <Informacion data={object_datos}></Informacion>
+        <Informacion data={object_datos} ira={setPantalla}></Informacion>
       )
 
       }
