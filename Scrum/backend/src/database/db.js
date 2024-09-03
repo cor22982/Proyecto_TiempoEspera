@@ -99,7 +99,7 @@ export async function getprocedure_id(id_procedure, institution) {
 }
 
 export async function getUserData(pi){
-  const result = await conn.query('SELECT pi, name, lastname, age, type_user FROM users WHERE pi = $1;', [pi]);
+  const result = await conn.query('SELECT pi, name, lastname, age, type_user, perfi_image FROM users WHERE pi = $1;', [pi]);
   return result.rows
 }
 
