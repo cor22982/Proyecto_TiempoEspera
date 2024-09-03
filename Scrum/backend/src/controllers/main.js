@@ -4,7 +4,8 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, 
   getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, 
-  insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage} from '../database/db.js';
+  insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage
+, getStatistics} from '../database/db.js';
 import { getUserLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken } from './jwt.js';
 
@@ -260,6 +261,17 @@ app.delete('/user/:pi', async(req, res) =>{
   }
   catch(error){
     console.log('Error al borrar el usuario :(', error)
+    res.status(500).send('ERROR :(')
+  }
+})
+
+app.get('/statistics', async(req, res) =>{
+  try{
+    const data = await getStatistics()
+    res.status(200).json(data)
+  }
+  catch(error){
+    console.log('ERROR al encontrar los datos :(')
     res.status(500).send('ERROR :(')
   }
 })
