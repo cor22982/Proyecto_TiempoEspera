@@ -13,6 +13,39 @@ function generateRandom13DigitNumber() {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function getRandomDate() {
+  const currentDate = new Date();
+  const nextYearDate = new Date();
+  nextYearDate.setFullYear(currentDate.getFullYear() + 1);
+
+  const randomTimestamp = currentDate.getTime() + Math.random() * (nextYearDate.getTime() - currentDate.getTime());
+
+
+  const randomDate = new Date(randomTimestamp);
+
+  const year = randomDate.getFullYear();
+  const month = String(randomDate.getMonth() + 1).padStart(2, '0'); 
+  const day = String(randomDate.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+}
+
+function getRandomTime() {
+  const startTime = 13 * 3600; 
+  const endTime = 14 * 3600 + 30 * 60;
+
+  
+  const randomTimeInSeconds = Math.floor(Math.random() * (endTime - startTime + 1)) + startTime;
+
+  
+  const hours = String(Math.floor(randomTimeInSeconds / 3600)).padStart(2, '0');
+  const minutes = String(Math.floor((randomTimeInSeconds % 3600) / 60)).padStart(2, '0');
+  const seconds = String(randomTimeInSeconds % 60).padStart(2, '0');
+
+  return `${hours}:${minutes}:${seconds}`;
+}
+
+
 const genPI = generateRandom13DigitNumber().toString()
 console.log(genPI)
 
@@ -161,6 +194,52 @@ describe('API Endpoints', () => {
 
       expect(response.status).to.equal(200);
       expect(response.body).to.have.property('succes', true);
+    })
+
+    describe('POST /newAppointment', () =>{
+      it('should post a new appointment', async() =>{
+        const date = getRandomDate();
+        const time= getRandomTime();
+        const response = await request(API_BASE_URL)
+        .post('/newAppointment')
+        .send({
+          date: date,
+          time: time,
+          id_procedure: Math.floor(Math.random() * (20 - 0 + 1)).toString(),
+          institution: Math.floor(Math.random() * (20 - 0 + 1)).toString(),
+          pi: genPI
+        })
+
+        expect(response.status).to.equal(200);
+        expect(response.body).to.have.property('succes', true);
+
+      })
+    })
+
+    describe('GET /userAppointments/:pi', () =>{
+      it('Should get the appointments from an specific user', async() =>{
+        const response = await request(API_BASE_URL)
+        .get(`/userAppointments/${genPI}`)
+
+        expect(response.status).to.equal(200);
+        expect(response.body).to.be.an('array');
+        console.log(response.body)
+        console.log(response.body[0])
+        //expect(response.body[0]).to.be.an('object');
+        //expect(response.body[0]).to.have.property('date');
+      })
+    })
+
+    describe('GET /userInfo/:pi', () =>{
+      it('Should get the data from an specific user', async() =>{
+        const response = await request(API_BASE_URL)
+        .get(`/userInfo/${genPI}`)
+        
+        expect(response.status).to.equal(200);
+        expect(response.body).to.be.an('array');
+        expect(response.body[0]).to.be.an('object');
+        expect(response.body[0]).to.have.property('pi')
+      })
     })
   })
 
