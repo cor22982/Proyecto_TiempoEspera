@@ -113,8 +113,8 @@ export async function UpdateImage(pi, image){
   return result
 }
 
-export async function getStatistics(){
-  const result = await conn.query('SELECT * from Average_people;')
+export async function getStatistics(id){
+  const result = await conn.query('SELECT * from Average_people where Institution = $1;', [id])
   return result.rows
 }
 

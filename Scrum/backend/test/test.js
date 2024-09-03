@@ -223,10 +223,7 @@ describe('API Endpoints', () => {
 
         expect(response.status).to.equal(200);
         expect(response.body).to.be.an('array');
-        console.log(response.body)
-        console.log(response.body[0])
-        //expect(response.body[0]).to.be.an('object');
-        //expect(response.body[0]).to.have.property('date');
+
       })
     })
 
