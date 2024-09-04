@@ -267,8 +267,9 @@ app.delete('/user/:pi', async(req, res) =>{
 
 app.get('/statistics/:id_institution', async(req, res) =>{
   try{
-    const {id} = req.params;
-    const data = await getStatistics(id)
+    const { id_institution } = req.params;
+    console.log(id_institution)
+    const data = await getStatistics(id_institution);
     res.status(200).json(data)
   }
   catch(error){
