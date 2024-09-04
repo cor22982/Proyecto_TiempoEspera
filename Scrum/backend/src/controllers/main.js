@@ -4,7 +4,8 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, 
   getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, 
-  insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser} from '../database/db.js';
+  insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage
+, getStatistics} from '../database/db.js';
 import { getUserLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken } from './jwt.js';
 
@@ -233,7 +234,25 @@ app.get('/userInfo/:pi', async(req, res)=>{
   }
 })
 
-app.delete('user/:pi', async(req, res) =>{
+app.put('/user_Update_Image', async(req, res)=>{
+  try{
+    const {pi, image} = req.body;
+    const result = await UpdateImage(pi, image);
+    if (result.rowCount > 0) {
+      console.log("Se guardó la imagen");
+      res.status(200).json({ message: "Imagen actualizada correctamente" });
+    } else {
+      console.log("No se encontró un usuario con ese PI");
+      res.status(404).json({ message: "Usuario no encontrado" });
+    }
+  }
+  catch(error){
+    console.log('Error al guardar la imagen :(', error);
+    res.status(500).send('ERROR :(')
+  }
+})
+
+app.delete('/user/:pi', async(req, res) =>{
   try {
     const {pi} = req.params;
     const result = await deleteUser(pi);
@@ -242,6 +261,19 @@ app.delete('user/:pi', async(req, res) =>{
   }
   catch(error){
     console.log('Error al borrar el usuario :(', error)
+    res.status(500).send('ERROR :(')
+  }
+})
+
+app.get('/statistics/:id_institution', async(req, res) =>{
+  try{
+    const { id_institution } = req.params;
+    console.log(id_institution)
+    const data = await getStatistics(id_institution);
+    res.status(200).json(data)
+  }
+  catch(error){
+    console.log('ERROR al encontrar los datos :(')
     res.status(500).send('ERROR :(')
   }
 })

@@ -1,0 +1,19 @@
+.box_search{
+  width: 400px;
+  height: 150px;
+  background-color: var(--box-color, black);
+  color: var(--text-color, rgb(255, 255, 255));
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  transition:opacity 1s ease; 
+}
+
+.box_search:hover{
+  opacity: 0.3; 
+}

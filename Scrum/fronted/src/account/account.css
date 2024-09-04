@@ -1,61 +1,167 @@
-/* Estilos generales para el contenedor de la cuenta */
+/* Contenedor general de la cuenta */
 .account-container {
     width: 100%;
-    max-width: 600px; /* Ajusta el ancho máximo del contenedor */
-    margin: 20px auto; /* Centra el contenedor en la página */
+    max-width: 600px;
+    margin: 20px auto;
     padding: 20px;
-    border: 1px solid #ccc; /* Borde sutil para el contenedor */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave para un efecto de profundidad */
-    background-color: #f9f9f9; /* Color de fondo claro */
-    font-family: 'Arial', sans-serif; /* Tipo de letra general */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
 }
 
-/* Estilos para el título de la cuenta */
+/* Título de la cuenta */
 .account-title {
-    color: #333; /* Color oscuro para el texto, mejora la legibilidad */
-    text-align: center; /* Alineación central del título */
-    margin-bottom: 20px; /* Espacio debajo del título */
-    font-size: 24px; /* Tamaño de fuente grande para el título */
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
 }
 
-/* Estilos para la información del usuario */
+/* Información del usuario */
 .user-info {
-    font-size: 16px; /* Tamaño de letra adecuado para la información */
-    color: #555; /* Color de texto moderadamente oscuro */
-    line-height: 1.5; /* Espaciado de línea para mejorar la legibilidad */
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
 }
 
 .user-info strong {
-    color: #222; /* Color más oscuro para las etiquetas para destacarlas */
+    color: #222;
 }
 
-/* Estilos para cada elemento de información */
 .user-info p {
-    margin: 10px 0; /* Margen vertical para separar los elementos */
-    padding: 5px 0; /* Padding vertical suave */
-    border-bottom: 1px solid #eee; /* Línea sutil bajo cada elemento */
+    margin: 10px 0;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
 }
 
-/* Estilos para mensajes de error */
+/* Mensajes de error y éxito */
+.error, .success {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
 .error {
-    color: red; /* Color rojo para indicar errores */
-    text-align: center; /* Alineación central para mayor visibilidad */
-    font-weight: bold; /* Negrita para destacar el mensaje de error */
-    margin-top: 20px; /* Espacio superior para separar del resto del contenido */
+    color: red;
 }
 
+.success {
+    color: green;
+    position: relative;
+    animation: fadeOut 4s forwards;
+}
+
+/* Animación de desaparición */
+@keyframes fadeOut {
+    0%, 90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* Contenedor de la imagen de perfil */
+.profile-image-container {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
 
 .profile-image {
-    display: flex;
-    justify-content: center; /* Centra la imagen horizontalmente */
-    margin-bottom: 20px; /* Espacio debajo de la imagen */
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #ddd;
 }
 
-.profile-image img {
-    width: 120px; /* Tamaño de la imagen */
-    height: 120px; /* Tamaño de la imagen */
-    border-radius: 50%; /* Hace la imagen redonda */
-    border: 3px solid #ccc; /* Borde para la imagen */
-    object-fit: cover; /* Asegura que la imagen cubra todo el espacio sin distorsionarse */
+.edit-icon {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: white;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 18px;
+    color: black;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s ease-in-out;
+}
+
+.edit-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    cursor: default;
+}
+
+.edit-overlay .edit-icon {
+    opacity: 1;
+    border-radius: 1px solid black;
+}
+
+.custom-file-upload {
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.edit-actions {
+    display: flex;
+    justify-content: space-between;
+    width: 100px;
+    margin-top: 10px;
+}
+
+.cancel-button,
+.confirm-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.custom-file-upload:hover,.cancel-button:hover,
+.confirm-button:hover {
+    color: #ddd;
+    transform: scale(1.1); /* Efecto de escala al hacer hover */
+    transition: transform 0.2s ease, color 0.2s ease; /* Suaviza la transición */
+}
+
+.edit-icon:hover {
+    color: black; /* Cambia esto al color que prefieras */
+    transform: scale(1.1); /* Efecto de escala al hacer hover */
+    transition: transform 0.2s ease, color 0.2s ease; /* Suaviza la transición */
+}
+
+
+/* Contenedor para mensajes */
+.message-container {
+    min-height: 40px;
+    margin-bottom: 20px;
 }
