@@ -10,6 +10,10 @@ const Dashboard = ({ data }) => {
       try {
         const response = await fetch(`https://deimoss.web05.lol/institution/${data.id_institutions}`);
         const jsonData = await response.json();
+
+        const response2 = await fetch(`https://deimoss.web05.lol/statistics/${data.id_institutions}`);
+        const jsonData2 = await response2.json();
+
         data.id_conversation =  jsonData[0].id_conversation;
         // Convertir los datos en el formato deseado
         const formattedData = {
@@ -23,13 +27,13 @@ const Dashboard = ({ data }) => {
           img: jsonData[0].imagen, // Puedes establecer la imagen según tus necesidades
           mapa: { lat: jsonData[0].longitud, lng: jsonData[0].latitud }, // Puedes establecer el mapa según tus necesidades
           dias: { 
-            Lunes: 100, // Puedes establecer la disponibilidad para cada día según tus necesidades
-            Martes: 50,
-            Miércoles: 90,
-            Jueves: 90,
-            Viernes: 100,
-            Sábado: 20,
-            Domingo: 100,
+            Lunes: jsonData2[1].average, // Puedes establecer la disponibilidad para cada día según tus necesidades
+            Martes: jsonData2[2].average,
+            Miércoles: jsonData2[0].average,
+            Jueves: jsonData2[5].average,
+            Viernes: jsonData2[6].average,
+            Sábado: jsonData2[3].average,
+            Domingo: jsonData2[4].average,
           }
         };
 
@@ -39,7 +43,6 @@ const Dashboard = ({ data }) => {
         console.error('Error fetching institution data:', error);
       }
     };
-
     fetchData();
   }, [data.id_institutions]);
 
