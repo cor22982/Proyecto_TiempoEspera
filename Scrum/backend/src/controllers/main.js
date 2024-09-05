@@ -45,6 +45,15 @@ function getAge(dateString) {
   return age;
 }
 */
+// forma 2 de calcular la edad, pero esta depende 100 de frontend
+/* 
+function calculate_age(dob) { 
+    var diff_ms = Date.now() - dob.getTime();
+    var age_dt = new Date(diff_ms); 
+  
+    return Math.abs(age_dt.getUTCFullYear() - 1970);
+}
+*/
 // Registro de usuario
 app.post('/register', validateRequest, async (req, res) => {
   console.log("body", req.body);
