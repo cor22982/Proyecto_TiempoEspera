@@ -8,11 +8,12 @@ import useForm from '@hooks/useForm'
 import {faUser, faEye, faEyeSlash, faLock, faIdCard, faCake } from '@fortawesome/free-solid-svg-icons'
 import TextInputIcon from '../Components/TextInput/TextInputIcon';
 import useFormLogin from '../hooks/useFormLogin'
-
+import { useNavigate } from 'react-router-dom';
 
 import { md5 } from 'js-md5';
 import { useState } from 'react';
 const Registro = () => {
+  const navigate = useNavigate();
   const { formData, handleChange } = useFormLogin({ pi: '', name:'', lastname:'', age: '', password: '' })
   const [showPassword, setShowPassword] = useState(false)
   const [formState, setFormState] = useState({ pi: '',name: '', lastname: '',password_md5: '',age: '',type_user: '' })
@@ -51,7 +52,7 @@ const Registro = () => {
     const response = await fetch('https://deimoss.web05.lol/register', fetchOptions)
     
     if (response.ok) {
-      window.location.href = '/';
+      navigate('/', { state: { from: 'registerSuccess' } });
       console.log('success!')
       setErrorMessage('')
       return

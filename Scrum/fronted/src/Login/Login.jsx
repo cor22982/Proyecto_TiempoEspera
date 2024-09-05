@@ -117,7 +117,7 @@ const Login = () => {
             ¿No te has registrado aún?
           </div>
           <div className='text-register-container'>
-            <Link to="/register">Regístrate aquí</Link>
+            <Link to="/" state={{ from: 'register' }}>Regístrate aquí</Link>
           </div>
           </div>
 
