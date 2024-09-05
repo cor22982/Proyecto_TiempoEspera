@@ -5,14 +5,19 @@ import Dashboard from './Info_Pages/Dashboard';
 import Comentarios from './Info_Pages/Comentarios';
 import Requisitos from './Info_Pages/Requisitos';
 import Cita from '../../agendar/Cita'
-
- 
-const Informacion = ({data}) => {
+import IconButton from '@components/IconButton';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+const Informacion = ({data, ira}) => {
   const {name_institutions} = data
 
   return (
     <div className='contenedor-info'>
-      <h3 className="titulo-info">{name_institutions}</h3>
+      <div className='header_institution'>
+        <IconButton icono={faArrowLeft} color = '#0069AD' onclick = {() =>{ira(true)}}></IconButton>
+        <h3 className="titulo-info">{name_institutions}</h3>
+      </div>
+      
+      
       
 
       <div className='menu-info'>
