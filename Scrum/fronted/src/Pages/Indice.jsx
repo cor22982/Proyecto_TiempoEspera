@@ -1,20 +1,13 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import useToken from '@hooks/useToken';
+import { useState } from 'react';
 import Login from '../Login/Login';
 import Registro from '../Registro/Registro';
 import Pages from './Pages';
+import useToken from '@hooks/useToken';
 import { parseJwt } from '@hooks/useToken';
-import { useLocation } from 'react-router-dom';
-
-const MainContent = () => {
-  const location = useLocation();
-  const { state } = location;
-
-  return state?.from === 'register' ? <Registro /> : <Login />;
-};
 
 const Indice = () => {
   const { token } = useToken();
+  const [view, setView] = useState('login'); // Controla la vista actual ('login', 'registro', 'pages')
 
   let dpi;
   if (token) {
@@ -22,16 +15,28 @@ const Indice = () => {
     dpi = decodedToken.dpi;
   }
 
+  const handleLogin = () => {
+    setView('pages'); // Cambia a la vista de Pages después del login
+  };
+
+  const handleRegistro = () => {
+    setView('login'); // Cambia a la vista de Login después de registrar
+  };
+
+  const handleToggle = () => {
+    setView(view === 'login' ? 'registro' : 'login'); // Alterna entre Login y Registro
+  };
+
+  // Renderizado condicional de acuerdo a la vista actual
+  if (token) {
+    return <Pages pi={dpi} />;
+  }
+
   return (
-    <Router>
-      <Routes>
-        {token ? (
-          <Route path="*" element={<Pages pi={dpi} />} />
-        ) : (
-          <Route path="/" element={<MainContent />} />
-        )}
-      </Routes>
-    </Router>
+    <>
+      {view === 'login' && <Login onToggle={handleToggle} onLogin={handleLogin} />}
+      {view === 'registro' && <Registro onToggle={handleToggle} onRegistro={handleRegistro} />}
+    </>
   );
 };
 
