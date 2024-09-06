@@ -4,7 +4,8 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, 
   getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, 
-  insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage} from '../database/db.js';
+  insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage
+, getStatistics} from '../database/db.js';
 import { getUserLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken } from './jwt.js';
 
@@ -31,7 +32,28 @@ const validateRequest = (req, res, next) => {
 app.get('/', (req, res) => {
   res.send('Hello from API PROYECTO DEIMOS');
 });
-
+//Metodo de asignación de edad
+/*
+function getAge(dateString) {
+  var today = new Date();
+  var birthDate = new Date(dateString);
+  var age = today.getFullYear() - birthDate.getFullYear();
+  var m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+  }
+  return age;
+}
+*/
+// forma 2 de calcular la edad, pero esta depende 100 de frontend
+/* 
+function calculate_age(dob) { 
+    var diff_ms = Date.now() - dob.getTime();
+    var age_dt = new Date(diff_ms); 
+  
+    return Math.abs(age_dt.getUTCFullYear() - 1970);
+}
+*/
 // Registro de usuario
 app.post('/register', validateRequest, async (req, res) => {
   console.log("body", req.body);
@@ -260,6 +282,19 @@ app.delete('/user/:pi', async(req, res) =>{
   }
   catch(error){
     console.log('Error al borrar el usuario :(', error)
+    res.status(500).send('ERROR :(')
+  }
+})
+
+app.get('/statistics/:id_institution', async(req, res) =>{
+  try{
+    const { id_institution } = req.params;
+    console.log(id_institution)
+    const data = await getStatistics(id_institution);
+    res.status(200).json(data)
+  }
+  catch(error){
+    console.log('ERROR al encontrar los datos :(')
     res.status(500).send('ERROR :(')
   }
 })
