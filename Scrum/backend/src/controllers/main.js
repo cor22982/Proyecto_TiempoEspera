@@ -32,7 +32,28 @@ const validateRequest = (req, res, next) => {
 app.get('/', (req, res) => {
   res.send('Hello from API PROYECTO DEIMOS');
 });
-
+//Metodo de asignación de edad
+/*
+function getAge(dateString) {
+  var today = new Date();
+  var birthDate = new Date(dateString);
+  var age = today.getFullYear() - birthDate.getFullYear();
+  var m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+  }
+  return age;
+}
+*/
+// forma 2 de calcular la edad, pero esta depende 100 de frontend
+/* 
+function calculate_age(dob) { 
+    var diff_ms = Date.now() - dob.getTime();
+    var age_dt = new Date(diff_ms); 
+  
+    return Math.abs(age_dt.getUTCFullYear() - 1970);
+}
+*/
 // Registro de usuario
 app.post('/register', validateRequest, async (req, res) => {
   console.log("body", req.body);
