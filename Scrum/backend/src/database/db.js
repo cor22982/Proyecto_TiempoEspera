@@ -19,11 +19,11 @@ export async function getUserByPi(pi) {
 }
 /*
 export async function getUserBday(pi) {
-  const result = await conn.query('SELECT pi, bday FROM users WHERE pi = $1', [pi]);
+  const result = await conn.query('SELECT bday FROM users WHERE pi = $1', [pi]);
   return result.rows;
 }
-  Esperando a que se cambie la tabla
-  */
+  //Esperando a que se cambie la tabla
+*/  
  
 export async function getProcedureInfo(name){
   const likePattern = `%${name}%`
