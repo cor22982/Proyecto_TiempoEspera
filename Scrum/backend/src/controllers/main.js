@@ -45,15 +45,7 @@ function getAge(dateString) {
   return age;
 }
 */
-// forma 2 de calcular la edad, pero esta depende 100 de frontend
-/* 
-function calculate_age(dob) { 
-    var diff_ms = Date.now() - dob.getTime();
-    var age_dt = new Date(diff_ms); 
-  
-    return Math.abs(age_dt.getUTCFullYear() - 1970);
-}
-*/
+
 // Registro de usuario
 app.post('/register', validateRequest, async (req, res) => {
   console.log("body", req.body);
@@ -73,6 +65,19 @@ app.get('/users/:pi', async (req, res) => {
     res.status(500).json({ message: 'Error en el servidor' });
   }
 });
+/*
+// Endpoint para obtener una fecha de nacimiento por su PI
+app.get('/users/:pi', async (req, res) => {
+  const { pi } = req.params;
+  try {
+    const users = await getUserBday(pi);
+    res.json(users);
+  } catch (error) {
+    console.error('Error al buscar usuario por PI:', error);
+    res.status(500).json({ message: 'Error en el servidor' });
+  }
+});
+*/
 
 // Endpoint para el inicio de sesión
 app.post('/login', async (req, res) => {
