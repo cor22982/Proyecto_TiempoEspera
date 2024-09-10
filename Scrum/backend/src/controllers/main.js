@@ -55,8 +55,8 @@ app.get('/users/:pi', async (req, res) => {
 });
 
 // Endpoint para obtener una fecha de nacimiento por su PI
-/*
-app.get('/users/:pi', async (req, res) => {
+
+app.get('/users_bdate/:pi', async (req, res) => {
   const { pi } = req.params;
   try {
     const date = await getUserBday(pi);
@@ -66,11 +66,11 @@ app.get('/users/:pi', async (req, res) => {
     res.status(500).json({ message: 'Error en el servidor' });
   }
 });
-*/
+
 
 // End point para sacar la edad basado en fecha de nacimiento
-/*
-app.get('/users/:pi', async (req, res) => {
+
+app.get('/users_age/:pi', async (req, res) => {
   const { pi } = req.params;
   try {
     const date = await getUserBday(pi);
@@ -93,7 +93,7 @@ app.get('/users/:pi', async (req, res) => {
     res.status(500).json({ message: 'Error en el servidor' });
   }
 }); 
-*/
+
 
 // Endpoint para el inicio de sesión
 app.post('/login', async (req, res) => {
