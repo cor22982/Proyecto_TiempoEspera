@@ -14,7 +14,7 @@ export async function register(pi,name, lastname,password_md5,age,type_user) {
 }
 
 export async function getUserByPi(pi) {
-  const result = await conn.query('SELECT pi, name, lastname, age, type_user FROM users WHERE pi = $1', [pi]);
+  const result = await conn.query('SELECT pi, name, lastname, birthdate, type_user FROM users WHERE pi = $1', [pi]);
   return result.rows;
 }
 
