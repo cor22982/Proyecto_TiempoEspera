@@ -13,9 +13,9 @@ import useFormLogin from '../hooks/useFormLogin'
 import { md5 } from 'js-md5';
 import { useState } from 'react';
 const Registro = () => {
-  const { formData, handleChange } = useFormLogin({ pi: '', name:'', lastname:'', age: '', password: '' })
+  const { formData, handleChange } = useFormLogin({ pi: '', name:'', lastname:'', birthdate: '', password: '' })
   const [showPassword, setShowPassword] = useState(false)
-  const [formState, setFormState] = useState({ pi: '',name: '', lastname: '',password_md5: '',age: '',type_user: '' })
+  const [formState, setFormState] = useState({ pi: '',name: '', lastname: '',password_md5: '',birthdate: '',type_user: '' })
   const [errorMessage, setErrorMessage] = useState('')
   const setValue = (name, value) => {
     setFormState({
@@ -38,9 +38,10 @@ const Registro = () => {
     body.name = formData.name
     body.lastname = formData.lastname
     body.password_md5 = md5(formData.password)
-    body.age = formData.age
+    body.birthdate = formData.birthdate
     body.type_user = formState.type_user
     
+    console.log(body)
     const fetchOptions = {
       method: 'POST',
       body: JSON.stringify(body),
@@ -109,12 +110,12 @@ const Registro = () => {
               />
           </div>
 
-          <div className='register-age-container'>
+          <div className='register-age-container' style={{width: '100%'}}>
             <TextInputIcon
-                type='number'
-                name='age'
-                placeholder='Ingrese su edad'
-                value={formData.age}
+                type='date'
+                name='birthdate'
+                placeholder='Seleccione su fecha de nacimiento'
+                value={formData.birthdate}
                 onChange={handleChange}
                 icon={faCake}
             />          

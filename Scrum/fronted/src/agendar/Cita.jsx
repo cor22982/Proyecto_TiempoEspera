@@ -92,7 +92,7 @@ const Cita = ({ data }) => {
                         icon={faClock}
                     />
                 </div>
-                <div className='fecha-container'>
+                <div className='fecha-container'> 
                     <TextInputIcon
                         type='date'
                         name='date'
