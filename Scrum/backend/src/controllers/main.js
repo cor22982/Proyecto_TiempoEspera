@@ -32,28 +32,8 @@ const validateRequest = (req, res, next) => {
 app.get('/', (req, res) => {
   res.send('Hello from API PROYECTO DEIMOS');
 });
-//Metodo de asignación de edad
-/*
-function getAge(dateString) {
-  var today = new Date();
-  var birthDate = new Date(dateString);
-  var age = today.getFullYear() - birthDate.getFullYear();
-  var m = today.getMonth() - birthDate.getMonth();
-  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-  }
-  return age;
-}
-*/
-// forma 2 de calcular la edad, pero esta depende 100 de frontend
-/* 
-function calculate_age(dob) { 
-    var diff_ms = Date.now() - dob.getTime();
-    var age_dt = new Date(diff_ms); 
-  
-    return Math.abs(age_dt.getUTCFullYear() - 1970);
-}
-*/
+
+
 // Registro de usuario
 app.post('/register', validateRequest, async (req, res) => {
   console.log("body", req.body);
@@ -73,6 +53,47 @@ app.get('/users/:pi', async (req, res) => {
     res.status(500).json({ message: 'Error en el servidor' });
   }
 });
+
+// Endpoint para obtener una fecha de nacimiento por su PI
+
+app.get('/users_bdate/:pi', async (req, res) => {
+  const { pi } = req.params;
+  try {
+    const date = await getUserBday(pi);
+    res.json(date);
+  } catch (error) {
+    console.error('Error al buscar usuario por PI:', error);
+    res.status(500).json({ message: 'Error en el servidor' });
+  }
+});
+
+
+// End point para sacar la edad basado en fecha de nacimiento
+
+app.get('/users_age/:pi', async (req, res) => {
+  const { pi } = req.params;
+  try {
+    const date = await getUserBday(pi);
+    //genero la fecha actual en la que hace el request (basado en la computadora)
+    var today = new Date();
+    //tomo la variable Birthdate de la base de datos traida por getUserbday
+    var birthDate = new Date(date.birthDate);
+    // calculo el año haciendo un getfullyear que me da el año completo del individuo
+    var age = today.getFullYear() - birthDate.getFullYear();
+    // calculo la diferencia de mes
+    var m = today.getMonth() - birthDate.getMonth();
+    // reviso si es plausible tanto los meses como el año, siendo que si en algun momento esta en emismo mes tengo que comprobar en que momento cumple años
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    //regreso la edad
+    res.json(age);
+  } catch (error) {
+    console.error('Error al buscar usuario por PI:', error);
+    res.status(500).json({ message: 'Error en el servidor' });
+  }
+}); 
+
 
 // Endpoint para el inicio de sesión
 app.post('/login', async (req, res) => {
