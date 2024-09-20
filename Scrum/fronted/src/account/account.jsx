@@ -30,6 +30,7 @@ const Account = () => {
             }
             try {
                 const data = await llamadowithoutbody('GET');
+                console.log(data)
                 if (data && data.length > 0) {
                     setUserData(data[0]);
                 } else {
@@ -150,7 +151,7 @@ const Account = () => {
                     <p><strong>ID del Usuario:</strong> {userData.pi}</p>
                     <p><strong>Email:</strong> {userData.email || "-No hay email-"}</p>
                     <p><strong>Nombre Completo:</strong> {`${userData.name} ${userData.lastname}`}</p>
-                    <p><strong>Rol:</strong> {userData.type_user}</p>
+                    <p><strong>Rol:</strong> {userData.type_user === "usuario_comun" ? "Usuario Común" : userData.type_user }</p>
                     <p><strong>Edad:</strong> {userData.age}</p>
                 </div>
             ) : (
