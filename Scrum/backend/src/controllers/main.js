@@ -57,8 +57,8 @@ function calculate_age(dob) {
 // Registro de usuario
 app.post('/register', validateRequest, async (req, res) => {
   console.log("body", req.body);
-  const { pi, name, lastname, password_md5, age, type_user } = req.body;
-  await register(pi, name, lastname, password_md5, age, type_user);
+  const { pi, name, lastname, password_md5, birthdate, type_user } = req.body;
+  await register(pi, name, lastname, password_md5, birthdate, type_user);
   res.json({ message: 'user created' });
 });
 
