@@ -30,6 +30,7 @@ const Account = () => {
             }
             try {
                 const data = await llamadowithoutbody('GET');
+                console.log(data)
                 if (data && data.length > 0) {
                     setUserData(data[0]);
                 } else {
