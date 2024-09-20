@@ -10,7 +10,7 @@ import useFormLogin from '../hooks/useFormLogin'
 
 import { md5 } from 'js-md5';
 import { useState } from 'react';
-const Registro = () => {
+const Registro = ({onToggle, onRegistro}) => {
   const { formData, handleChange } = useFormLogin({ pi: '', name:'', lastname:'', birthdate: '', password: '' })
   const [showPassword, setShowPassword] = useState(false)
   const [formState, setFormState] = useState({ pi: '',name: '', lastname: '',password_md5: '',birthdate: '',type_user: '' })
