@@ -109,7 +109,7 @@ export async function getprocedure_id(id_procedure, institution) {
 }
 
 export async function getUserData(pi){
-  const result = await conn.query(`SELECT pi, name, lastname, age, type_user, encode(perfi_image, 'base64') as imagen_perfil FROM users WHERE pi = $1;`, [pi]);
+  const result = await conn.query(`SELECT pi, name, lastname, birthdate, type_user, encode(perfi_image, 'base64') as imagen_perfil FROM users WHERE pi = $1;`, [pi]);
   return result.rows
 }
 
