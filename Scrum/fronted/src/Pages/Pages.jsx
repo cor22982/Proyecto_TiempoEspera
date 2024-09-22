@@ -7,9 +7,11 @@ import Logout from '../Login/Logout';
 import Page_Main from '../User_Common/PaginaPrincipal/Page_Main';
 import Guardados from '../User_Common/Guardados/Guardados';
 import Account from '../account/account';
-
+import Sidebar from '../Components/SideBar/SideBar';
+import { icon } from 'leaflet';
 const Pages = ({ pi }) => {
   const [selectedView, setSelectedView] = useState('main'); // Controla la vista seleccionada
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const handleMenuClick = (view) => {
     setSelectedView(view);
@@ -36,29 +38,54 @@ const Pages = ({ pi }) => {
     }
   };
 
+  const linksArray = [
+    {
+      label: "Home",
+      icon:faHome,
+      to: "main",
+    },
+    {
+      label: "Cuenta",
+      icon: faUser,
+      to: "cuenta",
+    },
+    {
+      label: "Guardados",
+      icon: faSave,
+      to: "guardados",
+    },
+    {
+      label: "Recomendados",
+      icon: faFire,
+      to: "recomendados",
+    },
+    {
+      label: "Notificaciones",
+      icon: faBell,
+      to: "notificaciones",
+    },
+  ];
+  const secondarylinksArray = [
+    {
+      label: "Configuración",
+      icon: faGear, 
+      to: "configuracion",
+    },
+    {
+      label: "Salir",
+      icon: faRightFromBracket,
+      to: "salir",
+    },
+  ];
   return (
-    <div className="contenedor-principal">
+    <div className={sidebarOpen ? "contenedor-principal-activate": "contenedor-principal"}>
       <div className='opciones'>
-        <img src='../src/assets/Login/logotipo.png' className='imagen-portada' alt="Logotipo" />
-        <MenuButton nombre='Principal' icono={faHome} goto='main' onClick={() => handleMenuClick('main')} />
-        <div style={{ width: '150px', height: '0px', border: '1px solid #FFFFFF' }}></div>
-        <br />
-        <MenuButton nombre='Cuenta' icono={faUser} goto='cuenta' onClick={() => handleMenuClick('cuenta')} />
-        <br />
-        <MenuButton nombre='Guardados' icono={faSave} goto='guardados' onClick={() => handleMenuClick('guardados')} />
-        <br />
-        <MenuButton nombre='Notificaciones' icono={faBell} goto='notificaciones' onClick={() => handleMenuClick('notificaciones')} />
-        <br />
-        <MenuButton nombre='Recomendados' icono={faFire} goto='recomendados' onClick={() => handleMenuClick('recomendados')} />
-        <br />
-        <MenuButton nombre='Configuracion' icono={faGear} goto='configuracion' onClick={() => handleMenuClick('configuracion')} />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <MenuButton nombre='Salir' icono={faRightFromBracket} goto='salir' onClick={() => handleMenuClick('salir')} />
+        <Sidebar 
+          sidebarOpen={sidebarOpen} 
+          setSidebarOpen={setSidebarOpen}
+          linksArray={linksArray}
+          secondarylinksArray={secondarylinksArray}
+          handleMenuClick={handleMenuClick}></Sidebar>
       </div>
 
       <div className='interfaz'>
@@ -67,6 +94,7 @@ const Pages = ({ pi }) => {
     </div>
   );
 };
+
 
 const Recomendados = () => <h1>Contenido de Recomendados</h1>;
 const ConfiguracionPage = () => <h1>Contenido de la página de configuración</h1>;

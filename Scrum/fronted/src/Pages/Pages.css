@@ -3,26 +3,30 @@
   height: 100vh;
   background-color: #E4E4E4;
   display: grid;
-  grid-template-columns: 1.5fr 6fr;
+  grid-template-columns: 80px auto;
+  transition:all 0.3s ;
   animation: fadeIn 1s ;
-
 }
 
+.contenedor-principal-activate {
+  width: 100vw; 
+  height: 100vh;
+  background-color: #E4E4E4;
+  display: grid;
+  grid-template-columns: 225px auto;
+  transition:all 0.3s ;
+  animation: fadeIn 1s ;
+}
 .opciones {
   grid-column: 1;
   background-color: #00367E;
   width: fill ;
   display: flex;
   flex-direction: column;
-  align-items: start;
-  padding-left: 15px;
 }
 
 .interfaz{
   grid-column: 2;
-
-
-
   display: grid;
 }
  
