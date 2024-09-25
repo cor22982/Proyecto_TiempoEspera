@@ -21,6 +21,9 @@ const TextInputIcon = ({ type, name, placeholder, value, onChange, icon, onIconC
     if (mytype === 'date'){
       setInputType('date') // Cambiamos a 'date' cuando el usuario hace clic
     }
+    else if (mytype === 'time'){
+      setInputType('time')
+    }
   }
 
   return (

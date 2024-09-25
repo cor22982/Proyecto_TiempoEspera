@@ -5,7 +5,7 @@ import osm from "./osm-providers"; // Ensure this is correctly imported
 
 const MapView = ({ position }) => {
     const [center, setCenter] = useState(position);
-    const ZOOM_LEVEL = 122;
+    const ZOOM_LEVEL = 20;
     const mapRef = useRef();
 
     return (
@@ -14,7 +14,7 @@ const MapView = ({ position }) => {
                 <div className="col text-center">
                     
                     <div className="col">
-                        <MapContainer center={center} zoom={ZOOM_LEVEL} ref={mapRef} style={{ height: "400px", width: "100%" }}>
+                        <MapContainer center={center} zoom={ZOOM_LEVEL} ref={mapRef} style={{ height: "500px", width: "500px" }}>
                             <TileLayer
                                 url={osm.maptiler.url}
                                 attribution={osm.maptiler.attribution}
@@ -25,7 +25,6 @@ const MapView = ({ position }) => {
                                 </Popup>
                             </Marker>
                         </MapContainer>
-                        <div style={{height: '200px'}}></div>
                     </div>
                 </div>
             </div>

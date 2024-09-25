@@ -93,6 +93,8 @@
     font-family: Inika;
     color: #00367E;
     width: 100%;
+    height: 600px;
+    overflow: visible;
   }
   .stats-name{
     font-size: 2.5em;
@@ -124,6 +126,7 @@
 
   .tramite-container {
     background-color: #e5e4e5;
+    max-height: 100vh;
   }
   
  

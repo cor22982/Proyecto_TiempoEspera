@@ -1,20 +1,28 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStarHalfAlt, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStarHalfAlt, faStar, faMapLocation } from '@fortawesome/free-solid-svg-icons';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './tramite.css';
 import Imagen from '../Components/Image/Image';
 import Stats from '../Components/Stats/stats';
-import MapView from '../Components/MapView/MapView';
 import useApi from '@hooks/useApi';
 import useToken from '@hooks/useToken';
-
+import MapView from "@components/MapView";
+import PopUpMap from './PopUpMap/PopUpMap';
+import IconButton from '@components/IconButton';
 const Tramite = ({ institucion }) => {
-    
-
+    const [viewMap, setviewMap] = useState(false);
+    const showMap = () => {
+        setviewMap(true)
+    }
     return (
         <div className='tramite-container'>
             <div className='header'>
+                <IconButton 
+                    icono={faMapLocation} 
+                    color='#0069AD' 
+                    texto='VER MAPA'
+                    onclick={showMap}></IconButton>
                 <Imagen src={institucion.img} alt='Imagen prueba' />
             </div>
             <div className='identificacion'>
@@ -47,13 +55,11 @@ const Tramite = ({ institucion }) => {
                 <div className='stats-name'>Flujo de personas</div>
                 <Stats datos={institucion.dias} />
             </div>
-            <div className='mapa'>
-                <div className='mapa_titulo'>Cómo llegar</div>
-                <div className='mapa_api'>
-                    <MapView position={institucion.mapa}></MapView>                  
-                </div>
-            </div>
-        </div>
+            <PopUpMap
+                activar={viewMap} 
+                setActivar={setviewMap}
+                pos={institucion.mapa}></PopUpMap>
+        </div> 
     );
 };
 

@@ -24,9 +24,7 @@ const Page_Main = ({ pi }) => {
 
       const busquedaParseada = busqueda.toLowerCase().replace(/ /g, '%20');
       try {
-        console.log(busquedaParseada);
         const response = await llamadowithoutbody('GET', `https://deimoss.web05.lol/institutions/${busquedaParseada}`);
-        console.log(response);
         setDatos(response);
         setSeeScren(true);
       } catch (e) {
