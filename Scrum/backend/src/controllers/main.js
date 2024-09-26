@@ -5,7 +5,7 @@ import cors from 'cors';
 import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, 
   getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, 
   insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage
-, getStatistics, getUserBday} from '../database/db.js';
+, getStatistics, getUserBday, get_documents} from '../database/db.js';
 import { getUserLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken } from './jwt.js';
 
@@ -157,6 +157,16 @@ app.get('/institution/:id', async (req, res) => {
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 });
+app.get('/institution_req/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const institution = await get_documents(id);
+    res.json(institution);
+  } catch (error) {
+    console.error('Error al obtener la institución:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+});
 
 app.get('/institutions', async (req, res) => {
   try{
@@ -245,7 +255,7 @@ app.post('/newAppointment', async (req, res) => {
     console.log("Valor procedure: "+ procedure)
     /*
     Prueba de evitar que los días traslapen
-    
+
     const query = `
     SELECT COUNT(*) AS total FROM citas 
     WHERE usuario_id = pi AND DATE(date) = ?
