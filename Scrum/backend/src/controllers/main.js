@@ -243,6 +243,35 @@ app.post('/newAppointment', async (req, res) => {
     const {date, time, id_procedure, institution, pi} = req.body;
     const procedure = await getprocedure_id(id_procedure, institution); 
     console.log("Valor procedure: "+ procedure)
+    /*
+    Prueba de evitar que los días traslapen
+    
+    const query = `
+    SELECT COUNT(*) AS total FROM citas 
+    WHERE usuario_id = pi AND DATE(date) = ?
+  `;
+  connection.query(query, [pi, date], (error, results) => {
+    if (error) {
+      return res.status(500).json({ error: 'Error en la base de datos' });
+    }
+
+    if (results[0].total > 0) {
+      // El usuario ya tiene una cita en esa fecha
+      return res.status(400).json({ mensaje: 'Ya tienes una cita registrada para este día.' });
+    } else {
+      // Insertamos la nueva cita en la base de datos
+      const insertQuery = 'INSERT INTO citas (usuario_id, fecha_cita) VALUES (?, ?)';
+      connection.query(insertQuery, [usuario_id, fecha_cita], (insertError) => {
+        if (insertError) {
+          return res.status(500).json({ error: 'Error al insertar la cita' });
+        }
+        res.status(201).json({ mensaje: 'Cita registrada exitosamente' });
+      });
+    }
+  });
+});
+
+  */
     await create_new_appointment(date, time, procedure, pi);
     res.status(200).json({succes: true});
   }
