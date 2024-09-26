@@ -5,7 +5,7 @@ import cors from 'cors';
 import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, 
   getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, 
   insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage
-, getStatistics} from '../database/db.js';
+, getStatistics, getUserBday} from '../database/db.js';
 import { getUserLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken } from './jwt.js';
 
@@ -47,12 +47,14 @@ app.get('/users/:pi', async (req, res) => {
   const { pi } = req.params;
   try {
     const users = await getUserByPi(pi);
+    const {birthdate} = await users
     res.json(users);
   } catch (error) {
     console.error('Error al buscar usuario por PI:', error);
     res.status(500).json({ message: 'Error en el servidor' });
   }
 });
+
 
 // Endpoint para obtener una fecha de nacimiento por su PI
 
