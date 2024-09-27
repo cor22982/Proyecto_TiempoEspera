@@ -210,8 +210,6 @@ app.get('/comments/:id_institution', async (req, res) => {
 
 app.post('/comment', async (req, res) => {
   try {
-    const { token, content, conversation_id } = req.body;
-    const payload = decodeToken(req.body.token)
     await createComment(payload.dpi, req.body.content, req.body.conversation_id);
     res.status(200).json({ message: 'Comentario creado' });
   }
@@ -223,9 +221,7 @@ app.post('/comment', async (req, res) => {
 
 app.get('/rating/:id_institution', async (req, res) => {
   try {
-    const { id_institution } = req.params;
-    const rating = await getRating(id_institution);
-    res.status(200).json(rating);
+    res.status(200).json(await getRating(req.params.id_institution));
   }
   catch(error){
     console.error('Error en la búsqueda de comentarios:', error);
