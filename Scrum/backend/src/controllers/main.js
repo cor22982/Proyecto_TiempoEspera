@@ -142,11 +142,8 @@ app.post('/login', async (req, res) => {
 //Endpoint de búsqueda de instituciones
 
 app.get('/institutions/:name', async (req, res) => {
-  const { name } = req.params;
   try{
-    const { name } = req.params;
-    const institutions = await getProcedureInfo(req.params.name);
-    res.status(200).json(institutions);
+    res.status(200).json(await getProcedureInfo(req.body.name));
   }
   catch (error){
     console.error('Error en la búsqueda de instituciones:', error);
