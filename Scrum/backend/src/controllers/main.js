@@ -196,9 +196,7 @@ app.get('/institution_docs/:id', async (req, res) => {
 
 app.get('/comments/:id_institution', async (req, res) => {
   try {
-    const { id_institution } = req.params;
-    const comments = await getComments(id_institution);
-    res.status(200).json(comments);
+    res.status(200).json(await getComments(req.params.id_institution));
   }
   catch(error){
     console.error('Error en la búsqueda de comentarios:', error);
