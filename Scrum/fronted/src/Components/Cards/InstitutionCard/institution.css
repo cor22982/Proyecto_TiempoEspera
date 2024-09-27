@@ -26,6 +26,17 @@
   align-items: center;
 }
 
+.procedimiento-name{
+  margin-top: 10px;
+  background-color: #0F233D;
+  border-radius: 5px;
+  color: white;
+  padding: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
 /* Reglas para la imagen */
 .institution-image {
   width: 159px;

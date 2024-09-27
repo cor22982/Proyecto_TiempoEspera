@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import './institution.css';
 
-const InsttutionComponent = ({name, image, onClick, tiempo}) =>{
+const InsttutionComponent = ({name, image, onClick, tiempo, procedimiento}) =>{
     return(
         <div className="container" onClick= {onClick}>
             <div className='imagen-conteiner'>
@@ -10,6 +10,7 @@ const InsttutionComponent = ({name, image, onClick, tiempo}) =>{
                 
             
             <div className = 'info-container'>
+                <div className='procedimiento-name'>{procedimiento}</div>
                 <h1 className="heading1">{name}</h1>
                 <br></br>
                 <h2 className = "heading">Tiempo Promedio</h2>
