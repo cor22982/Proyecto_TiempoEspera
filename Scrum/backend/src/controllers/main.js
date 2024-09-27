@@ -109,7 +109,7 @@ app.post('/login', async (req, res) => {
     if (!isPassword(userLoginInfo.password, req.body.password)) {
       return res.status(401).json({ success: false, message: 'Contraseña incorrecta' });
     }
-    res.status(200).json({ success: true, message: 'Inicio de sesión exitoso', acces_token: generateToken({ dpi: pi, rol }) });
+    res.status(200).json({ success: true, message: 'Inicio de sesión exitoso', acces_token: generateToken({ dpi: req.body.pi, rol: req.body.rol }) });
   } catch (error) {
     console.error('Error en el inicio de sesión:', error);
     res.status(500).json({ success: false, message: 'Error en el servidor' });
