@@ -123,7 +123,7 @@ export async function getUserData(pi){
   return result.rows
 }
 export async function get_documents(id_procedure) {
-  const result = await conn.query('SELECT "id documents" FROM proceduresdocuments LEFT JOIN documents ON proceduresdocuments."id documents" = documents.id_document	WHERE proceduresdocuments."id preocedure" = $1 ', [parseInt(id_procedure)]);
+  const result = await conn.query('SELECT "id documents" FROM proceduresdocuments LEFT JOIN documents ON proceduresdocuments."id documents" = documents.id_document	WHERE proceduresdocuments."id preocedure" = $1 ', [id_procedure]);
   return result.rows
 }
 
