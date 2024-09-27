@@ -5,7 +5,7 @@ import cors from 'cors';
 import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, 
   getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, 
   insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage
-, getStatistics, get_documents, getUserBday} from '../database/db.js';
+, getStatistics, getUserBday, get_documents} from '../database/db.js';
 import { getUserLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken } from './jwt.js';
 
@@ -47,12 +47,14 @@ app.get('/users/:pi', async (req, res) => {
   const { pi } = req.params;
   try {
     const users = await getUserByPi(pi);
+    const {birthdate} = await users
     res.json(users);
   } catch (error) {
     console.error('Error al buscar usuario por PI:', error);
     res.status(500).json({ message: 'Error en el servidor' });
   }
 });
+
 
 // Endpoint para obtener una fecha de nacimiento por su PI
 
@@ -66,16 +68,7 @@ app.get('/users_bdate/:pi', async (req, res) => {
     res.status(500).json({ message: 'Error en el servidor' });
   }
 });
-app.get('/institution_req/:id', async (req, res) => {
-  try {
-    const id = req.params.id;
-    const institution = await get_documents(id);
-    res.json(institution);
-  } catch (error) {
-    console.error('Error al obtener la institución:', error);
-    res.status(500).json({ error: 'Error interno del servidor' });
-  }
-});
+
 
 // End point para sacar la edad basado en fecha de nacimiento
 
@@ -142,8 +135,11 @@ app.post('/login', async (req, res) => {
 //Endpoint de búsqueda de instituciones
 
 app.get('/institutions/:name', async (req, res) => {
+  const { name } = req.params;
   try{
-    res.status(200).json(await getProcedureInfo(req.params.name));
+    const { name } = req.params;
+    const institutions = await getProcedureInfo(name);
+    res.status(200).json(institutions);
   }
   catch (error){
     console.error('Error en la búsqueda de instituciones:', error);
@@ -153,7 +149,19 @@ app.get('/institutions/:name', async (req, res) => {
 
 app.get('/institution/:id', async (req, res) => {
   try {
-    res.status(200).json(await getInstitutionByID(req.params.id));
+    const id = req.params.id;
+    const institution = await getInstitutionByID(id);
+    res.json(institution);
+  } catch (error) {
+    console.error('Error al obtener la institución:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+});
+app.get('/institution_req/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const institution = await get_documents(id);
+    res.json(institution);
   } catch (error) {
     console.error('Error al obtener la institución:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
@@ -162,8 +170,8 @@ app.get('/institution/:id', async (req, res) => {
 
 app.get('/institutions', async (req, res) => {
   try{
-
-    res.status(200).json(await getAllInstitutionInfo());
+    const institutions = await getAllInstitutionInfo();
+    res.status(200).json(institutions);
   }
   catch (error){
     console.error('Error en la búsqueda de instituciones:', error);
@@ -173,20 +181,14 @@ app.get('/institutions', async (req, res) => {
 
 app.get('/requirements/:id_procedure', async (req, res) => {
   try {
-    const requirements = await getProcedureRequierements(req.params.id_procedure);
-    const steps = await getsteps(req.params.id_procedure);
+    const { id_procedure } = req.params;
+    const requirements = await getProcedureRequierements(id_procedure);
+    const steps = await getsteps(id_procedure);
+
+    // Combina los datos en un solo objeto
     const data = { requirements, steps };
+
     res.status(200).json(data);
-
-  } catch(error) {
-    console.error('Error en la búsqueda de requisitos:', error);
-    res.status(500).send('Error del servidor :(');
-  }
-});
-
-app.get('/institution_docs/:id', async (req, res) => {
-  try {
-    res.status(200).json(await get_documents(req.params.id_procedure));
 
   } catch(error) {
     console.error('Error en la búsqueda de requisitos:', error);
@@ -196,7 +198,9 @@ app.get('/institution_docs/:id', async (req, res) => {
 
 app.get('/comments/:id_institution', async (req, res) => {
   try {
-    res.status(200).json(await getComments(req.params.id_institution));
+    const { id_institution } = req.params;
+    const comments = await getComments(id_institution);
+    res.status(200).json(comments);
   }
   catch(error){
     console.error('Error en la búsqueda de comentarios:', error);
@@ -206,7 +210,8 @@ app.get('/comments/:id_institution', async (req, res) => {
 
 app.post('/comment', async (req, res) => {
   try {
-    const { dpi } = payload;
+    const { token, content, conversation_id } = req.body;
+    const payload = decodeToken(req.body.token)
     await createComment(payload.dpi, req.body.content, req.body.conversation_id);
     res.status(200).json({ message: 'Comentario creado' });
   }
@@ -247,6 +252,35 @@ app.post('/newAppointment', async (req, res) => {
     const {date, time, id_procedure, institution, pi} = req.body;
     const procedure = await getprocedure_id(id_procedure, institution); 
     console.log("Valor procedure: "+ procedure)
+    /*
+    Prueba de evitar que los días traslapen
+
+    const query = `
+    SELECT COUNT(*) AS total FROM citas 
+    WHERE usuario_id = pi AND DATE(date) = ?
+  `;
+  connection.query(query, [pi, date], (error, results) => {
+    if (error) {
+      return res.status(500).json({ error: 'Error en la base de datos' });
+    }
+
+    if (results[0].total > 0) {
+      // El usuario ya tiene una cita en esa fecha
+      return res.status(400).json({ mensaje: 'Ya tienes una cita registrada para este día.' });
+    } else {
+      // Insertamos la nueva cita en la base de datos
+      const insertQuery = 'INSERT INTO citas (usuario_id, fecha_cita) VALUES (?, ?)';
+      connection.query(insertQuery, [usuario_id, fecha_cita], (insertError) => {
+        if (insertError) {
+          return res.status(500).json({ error: 'Error al insertar la cita' });
+        }
+        res.status(201).json({ mensaje: 'Cita registrada exitosamente' });
+      });
+    }
+  });
+});
+
+  */
     await create_new_appointment(date, time, procedure, pi);
     res.status(200).json({succes: true});
   }
