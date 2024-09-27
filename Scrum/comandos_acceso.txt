@@ -1,1 +1,0 @@
-ssh -i gulag-key.pem ubuntu@3.23.188.153
