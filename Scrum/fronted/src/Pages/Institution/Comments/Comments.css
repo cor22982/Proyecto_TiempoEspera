@@ -1,6 +1,65 @@
-.coments{
+.coments {
   width: 100%;
-  max-height: 370px;
+  height: 100%; /* Cambiado de max-height a height */
   overflow-y: auto;
+  border: 1px solid #ccc; /* Añadir un borde alrededor del contenedor */
+  border-radius: 8px; /* Bordes redondeados */
+  padding: 20px; /* Aumentado el espaciado interno para más espacio */
+  background-color: #f9f9f9; /* Color de fondo suave */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  margin-top: 10px; /* Espacio encima del contenedor de comentarios */
+  margin-bottom: 0px; /* Espacio debajo del contenedor de comentarios */
+}
 
+.comentarios-container-institution {
+  margin-bottom: 10px; /* Espacio debajo del contenedor de comentarios */
+  height: 40rem; /* Altura definida */
+  display: flex; /* Asegúrate de que el contenedor sea flex */
+  flex-direction: column; /* Para apilar elementos verticalmente */
+}
+
+
+.coment {
+  padding: 10px; /* Espaciado interno para cada comentario */
+  border-bottom: 1px solid #eee; /* Línea divisoria entre comentarios */
+  margin-bottom: 10px; /* Espacio entre comentarios */
+}
+
+.coment:last-child {
+  border-bottom: none; /* Quitar la línea divisoria del último comentario */
+}
+
+.rating {
+  display: flex; /* Usar flexbox para alinear las estrellas */
+  margin-bottom: 10px; /* Espaciado entre la sección de calificación y los comentarios */
+}
+
+.icon-star {
+  padding-left: 1em; /* Espacio a la izquierda */
+  font-size: 2em; /* Tamaño uniforme para las estrellas */
+  cursor: pointer; /* Cambiar el cursor al pasar sobre las estrellas */
+  transition: opacity 0.3s ease; /* Transición suave */
+  color: #005a96; /* Color de las estrellas */
+}
+
+.icon-star:hover {
+  opacity: 0.6; /* Efecto hover */
+}
+
+.far.fa-star {
+  padding-left: 1em; /* Espacio a la izquierda para estrellas vacías */
+  font-size: 2em; /* Tamaño uniforme para las estrellas vacías */
+}
+
+.textarea-container {
+  margin-bottom: 20px; /* Espacio debajo del TextArea */
+}
+
+.textarea-container textarea {
+  width: 100%; /* Asegurarse de que el área de texto ocupe todo el ancho */
+  padding: 10px; /* Espaciado interno del área de texto */
+  border-radius: 5px; /* Bordes redondeados */
+  border: 1px solid #ccc; /* Bordes suaves */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  resize: none; /* Evitar redimensionar */
 }
