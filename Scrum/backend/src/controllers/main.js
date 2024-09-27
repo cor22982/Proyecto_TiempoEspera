@@ -143,7 +143,7 @@ app.post('/login', async (req, res) => {
 
 app.get('/institutions/:name', async (req, res) => {
   try{
-    res.status(200).json(await getProcedureInfo(req.body.name));
+    res.status(200).json(await getProcedureInfo(req.params.name));
   }
   catch (error){
     console.error('Error en la búsqueda de instituciones:', error);
