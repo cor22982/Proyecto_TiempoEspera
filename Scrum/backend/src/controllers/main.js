@@ -66,7 +66,16 @@ app.get('/users_bdate/:pi', async (req, res) => {
     res.status(500).json({ message: 'Error en el servidor' });
   }
 });
-
+app.get('/institution_req/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const institution = await get_documents(id);
+    res.json(institution);
+  } catch (error) {
+    console.error('Error al obtener la institución:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+});
 
 // End point para sacar la edad basado en fecha de nacimiento
 
@@ -181,6 +190,16 @@ app.get('/requirements/:id_procedure', async (req, res) => {
   } catch(error) {
     console.error('Error en la búsqueda de requisitos:', error);
     res.status(500).send('Error del servidor :(');
+  }
+});
+app.get('/institution_req/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const institution = await get_documents(id);
+    res.json(institution);
+  } catch (error) {
+    console.error('Error al obtener la institución:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
   }
 });
 
