@@ -1,5 +1,5 @@
 import Image from './Image'
-import image from '../../assets/calle.jpg'
+import image from '@assets/calle.jpg'
 
 export default {
   component: Image
