@@ -232,7 +232,7 @@ app.get('/rating/:id_institution', async (req, res) => {
 
 app.post('/rating', async (req, res) => {
   try {
-    const payload = decodeToken(token)
+    const payload = decodeToken(req.body.token)
     await insertNewRating(req.body.institution, req.body.rating, payload.dpi);
     res.status(200).json({ succes: true });
   }
