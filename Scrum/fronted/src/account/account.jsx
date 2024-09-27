@@ -3,10 +3,12 @@ import useToken from '@hooks/useToken';
 import useApi from '@hooks/useApi';
 import { parseJwt } from '@hooks/useToken';
 import './account.css';
+import Popaccount from './Popaccount/Popaccount';
 
 const Account = () => {
     const { token } = useToken();
     const [userData, setUserData] = useState(null);
+    const [activar, setActivar] = useState(false);
     const [error, setError] = useState(null);
     const [image, setImage] = useState(null);
     const [previewImage, setPreviewImage] = useState(null);
@@ -97,6 +99,7 @@ const Account = () => {
             }
         } catch (apiError) {
             setError(apiError.toString());
+            setActivar(true)
         }
     };
     
@@ -157,6 +160,7 @@ const Account = () => {
             ) : (
                 <p>Cargando datos del usuario...</p>
             )}
+        <Popaccount activar={activar} setActivar={setActivar} error={error}></Popaccount>
         </div>
     );
     

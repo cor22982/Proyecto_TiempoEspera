@@ -1,6 +1,6 @@
 import PopUp from "@components/PopUp";
 function PopUpSave({activar, setActivar, nombre, description, image, address}) {
-  return (
+  return ( 
     <PopUp trigger={activar} setTrigger={setActivar}>
         <div style={{display:'flex', flexDirection: 'column', alignItems: 'center'}}>
           <h2>{nombre}</h2>
