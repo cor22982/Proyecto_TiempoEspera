@@ -124,13 +124,7 @@ export async function getUserData(pi){
 }
 export async function get_documents(id_procedure) {
   const result = await conn.query('SELECT "id documents" FROM proceduresdocuments LEFT JOIN documents ON proceduresdocuments."id documents" = documents.id_document	WHERE proceduresdocuments."id preocedure" = $1 ', [parseInt(id_procedure)]);
-  if (result.rows.length > 0) {
-    // Extraer el valor y convertirlo a número
-    return parseInt(result.rows[0]["id institution procedure"], 10);
-  } else {
-    // Manejar el caso en que no se encuentren resultados
-    return null; // O lanzar un error según tu necesidad
-  }
+  return result.rows
 }
 
 export async function deleteUser(pi){
