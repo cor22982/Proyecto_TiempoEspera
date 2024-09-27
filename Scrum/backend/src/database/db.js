@@ -31,7 +31,7 @@ export async function getUserBday(pi) {
  
 export async function getProcedureInfo(name){
   const likePattern = `%${name}%`
-  const result = await conn.query('SELECT intitutions.name, intitutions.imagen,intitutions.adress, intitutions.id_institutions, p.id as id_procedure, p.name as name_procedure FROM procedures p join institutionsprocedures ip on p.id = ip."id procedure" join intitutions on ip."id intitution" = intitutions.id_institutions where p.name ilike $1;',[likePattern]);
+  const result = await conn.query('SELECT intitutions.name, intitutions.imagen,intitutions.adress, intitutions.id_institutions, p.id as id_procedure, p.name as name_procedure, p.url as procedure_url FROM procedures p join institutionsprocedures ip on p.id = ip."id procedure" join intitutions on ip."id intitution" = intitutions.id_institutions where p.name ilike $1;',[likePattern]);
   return result.rows
 }
  
