@@ -1,13 +1,13 @@
 import './LogIn.css';
 import { useContext,useState } from 'react'
 import CustomButton from '@components/Buttons/CustomButton';
-import { Link } from 'react-router-dom';
 import { md5 } from 'js-md5'
 import LoginContext from '@contexts/LoginContex/LoginContext';
 import Dropdowncustom from '@components/Buttons/DropDownCustom';
 import useToken from '@hooks/auth/useToken'
 import {faUser, faEye, faEyeSlash, faLock } from '@fortawesome/free-solid-svg-icons'
 import TextInputIcon from '@components/Inputs/TextInput/TextInputIcon';
+import useFormLogin from '@hooks/forms/useFormLogin'
 
 const Login = ({ onToggle, onLogin }) => {  // Recibe las funciones desde el componente padre (Indice)
   const [formState, setFormState] = useState({ pi: '', type_user: '', password: '' });
