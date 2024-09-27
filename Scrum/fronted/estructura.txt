@@ -1,0 +1,190 @@
+src
+├── App.css
+├── App.jsx
+├── Components
+│   ├── Buttons
+│   │   ├── Checkbox
+│   │   │   ├── Checkbox.css
+│   │   │   ├── Checkbox.jsx
+│   │   │   ├── Checkbox.stories.js
+│   │   │   └── index.js
+│   │   ├── CustomButton
+│   │   │   ├── CustomButton.css
+│   │   │   ├── CustomButton.jsx
+│   │   │   ├── CustomButton.stories.js
+│   │   │   ├── CustomButton.test.jsx
+│   │   │   └── index.js
+│   │   ├── DropDown
+│   │   │   ├── DropDownCustom.css
+│   │   │   ├── DropDownCustom.jsx
+│   │   │   ├── DropDownCustom.stories.js
+│   │   │   └── index.js
+│   │   └── IconButton
+│   │       ├── IconButton.css
+│   │       ├── IconButton.jsx
+│   │       ├── IconButton.stories.js
+│   │       └── index.js
+│   ├── Cards
+│   │   ├── InstitutionCard
+│   │   │   ├── InstitutionCard.jsx
+│   │   │   ├── InstitutionCard.stories.js
+│   │   │   ├── index.js
+│   │   │   └── institution.css
+│   │   └── SavedProcedureCard
+│   │       ├── SavedProcedureCard.css
+│   │       ├── SavedProcedureCard.jsx
+│   │       ├── SavedProcedureCard.stories.js
+│   │       └── index.js
+│   ├── Inputs
+│   │   ├── Coment
+│   │   │   ├── Coment.css
+│   │   │   ├── Coment.jsx
+│   │   │   ├── Coment.stories.js
+│   │   │   └── index.js
+│   │   ├── LoginTextInput
+│   │   │   ├── LoginTextInput.css
+│   │   │   ├── LoginTextInput.jsx
+│   │   │   ├── LoginTextInput.stories.js
+│   │   │   └── index.js
+│   │   ├── SearchBox
+│   │   │   ├── Box_Search.css
+│   │   │   ├── Box_Search.jsx
+│   │   │   └── index.js
+│   │   ├── SearchInput
+│   │   │   ├── SearchInput.css
+│   │   │   ├── SearchInput.jsx
+│   │   │   ├── SearchInput.stories.js
+│   │   │   └── index.js
+│   │   ├── TextArea
+│   │   │   ├── TextArea.css
+│   │   │   ├── TextArea.jsx
+│   │   │   ├── TextArea.stories.js
+│   │   │   └── index.js
+│   │   └── TextInput
+│   │       ├── TextInput.css
+│   │       ├── TextInput.jsx
+│   │       ├── TextInput.stories.js
+│   │       ├── TextInputIcon.css
+│   │       ├── TextInputIcon.jsx
+│   │       └── TextInputIcon.stories.js
+│   ├── Navs
+│   │   ├── IconMenuLink
+│   │   │   ├── IconMenuLink.css
+│   │   │   ├── IconMenuLink.jsx
+│   │   │   ├── IconMenuLink.stories.js
+│   │   │   └── index.js
+│   │   └── TextMenuLink
+│   │       ├── TextMenuLink.css
+│   │       ├── TextMenuLink.jsx
+│   │       ├── TextMenuLink.stories.js
+│   │       └── index.js
+│   └── UI
+│       ├── AnimatedLogo
+│       │   ├── AnimatedLogo.css
+│       │   ├── AnimatedLogo.jsx
+│       │   ├── AnimatedLogo.stories.js
+│       │   └── index.js
+│       ├── AttendanceChart
+│       │   ├── AttendanceChart.css
+│       │   ├── AttendanceChart.jsx
+│       │   └── AttendanceChart.stories.js
+│       ├── Image
+│       │   ├── Image.css
+│       │   ├── Image.jsx
+│       │   └── Image.stories.js
+│       ├── InteractiveMap
+│       │   ├── InteractiveMap.jsx
+│       │   ├── InteractiveMap.stories.js
+│       │   └── osm-providers.js
+│       └── MessagePopUp
+│           ├── MessagePopUp.css
+│           ├── MessagePopUp.jsx
+│           ├── MessagePopUp.stories.js
+│           └── index.js
+├── Contexts
+│   └── LoginContex
+│       └── LoginContext.jsx
+├── Login
+│   ├── Login.css
+│   ├── Login.jsx
+│   ├── Login.test.jsx
+│   ├── Logout.css
+│   └── Logout.jsx
+├── Pages
+│   ├── Auth
+│   ├── Home
+│   ├── Indice.jsx
+│   ├── Pages.css
+│   ├── Pages.jsx
+│   └── User
+├── Process
+│   └── Ruta_Mas_Corta
+│       ├── AlgoritmDjstr.js
+│       └── main.js
+├── Registro
+│   ├── Registro.jsx
+│   └── Registro.test.jsx
+├── User_Common
+│   ├── Guardados
+│   │   ├── Guardados.jsx
+│   │   └── PopUpSave
+│   │       └── PopUpSave.jsx
+│   └── PaginaPrincipal
+│       ├── Info_Pages
+│       │   ├── Comentarios.css
+│       │   ├── Comentarios.jsx
+│       │   ├── Dashboard.css
+│       │   ├── Dashboard.jsx
+│       │   ├── PopUpAgendar
+│       │   │   ├── PopUpAgendar.jsx
+│       │   │   └── PopUpAgendarError.jsx
+│       │   └── Requisitos.jsx
+│       ├── Informacion.css
+│       ├── Informacion.jsx
+│       ├── Page_Main.css
+│       ├── Page_Main.jsx
+│       ├── Principal.css
+│       └── Principal.jsx
+├── account
+│   ├── account.css
+│   ├── account.jsx
+│   └── account.module.scss
+├── agendar
+│   ├── Cita.css
+│   └── Cita.jsx
+├── assets
+│   ├── Login
+│   │   ├── age.png
+│   │   ├── correo.png
+│   │   ├── logotipo.png
+│   │   ├── password.png
+│   │   ├── pi.png
+│   │   └── role.png
+│   ├── age_5883396.png
+│   ├── calle.jpg
+│   ├── deimoss.ico
+│   ├── mapa_croquis.jpg
+│   └── react.svg
+├── estructura_components.txt
+├── hooks
+│   ├── api
+│   │   └── useApi.jsx
+│   ├── auth
+│   │   └── useToken.jsx
+│   └── forms
+│       ├── useForm.jsx
+│       ├── useFormCita.jsx
+│       └── useFormLogin.jsx
+├── index.css
+├── main.jsx
+├── styles
+│   └── fonts.css
+├── test
+│   ├── Saved_Tramite.test.el.jsx
+│   └── Search_procedure.test.jsx
+└── tramites
+    ├── tramite.css
+    ├── tramite.jsx
+    └── tramite.stories.js
+
+52 directories, 135 files

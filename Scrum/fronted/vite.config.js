@@ -1,7 +1,6 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   test: {
@@ -16,8 +15,14 @@ export default defineConfig({
     alias: {
       '@components': '/src/Components',
       '@pages': '/src/Pages',
-      '@hooks': '/src/hooks'
+      '@hooks': '/src/hooks',
+      '@styles': '/src/styles',
+      '@assets': '/src/assets',
+      '@contexts': '/src/contexts',
     }
   },
-  base: '', 
+  esbuild: {
+    loader: 'jsx' // Asigna directamente 'jsx' como el loader para todos los archivos.
+  },
+  base: '',
 })
