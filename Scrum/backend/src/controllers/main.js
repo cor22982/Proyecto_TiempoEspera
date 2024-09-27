@@ -173,7 +173,7 @@ app.get('/institutions', async (req, res) => {
 
 app.get('/requirements/:id_procedure', async (req, res) => {
   try {
-    const requirements = await getProcedureRequierements(req.params);
+    const requirements = await getProcedureRequierements(req.params.id_procedure);
     const steps = await getsteps(req.params);
     const data = { requirements, steps };
     res.status(200).json(data);
