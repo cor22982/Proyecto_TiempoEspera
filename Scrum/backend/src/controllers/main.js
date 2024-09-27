@@ -194,7 +194,7 @@ app.get('/requirements/:id_procedure', async (req, res) => {
 });
 app.get('/institution_req/:id', async (req, res) => {
   try {
-    const id = req.params.id;
+    const id = req.params;
     const institution = await get_documents(id);
     res.json(institution);
   } catch (error) {
