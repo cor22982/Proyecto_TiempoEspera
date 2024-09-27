@@ -36,3 +36,7 @@
   margin-top: 15px;
   color: #2b486b;
 }
+
+.goto-container{
+  cursor: pointer;
+}

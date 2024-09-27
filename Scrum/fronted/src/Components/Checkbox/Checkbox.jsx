@@ -1,5 +1,7 @@
 import './Checkbox.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
+import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 const Checkbox = ({name}) => {
   const [pressed, setPressed] = useState(false);
   const handleClick = () => {
@@ -11,6 +13,12 @@ const Checkbox = ({name}) => {
         className= {pressed ? 'button-checkbox-click' : 'button-checkbox' } 
         onClick={handleClick}></button>
       <p className='titulo-checkbox'>{name}</p>
+      <div className='goto-container'>
+        <FontAwesomeIcon
+          icon={faArrowUpRightFromSquare}
+        />
+      </div>
+      
     </div>
   )
 }
