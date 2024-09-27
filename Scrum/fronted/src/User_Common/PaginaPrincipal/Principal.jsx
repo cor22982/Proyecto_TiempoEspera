@@ -23,6 +23,7 @@ const Principal = ({ ira, datos, setobj, pi }) => {
         datos.map((dato, index) => (
           <InsttutionComponent
             key={index}
+            procedimiento={dato.name_procedure}
             name={dato.name}
             image={dato.imagen}
             onClick={() => onclick(dato.id_institutions, dato.id_procedure, dato.name, dato.name_procedure, pi)}
