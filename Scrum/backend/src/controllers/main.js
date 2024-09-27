@@ -153,9 +153,7 @@ app.get('/institutions/:name', async (req, res) => {
 
 app.get('/institution/:id', async (req, res) => {
   try {
-    const id = req.params.id;
-    const institution = await getInstitutionByID(id);
-    res.json(institution);
+    res.status(200).json(await getInstitutionByID(req.params.id));
   } catch (error) {
     console.error('Error al obtener la institución:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
