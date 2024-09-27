@@ -1,4 +1,4 @@
-import PopUp from "@components/PopUp";
+import PopUp from "@components/UI/MessagePopUp";
 function PopUpSave({activar, setActivar, nombre, description, image, address}) {
   return (
     <PopUp trigger={activar} setTrigger={setActivar}>

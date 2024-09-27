@@ -1,4 +1,4 @@
-import PopUp from "@components/PopUp";
+import PopUp from "@components/UI/MessagePopUp";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCircleExclamation} from '@fortawesome/free-solid-svg-icons';
 const PopUpAgendarError = ({activar, setActivar}) => {

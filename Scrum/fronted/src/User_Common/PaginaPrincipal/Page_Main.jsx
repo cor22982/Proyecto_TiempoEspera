@@ -2,9 +2,9 @@ import Principal from './Principal';
 import useApi from '@hooks/useApi';
 import { useState, useEffect } from 'react';
 import Informacion from './Informacion';
-import SearchInput from '../../Components/SearchInput';
+import SearchInput from '@components/Inputs/SearchInput';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import Box_Search from "@components/Box_Search";
+import Box_Search from "@components/Inputs/SearchBox";
 import './Page_Main.css';
 
 const Page_Main = ({ pi }) => {

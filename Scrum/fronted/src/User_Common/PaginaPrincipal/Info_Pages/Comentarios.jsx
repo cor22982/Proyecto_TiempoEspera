@@ -1,6 +1,6 @@
-import TextArea from "@components/TextArea";
+import TextArea from "@components/Inputs/TextArea";
 import './Comentarios.css'
-import Coment from "@components/Coment";
+import Coment from "@components/Inputs/Coment";
 import useApi from '@hooks/useApi';
 import { useEffect,useState } from 'react';
 

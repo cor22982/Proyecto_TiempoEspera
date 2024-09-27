@@ -1,4 +1,4 @@
-import InsttutionComponent from "../../Components/InsttutionComponent"
+import InsttutionComponent from "@components/Cards/InstitutionCard"
 import './Principal.css'
 
 

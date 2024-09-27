@@ -1,4 +1,4 @@
-import PopUp from "@components/PopUp";
+import PopUp from "@components/UI/MessagePopUp";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCheckCircle} from '@fortawesome/free-solid-svg-icons';
 const PopUpAgendar = ({activar, setActivar, description}) => {

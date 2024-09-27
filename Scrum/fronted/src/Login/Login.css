@@ -50,7 +50,6 @@
   flex-direction: column;
   height: 100vh; /* Altura completa de la ventana del visor */
   gap: 2rem;
-  border: 5px solid black;
 }
 
 /* Título en lado derecho */

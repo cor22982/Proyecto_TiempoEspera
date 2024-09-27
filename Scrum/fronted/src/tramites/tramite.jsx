@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStarHalfAlt, faStar } from '@fortawesome/free-solid-svg-icons';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './tramite.css';
-import Imagen from '../Components/Image/Image';
-import Stats from '../Components/Stats/stats';
-import MapView from '../Components/MapView/MapView';
+import Imagen from '@components/UI/Image/Image';
+import Stats from '@components/UI/AttendanceChart/AttendanceChart';
+import MapView from '@components/UI/InteractiveMap/InteractiveMap';
 import useApi from '@hooks/useApi';
 import useToken from '@hooks/useToken';
 

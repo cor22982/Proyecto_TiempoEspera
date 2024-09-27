@@ -1,11 +1,11 @@
 import './Informacion.css'
-import MenuOption from '@components/MenuOption'
+import MenuOption from '@components/Navs/TextMenuLink'
 import { Route, Routes } from 'react-router-dom';
 import Dashboard from './Info_Pages/Dashboard';
 import Comentarios from './Info_Pages/Comentarios';
 import Requisitos from './Info_Pages/Requisitos';
 import Cita from '../../agendar/Cita'
-import IconButton from '@components/IconButton';
+import IconButton from '@components/Buttons/IconButton';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 const Informacion = ({data, ira}) => {
   const {name_institutions} = data

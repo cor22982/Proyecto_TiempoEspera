@@ -1,5 +1,5 @@
 import useApi from '@hooks/useApi';
-import Checkbox from "@components/Checkbox";
+import Checkbox from "@components/Buttons/Checkbox";
 import { useEffect, useState } from 'react';
 
 const Requisitos = ({ data }) => {

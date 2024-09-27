@@ -1,12 +1,9 @@
 import React from 'react';
 
-import LoginTextInput from '@components/LoginTextInput';
-import CustomButton from '@components/CustomButton';
-import Dropdowncustom from '@components/Dropdowncustom';
-import { object, string, ref } from 'yup'
-import useForm from '@hooks/useForm'
+import CustomButton from '@components/Buttons/CustomButton';
+import Dropdowncustom from '@components/Buttons/DropDown';
 import {faUser, faEye, faEyeSlash, faLock, faIdCard, faCake } from '@fortawesome/free-solid-svg-icons'
-import TextInputIcon from '../Components/TextInput/TextInputIcon';
+import TextInputIcon from '@components/Inputs/TextInput/TextInputIcon';
 import useFormLogin from '../hooks/useFormLogin'
 
 

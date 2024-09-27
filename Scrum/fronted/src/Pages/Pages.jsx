@@ -1,5 +1,5 @@
 import './Pages.css'
-import MenuButton from '@components/MenuButton';
+import MenuButton from '@components/Navs/IconMenuLink';
 import { faUser, faHome, faSave, faGear, faBell, faRightFromBracket, faSearch, faFire } from '@fortawesome/free-solid-svg-icons';
 import '../assets/Login/logotipo.png'
 import { Route, Routes } from 'react-router-dom';
@@ -15,7 +15,7 @@ const Pages = ({ pi }) => {
     <div className="contenedor-principal">
       <div className='opciones'>
         <img src='../src/assets/Login/logotipo.png' className='imagen-portada'></img>
-        <MenuButton nombre='Principal' icono={faHome} goto='/'></MenuButton>
+        <MenuButton nombre='Principal' icono={faHome} goto='/' ></MenuButton>
         <div style={{width: '150px' ,height: '0px', border: '1px solid #FFFFFF'}}></div>
         <br></br>
         <MenuButton nombre='Cuenta' icono={faUser} goto='/cuenta'></MenuButton>

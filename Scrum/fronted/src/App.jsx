@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import Logo from '@components/Logo'; // Importa el componente Logo
+import Logo from '@components/UI/AnimatedLogo'; // Importa el componente Logo
 import { TokenProvider } from '@hooks/useToken'
 import Indice from './Pages/Indice';
 

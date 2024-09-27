@@ -1,15 +1,14 @@
 import React from 'react';
 import './Login.css';
 import { useContext,useState } from 'react'
-import LoginTextInput from '@components/LoginTextInput';
-import CustomButton from '@components/CustomButton';
+import CustomButton from '@components/Buttons/CustomButton';
 import { Link } from 'react-router-dom';
 import { md5 } from 'js-md5'
 import LoginContext from '../LoginContex/LoginContext';
-import Dropdowncustom from '@components/Dropdowncustom';
+import Dropdowncustom from '@components/Buttons/DropDown';
 import useToken from '@hooks/useToken'
 import {faUser, faEye, faEyeSlash, faLock } from '@fortawesome/free-solid-svg-icons'
-import TextInputIcon from '../Components/TextInput/TextInputIcon';
+import TextInputIcon from '@components/Inputs/TextInput/TextInputIcon';
 import useFormLogin from '../hooks/useFormLogin'
 
  

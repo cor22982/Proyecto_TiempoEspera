@@ -1,7 +1,7 @@
 import './Cita.css';
 import useApi from '@hooks/useApi';
-import TextInputIcon from '../Components/TextInput/TextInputIcon';
-import Button from '../Components/CustomButton/CustomButton';
+import TextInputIcon from '@components/Inputs/TextInput/TextInputIcon';
+import Button from '@components/Buttons/CustomButton/CustomButton';
 import { faCalendar, faClock, faFile, faUser } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import useFormCita from '../hooks/useFormCita';

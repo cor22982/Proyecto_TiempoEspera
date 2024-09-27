@@ -1,0 +1,100 @@
+Components
+├── AnimatedLogo
+│   ├── AnimatedLogo.css
+│   ├── AnimatedLogo.jsx
+│   ├── AnimatedLogo.stories.js
+│   └── index.js
+├── Buttons
+│   ├── CustomButton
+│   │   ├── CustomButton.css
+│   │   ├── CustomButton.jsx
+│   │   ├── CustomButton.stories.js
+│   │   ├── CustomButton.test.jsx
+│   │   └── index.js
+│   └── IconButton
+│       ├── IconButton.css
+│       ├── IconButton.jsx
+│       ├── IconButton.stories.js
+│       └── index.js
+├── Checkbox
+│   ├── Checkbox.css
+│   ├── Checkbox.jsx
+│   ├── Checkbox.stories.js
+│   └── index.js
+├── Coment
+│   ├── Coment.css
+│   ├── Coment.jsx
+│   ├── Coment.stories.js
+│   └── index.js
+├── DropDown
+│   ├── Dropdowncustom.css
+│   ├── Dropdowncustom.jsx
+│   ├── Dropdowncustom.stories.js
+│   └── index.js
+├── IconMenuLink
+│   ├── IconMenuLink.css
+│   ├── IconMenuLink.jsx
+│   ├── IconMenuLink.stories.js
+│   └── index.js
+├── Image
+│   ├── Image.css
+│   ├── Image.jsx
+│   └── Image.stories.js
+├── Inputs
+│   ├── LoginTextInput
+│   │   ├── LoginTextInput.css
+│   │   ├── LoginTextInput.jsx
+│   │   ├── LoginTextInput.stories.js
+│   │   └── index.js
+│   ├── SearchInput
+│   │   ├── SearchInput.css
+│   │   ├── SearchInput.jsx
+│   │   ├── SearchInput.stories.js
+│   │   └── index.js
+│   ├── TextArea
+│   │   ├── TextArea.css
+│   │   ├── TextArea.jsx
+│   │   ├── TextArea.stories.js
+│   │   └── index.js
+│   └── TextInput
+│       ├── TextInput.css
+│       ├── TextInput.jsx
+│       ├── TextInput.stories.js
+│       ├── TextInputIcon.css
+│       ├── TextInputIcon.jsx
+│       └── TextInputIcon.stories.js
+├── InstitutionCard
+│   ├── InstitutionCard.jsx
+│   ├── InstitutionCard.stories.js
+│   ├── index.js
+│   └── institution.css
+├── InteractiveMap
+│   ├── InteractiveMap.jsx
+│   ├── InteractiveMap.stories.js
+│   └── osm-providers.js
+├── SavedProcedureCard
+│   ├── SavedProcedureCard.css
+│   ├── SavedProcedureCard.jsx
+│   ├── SavedProcedureCard.stories.js
+│   └── index.js
+├── SearchBox
+│   ├── Box_Search.css
+│   ├── Box_Search.jsx
+│   └── index.js
+├── TextMenuLink
+│   ├── TextMenuLink.css
+│   ├── TextMenuLink.jsx
+│   ├── TextMenuLink.stories.js
+│   └── index.js
+└── UI
+    ├── AttendanceChart
+    │   ├── AttendanceChart.css
+    │   ├── AttendanceChart.jsx
+    │   └── AttendanceChart.stories.js
+    └── MessagePopUp
+        ├── MessagePopUp.css
+        ├── MessagePopUp.jsx
+        ├── MessagePopUp.stories.js
+        └── index.js
+
+22 directories, 75 files

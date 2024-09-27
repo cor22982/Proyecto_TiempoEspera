@@ -1,4 +1,4 @@
-import SavedComponent from "@components/SavedComponent";
+import SavedComponent from "@components/Cards/SavedProcedureCard";
 import { useState, useEffect } from "react";
 import PopUpSave from "./PopUpSave/PopUpSave";
 import useApi from '@hooks/useApi';
