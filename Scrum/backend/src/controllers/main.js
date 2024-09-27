@@ -192,7 +192,7 @@ app.get('/institution_docs/:id', async (req, res) => {
     // Combina los datos en un solo objeto
     const data = { requirements};
 
-    res.status(200).json(data);
+    res.status(200).json(requirements);
 
   } catch(error) {
     console.error('Error en la búsqueda de requisitos:', error);
