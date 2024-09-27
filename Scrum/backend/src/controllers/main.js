@@ -162,6 +162,7 @@ app.get('/institution/:id', async (req, res) => {
 
 app.get('/institutions', async (req, res) => {
   try{
+
     res.status(200).json(await getAllInstitutionInfo());
   }
   catch (error){
@@ -172,13 +173,9 @@ app.get('/institutions', async (req, res) => {
 
 app.get('/requirements/:id_procedure', async (req, res) => {
   try {
-    const { id_procedure } = req.params;
-    const requirements = await getProcedureRequierements(id_procedure);
-    const steps = await getsteps(id_procedure);
-
-    // Combina los datos en un solo objeto
+    const requirements = await getProcedureRequierements(req.params);
+    const steps = await getsteps(req.params);
     const data = { requirements, steps };
-
     res.status(200).json(data);
 
   } catch(error) {
@@ -186,6 +183,7 @@ app.get('/requirements/:id_procedure', async (req, res) => {
     res.status(500).send('Error del servidor :(');
   }
 });
+
 app.get('/institution_docs/:id', async (req, res) => {
   try {
     const { id_procedure } = req.params;
