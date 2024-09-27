@@ -1,45 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStarHalfAlt, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './InstitutionInfo.css';
 import Imagen from '@components/UI/Image/Image';
 import Stats from '@components/UI/AttendanceChart/AttendanceChart';
 import MapView from '@components/UI/InteractiveMap/InteractiveMap';
-import useApi from '@hooks/api/useApi';
-import useToken from '@hooks/auth/useToken';
 
 const Tramite = ({ institucion }) => {
-    const { llamado } = useApi('https://deimoss.web05.lol/rating');
-    const [rating, setRating] = useState(0); // Default to 5 stars
-    const { token } = useToken()
-
-
-
-    const handleStarClick = async (index) => {
-        setRating(index + 1); // Update the rating based on the clicked star
-        console.log(index +1)
-        const body = {
-            token: token,
-            institution: institucion.id,
-            rating: rating
-        }
-        const {succes} = await llamado(body,'POST')
-        
-        console.log(succes)
-    };
-
     const calcularEstrellas = () => {
         const puntuacionTotal = 5;
-        const puntuacionEntera = Math.floor(rating);
-        const puntuacionDecimal = rating - puntuacionEntera;
+        const puntuacionEntera = Math.floor(institucion.puntuacion);
+        const puntuacionDecimal = institucion.puntuacion - puntuacionEntera;
 
         const estrellasEnteras = Array.from({ length: puntuacionEntera }, (_, index) => (
             <FontAwesomeIcon
                 key={`full-${index}`}
                 className='icon-star'
                 icon={faStar}
-                onClick={() => handleStarClick(index)}
             />
         ));
 
@@ -49,7 +27,6 @@ const Tramite = ({ institucion }) => {
                     key={'half'}
                     className='icon-star'
                     icon={faStarHalfAlt}
-                    onClick={() => handleStarClick(puntuacionEntera)}
                 />
             );
         }
@@ -58,7 +35,6 @@ const Tramite = ({ institucion }) => {
             <i
                 key={`empty-${index}`}
                 className="far fa-star icon-star"
-                onClick={() => handleStarClick(puntuacionEntera + index)}
             ></i>
         ));
 
@@ -79,7 +55,7 @@ const Tramite = ({ institucion }) => {
             <div className='info'>
                 <div className='info-item'>
                     <div className='info-titulo'>Ranking</div>
-                    <div className='info-dato'><span className='text-bold'>{institucion.puntuacion}</span></div>
+                    <div className='info-dato'><span className='text-bold'>{Math.floor(institucion.puntuacion)}</span></div>
                 </div>
                 <div className='info-item'>
                     <div className='info-titulo'>Tiempo</div>

@@ -37,7 +37,6 @@
 .icon-star {
   padding-left: 1em; /* Espacio a la izquierda */
   font-size: 2em; /* Tamaño uniforme para las estrellas */
-  cursor: pointer; /* Cambiar el cursor al pasar sobre las estrellas */
   transition: opacity 0.3s ease; /* Transición suave */
   color: #005a96; /* Color de las estrellas */
 }
