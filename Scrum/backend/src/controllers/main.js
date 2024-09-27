@@ -145,7 +145,7 @@ app.get('/institutions/:name', async (req, res) => {
   const { name } = req.params;
   try{
     const { name } = req.params;
-    const institutions = await getProcedureInfo(name);
+    const institutions = await getProcedureInfo(req.params.name);
     res.status(200).json(institutions);
   }
   catch (error){
