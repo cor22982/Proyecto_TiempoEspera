@@ -122,10 +122,7 @@ export async function getUserData(pi){
   const result = await conn.query(`SELECT pi, name, lastname, birthdate, type_user, encode(perfi_image, 'base64') as imagen_perfil FROM users WHERE pi = $1;`, [pi]);
   return result.rows
 }
-export async function get_documents(id_procedure) {
-  const result = await conn.query('SELECT "id documents" FROM proceduresdocuments LEFT JOIN documents ON proceduresdocuments."id documents" = documents.id_document	WHERE proceduresdocuments."id preocedure" = $1 ', [id_procedure]);
-  return result.rows
-}
+
 
 export async function deleteUser(pi){
   const result = await conn.query('DELETE FROM users WHERE pi = $1', [pi])
