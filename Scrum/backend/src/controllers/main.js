@@ -19,6 +19,8 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+const isPassword = (realPassword, currentPassword) => realPassword === currentPassword
+
 // Middleware de validación de solicitud
 const validateRequest = (req, res, next) => {
   const errors = validationResult(req);
@@ -99,38 +101,21 @@ app.get('/users_age/:pi', async (req, res) => {
 
 // Endpoint para el inicio de sesión
 app.post('/login', async (req, res) => {
-  const { pi, password , rol} = req.body;
-
   try {
-    // Obtener la información de inicio de sesión del usuario
-    const userLoginInfo = await getUserLoginInfo(pi, rol);
-    
-    // Verificar si se encontró la información de inicio de sesión
-    if (userLoginInfo) {
-      // Cifrar la contraseña proporcionada con MD5 de crypto-js
-      const hashedPassword = password;
-      // Verificar la contraseña
-      if (userLoginInfo.password === hashedPassword) {
-        const user = {
-          dpi: pi,
-          rol: rol
-        }
-        const token = generateToken(user)
-        // Autenticación exitosa
-        res.status(200).json({ success: true, message: 'Inicio de sesión exitoso', acces_token: token });
-      } else {
-        // Contraseña incorrecta
-        res.status(401).json({ success: false, message: 'Contraseña incorrecta' });
-      }
-    } else {
-      // Usuario no encontrado
-      res.status(404).json({ success: false, message: 'Usuario no encontrado' });
+    const userLoginInfo = await getUserLoginInfo(req.body.pi, req.body.rol);
+    if (!userLoginInfo) {
+      return res.status(404).json({ success: false, message: 'Usuario no encontrado' });
     }
+    if (!isPassword(userLoginInfo.password, req.body.password)) {
+      return res.status(401).json({ success: false, message: 'Contraseña incorrecta' });
+    }
+    res.status(200).json({ success: true, message: 'Inicio de sesión exitoso', acces_token: generateToken({ dpi: pi, rol }) });
   } catch (error) {
     console.error('Error en el inicio de sesión:', error);
     res.status(500).json({ success: false, message: 'Error en el servidor' });
   }
 });
+
 
 //Endpoint de búsqueda de instituciones
 
