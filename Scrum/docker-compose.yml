@@ -1,35 +1,38 @@
-version: '3.8'
 
 services:
   db:
-    image: postgres:14
-    container_name: postgres
-    environment:
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_DATABASE}
-    ports:
-      - "5432:5432"
+    image: postgres
+    container_name: postgres_db
+    restart: always
+    env_file:
+      - .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./src/schemas/procedures.sql:/docker-entrypoint-initdb.d/procedures.sql
+    ports:
+      - "5432:5432"
 
-  backend:
+  app:
     build:
-      context: ./backend
+      context: ./backend  
       dockerfile: Dockerfile
-    container_name: backend
+    container_name: node_app
+    env_file:
+      - .env
     ports:
       - "5000:5000"
     depends_on:
       - db
-    environment:
-      DB_USER: ${DB_USER}
-      DB_HOST: db
-      DB_DATABASE: ${DB_DATABASE}
-      DB_PASSWORD: ${DB_PASSWORD}
-      DB_PORT: 5432
+
+  dbinit:
+    image: postgres
+    container_name: db_init
+    depends_on:
+      - db
+    volumes:
+      - ./backend/src/schemas/deimos.dump:/deimos.dump
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db.sh:/docker-entrypoint-initdb.d/init-db.sh
+    entrypoint: ["sh", "/docker-entrypoint-initdb.d/init-db.sh"]
 
 volumes:
   postgres_data:
-
