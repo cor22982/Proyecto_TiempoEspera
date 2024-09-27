@@ -177,6 +177,7 @@ app.get('/institutions', async (req, res) => {
 });
 
 app.get('/requirements/:id_procedure', async (req, res) => {
+  const { id_procedure } = req.params;
   try {
     const { id_procedure } = req.params;
     const requirements = await getProcedureRequierements(id_procedure);
