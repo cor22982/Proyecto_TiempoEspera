@@ -2,7 +2,7 @@ import './HomeMain.css';
 import Principal from '@pages/Home/HomeSearch/HomeSearch';
 import useApi from '@hooks/api/useApi';
 import { useState } from 'react';
-import Informacion from '@pages/Institution/InstitutionRoutes';
+import  Informacion from '@pages/Institution/InstitutionRoutes';
 import SearchInput from '@components/Inputs/SearchInput';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 

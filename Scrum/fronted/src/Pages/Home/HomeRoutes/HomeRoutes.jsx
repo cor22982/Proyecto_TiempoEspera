@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './HomeRoutes.css'
 import { faUser, faHome, faSave, faGear, faBell, faRightFromBracket, faFire } from '@fortawesome/free-solid-svg-icons';
 import '@assets/Login/logotipo.png'
-import Logout from '@pages/Auth/LogOut/Logout';
+import Logout from '@pages/Auth/LogOut/LogOut';
 import Page_Main from '@pages/Home/HomeMain/HomeMain';
 import Guardados from '@pages/User/Saved/Guardados';
 import Account from '@pages/User/Account/account';

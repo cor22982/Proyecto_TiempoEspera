@@ -3,7 +3,7 @@ import useToken from '@hooks/auth/useToken';
 import useApi from '@hooks/api/useApi';
 import { parseJwt } from '@hooks/auth/useToken';
 import './account.css';
-import Popaccount from '@components/Modals/Popaccount/Popaccount';
+import Popaccount from '@components/Modals/PopAccount/Popaccount';
 
 const Account = () => {
     const { token } = useToken();

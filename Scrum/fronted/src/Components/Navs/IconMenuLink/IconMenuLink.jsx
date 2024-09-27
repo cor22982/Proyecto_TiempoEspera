@@ -1,17 +1,13 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './IconMenuLink.css'
 
-const IconMenuLink = ({ nombre, goto, icono, isInStorybook }) => (
-  <div className='contenedor'> {/* Volver a usar 'contenedor' */}
-    <FontAwesomeIcon icon={icono} className="icon" />
-    {isInStorybook ? (
-      <span>{nombre}</span>
-    ) : (
-      <Link to={goto} className='link-menu'>{nombre}</Link>
-    )}
-  </div>
-);
+const IconMenuLink = ({ nombre, goto, icono, onClick }) => {
+  return (
+    <div className='contenedor' onClick={onClick}> {/* Llama a la función onClick cuando se haga clic */}
+      <FontAwesomeIcon icon={icono} className="icon" />
+      <span className='link-menu'>{nombre}</span> {/* Ya no necesitas un <Link> */}
+    </div>
+  );
+};
 
 export default IconMenuLink
