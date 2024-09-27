@@ -186,13 +186,7 @@ app.get('/requirements/:id_procedure', async (req, res) => {
 
 app.get('/institution_docs/:id', async (req, res) => {
   try {
-    const { id_procedure } = req.params;
-    const requirements = await get_documents(id_procedure);
-
-    // Combina los datos en un solo objeto
-    const data = { requirements};
-
-    res.status(200).json(requirements);
+    res.status(200).json(await get_documents(req.params.id_procedure));
 
   } catch(error) {
     console.error('Error en la búsqueda de requisitos:', error);
