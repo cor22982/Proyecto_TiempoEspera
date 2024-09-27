@@ -255,9 +255,7 @@ app.post('/newAppointment', async (req, res) => {
 
 app.get('/userAppointments/:pi', async (req, res) =>{
   try {
-    const {pi} = req.params;
-    const procedures = await get_appointments(pi);
-    res.status(200).json(procedures);
+    res.status(200).json(await get_appointments(req.params.pi));
   }
   catch(error){
     console.error('Error al obtener los datos que buscas :(', error);
@@ -267,10 +265,7 @@ app.get('/userAppointments/:pi', async (req, res) =>{
 
 app.get('/userInfo/:pi', async(req, res)=>{
   try{
-    const {pi} = req.params;
-    const data = await getUserData(pi);
-    console.log("Datos obtenidos")
-    res.status(200).json(data);
+    res.status(200).json(await getUserData(req.params.pi));
   }
   catch(error){
     console.log('Error al obtener datos del usuario :(', error);
@@ -280,8 +275,7 @@ app.get('/userInfo/:pi', async(req, res)=>{
 
 app.put('/user_Update_Image', async(req, res)=>{
   try{
-    const {pi, image} = req.body;
-    const result = await UpdateImage(pi, image);
+    const result = await UpdateImage(req.body.pi, req.body.image);
     if (result.rowCount > 0) {
       console.log("Se guardó la imagen");
       res.status(200).json({ message: "Imagen actualizada correctamente" });
@@ -298,8 +292,7 @@ app.put('/user_Update_Image', async(req, res)=>{
 
 app.delete('/user/:pi', async(req, res) =>{
   try {
-    const {pi} = req.params;
-    const result = await deleteUser(pi);
+    const result = await deleteUser(req.params.pi);
     console.log("Usuario eliminado con exito")
     res.status(200).json({success: true})
   }
@@ -311,10 +304,7 @@ app.delete('/user/:pi', async(req, res) =>{
 
 app.get('/statistics/:id_institution', async(req, res) =>{
   try{
-    const { id_institution } = req.params;
-    console.log(id_institution)
-    const data = await getStatistics(id_institution);
-    res.status(200).json(data)
+    res.status(200).json(await getStatistics(req.params.id_institution))
   }
   catch(error){
     console.log('ERROR al encontrar los datos :(')
