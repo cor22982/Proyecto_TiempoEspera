@@ -162,8 +162,7 @@ app.get('/institution/:id', async (req, res) => {
 
 app.get('/institutions', async (req, res) => {
   try{
-    const institutions = await getAllInstitutionInfo();
-    res.status(200).json(institutions);
+    res.status(200).json(await getAllInstitutionInfo());
   }
   catch (error){
     console.error('Error en la búsqueda de instituciones:', error);
