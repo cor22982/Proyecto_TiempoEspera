@@ -206,10 +206,8 @@ app.get('/comments/:id_institution', async (req, res) => {
 
 app.post('/comment', async (req, res) => {
   try {
-    const { token, content, conversation_id } = req.body;
-    const payload = decodeToken(token)
     const { dpi } = payload;
-    await createComment(dpi, content, conversation_id);
+    await createComment(payload.dpi, req.body.content, req.body.conversation_id);
     res.status(200).json({ message: 'Comentario creado' });
   }
   catch(error){
