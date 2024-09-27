@@ -177,7 +177,6 @@ app.get('/institutions', async (req, res) => {
 });
 
 app.get('/requirements/:id_procedure', async (req, res) => {
-  const { id_procedure } = req.params;
   try {
     const { id_procedure } = req.params;
     const requirements = await getProcedureRequierements(id_procedure);
@@ -193,14 +192,19 @@ app.get('/requirements/:id_procedure', async (req, res) => {
     res.status(500).send('Error del servidor :(');
   }
 });
-app.get('/institution_req/:id', async (req, res) => {
+app.get('/institution_docs/:id', async (req, res) => {
   try {
-    const id = req.params;
-    const institution = await get_documents(id);
-    res.json(institution);
-  } catch (error) {
-    console.error('Error al obtener la institución:', error);
-    res.status(500).json({ error: 'Error interno del servidor' });
+    const { id_procedure } = req.params;
+    const requirements = await get_documents(id_procedure);
+
+    // Combina los datos en un solo objeto
+    const data = { requirements};
+
+    res.status(200).json(data);
+
+  } catch(error) {
+    console.error('Error en la búsqueda de requisitos:', error);
+    res.status(500).send('Error del servidor :(');
   }
 });
 
