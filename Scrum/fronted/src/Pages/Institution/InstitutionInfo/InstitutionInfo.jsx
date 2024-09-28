@@ -58,6 +58,9 @@ const Tramite = ({ institucion }) => {
                     onclick={showMap}></IconButton>
                 <Imagen src={institucion.img} alt='Imagen prueba' />
             </div>
+            <div className='puntuacion'>
+                {calcularEstrellas()}
+            </div>
             <div className='identificacion'>
                 {/*<div className='identificacion-name'> {institucion.nombre} </div>*/}
             </div> 
