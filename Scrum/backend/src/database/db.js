@@ -26,9 +26,7 @@ export async function getUserBday(pi) {
   const result = await conn.query('SELECT birthdate FROM users WHERE pi = $1', [pi]);
   return result.rows;
 }
-  //Esperando a que se cambie la tabla
   
- 
 export async function getProcedureInfo(name){
   const likePattern = `%${name}%`
   const result = await conn.query('SELECT intitutions.name, intitutions.imagen,intitutions.adress, intitutions.id_institutions, p.id as id_procedure, p.name as name_procedure, p.url as procedure_url FROM procedures p join institutionsprocedures ip on p.id = ip."id procedure" join intitutions on ip."id intitution" = intitutions.id_institutions where p.name ilike $1;',[likePattern]);
@@ -107,18 +105,6 @@ export async function getprocedure_id(id_procedure, institution) {
     return null; // O lanzar un error según tu necesidad
   }
 }
-/*
-export async function get_documents(id_procedure) {
-  const result = await conn.query('SELECT "id documents" FROM proceduresdocuments LEFT JOIN documents ON proceduresdocuments."id documents" = documents.id_document	WHERE proceduresdocuments."id preocedure" = $1 ', [parseInt(id_procedure)]);
-  if (result.rows.length > 0) {
-    // Extraer el valor y convertirlo a número
-    return parseInt(result.rows[0]["id institution procedure"], 10);
-  } else {
-    // Manejar el caso en que no se encuentren resultados
-    return null; // O lanzar un error según tu necesidad
-  }
-}
-*/
 
 export async function get_documents(id_procedure) {
   const result = await conn.query('SELECT "id documents" FROM proceduresdocuments LEFT JOIN documents ON proceduresdocuments."id documents" = documents.id_document	WHERE proceduresdocuments."id preocedure" = $1 ', [id_procedure]);

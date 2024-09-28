@@ -21,6 +21,8 @@ app.use(bodyParser.json());
 
 const isPassword = (realPassword, currentPassword) => realPassword === currentPassword
 
+const calculateUserAge = (userBDay) => {}
+
 
 const validateRequest = (req, res, next) => {
   const errors = validationResult(req);
