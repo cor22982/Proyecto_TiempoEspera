@@ -73,6 +73,7 @@ app.get('/users_age/:pi', async (req, res) => {
   const { pi } = req.params;
   try {
     const date = await getUserBday(pi);
+    console.log(date)
     //genero la fecha actual en la que hace el request (basado en la computadora)
     var today = new Date();
     //tomo la variable Birthdate de la base de datos traida por getUserbday
