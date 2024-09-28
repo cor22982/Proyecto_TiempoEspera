@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import useToken from '@hooks/auth/useToken'
-import Login from '@pages/auth/Login/Login';
+import Login from '@pages/Auth/LogIn/LogIn';
 import Registro from '@pages/Auth/SignUp/SignUp';
 import Pages from '@pages/Home/HomeRoutes/HomeRoutes';
 import { parseJwt } from '@hooks/auth/useToken';

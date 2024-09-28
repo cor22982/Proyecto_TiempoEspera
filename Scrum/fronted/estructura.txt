@@ -14,7 +14,7 @@ src
 │   │   │   ├── CustomButton.stories.js
 │   │   │   ├── CustomButton.test.jsx
 │   │   │   └── index.js
-│   │   ├── DropDown
+│   │   ├── DropDownCustom
 │   │   │   ├── DropDownCustom.css
 │   │   │   ├── DropDownCustom.jsx
 │   │   │   ├── DropDownCustom.stories.js
@@ -67,6 +67,25 @@ src
 │   │       ├── TextInputIcon.css
 │   │       ├── TextInputIcon.jsx
 │   │       └── TextInputIcon.stories.js
+│   ├── MenuButton
+│   │   └── MenuButton.jsx
+│   ├── MenuOption
+│   │   └── MenuOption.jsx
+│   ├── Modals
+│   │   ├── MessagePopUp
+│   │   │   ├── MessagePopUp.css
+│   │   │   ├── MessagePopUp.jsx
+│   │   │   ├── MessagePopUp.stories.js
+│   │   │   └── index.js
+│   │   ├── PopAccount
+│   │   │   └── Popaccount.jsx
+│   │   ├── PopSuave
+│   │   │   └── PopUpSave.jsx
+│   │   ├── PopUpAgendar
+│   │   │   ├── PopUpAgendar.jsx
+│   │   │   └── PopUpAgendarError.jsx
+│   │   └── PopUpMap
+│   │       └── PopUpMap.jsx
 │   ├── Navs
 │   │   ├── IconMenuLink
 │   │   │   ├── IconMenuLink.css
@@ -78,6 +97,11 @@ src
 │   │       ├── TextMenuLink.jsx
 │   │       ├── TextMenuLink.stories.js
 │   │       └── index.js
+│   ├── SideBar
+│   │   ├── SideBar.css
+│   │   ├── SideBar.jsx
+│   │   ├── SideBar.stories.js
+│   │   └── index.js
 │   └── UI
 │       ├── AnimatedLogo
 │       │   ├── AnimatedLogo.css
@@ -92,66 +116,65 @@ src
 │       │   ├── Image.css
 │       │   ├── Image.jsx
 │       │   └── Image.stories.js
-│       ├── InteractiveMap
-│       │   ├── InteractiveMap.jsx
-│       │   ├── InteractiveMap.stories.js
-│       │   └── osm-providers.js
-│       └── MessagePopUp
-│           ├── MessagePopUp.css
-│           ├── MessagePopUp.jsx
-│           ├── MessagePopUp.stories.js
-│           └── index.js
+│       └── InteractiveMap
+│           ├── InteractiveMap.jsx
+│           ├── InteractiveMap.stories.js
+│           ├── index.js
+│           └── osm-providers.js
 ├── Contexts
 │   └── LoginContex
 │       └── LoginContext.jsx
-├── Login
-│   ├── Login.css
-│   ├── Login.jsx
-│   ├── Login.test.jsx
-│   ├── Logout.css
-│   └── Logout.jsx
 ├── Pages
+│   ├── AppRouter.jsx
 │   ├── Auth
+│   │   ├── LogIn
+│   │   │   ├── LogIn.css
+│   │   │   ├── LogIn.jsx
+│   │   │   └── LogIn.test.jsx
+│   │   ├── LogOut
+│   │   │   ├── LogOut.css
+│   │   │   └── LogOut.jsx
+│   │   └── SignUp
+│   │       ├── SignUp.jsx
+│   │       └── SignUp.test.jsx
 │   ├── Home
-│   ├── Indice.jsx
-│   ├── Pages.css
-│   ├── Pages.jsx
+│   │   ├── HomeMain
+│   │   │   ├── HomeMain.css
+│   │   │   └── HomeMain.jsx
+│   │   ├── HomeRoutes
+│   │   │   ├── HomeRoutes.css
+│   │   │   └── HomeRoutes.jsx
+│   │   └── HomeSearch
+│   │       ├── HomeSearch.css
+│   │       └── HomeSearch.jsx
+│   ├── Institution
+│   │   ├── Appointments
+│   │   │   ├── Cita.css
+│   │   │   └── Cita.jsx
+│   │   ├── Comments
+│   │   │   ├── Comments.css
+│   │   │   └── Comments.jsx
+│   │   ├── InstitutionInfo
+│   │   │   ├── InstitutionDataProvider.css
+│   │   │   ├── InstitutionDataProvider.jsx
+│   │   │   ├── InstitutionInfo.css
+│   │   │   ├── InstitutionInfo.jsx
+│   │   │   └── InstitutionInfo.stories.js
+│   │   ├── InstitutionRoutes.css
+│   │   ├── InstitutionRoutes.jsx
+│   │   └── Requirements
+│   │       └── Requisitos.jsx
 │   └── User
+│       ├── Account
+│       │   ├── account.css
+│       │   ├── account.jsx
+│       │   └── account.module.scss
+│       └── Saved
+│           └── Guardados.jsx
 ├── Process
 │   └── Ruta_Mas_Corta
 │       ├── AlgoritmDjstr.js
 │       └── main.js
-├── Registro
-│   ├── Registro.jsx
-│   └── Registro.test.jsx
-├── User_Common
-│   ├── Guardados
-│   │   ├── Guardados.jsx
-│   │   └── PopUpSave
-│   │       └── PopUpSave.jsx
-│   └── PaginaPrincipal
-│       ├── Info_Pages
-│       │   ├── Comentarios.css
-│       │   ├── Comentarios.jsx
-│       │   ├── Dashboard.css
-│       │   ├── Dashboard.jsx
-│       │   ├── PopUpAgendar
-│       │   │   ├── PopUpAgendar.jsx
-│       │   │   └── PopUpAgendarError.jsx
-│       │   └── Requisitos.jsx
-│       ├── Informacion.css
-│       ├── Informacion.jsx
-│       ├── Page_Main.css
-│       ├── Page_Main.jsx
-│       ├── Principal.css
-│       └── Principal.jsx
-├── account
-│   ├── account.css
-│   ├── account.jsx
-│   └── account.module.scss
-├── agendar
-│   ├── Cita.css
-│   └── Cita.jsx
 ├── assets
 │   ├── Login
 │   │   ├── age.png
@@ -179,12 +202,8 @@ src
 ├── main.jsx
 ├── styles
 │   └── fonts.css
-├── test
-│   ├── Saved_Tramite.test.el.jsx
-│   └── Search_procedure.test.jsx
-└── tramites
-    ├── tramite.css
-    ├── tramite.jsx
-    └── tramite.stories.js
+└── test
+    ├── Saved_Tramite.test.el.jsx
+    └── Search_procedure.test.jsx
 
-52 directories, 135 files
+62 directories, 144 files
