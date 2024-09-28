@@ -131,9 +131,7 @@ app.get('/institutions/:name', async (req, res) => {
 
 app.get('/institution/:id', async (req, res) => {
   try {
-    const id = req.params.id;
-    const institution = await getInstitutionByID(id);
-    res.json(institution);
+    res.json(await getInstitutionByID(req.params.id));
   } catch (error) {
     console.error('Error al obtener la institución:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
@@ -141,9 +139,7 @@ app.get('/institution/:id', async (req, res) => {
 });
 app.get('/institution_req/:id', async (req, res) => {
   try {
-    const id = req.params.id;
-    const institution = await get_documents(id);
-    res.json(institution);
+    res.json(await get_documents(req.params.id));
   } catch (error) {
     console.error('Error al obtener la institución:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
@@ -152,8 +148,7 @@ app.get('/institution_req/:id', async (req, res) => {
 
 app.get('/institutions', async (req, res) => {
   try{
-    const institutions = await getAllInstitutionInfo();
-    res.status(200).json(institutions);
+    res.status(200).json(await getAllInstitutionInfo());
   }
   catch (error){
     console.error('Error en la búsqueda de instituciones:', error);
@@ -167,7 +162,6 @@ app.get('/requirements/:id_procedure', async (req, res) => {
     const requirements = await getProcedureRequierements(id_procedure);
     const steps = await getsteps(id_procedure);
 
-    // Combina los datos en un solo objeto
     const data = { requirements, steps };
 
     res.status(200).json(data);
