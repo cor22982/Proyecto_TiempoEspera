@@ -5,7 +5,7 @@ import './HomeSearch.css'
 const Principal = ({ ira, datos, setobj, pi }) => {
   
   
-  const onclick = (id_i, id_p, nam_i, nam_p, pi) => {
+  const onclick = (id_i, id_p, nam_i, nam_p, pi, url) => {
     ira(false);
     const objeto_ids = {
       id_institutions: id_i,
@@ -13,6 +13,7 @@ const Principal = ({ ira, datos, setobj, pi }) => {
       name_institutions: nam_i,
       name_procedure: nam_p,
       pi_user: pi,
+      url: url
     };
     setobj(objeto_ids);
   };
@@ -26,7 +27,7 @@ const Principal = ({ ira, datos, setobj, pi }) => {
             procedimiento={dato.name_procedure}
             name={dato.name}
             image={dato.imagen}
-            onClick={() => onclick(dato.id_institutions, dato.id_procedure, dato.name, dato.name_procedure, pi)}
+            onClick={() => onclick(dato.id_institutions, dato.id_procedure, dato.name, dato.name_procedure, pi, dato.procedure_url)}
             tiempo="0:00"
           />
         ))

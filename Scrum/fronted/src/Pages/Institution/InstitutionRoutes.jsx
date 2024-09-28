@@ -6,7 +6,7 @@ import Comentarios from '@pages/Institution/Comments/Comments';
 import Requisitos from '@pages/Institution/Requirements/Requisitos';
 import Cita from '@pages/Institution/Appointments/Cita'
 import IconButton from '@components/Buttons/IconButton';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 
 const Informacion = ({data, ira}) => {
@@ -29,13 +29,28 @@ const Informacion = ({data, ira}) => {
     }
   }
 
+  const openInNewTab = (url) => {
+    const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+    if (newWindow) newWindow.opener = null;
+  };
+
   return (
     <div className='contenedor-info'>
       <div className='header_institution'>
-        <IconButton icono={faArrowLeft} color='#0069AD' onclick={() => ira(true)}></IconButton>
+        <IconButton icono={faArrowLeft} color='#0069AD' onclick={() => ira(true)} />
         <h3 className="titulo-info">{name_institutions}</h3>
+        
+        <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto' }}>
+          <p style={{ margin: 10 }}>Ver tramite pagina oficial</p>
+          
+          <IconButton 
+            icono={faArrowUpRightFromSquare} 
+            color='#0069AD' 
+            onclick={() => openInNewTab(data.url)} 
+            style={{ marginLeft: '8px' }} // Añade un margen para separar el icono del texto
+          />
+        </div>
       </div>
-
       <div className='menu-info'>
         <MenuOption nombre='Información' onClick={() => setSelectedSection('dashboard')} />
         <MenuOption nombre='Comentarios' onClick={() => setSelectedSection('comentarios')} />
