@@ -13,7 +13,7 @@ import { generateToken, decodeToken } from './jwt.js';
 const app = express();
 const PORT = 5000;
 export default app;
-// Middleware
+
 app.use(express.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 
 const isPassword = (realPassword, currentPassword) => realPassword === currentPassword
 
-// Middleware de validación de solicitud
+
 const validateRequest = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -30,13 +30,13 @@ const validateRequest = (req, res, next) => {
   return next();
 };
 
-// Rutas
+
 app.get('/', (req, res) => {
   res.send('Hello from API PROYECTO DEIMOS');
 });
 
 
-// Registro de usuario
+
 app.post('/register', validateRequest, async (req, res) => {
   console.log("body", req.body);
   const { pi, name, lastname, password_md5, birthdate, type_user } = req.body;
@@ -44,35 +44,28 @@ app.post('/register', validateRequest, async (req, res) => {
   res.json({ message: 'user created' });
 });
 
-// Endpoint para obtener un usuario por su PI
+
 app.get('/users/:pi', async (req, res) => {
   const { pi } = req.params;
   try {
     const users = await getUserByPi(pi);
     const {birthdate} = await users
-    res.json(users);
+    res.status(200).json(await getUserByPi(req.params.pi));
   } catch (error) {
     console.error('Error al buscar usuario por PI:', error);
     res.status(500).json({ message: 'Error en el servidor' });
   }
 });
 
-
-// Endpoint para obtener una fecha de nacimiento por su PI
 
 app.get('/users_bdate/:pi', async (req, res) => {
-  const { pi } = req.params;
   try {
-    const date = await getUserBday(pi);
-    res.json(date);
+    res.json(await getUserBday(req.params.pi));
   } catch (error) {
     console.error('Error al buscar usuario por PI:', error);
     res.status(500).json({ message: 'Error en el servidor' });
   }
 });
-
-
-// End point para sacar la edad basado en fecha de nacimiento
 
 app.get('/users_age/:pi', async (req, res) => {
   const { pi } = req.params;
@@ -99,7 +92,6 @@ app.get('/users_age/:pi', async (req, res) => {
 }); 
 
 
-// Endpoint para el inicio de sesión
 app.post('/login', async (req, res) => {
   try {
     const userLoginInfo = await getUserLoginInfo(req.body.pi, req.body.rol);
@@ -116,8 +108,6 @@ app.post('/login', async (req, res) => {
   }
 });
 
-
-//Endpoint de búsqueda de instituciones
 
 app.get('/institutions/:name', async (req, res) => {
   try{
@@ -287,14 +277,11 @@ app.get('/statistics/:id_institution', async(req, res) =>{
   }
 })
 
-
-
-// Manejo de rutas no implementadas
 app.use((req, res) => {
   res.status(501).json({ error: 'Método no implementado' });
 });
 
-// Iniciar el servidor
+
 app.listen(PORT, () => {
   console.log(`Server listening at http://127.0.0.1:${PORT}`);
 });
