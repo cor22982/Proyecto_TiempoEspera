@@ -21,7 +21,11 @@ app.use(bodyParser.json());
 
 const isPassword = (realPassword, currentPassword) => realPassword === currentPassword
 
+const getAge = (userBirthDay) =>{
+  age = new Date().getFullYear() - new Date(userBirthDay).getFullYear()
+  return new Date().getMonth < new Date(userBirthDay).getMonth ? age-- : age
 
+}
 
 const validateRequest = (req, res, next) => {
   const errors = validationResult(req);
@@ -76,6 +80,7 @@ app.get('/users_age/:pi', async (req, res) => {
     //genero la fecha actual en la que hace el request (basado en la computadora)
     var today = new Date();
     console.log(today)
+    console.log(getAge(date))
     //tomo la variable Birthdate de la base de datos traida por getUserbday
     var birthDate = new Date(date.birthDate);
     // calculo el año haciendo un getfullyear que me da el año completo del individuo
