@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import './Dropdowncustom.css';
+import './DropDownCustom.css';
 
 const Dropdowncustom = ({ nombre, lista,onChange }) => {
   const [dropdown, setDropdown] = useState(false);

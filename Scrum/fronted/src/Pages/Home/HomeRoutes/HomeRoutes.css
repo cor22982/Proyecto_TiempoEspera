@@ -29,10 +29,6 @@
   grid-column: 2;
   display: grid;
 }
- 
-
-
-
 
 .imagen-portada{
   height: 130px;
@@ -45,4 +41,5 @@
   to {
     opacity: 1; /* Termina con opacidad 1 (visible) */
   }
+
 }

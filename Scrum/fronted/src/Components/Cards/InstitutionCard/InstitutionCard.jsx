@@ -29,3 +29,4 @@ InsttutionComponent.propTypes = {
 }
 
 export default InsttutionComponent;
+

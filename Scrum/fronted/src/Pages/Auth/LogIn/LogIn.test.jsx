@@ -2,7 +2,7 @@ import { test, expect, vi } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import Login from './LogIn';
-
+ 
 // Mockea useFormLogin
 vi.mock('@hooks/useFormLogin', () => ({
   default: () => ({

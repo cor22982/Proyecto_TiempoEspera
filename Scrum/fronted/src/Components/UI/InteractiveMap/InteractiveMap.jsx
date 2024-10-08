@@ -33,3 +33,4 @@ const MapView = ({ position }) => {
 };
 
 export default MapView;
+

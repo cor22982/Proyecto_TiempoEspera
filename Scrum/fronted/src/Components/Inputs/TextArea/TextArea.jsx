@@ -49,3 +49,4 @@ const TextArea = ({ placeholder, onChange, value, onclick }) => {
 };
 
 export default TextArea;
+
