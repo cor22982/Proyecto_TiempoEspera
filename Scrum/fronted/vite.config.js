@@ -18,7 +18,7 @@ export default defineConfig({
       '@hooks': '/src/hooks',
       '@styles': '/src/styles',
       '@assets': '/src/assets',
-      '@contexts': '/src/contexts',
+      '@contexts': '/src/Contexts',
     }
   },
   esbuild: {
