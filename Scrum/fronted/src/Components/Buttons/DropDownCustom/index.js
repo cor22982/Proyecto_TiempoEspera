@@ -1,3 +1,3 @@
-import Dropdowncustom from "./Dropdowncustom"
+import Dropdowncustom from "./DropDownCustom"
 
 export default Dropdowncustom
