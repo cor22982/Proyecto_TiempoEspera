@@ -2,7 +2,7 @@ import './LogIn.css';
 import { useContext,useState } from 'react'
 import CustomButton from '@components/Buttons/CustomButton';
 import { md5 } from 'js-md5'
-import LoginContext from '@contexts/LoginContex/LoginContext';
+import LoginContext from '@contexts/LoginContex';
 import Dropdowncustom from '@components/Buttons/DropDownCustom';
 import useToken from '@hooks/auth/useToken'
 import {faUser, faEye, faEyeSlash, faLock } from '@fortawesome/free-solid-svg-icons'
