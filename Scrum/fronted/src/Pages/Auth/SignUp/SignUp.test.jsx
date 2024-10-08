@@ -19,7 +19,7 @@ test('Registro Component renders correctly', () => {
   expect(screen.getByPlaceholderText('Ingrese su nombre')).toBeInTheDocument();
   expect(screen.getByPlaceholderText('Ingrese su apellido')).toBeInTheDocument();
   expect(screen.getByPlaceholderText('Ingrese su DPI/CUI')).toBeInTheDocument();
-  expect(screen.getByPlaceholderText('Ingrese su edad')).toBeInTheDocument();
+  expect(screen.getByPlaceholderText('Seleccione su fecha de nacimiento')).toBeInTheDocument();
   expect(screen.getByPlaceholderText('Ingrese su contraseña')).toBeInTheDocument();
   expect(screen.getByText('Seleccionar rol')).toBeInTheDocument();
   expect(screen.getByText('Registrarse')).toBeInTheDocument();
@@ -34,7 +34,7 @@ test('Registro Component shows error message on failed registration', async () =
   fireEvent.change(screen.getByPlaceholderText('Ingrese su nombre'), { target: { value: 'John' } });
   fireEvent.change(screen.getByPlaceholderText('Ingrese su apellido'), { target: { value: 'Doe' } });
   fireEvent.change(screen.getByPlaceholderText('Ingrese su DPI/CUI'), { target: { value: '1234567890123' } });
-  fireEvent.change(screen.getByPlaceholderText('Ingrese su edad'), { target: { value: '25' } });
+  fireEvent.change(screen.getByPlaceholderText('Seleccione su fecha de nacimiento'), { target: { value: '2000-05-10' } });
   fireEvent.change(screen.getByPlaceholderText('Ingrese su contraseña'), { target: { value: 'password' } });
   fireEvent.click(screen.getByText('Registrarse'));
   
@@ -56,7 +56,7 @@ test('Registro Component redirects on successful registration', async () => {
   fireEvent.change(screen.getByPlaceholderText('Ingrese su nombre'), { target: { value: 'John' } });
   fireEvent.change(screen.getByPlaceholderText('Ingrese su apellido'), { target: { value: 'Doe' } });
   fireEvent.change(screen.getByPlaceholderText('Ingrese su DPI/CUI'), { target: { value: '1234567890123' } });
-  fireEvent.change(screen.getByPlaceholderText('Ingrese su edad'), { target: { value: '25' } });
+  fireEvent.change(screen.getByPlaceholderText('Seleccione su fecha de nacimiento'), { target: { value: '2000-05-10' } });
   fireEvent.change(screen.getByPlaceholderText('Ingrese su contraseña'), { target: { value: 'password' } });
   fireEvent.click(screen.getByText('Registrarse'));
 

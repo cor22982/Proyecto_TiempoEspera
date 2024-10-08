@@ -45,7 +45,7 @@ const Page_Main = ({ pi }) => {
       <div className='cabecera'>
         <SearchInput 
           icono={faSearch} 
-          placeholder='Buscar trámite'
+          placeholder='Buscar tramite'
           value={busqueda} 
           onChange={(value) => setBusqueda(value)}
           onpressenter={fetchData}
