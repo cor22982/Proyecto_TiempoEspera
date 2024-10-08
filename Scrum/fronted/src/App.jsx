@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import Logo from '@components/Logo'; // Importa el componente Logo
-import { TokenProvider } from '@hooks/useToken'
-import Indice from './Pages/Indice';
+import Logo from '@components/UI/AnimatedLogo'; // Importa el componente Logo
+import { TokenProvider } from '@hooks/auth/useToken'
+import Indice from '@pages/AppRouter';
 
 function App() {
   const [showLogo, setShowLogo] = useState(true);

@@ -1,0 +1,39 @@
+.header_institution{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.contenedor-info{
+  margin-left: 22px;
+  animation: fadeIn 0.5s ;
+  margin-right: 22px;
+}
+.titulo-info{
+  color: rgb(62, 70, 85);
+  
+}
+
+.menu-info{
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  padding-left: 15px;
+  gap: 40px;
+  margin-bottom: 0px; 
+}
+
+.informacion-contenido{
+  margin-top: 0px;
+  padding-top: 20px;
+  width: 100%;
+  border-top: 1px solid rgb(161, 161, 161);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Empieza con opacidad 0 (oculto) */
+  }
+  to {
+    opacity: 1; /* Termina con opacidad 1 (visible) */
+  }
+}

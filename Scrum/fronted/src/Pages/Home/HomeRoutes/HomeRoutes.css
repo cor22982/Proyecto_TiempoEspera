@@ -1,0 +1,48 @@
+.contenedor-principal {
+  width: 100vw; 
+  height: 100vh;
+  background-color: #E4E4E4;
+  display: grid;
+  grid-template-columns: 80px auto;
+  transition:all 0.3s ;
+  animation: fadeIn 1s ;
+}
+
+.contenedor-principal-activate {
+  width: 100vw; 
+  height: 100vh;
+  background-color: #E4E4E4;
+  display: grid;
+  grid-template-columns: 225px auto;
+  transition:all 0.3s ;
+  animation: fadeIn 1s ;
+}
+.opciones {
+  grid-column: 1;
+  background-color: #00367E;
+  width: fill ;
+  display: flex;
+  flex-direction: column;
+}
+
+.interfaz{
+  grid-column: 2;
+  display: grid;
+}
+ 
+
+
+
+
+.imagen-portada{
+  height: 130px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Empieza con opacidad 0 (oculto) */
+  }
+  to {
+    opacity: 1; /* Termina con opacidad 1 (visible) */
+  }
+}

@@ -1,9 +1,8 @@
-import './MenuOption.css'
-import { Link } from 'react-router-dom';
+import './MenuOption.css';
 
-const MenuOption = ({ nombre, goto }) => (
-  <div className="menu-option"> 
-    <Link to={goto} className='link-menu-option'>{nombre}</Link> 
+const MenuOption = ({ nombre, onClick }) => (
+  <div className="menu-option" onClick={onClick}> 
+    <span className='link-menu-option'>{nombre}</span> 
   </div>
 );
 

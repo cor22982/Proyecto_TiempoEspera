@@ -1,0 +1,91 @@
+/* Contenedor principal */
+.container {
+  display: grid;
+  grid-template-areas: "image info";
+  grid-template-columns: 1fr 2fr; /* Adjust column widths as needed */
+  width: 450px;
+  height: 215px;
+  top: 164px;
+  left: 312px;
+  border-radius: 10px;
+  background-color: white;
+  border: 1px solid transparent;
+  animation: fadeIn 0.5s ;
+  cursor: pointer;
+  transition: filter 0.3s; 
+}
+
+.container:hover{
+  filter: brightness(80%); /* Reducción del brillo al 80% */
+}
+
+/* contenedor de la imagen */
+.imagen-conteiner{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.procedimiento-name{
+  margin-top: 10px;
+  background-color: #0F233D;
+  border-radius: 5px;
+  color: white;
+  padding: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+/* Reglas para la imagen */
+.institution-image {
+  width: 159px;
+  height: 169px;
+  
+  border-radius: 20px;
+}
+
+/* Contendor derecho */
+.info-container {
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  background-color: transparent;
+  border-radius: 0 10px 10px 0;
+  overflow-y: auto;
+  padding-left: 10px;
+  
+}
+
+/*texto */
+.heading {
+  color: #00367E;
+  font-family: inika-regular, sans-serif;
+  font-size: 20px;
+}
+
+.heading1 {
+  color: #00367E;
+  font-family: inika-regular, sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.timelapmse {
+  font-family: 'Inika';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 44px;
+  color: #00367E;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Empieza con opacidad 0 (oculto) */
+  }
+  to {
+    opacity: 1; /* Termina con opacidad 1 (visible) */
+  }
+}

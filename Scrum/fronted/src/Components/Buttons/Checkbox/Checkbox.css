@@ -1,0 +1,42 @@
+.checkbox-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  background-color: white;
+  font-size: 22px;
+  box-shadow: 5px 5px 10px 0 rgb(204, 204, 204);
+  justify-content: center;
+  gap: 100px;
+  margin-bottom: 30px;
+  transition: filter 0.3s; 
+}
+
+.checkbox-container:hover{
+  filter: brightness(90%);
+
+}
+
+.button-checkbox{
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+}
+
+
+
+.button-checkbox-click{
+  width: 30px;
+  height: 30px;
+  background-color:#277ae0;
+}
+
+.titulo-checkbox{
+  margin-top: 15px;
+  color: #2b486b;
+}
+
+.goto-container{
+  cursor: pointer;
+}
