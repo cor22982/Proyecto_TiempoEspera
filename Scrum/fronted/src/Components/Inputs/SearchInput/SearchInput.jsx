@@ -140,3 +140,4 @@ const SearchInput = ({ icono, placeholder, onChange, value, onpressenter, sugges
 };
 
 export default SearchInput;
+

@@ -15,3 +15,4 @@ function IconButton({ icono, onclick, color, texto }) {
 }
 
 export default IconButton;
+

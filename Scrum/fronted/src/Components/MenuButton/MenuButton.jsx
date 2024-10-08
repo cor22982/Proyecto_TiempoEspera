@@ -11,3 +11,4 @@ const MenuButton = ({ nombre, goto, icono, onClick }) => {
 };
 
 export default MenuButton;
+

@@ -111,7 +111,8 @@ const Login = ({ onToggle, onLogin }) => {  // Recibe las funciones desde el com
           </div>
 
           <div className='login-button-container'>
-            <CustomButton buttonText='Iniciar sesión' onClick={handleClick} />
+
+            <CustomButton buttonText='Iniciar sesion' onClick={handleClick} />
           </div>
         </div>
       </div>

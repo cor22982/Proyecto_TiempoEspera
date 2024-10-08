@@ -10,4 +10,5 @@ export const CommentDefault = {
     date:'YY/MM/HH', 
     coment: 'Este es mi comentario, como se ve en las pruebas.'
   }
+
 }

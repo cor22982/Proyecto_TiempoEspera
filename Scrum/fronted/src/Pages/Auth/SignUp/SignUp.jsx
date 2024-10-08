@@ -1,4 +1,3 @@
-
 import CustomButton from '@components/Buttons/CustomButton';
 import Dropdowncustom from '@components/Buttons/DropDownCustom';
 import {faUser, faEye, faEyeSlash, faLock, faIdCard, faCake } from '@fortawesome/free-solid-svg-icons'
@@ -47,7 +46,7 @@ const Registro = () => {
     const response = await fetch('https://deimoss.web05.lol/register', fetchOptions)
     
     if (response.ok) {
-      onRegistro();
+      
       console.log('success!')
       setErrorMessage('')
       return

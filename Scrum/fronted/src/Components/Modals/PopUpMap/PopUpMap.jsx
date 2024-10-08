@@ -9,4 +9,5 @@ const PopUpMap =({activar, setActivar, pos}) =>{
   );
 }
 
+
 export default PopUpMap

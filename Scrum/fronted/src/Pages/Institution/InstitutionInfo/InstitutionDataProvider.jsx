@@ -56,3 +56,4 @@ const Dashboard = ({ data }) => {
 };
 
 export default Dashboard;
+

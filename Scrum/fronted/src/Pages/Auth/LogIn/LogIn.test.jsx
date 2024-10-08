@@ -1,8 +1,8 @@
 import { test, expect, vi } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import Login from './Login';
-
+import Login from './LogIn';
+ 
 // Mockea useFormLogin
 vi.mock('@hooks/useFormLogin', () => ({
   default: () => ({
@@ -12,7 +12,7 @@ vi.mock('@hooks/useFormLogin', () => ({
 }));
 
 // Mockea useToken
-vi.mock('@hooks/useToken', () => ({
+vi.mock('@hooks/auth/useToken', () => ({
   default: () => ({
     setToken: vi.fn() // Mockea la función setToken
   })
@@ -41,10 +41,10 @@ test('Login Component redirects on successful Login', async () => {
   const mockLocation = { href: '' };
   delete window.location;
   window.location = mockLocation;
-
+  const onLoginMock = vi.fn();
   render(
     <MemoryRouter>
-      <Login />
+      <Login onLogin={onLoginMock}/>
     </MemoryRouter>
   );
   
