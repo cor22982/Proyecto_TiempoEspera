@@ -112,7 +112,7 @@ export async function get_documents(id_procedure) {
 }
 
 export async function getUserData(pi){
-  const result = await conn.query(`SELECT pi, name, lastname,  extract(day FROM age(current_timestamp, birthdate::timestamp))::int AS birthdate, type_user, encode(perfi_image, 'base64') as imagen_perfil FROM users WHERE pi = $1;`, [pi]);
+  const result = await conn.query(`SELECT pi, name, lastname, extract(year FROM age(current_timestamp, birthdate::timestamp)) AS birthdate, type_user, encode(perfi_image, 'base64') as imagen_perfil FROM users WHERE pi = $1;`, [pi]);
   return result.rows
 }
 
