@@ -1,0 +1,32 @@
+name: Run Backend Test
+
+on:
+  push:
+    branches: ['backend']
+  pull_request:
+    branches: ['backend']
+
+  workflow_dispatch:
+
+jobs:
+  backend-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node for Backend
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.19.1
+
+      - name: Install Backend Dependencies
+        run: |
+          cd Scrum/backend
+          npm install
+
+      - name: Run Backend Tests
+        run: |
+          cd Scrum/backend
+          npm test
