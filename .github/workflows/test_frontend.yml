@@ -1,4 +1,4 @@
-name: RUN TEST FRONTEND DEV
+name: Run Test Frontend Dev
 
 on:
   pull_request:
