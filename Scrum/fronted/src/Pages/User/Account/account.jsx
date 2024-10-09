@@ -4,18 +4,19 @@ import useApi from '@hooks/api/useApi';
 import { parseJwt } from '@hooks/auth/useToken';
 import './account.css';
 import Popaccount from '@components/Modals/PopAccount/Popaccount';
-
+import Label_Input from '@components/Inputs/Label_Input/Label_Input';
 const Account = () => {
     const { token } = useToken();
     const [userData, setUserData] = useState(null);
     const [activar, setActivar] = useState(false);
     const [error, setError] = useState(null);
     const [image, setImage] = useState(null);
+    const [datos, setDatos] = useState({pi: '', data: ''})
     const [previewImage, setPreviewImage] = useState(null);
     const [uploadSuccess, setUploadSuccess] = useState(false);
     const [isEditing, setIsEditing] = useState(false); // Modo de edición
     const [selectedImage, setSelectedImage] = useState(null); // Imagen seleccionada
-
+    const {llamado} = useApi('https://deimoss.web05.lol/user_Update_info')
     let dpi;
     if (token) {
         const decodedToken = parseJwt(token);
@@ -23,6 +24,8 @@ const Account = () => {
     }
 
     const { llamadowithoutbody } = useApi(`https://deimoss.web05.lol/userInfo/${dpi}`);
+
+    
 
     useEffect(() => {
         const fetchData = async () => {
@@ -32,7 +35,8 @@ const Account = () => {
             }
             try {
                 const data = await llamadowithoutbody('GET');
-                console.log(data)
+                setValue('pi', dpi)
+                
                 if (data && data.length > 0) {
                     setUserData(data[0]);
                 } else {
@@ -60,6 +64,24 @@ const Account = () => {
             setError('Por favor, selecciona una imagen en formato PNG o JPG.');
         }
     };
+
+    const setValue = (name, value) => {
+        setDatos((prevState) => ({
+          ...prevState,
+          [name]: value,
+        }));
+      };
+      
+    
+    const UpdateInfo = async(ty) => {
+        const body = {pi:datos.pi, data: datos.data, type: ty}
+        try {
+            const resultado = await llamado(body, 'PUT');
+            // Manejar el resultado aquí, si es necesario
+          } catch (error) {
+            console.error('Error al actualizar la información:', error);
+          }
+    }
 
     const updateProfileImage = async () => {
         if (!dpi || !userData?.pi || !selectedImage) {
@@ -150,9 +172,25 @@ const Account = () => {
             <h1 className="account-title">{userData ? `${userData.name} ${userData.lastname}` : 'Perfil del Usuario'}</h1>
             {userData ? (
                 <div className="user-info">
+    
                     <p><strong>DPI:</strong> {dpi}</p>
-                    <p><strong>Email:</strong> {userData.email || "-No hay email-"}</p>
-                    <p><strong>Telefono:</strong> {userData.telephone || "-No hay telefono-"}</p>
+                    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                        <p><strong>Email:</strong></p>
+                        <Label_Input 
+                            label_name ={userData.email || "-No hay email-"}
+                            value = {datos.data}
+                            onChange={(value) => setValue('data',value)}
+                            to_Send={() => {  UpdateInfo('email');}}></Label_Input>
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                        <p><strong>Telefono:</strong></p>
+                        <Label_Input 
+                            label_name ={userData.telephone || "-No hay telefono-"}
+                            value = {datos.data}
+                            on_open ={()=>{setValue('data', '')}}
+                            onChange={(value) => setValue('data',value)}
+                            to_Send={() => {  UpdateInfo('telephone');}}></Label_Input>
+                    </div>
                     <p><strong>Nombre Completo:</strong> {`${userData.name} ${userData.lastname}`}</p>
                     <p><strong>Rol:</strong> {userData.type_user === "usuario_comun" ? "Usuario Común" : userData.type_user }</p>
                     <p><strong>Edad:</strong> {userData.birthdate}</p>
