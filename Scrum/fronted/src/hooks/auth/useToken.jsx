@@ -1,5 +1,5 @@
 import { useState, useEffect, createContext, useContext } from 'react'
- 
+  
 
 function parseJwt (token) {
     const base64Url = token.split('.')[1]
