@@ -151,11 +151,12 @@ const Account = () => {
             {userData ? (
                 <div className="user-info">
                     <p><strong>DPI:</strong> {dpi}</p>
-                    <p><strong>ID del Usuario:</strong> {userData.pi}</p>
                     <p><strong>Email:</strong> {userData.email || "-No hay email-"}</p>
+                    <p><strong>Telefono:</strong> {userData.telephone || "-No hay telefono-"}</p>
                     <p><strong>Nombre Completo:</strong> {`${userData.name} ${userData.lastname}`}</p>
                     <p><strong>Rol:</strong> {userData.type_user === "usuario_comun" ? "Usuario Común" : userData.type_user }</p>
-                    <p><strong>Edad:</strong> {userData.age}</p>
+                    <p><strong>Edad:</strong> {userData.birthdate}</p>
+                    
                 </div>
             ) : (
                 <p>Cargando datos del usuario...</p>
