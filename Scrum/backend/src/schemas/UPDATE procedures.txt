@@ -1,0 +1,368 @@
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/cita-controlada/'
+WHERE id = 1;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/solicitud-electronica-de-nit/'
+WHERE id = 2;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/inscripcion-nit-sin-obligaciones-tributarias/#1524835532161-47ceaa89-b60a'
+WHERE id = 3;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/inscripcion-nit-sin-obligaciones-para-personas-con-discapacidad/'
+WHERE id = 4;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/inscripcion-nit-sin-obligaciones-para-personas-con-invalidez-fisica/'
+WHERE id = 5;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/inscripcion-nit-sin-obligaciones-para-guatemaltecos-residentes-en-el-extranjero/'
+WHERE id = 6;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/inscripcion-nit-con-obligaciones-tributarias/'
+WHERE id = 7;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/inscripcion-copropiedad/'
+WHERE id = 8;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/copropiedad-por-adquisicion-de-bienes/'
+WHERE id = 9;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/inscripcion-sociedades/'
+WHERE id = 10;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/sociedad-de-emprendimiento/'
+WHERE id = 11;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/inscripcion-de-cooperativa/'
+WHERE id = 12;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/inscripcion-fideicomiso/'
+WHERE id = 13;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/inscripcion-de-contrato-de-participacion/'
+WHERE id = 14;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/inscripcion-de-condominio-o-propiedad-horizontal/'
+WHERE id = 15;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/inscripcion-sindicato/'
+WHERE id = 16;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/inscripcion-entidad-estatal/'
+WHERE id = 17;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/inscripcion-universidad-privada/'
+WHERE id = 18;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/inscripcion-iglesia-catolica/'
+WHERE id = 19;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/inscripcion-de-municipalidad/'
+WHERE id = 20;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/inscripcion-organizaciones-comunitarias/'
+WHERE id = 21;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/inscripcion-de-club-deportivo-con-finalidad-lucrativa/'
+WHERE id = 21;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/inscripcion-de-partido-politico/'
+WHERE id = 22;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/inscripcion-comite-civico-electoral-y-comite-para-la-constitucion-de-partidos-politicos/'
+WHERE id = 23;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/organizacion-de-padres-de-familia-opf/'
+WHERE id = 24;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/inscripcion-centros-educativos-centros-educativos-publicos-comunitarios-asociacion-educativa/'
+WHERE id = 25;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/inscripcion-de-sucursal-empresa-extranjera/'
+WHERE id = 26;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/inscripcion-de-fundacion-otra-entidad-religiosa-asociacion/'
+WHERE id = 27;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/inscripcion-de-fundacion-otra-entidad-religiosa-asociacion-extranjeras/'
+WHERE id = 28;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/inscripcion-nit-administrativo-juridico-para-entidad-extranjera-para-la-adquisicion-de-bien-inmueble-o-mueble-vehiculo-terrestre-maritimo-o-aereo-empresa-organizacion-persona-juridica/'
+WHERE id = 29;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/inscripcion-de-organizacion-no-gubernamental-ong-inscritas-en-el-registro-de-personas-juridicas-repeju-antes-del-3-de-agosto-2022/'
+WHERE id = 30;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/inscripcion-de-organizacion-no-gubernamental-ong-inscritas-en-el-registro-de-personas-juridicas-repeju-a-partir-del-3-de-agosto-2022/'
+WHERE id = 31;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-actividad-economica-principal-y-por-establecimiento/'
+WHERE id = 32;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-afiliaciones/'
+WHERE id = 33;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-de-afiliaciones-regimen-especial-de-contribuyente-agropecuario-o-regimen-electronico-especial-de-contribuyente-agropecuario/'
+WHERE id = 34;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/requisitos-de-actualizacion-de-cambio-de-regimen-general-a-pequeno-contribuyente-persona/'
+WHERE id = 35;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-de-condominio-o-propiedad-horizontal/'
+WHERE id = 36;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-de-contrato-de-participacion/'
+WHERE id = 37;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-de-cooperativa/'
+WHERE id = 38;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-de-copropiedad/'
+WHERE id = 39;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-de-datos-de-identificacion/'
+WHERE id = 40;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-de-datos-de-identificacion-de-diplomatico/'
+WHERE id = 41;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://farm3.sat.gob.gt/menu/login.jsf'                         WHERE id = 42;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-de-domicilio-fiscal/'
+WHERE id = 43;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-de-entidades-del-estado/'
+WHERE id = 44;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-de-federaciones-deportivas/'
+WHERE id = 45;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-de-nit-administrativo-juridico-para-entidad-extranjera-para-la-adquisicion-de-bien-inmueble-o-mueble-vehiculo-terrestre-maritimo-o-aereo-empresa-organizacion-persona-juridica/'
+WHERE id = 46;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-de-organizaciones-de-padres-familia/'
+WHERE id = 47;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-de-organizaciones-comunitarias/'
+WHERE id = 48;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-de-representante-de-estado-y-organismo-internacional/'
+WHERE id = 49;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-de-sociedad-de-emprendimiento-razon-o-denominacion-social/'
+WHERE id = 50;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-de-sociedad-de-emprendimiento-representante-legal/'
+WHERE id = 51;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-de-sucursal-empresa-extranjera/'
+WHERE id = 52;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-datos-del-establecimiento/'
+WHERE id = 53;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-cambio-de-regimen-de-pequeno-contribuyente-a-regimen-general-del-impuesto-al-valor-agregado/'
+WHERE id = 55;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-cambio-de-regimen-general-del-impuesto-al-valor-agregado-a-pequeno-contribuyente/'
+WHERE id = 56;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-del-impuesto-sobre-la-renta-regimen-opcional-simplificado-opcion-pago-directo/'
+WHERE id = 57;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-municipalidades/'
+WHERE id = 58;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-iglesia-catolica/'
+WHERE id = 59;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-nombramiento-o-cambio-de-perito-contador/'
+WHERE id = 60;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-o-cancelacion-de-representante-legal/'
+WHERE id = 61;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/ratificacion-o-confirmacion-anual-de-datos/'
+WHERE id = 62;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-persona-juridica-no-lucrativa/'
+WHERE id = 63;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-aviso-de-fallecimiento/'
+WHERE id = 64;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-razon-denominacion-social-nombre-de-la-entidad/'
+WHERE id = 65;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/requisitos-de-cancelacion-de-rl-solicitado-por-pi-que-finalizo-relacion-laboral/'
+WHERE id = 66;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/depuracion-nit-multiple/'
+WHERE id = 67;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/primera-actualizacion-de-datos-de-identificacion/'
+WHERE id = 68;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-de-organismos-internacionales-misiones-diplomaticas-y-consulares-agencias-programas-y-proyectos-de-cooperacion/'
+WHERE id = 69;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-persona-juridica-lucrativa/'
+WHERE id = 70;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-de-nit-administrativo-juridico-para-oficinas-de-representacion-de-bancos-extranjeros-empresa-organizacion-persona-juridica/'
+WHERE id = 71;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/cancelacion-de-nombramiento-de-representante-legal-de-iglesia-catolica/'
+WHERE id = 72;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-fideicomiso-y-bien-administrado-por-fideicomiso/'
+WHERE id = 73;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-universidad-privada-empresa-organizacion-persona-juridica/'
+WHERE id = 74;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/actualizacion-centros-educativos-centros-educativos-publicos-comunitarios/'
+WHERE id = 75;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/confederacion-deportiva-autonoma-de-guatemala/'
+WHERE id = 76;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/requisitos-actividad-comercial-servicios-tecnicos-servicios-profesionales/'
+WHERE id = 77;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/cese-por-prescripcion-persona-juridica/'
+WHERE id = 78;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/cese-por-prescripcion-persona-individual-en-caso-de-fallecimiento-del-contribuyente/'
+WHERE id = 79;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/cese-de-actividades-persona-juridica-no-lucrativa/'
+WHERE id = 80;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/cese-temporal-de-actividades/'
+WHERE id = 81;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/cese-de-negocios-inscritos-con-actividad-persona-individual/'
+WHERE id = 82;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/cese-de-negocios-inscritos-con-actividad-persona-juridica/'
+WHERE id = 83;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/cese-de-negocios-inscritos-con-actividad-en-caso-de-fallecimiento-del-contribuyente/'
+WHERE id = 84;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/cese-de-nit-administrativo-juridico/'
+WHERE id = 85;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/cese-de-copropiedad-de-bienes-y-o-derechos/'
+WHERE id = 86;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/cese-de-actividades-por-fusion/'
+WHERE id = 87;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/cese-de-actividades-de-fideicomisos/'
+WHERE id = 88;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/cese-de-actividades-de-negocios-inscritos-sin-autorizacion-del-contribuyente/'
+WHERE id = 89;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/habilitacion-de-actividades-a-requerimiento-del-contribuyente/'
+WHERE id = 90;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/tercera-persona-autorizada-rtu/'
+WHERE id = 91;
+UPDATE 1
+deimos=# UPDATE procedures
+SET url = 'https://portal.sat.gob.gt/portal/requisitos-tramites-agencias/facilidades-de-pago/'
+WHERE id = 92;
+UPDATE 1
+deimos=#

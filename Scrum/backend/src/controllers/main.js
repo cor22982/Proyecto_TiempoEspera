@@ -13,13 +13,20 @@ import { generateToken, decodeToken } from './jwt.js';
 const app = express();
 const PORT = 5000;
 export default app;
-// Middleware
+
 app.use(express.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Middleware de validación de solicitud
+const isPassword = (realPassword, currentPassword) => realPassword === currentPassword
+
+const getAge = (userBirthDay) =>{
+  age = new Date().getFullYear() - new Date(userBirthDay).getFullYear()
+  return new Date().getMonth < new Date(userBirthDay).getMonth ? age-- : age
+
+}
+
 const validateRequest = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -28,13 +35,13 @@ const validateRequest = (req, res, next) => {
   return next();
 };
 
-// Rutas
+
 app.get('/', (req, res) => {
   res.send('Hello from API PROYECTO DEIMOS');
 });
 
 
-// Registro de usuario
+
 app.post('/register', validateRequest, async (req, res) => {
   console.log("body", req.body);
   const { pi, name, lastname, password_md5, birthdate, type_user } = req.body;
@@ -42,42 +49,38 @@ app.post('/register', validateRequest, async (req, res) => {
   res.json({ message: 'user created' });
 });
 
-// Endpoint para obtener un usuario por su PI
+
 app.get('/users/:pi', async (req, res) => {
   const { pi } = req.params;
   try {
     const users = await getUserByPi(pi);
     const {birthdate} = await users
-    res.json(users);
+    res.status(200).json(await getUserByPi(req.params.pi));
   } catch (error) {
     console.error('Error al buscar usuario por PI:', error);
     res.status(500).json({ message: 'Error en el servidor' });
   }
 });
 
-
-// Endpoint para obtener una fecha de nacimiento por su PI
 
 app.get('/users_bdate/:pi', async (req, res) => {
-  const { pi } = req.params;
   try {
-    const date = await getUserBday(pi);
-    res.json(date);
+    res.json(await getUserBday(req.params.pi));
   } catch (error) {
     console.error('Error al buscar usuario por PI:', error);
     res.status(500).json({ message: 'Error en el servidor' });
   }
 });
-
-
-// End point para sacar la edad basado en fecha de nacimiento
 
 app.get('/users_age/:pi', async (req, res) => {
   const { pi } = req.params;
   try {
     const date = await getUserBday(pi);
+    console.log(date)
     //genero la fecha actual en la que hace el request (basado en la computadora)
     var today = new Date();
+    console.log(today)
+    console.log(getAge(date))
     //tomo la variable Birthdate de la base de datos traida por getUserbday
     var birthDate = new Date(date.birthDate);
     // calculo el año haciendo un getfullyear que me da el año completo del individuo
@@ -97,49 +100,26 @@ app.get('/users_age/:pi', async (req, res) => {
 }); 
 
 
-// Endpoint para el inicio de sesión
 app.post('/login', async (req, res) => {
-  const { pi, password , rol} = req.body;
-
   try {
-    // Obtener la información de inicio de sesión del usuario
-    const userLoginInfo = await getUserLoginInfo(pi, rol);
-    
-    // Verificar si se encontró la información de inicio de sesión
-    if (userLoginInfo) {
-      // Cifrar la contraseña proporcionada con MD5 de crypto-js
-      const hashedPassword = password;
-      // Verificar la contraseña
-      if (userLoginInfo.password === hashedPassword) {
-        const user = {
-          dpi: pi,
-          rol: rol
-        }
-        const token = generateToken(user)
-        // Autenticación exitosa
-        res.status(200).json({ success: true, message: 'Inicio de sesión exitoso', acces_token: token });
-      } else {
-        // Contraseña incorrecta
-        res.status(401).json({ success: false, message: 'Contraseña incorrecta' });
-      }
-    } else {
-      // Usuario no encontrado
-      res.status(404).json({ success: false, message: 'Usuario no encontrado' });
+    const userLoginInfo = await getUserLoginInfo(req.body.pi, req.body.rol);
+    if (!userLoginInfo) {
+      return res.status(404).json({ success: false, message: 'Usuario no encontrado' });
     }
+    if (!isPassword(userLoginInfo.password, req.body.password)) {
+      return res.status(401).json({ success: false, message: 'Contraseña incorrecta' });
+    }
+    res.status(200).json({ success: true, message: 'Inicio de sesión exitoso', acces_token: generateToken({ dpi: req.body.pi, rol: req.body.rol }) });
   } catch (error) {
     console.error('Error en el inicio de sesión:', error);
     res.status(500).json({ success: false, message: 'Error en el servidor' });
   }
 });
 
-//Endpoint de búsqueda de instituciones
 
 app.get('/institutions/:name', async (req, res) => {
-  const { name } = req.params;
   try{
-    const { name } = req.params;
-    const institutions = await getProcedureInfo(name);
-    res.status(200).json(institutions);
+    res.status(200).json(await getProcedureInfo(req.params.name));
   }
   catch (error){
     console.error('Error en la búsqueda de instituciones:', error);
@@ -149,9 +129,7 @@ app.get('/institutions/:name', async (req, res) => {
 
 app.get('/institution/:id', async (req, res) => {
   try {
-    const id = req.params.id;
-    const institution = await getInstitutionByID(id);
-    res.json(institution);
+    res.json(await getInstitutionByID(req.params.id));
   } catch (error) {
     console.error('Error al obtener la institución:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
@@ -159,9 +137,7 @@ app.get('/institution/:id', async (req, res) => {
 });
 app.get('/institution_req/:id', async (req, res) => {
   try {
-    const id = req.params.id;
-    const institution = await get_documents(id);
-    res.json(institution);
+    res.json(await get_documents(req.params.id));
   } catch (error) {
     console.error('Error al obtener la institución:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
@@ -170,8 +146,7 @@ app.get('/institution_req/:id', async (req, res) => {
 
 app.get('/institutions', async (req, res) => {
   try{
-    const institutions = await getAllInstitutionInfo();
-    res.status(200).json(institutions);
+    res.status(200).json(await getAllInstitutionInfo());
   }
   catch (error){
     console.error('Error en la búsqueda de instituciones:', error);
@@ -185,7 +160,6 @@ app.get('/requirements/:id_procedure', async (req, res) => {
     const requirements = await getProcedureRequierements(id_procedure);
     const steps = await getsteps(id_procedure);
 
-    // Combina los datos en un solo objeto
     const data = { requirements, steps };
 
     res.status(200).json(data);
@@ -198,9 +172,7 @@ app.get('/requirements/:id_procedure', async (req, res) => {
 
 app.get('/comments/:id_institution', async (req, res) => {
   try {
-    const { id_institution } = req.params;
-    const comments = await getComments(id_institution);
-    res.status(200).json(comments);
+    res.status(200).json(await getComments(req.params.id_institution));
   }
   catch(error){
     console.error('Error en la búsqueda de comentarios:', error);
@@ -210,10 +182,8 @@ app.get('/comments/:id_institution', async (req, res) => {
 
 app.post('/comment', async (req, res) => {
   try {
-    const { token, content, conversation_id } = req.body;
-    const payload = decodeToken(token)
-    const { dpi } = payload;
-    await createComment(dpi, content, conversation_id);
+    const payload = decodeToken(req.body.token)
+    await createComment(payload.dpi, req.body.content, req.body.conversation_id);
     res.status(200).json({ message: 'Comentario creado' });
   }
   catch(error){
@@ -224,9 +194,7 @@ app.post('/comment', async (req, res) => {
 
 app.get('/rating/:id_institution', async (req, res) => {
   try {
-    const { id_institution } = req.params;
-    const rating = await getRating(id_institution);
-    res.status(200).json(rating);
+    res.status(200).json(await getRating(req.params.id_institution));
   }
   catch(error){
     console.error('Error en la búsqueda de comentarios:', error);
@@ -236,10 +204,8 @@ app.get('/rating/:id_institution', async (req, res) => {
 
 app.post('/rating', async (req, res) => {
   try {
-    const { institution, rating, token } = req.body;
-    const payload = decodeToken(token)
-    const { dpi } = payload;
-    await insertNewRating(institution, rating, dpi);
+    const payload = decodeToken(req.body.token)
+    await insertNewRating(req.body.institution, req.body.rating, payload.dpi);
     res.status(200).json({ succes: true });
   }
   catch(error){
@@ -250,39 +216,7 @@ app.post('/rating', async (req, res) => {
 
 app.post('/newAppointment', async (req, res) => {
   try {
-    const {date, time, id_procedure, institution, pi} = req.body;
-    const procedure = await getprocedure_id(id_procedure, institution); 
-    console.log("Valor procedure: "+ procedure)
-    /*
-    Prueba de evitar que los días traslapen
-
-    const query = `
-    SELECT COUNT(*) AS total FROM citas 
-    WHERE usuario_id = pi AND DATE(date) = ?
-  `;
-  connection.query(query, [pi, date], (error, results) => {
-    if (error) {
-      return res.status(500).json({ error: 'Error en la base de datos' });
-    }
-
-    if (results[0].total > 0) {
-      // El usuario ya tiene una cita en esa fecha
-      return res.status(400).json({ mensaje: 'Ya tienes una cita registrada para este día.' });
-    } else {
-      // Insertamos la nueva cita en la base de datos
-      const insertQuery = 'INSERT INTO citas (usuario_id, fecha_cita) VALUES (?, ?)';
-      connection.query(insertQuery, [usuario_id, fecha_cita], (insertError) => {
-        if (insertError) {
-          return res.status(500).json({ error: 'Error al insertar la cita' });
-        }
-        res.status(201).json({ mensaje: 'Cita registrada exitosamente' });
-      });
-    }
-  });
-});
-
-  */
-    await create_new_appointment(date, time, procedure, pi);
+    await create_new_appointment(req.body.date, req.body.time, await getprocedure_id(req.body.id_procedure, req.body.institution), req.body.pi);
     res.status(200).json({succes: true});
   }
   catch(error){
@@ -294,9 +228,7 @@ app.post('/newAppointment', async (req, res) => {
 
 app.get('/userAppointments/:pi', async (req, res) =>{
   try {
-    const {pi} = req.params;
-    const procedures = await get_appointments(pi);
-    res.status(200).json(procedures);
+    res.status(200).json(await get_appointments(req.params.pi));
   }
   catch(error){
     console.error('Error al obtener los datos que buscas :(', error);
@@ -306,10 +238,7 @@ app.get('/userAppointments/:pi', async (req, res) =>{
 
 app.get('/userInfo/:pi', async(req, res)=>{
   try{
-    const {pi} = req.params;
-    const data = await getUserData(pi);
-    console.log("Datos obtenidos")
-    res.status(200).json(data);
+    res.status(200).json(await getUserData(req.params.pi));
   }
   catch(error){
     console.log('Error al obtener datos del usuario :(', error);
@@ -319,8 +248,7 @@ app.get('/userInfo/:pi', async(req, res)=>{
 
 app.put('/user_Update_Image', async(req, res)=>{
   try{
-    const {pi, image} = req.body;
-    const result = await UpdateImage(pi, image);
+    const result = await UpdateImage(req.body.pi, req.body.image);
     if (result.rowCount > 0) {
       console.log("Se guardó la imagen");
       res.status(200).json({ message: "Imagen actualizada correctamente" });
@@ -337,8 +265,7 @@ app.put('/user_Update_Image', async(req, res)=>{
 
 app.delete('/user/:pi', async(req, res) =>{
   try {
-    const {pi} = req.params;
-    const result = await deleteUser(pi);
+    const result = await deleteUser(req.params.pi);
     console.log("Usuario eliminado con exito")
     res.status(200).json({success: true})
   }
@@ -350,10 +277,7 @@ app.delete('/user/:pi', async(req, res) =>{
 
 app.get('/statistics/:id_institution', async(req, res) =>{
   try{
-    const { id_institution } = req.params;
-    console.log(id_institution)
-    const data = await getStatistics(id_institution);
-    res.status(200).json(data)
+    res.status(200).json(await getStatistics(req.params.id_institution))
   }
   catch(error){
     console.log('ERROR al encontrar los datos :(')
@@ -361,14 +285,11 @@ app.get('/statistics/:id_institution', async(req, res) =>{
   }
 })
 
-
-
-// Manejo de rutas no implementadas
 app.use((req, res) => {
   res.status(501).json({ error: 'Método no implementado' });
 });
 
-// Iniciar el servidor
+
 app.listen(PORT, () => {
   console.log(`Server listening at http://127.0.0.1:${PORT}`);
 });
