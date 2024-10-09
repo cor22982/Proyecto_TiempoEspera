@@ -40,7 +40,7 @@ jobs:
       - name: Setup Node for Backend
         uses: actions/setup-node@v3
         with:
-          node-version: 12.22.9
+          node-version: 18.19.1
 
       - name: Install Backend Dependencies
         run: |
