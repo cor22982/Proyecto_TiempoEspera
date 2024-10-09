@@ -1,7 +1,7 @@
 name: Merge Specific Folders
 
 on:
-  workflow_dispatch: # Permite ejecutar el workflow manualmente
+  workflow_dispatch: # Permite ejecutar el flujo de trabajo manualmente
 
 jobs:
   merge-folders:
@@ -10,15 +10,22 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Esto asegura que se descarguen todas las ramas
+
+      - name: Fetch All Branches
+        run: |
+          git fetch --all
+          git branch -a # Muestra las ramas disponibles para verificar
 
       - name: Merge Backend Changes
         run: |
-          git checkout backend -- Scrum/backend
+          git checkout origin/backend -- Scrum/backend
           git status # Verifica el estado después de la fusión de la carpeta backend
 
       - name: Merge Frontend Changes
         run: |
-          git checkout dev -- Scrum/fronted
+          git checkout origin/dev -- Scrum/fronted
           git status # Verifica el estado después de la fusión de la carpeta frontend
 
       - name: Commit Changes
@@ -26,7 +33,7 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
           git add Scrum/backend Scrum/fronted
-          git commit -m "Merged specific folders from backend and dev"
+          git commit -m "Merged specific folders from backend and dev" || echo "No changes to commit"
 
       - name: Check Git Status Before Push
         run: |
