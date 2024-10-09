@@ -1,7 +1,0 @@
-CREATE EVENT my_event
-ON SCHEDULE 
-    EVERY 1 MINUTE
-    STARTS '2015-01-01 00:15:00'
-COMMENT 'Removes forgotten password tokens older thank 1 week.'    
-DO
-    DELETE FROM my_table WHERE some_timestamp > NOW();
