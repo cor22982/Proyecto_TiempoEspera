@@ -128,6 +128,18 @@ export async function UpdateImage(pi, image){
   return result
 }
 
+export async function UpdateEmail_telephone(pi, data, type){
+  let result
+  if (type === 'email'){
+    result = await conn.query(`UPDATE users SET email = $1 WHERE pi = $2;`, [data, pi])
+  }
+  else if (type === 'telephone'){
+    result = await conn.query(`UPDATE users SET telephone = $1 WHERE pi = $2;`, [data, pi])
+  }
+  
+  return result
+}
+
 export async function getStatistics(id){
   const result = await conn.query('SELECT * from Average_people where Institution = $1;', [id])
   return result.rows
