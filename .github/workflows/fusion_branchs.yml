@@ -3,6 +3,9 @@ name: Merge Specific Folders
 on:
   workflow_dispatch: # Permite ejecutar el flujo de trabajo manualmente
 
+permissions:
+  contents: write # Permitir a la acción hacer push al repositorio
+
 jobs:
   merge-folders:
     runs-on: ubuntu-latest
