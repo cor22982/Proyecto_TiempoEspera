@@ -6,6 +6,7 @@ import Logout from '@pages/Auth/LogOut/LogOut';
 import Page_Main from '@pages/Home/HomeMain/HomeMain';
 import Guardados from '@pages/User/Saved/Guardados';
 import Account from '@pages/User/Account/account';
+import Configuration from '@pages/User/Configuration/configuration';
 import Sidebar from '@components/SideBar/SideBar';
 
 const Pages = ({ pi }) => {
@@ -26,7 +27,7 @@ const Pages = ({ pi }) => {
       case 'guardados':
         return <Guardados pi={pi} />;
       case 'configuracion':
-        return <ConfiguracionPage />;
+        return <Configuration />;
       case 'notificaciones':
         return <NotificacionesPage />;
       case 'recomendados':
@@ -97,7 +98,6 @@ const Pages = ({ pi }) => {
 
 
 const Recomendados = () => <h1>Contenido de Recomendados</h1>;
-const ConfiguracionPage = () => <h1>Contenido de la página de configuración</h1>;
 const NotificacionesPage = () => <h1>Contenido de la página de notificaciones</h1>;
 
 export default Pages;
