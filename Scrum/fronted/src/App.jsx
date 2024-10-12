@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import Logo from '@components/UI/AnimatedLogo'; // Importa el componente Logo
-import { TokenProvider } from '@hooks/auth/useToken'
+import { TokenProvider } from '@hooks/auth/useToken';
 import Indice from '@pages/AppRouter';
+import OneSignal from 'react-onesignal'; // Importa OneSignal
 
 function App() {
   const [showLogo, setShowLogo] = useState(true);
-  
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowLogo(false);
@@ -15,17 +16,25 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      OneSignal.init({
+        appId: '0b7d4e8e-e5ad-4eec-8bda-63563d2dd47a', // Reemplaza con tu appId real
+        notifyButton: {
+          enable: true,
+        },
+        // allowLocalhostAsSecureOrigin: true // Descomentar para pruebas en localhost
+      });
+    }
+  }, []);
 
   return (
-      <TokenProvider>
-          <div className="app-container">
-            {showLogo && <Logo />} {/* Muestra el logo solo si showLogo es true */}
-            {!showLogo && (
-              <Indice></Indice>
-            )}
-          </div>
-        
-      </TokenProvider>
+    <TokenProvider>
+      <div className="app-container">
+        {showLogo && <Logo />} {/* Muestra el logo solo si showLogo es true */}
+        {!showLogo && <Indice />}
+      </div>
+    </TokenProvider>
   );
 }
 
