@@ -221,7 +221,7 @@ app.post('/newAppointment', async (req, res) => {
     await create_new_appointment(req.body.date, req.body.time, await getprocedure_id(req.body.id_procedure, req.body.institution), req.body.pi);
     //Creación de una notificación
     const notificationData = {
-      app_id: '0b7d4e8e-e5ad-4eec-8bda-63563d2dd47a',
+      app_id: 'https://onesignal.com/api/v1/notifications',
       contents: {
         en: 'Hello, World',
         es: 'Hola Mundo',
@@ -229,7 +229,7 @@ app.post('/newAppointment', async (req, res) => {
         zhHans: '\u4f60\u597d\u4e16\u754c'
       },
       target_channel: 'push',
-      included_segments: ['All Subscribers']
+      included_segments: ['All']
     }
 
     //Solicitud a one signal
