@@ -23,6 +23,10 @@ function App() {
         notifyButton: {
           enable: true,
         },
+        serviceWorkerParam: {
+          scope: '/',
+          path: '/OneSignalSDKWorker.js', // Especifica la ruta de tu Service Worker aquí
+        },
         // allowLocalhostAsSecureOrigin: true // Descomentar para pruebas en localhost
       });
     }
