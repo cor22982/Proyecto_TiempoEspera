@@ -2,6 +2,7 @@ import express from 'express';
 import { validationResult } from 'express-validator';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import axios from 'axios';
 import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, 
   getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, 
   insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage
@@ -217,6 +218,26 @@ app.post('/rating', async (req, res) => {
 app.post('/newAppointment', async (req, res) => {
   try {
     await create_new_appointment(req.body.date, req.body.time, await getprocedure_id(req.body.id_procedure, req.body.institution), req.body.pi);
+    //Creación de una notificación
+    const notificationData = {
+      app_id: '0b7d4e8e-e5ad-4eec-8bda-63563d2dd47a',
+      contents: {
+        en: 'Hello, World',
+        es: 'Hola Mundo',
+        fr: 'Bonjour le monde',
+        zhHans: '\u4f60\u597d\u4e16\u754c'
+      },
+      target_channel: 'push',
+      included_segments: ['All Subscribers']
+    }
+
+    //Solicitud a one signal
+    await axios.post('https://api.onesignal.com/v1/notifications', notificationData, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic YzI5ZGI0NzgtZWNiMC00ZDEyLTljMzQtMjFjMjMyNzJkNjI3' // Reemplaza con tu clave API
+      }
+    });
     res.status(200).json({succes: true});
   }
   catch(error){
