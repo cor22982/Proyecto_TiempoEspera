@@ -104,6 +104,7 @@ app.get('/users_age/:pi', async (req, res) => {
 app.post('/login', async (req, res) => {
   try {
     const userLoginInfo = await getUserLoginInfo(req.body.pi, req.body.rol);
+    console.log(userLoginInfo)
     if (!userLoginInfo) {
       return res.status(404).json({ success: false, message: 'Usuario no encontrado' });
     }
