@@ -1,0 +1,177 @@
+// Variables
+$primary-color: #00367E;
+$hover-color: #007bff;
+$light-background-start: #ffffff;
+$light-background-end: #f7f7f7;
+$dark-background-start: #3a3a3a;
+$dark-background-end: #2b2b2b;
+$box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15); // Reducido a la mitad
+$border-radius: 8px; // Reducido a la mitad
+$font-color-light: #333;
+$font-color-dark: #ddd;
+$padding-default: 1rem; // Reducido a la mitad
+$font-size-title: 1.25rem; // Reducido a la mitad
+$font-size-icon: 0.75rem; // Reducido a la mitad
+$font-size-button: 0.5rem; // Reducido a la mitad
+
+// Breakpoints
+$small-screen: 576px;
+$medium-screen: 768px;
+$large-screen: 992px;
+
+// Functions
+@function gradient($start, $end, $direction: to bottom) {
+    @return linear-gradient($direction, $start, $end);
+}
+
+@function calculate-box-shadow($shadow) {
+    @return $shadow;
+}
+
+@function adjust-color($color, $amount) {
+    @if $amount > 0 {
+        @return lighten($color, $amount);
+    } @else {
+        @return darken($color, abs($amount));
+    }
+}
+
+// Mixins
+@mixin box-shadow($shadow) {
+    box-shadow: calculate-box-shadow($shadow);
+}
+
+@mixin border-radius($radius) {
+    border-radius: $radius;
+}
+
+@mixin font-size($size) {
+    font-size: $size;
+}
+
+@mixin padding($padding) {
+    padding: $padding;
+}
+
+@mixin gradient-background($start, $end, $direction: to bottom) {
+    background: gradient($start, $end, $direction);
+}
+
+// Styles
+.container {
+    @include padding($padding-default);
+    display: flex;
+    justify-content: center;
+    background: none;
+    flex-direction: column;
+    align-items: center;
+
+    @media (min-width: $medium-screen) {
+        flex-direction: row;
+    }
+}
+
+.configCard {
+    @include padding($padding-default);
+    @include gradient-background($light-background-start, $light-background-end);
+    @include border-radius($border-radius);
+    max-width: 800px; // Mantiene el ancho original
+    width: 100%;
+    @include box-shadow($box-shadow);
+    margin: auto;
+    transition: none;
+
+    @media (max-width: $small-screen) {
+        padding: 0.5rem; // Reducido a la mitad
+    }
+
+    @media (min-width: $large-screen) {
+        max-width: 1000px; // Mantiene el ancho original
+    }
+}
+
+.title {
+    @include font-size($font-size-title);
+    font-weight: bold;
+    color: $font-color-light;
+    margin-bottom: 0.75rem; // Reducido a la mitad
+
+    @media (max-width: $small-screen) {
+        @include font-size(1rem); // Reducido a la mitad
+    }
+
+    @media (min-width: $large-screen) {
+        @include font-size(1.5rem); // Reducido a la mitad
+    }
+}
+
+.sectionHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem; // Reducido a la mitad
+}
+
+.subtitle {
+    margin-left: 0.25rem; // Reducido a la mitad
+}
+
+.icon {
+    color: $primary-color;
+    @include font-size($font-size-icon);
+
+    @media (max-width: $small-screen) {
+        @include font-size(0.6rem); // Reducido a la mitad
+    }
+
+    @media (min-width: $large-screen) {
+        @include font-size(1rem); // Reducido a la mitad
+    }
+}
+
+.saveButton {
+    margin-top: 1rem; // Reducido a la mitad
+    @include font-size($font-size-button);
+    font-weight: bold;
+    @include border-radius(3px); // Reducido a la mitad
+    text-transform: uppercase;
+    width: 100%;
+    padding: 0.4rem; // Reducido a la mitad
+    background-color: $primary-color; // Agrega un color de fondo inicial
+    color: #fff; // Color de texto inicial
+    transition: background-color 0.3s ease, color 0.3s ease; // Añade la transición para ambos
+    text-align: center;
+
+    &:hover {
+        background-color: $hover-color; // Cambia el color de fondo en el hover
+        color: #fff; // Asegura que el texto sea blanco en el hover
+    }
+
+    @media (max-width: $small-screen) {
+        width: auto;
+    }
+}
+
+
+.darkMode {
+    .configCard {
+        @include gradient-background($dark-background-start, $dark-background-end);
+        color: $font-color-dark;
+    }
+
+    .title, .subtitle {
+        color: $font-color-dark;
+    }
+
+    .icon {
+        color: adjust-color($font-color-dark, 30%);
+    }
+}
+
+.control {
+    margin-top: 0.5rem; // Reducido a la mitad
+}
+
+// Global settings
+* {
+    transition: none !important;
+}

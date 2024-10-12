@@ -19,7 +19,7 @@ test('Search procedure', async () => {
   });
 
   fireEvent.change(screen.getByPlaceholderText('Buscar tramite'), { target: { value: 'cita controlada' } });
-  
+   
 
   fireEvent.keyDown(screen.getByPlaceholderText('Buscar tramite'), { key: 'Enter', code: 'Enter', charCode: 13 });
   
