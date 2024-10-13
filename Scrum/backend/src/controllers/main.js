@@ -229,15 +229,18 @@ app.post('/newAppointment', async (req, res) => {
         zhHans: '\u4f60\u597d\u4e16\u754c'
       },
       target_channel: 'push',
-      included_segments: ['All']
+      included_segments: ['All Subscribers']
     }
 
     //Solicitud a one signal
-    await axios.post('https://api.onesignal.com/v1/notifications', notificationData, {
+    await axios({
+      method: 'post',
+      url: 'https://api.onesignal.com/notifications', // Como aparece en tu ejemplo
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Basic YzI5ZGI0NzgtZWNiMC00ZDEyLTljMzQtMjFjMjMyNzJkNjI3' // Reemplaza con tu clave API
-      }
+        'Authorization': 'Basic YzI5ZGI0NzgtZWNiMC00ZDEyLTljMzQtMjFjMjMyNzJkNjI3'
+      },
+      data: notificationData
     });
     res.status(200).json({succes: true});
   }
