@@ -253,9 +253,12 @@ app.post('/newAppointment', async (req, res) => {
       en: `You have an apointment to ${req.body.date} on ${name}`,
       es: `Tienes una cita el ${req.body.date} on ${name}`,
     };
-
+    
+    console.log(req.body.date)
+    console.log(req.body.time)
     const [day, month, year] = req.body.date.split('-');
     const dateString = `${year}-${month}-${day}T${req.body.time}:00.000Z`;
+    console.log(dateString)
     date_notifi = new Date(dateString)
     notification.send_after = date_notifi.toISOString();
     const response = await client.createNotification(notification);
