@@ -249,10 +249,8 @@ app.post('/newAppointment', async (req, res) => {
     };
 
     notification.contents = {
-      en: 'Hello, World',
-      es: 'Hola Mundo',
-      fr: 'Bonjour le monde',
-      zhHans: '你好，世界',
+      en: `A new apointment has been scheduled to ${req.body.date}`,
+      es: `Una nueva cita se agendo para el ${req.body.date}`,
     };
 
     const response = await client.createNotification(notification);
