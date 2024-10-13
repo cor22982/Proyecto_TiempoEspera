@@ -9,11 +9,29 @@ import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequiere
 , getStatistics, getUserBday, get_documents, UpdateEmail_telephone} from '../database/db.js';
 import { getUserLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken } from './jwt.js';
-
+import * as OneSignalLib from '@onesignal/node-onesignal'; 
 
 const app = express();
 const PORT = 5000;
 export default app;
+const ONESIGNAL_APP_ID = '0b7d4e8e-e5ad-4eec-8bda-63563d2dd47a';
+const ONESIGNAL_REST_API_KEY = 'YzI5ZGI0NzgtZWNiMC00ZDEyLTljMzQtMjFjMjMyNzJkNjI3';
+
+
+const configuration = OneSignalLib.createConfiguration({
+  authMethods: {
+    rest_api_key: {
+      tokenProvider: {
+        getToken() {
+          return ONESIGNAL_REST_API_KEY; // El token de la API
+        },
+      },
+    },
+  },
+});
+
+
+const client = new OneSignalLib.DefaultApi(configuration);
 
 app.use(express.json());
 app.use(cors());
@@ -220,33 +238,30 @@ app.post('/newAppointment', async (req, res) => {
   try {
     await create_new_appointment(req.body.date, req.body.time, await getprocedure_id(req.body.id_procedure, req.body.institution), req.body.pi);
     //Creación de una notificación
-    const notificationData = {
-      app_id: '0b7d4e8e-e5ad-4eec-8bda-63563d2dd47a',
-      contents: {
-        en: 'Hello, World',
-        es: 'Hola Mundo',
-        fr: 'Bonjour le monde',
-        zhHans: '\u4f60\u597d\u4e16\u754c'
-      },
-      target_channel: 'push',
-      included_segments: ['All Subscribers']
-    }
+   
+    const notification = new OneSignalLib.Notification();
+    notification.app_id = ONESIGNAL_APP_ID;
+    notification.included_segments = ['All']; // Enviar a todos los usuarios
+    notification.target_channel = 'push';
+    notification.headings = {
+      en: 'New Appointment Scheduled',
+      es: 'Nueva Cita Programada',
+    };
 
-    //Solicitud a one signal
-    await axios({
-      method: 'post',
-      url: 'https://api.onesignal.com/notifications', // Como aparece en tu ejemplo
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic YzI5ZGI0NzgtZWNiMC00ZDEyLTljMzQtMjFjMjMyNzJkNjI3'
-      },
-      data: notificationData
-    });
-    res.status(200).json({succes: true});
+    notification.contents = {
+      en: 'Hello, World',
+      es: 'Hola Mundo',
+      fr: 'Bonjour le monde',
+      zhHans: '你好，世界',
+    };
+
+    const response = await client.createNotification(notification);
+
+    res.status(200).json({succes: true, response});
   }
   catch(error){
     console.error('Error al hacer una nueva reservación :(', error);
-    res.status(500).json({succes: false});
+    res.status(500).json({succes: false, error: error.message});
   }
 
 });
