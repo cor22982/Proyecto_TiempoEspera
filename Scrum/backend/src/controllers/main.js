@@ -256,7 +256,7 @@ app.post('/newAppointment', async (req, res) => {
     };
     
     
-    const [day, month, year] = req.body.date.split('-');
+    const [year, month, day] = req.body.date.split('-');
     const dateString = `${year}-${month}-${day}T${req.body.time}:00`;
     console.log(dateString)
     const date_notifi = new Date(dateString)
