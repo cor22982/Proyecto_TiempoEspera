@@ -255,9 +255,9 @@ app.post('/newAppointment', async (req, res) => {
     };
 
     const [day, month, year] = req.body.date.split('-');
-    const sendAfterDate = new Date(`${year}-${month}-${day}T${req.body.time}:00`);
-    notification.send_after = sendAfterDate.toISOString();
-
+    const dateString = `${year}-${month}-${day}T${req.body.time}:00`;
+    date_notifi = new Date(dateString)
+    notification.send_after = date_notifi.toISOString();
     const response = await client.createNotification(notification);
 
     res.status(200).json({succes: true, response});
