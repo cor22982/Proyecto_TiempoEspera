@@ -239,20 +239,20 @@ app.post('/newAppointment', async (req, res) => {
   try {
     await create_new_appointment(req.body.date, req.body.time, await getprocedure_id(req.body.id_procedure, req.body.institution), req.body.pi);
     //Creación de una notificación
-    const {name} = await getInstitutionByID(req.body.institution)
-
+    const result = await getInstitutionByID(req.body.institution)
+    const name_i = result[0].name
     const notification = new OneSignalLib.Notification();
     notification.app_id = ONESIGNAL_APP_ID;
     notification.included_segments = ['All']; // Enviar a todos los usuarios
     notification.target_channel = 'push';
     notification.headings = {
-      en: 'New Appointment Scheduled',
-      es: 'Nueva Cita Programada',
+      en: 'Appointment Scheduled',
+      es: 'Tienes una cita',
     };
 
     notification.contents = {
-      en: `You have an apointment to ${req.body.date} on ${name}`,
-      es: `Tienes una cita el ${req.body.date} on ${name}`,
+      en: `You have an apointment today at ${req.body.time} on ${name_i}`,
+      es: `Tienes una cita hoy a las  ${req.body.time} en ${name_i}`,
     };
     
     
