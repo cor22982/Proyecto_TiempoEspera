@@ -235,11 +235,7 @@ app.post('/rating', async (req, res) => {
 });
 
 app.post('/newAppointment', async (req, res) => {
-  console.log(req.body.date)
-  console.log(req.body.time)
-  const [day, month, year] = req.body.date.split('-');
-  const dateString = `${year}-${month}-${day}T${req.body.time}:00.000Z`;
-  console.log(dateString)
+  
   try {
     await create_new_appointment(req.body.date, req.body.time, await getprocedure_id(req.body.id_procedure, req.body.institution), req.body.pi);
     //Creación de una notificación
@@ -268,6 +264,11 @@ app.post('/newAppointment', async (req, res) => {
     res.status(200).json({succes: true, response});
   }
   catch(error){
+    console.log(req.body.date)
+    console.log(req.body.time)
+    const [day, month, year] = req.body.date.split('-');
+    const dateString = `${year}-${month}-${day}T${req.body.time}:00.000Z`;
+    console.log(dateString)
     console.error('Error al hacer una nueva reservación :(', error);
     res.status(500).json({succes: false, error: error.message});
   }
