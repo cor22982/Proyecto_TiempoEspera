@@ -235,6 +235,11 @@ app.post('/rating', async (req, res) => {
 });
 
 app.post('/newAppointment', async (req, res) => {
+  console.log(req.body.date)
+  console.log(req.body.time)
+  const [day, month, year] = req.body.date.split('-');
+  const dateString = `${year}-${month}-${day}T${req.body.time}:00.000Z`;
+  console.log(dateString)
   try {
     await create_new_appointment(req.body.date, req.body.time, await getprocedure_id(req.body.id_procedure, req.body.institution), req.body.pi);
     //Creación de una notificación
@@ -254,11 +259,8 @@ app.post('/newAppointment', async (req, res) => {
       es: `Tienes una cita el ${req.body.date} on ${name}`,
     };
     
-    console.log(req.body.date)
-    console.log(req.body.time)
-    const [day, month, year] = req.body.date.split('-');
-    const dateString = `${year}-${month}-${day}T${req.body.time}:00.000Z`;
-    console.log(dateString)
+    
+    
     date_notifi = new Date(dateString)
     notification.send_after = date_notifi.toISOString();
     const response = await client.createNotification(notification);
