@@ -256,18 +256,16 @@ app.post('/newAppointment', async (req, res) => {
     };
     
     
-    
+    const [day, month, year] = req.body.date.split('-');
+    const dateString = `${year}-${month}-${day}T${req.body.time}:00`;
     date_notifi = new Date(dateString)
-    notification.send_after = date_notifi.toISOString();
+    console.log(dateString)
+
     const response = await client.createNotification(notification);
 
     res.status(200).json({succes: true, response});
   }
-  catch(error){
-    console.log(req.body.date)
-    console.log(req.body.time)
-    const [day, month, year] = req.body.date.split('-');
-    const dateString = `${year}-${month}-${day}T${req.body.time}:00.000Z`;
+  catch(error){    
     console.log(dateString)
     console.error('Error al hacer una nueva reservación :(', error);
     res.status(500).json({succes: false, error: error.message});
