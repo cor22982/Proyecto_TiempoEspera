@@ -265,7 +265,6 @@ app.post('/newAppointment', async (req, res) => {
     res.status(200).json({succes: true, response});
   }
   catch(error){    
-    console.log(dateString)
     console.error('Error al hacer una nueva reservación :(', error);
     res.status(500).json({succes: false, error: error.message});
   }
