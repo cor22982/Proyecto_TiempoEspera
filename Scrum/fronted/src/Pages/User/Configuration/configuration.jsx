@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext} from 'react';
 import {
     Container,
     Typography,
@@ -7,7 +7,6 @@ import {
     Button,
     TextField,
     FormControl,
-    FormLabel,
     RadioGroup,
     Radio,
     FormControlLabel,
@@ -18,25 +17,17 @@ import LockIcon from '@mui/icons-material/Lock';
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import SettingsIcon from '@mui/icons-material/Settings';
 import styles from './configuration.module.css';
+import { ThemeContext } from '@contexts/ConfigContext/ThemeContext'; // Importa el contexto
 
 const Configuration = () => {
-    const [darkMode, setDarkMode] = useState(false);
+    const { isDarkMode, toggleDarkMode } = useContext(ThemeContext); // Usa el contexto
+
     const [fontSize, setFontSize] = useState(16);
-    const [contrast, setContrast] = useState(false);
     const [password, setPassword] = useState('');
     const [fontFamily, setFontFamily] = useState('Arial');
-    const [notificationsEnabled, setNotificationsEnabled] = useState(false);
-
-    const handleDarkModeToggle = () => {
-        setDarkMode(!darkMode);
-    };
 
     const handleFontSizeChange = (event, newValue) => {
         setFontSize(newValue);
-    };
-
-    const handleContrastToggle = () => {
-        setContrast(!contrast);
     };
 
     const handlePasswordChange = (event) => {
@@ -45,10 +36,6 @@ const Configuration = () => {
 
     const handleFontFamilyChange = (event) => {
         setFontFamily(event.target.value);
-    };
-
-    const handleNotificationsToggle = () => {
-        setNotificationsEnabled(!notificationsEnabled);
     };
 
     return (
@@ -82,7 +69,7 @@ const Configuration = () => {
                             </Typography>
                         </div>
                         <FormControlLabel
-                            control={<Switch checked={darkMode} onChange={handleDarkModeToggle} color="primary" />}
+                            control={<Switch checked={isDarkMode} onChange={toggleDarkMode} color="primary" />}
                             label="Modo Oscuro"
                             className={styles.control}
                         />
@@ -123,7 +110,6 @@ const Configuration = () => {
                             Tipografía Preferida
                         </Typography>
                         <FormControl component="fieldset">
-                            
                             <RadioGroup
                                 value={fontFamily}
                                 onChange={handleFontFamilyChange}

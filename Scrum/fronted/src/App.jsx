@@ -4,6 +4,7 @@ import Logo from '@components/UI/AnimatedLogo'; // Importa el componente Logo
 import { TokenProvider } from '@hooks/auth/useToken';
 import Indice from '@pages/AppRouter';
 import OneSignal from 'react-onesignal'; // Importa OneSignal
+import { ThemeProvider } from '@contexts/ConfigContext/ThemeContext'; // Importa el ThemeProvider
 
 function App() {
   const [showLogo, setShowLogo] = useState(true);
@@ -27,17 +28,18 @@ function App() {
           scope: '/',
           path: '/OneSignalSDKWorker.js', // Especifica la ruta de tu Service Worker aquí
         },
-        // allowLocalhostAsSecureOrigin: true // Descomentar para pruebas en localhost
       });
     }
   }, []);
 
   return (
     <TokenProvider>
-      <div className="app-container">
-        {showLogo && <Logo />} {/* Muestra el logo solo si showLogo es true */}
-        {!showLogo && <Indice />}
-      </div>
+      <ThemeProvider> {/* Envuelve la aplicación con ThemeProvider */}
+        <div className="app-container">
+          {showLogo && <Logo />} {/* Muestra el logo solo si showLogo es true */}
+          {!showLogo && <Indice />}
+        </div>
+      </ThemeProvider>
     </TokenProvider>
   );
 }
