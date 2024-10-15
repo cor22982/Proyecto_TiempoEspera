@@ -11,7 +11,7 @@ const client = new Client({
   host: 'localhost',
   database: 'deimos',
   password: '36L8W7Nm',
-  port: 5000,
+  port: 5432,
 });
 
 client.connect()
