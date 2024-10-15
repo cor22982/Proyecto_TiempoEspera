@@ -181,3 +181,8 @@ export async function modifyUserPassword(password, pi){
   const result = await conn.query('UPDATE users set password = $1 where pi =$2', [password, pi])
   return result.rows
 }
+
+export async function getUserEmail(pi){
+  const result = await conn.query('SELECT email from users where pi = $1', [pi])
+  return result.rows
+}
