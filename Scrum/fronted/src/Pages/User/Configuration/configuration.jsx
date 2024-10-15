@@ -20,6 +20,7 @@ import styles from './configuration.module.css';
 import { ThemeContext } from '@contexts/ConfigContext/ThemeContext';
 import { FontContext } from '@contexts/ConfigContext/FontContext';
 import { FontSizeContext } from '@contexts/ConfigContext/FontSizeContext';
+import Swal from 'sweetalert2'; // Importar SweetAlert2
 
 const Configuration = () => {
   const { isDarkMode, toggleDarkMode } = useContext(ThemeContext);
@@ -48,16 +49,35 @@ const Configuration = () => {
   };
 
   const handleSaveChanges = () => {
+    let changesMade = false;
+
     if (tempIsDarkMode !== isDarkMode) {
       toggleDarkMode();
+      changesMade = true;
     }
     
     if (tempFontFamily !== fontFamily) {
       changeFontFamily(tempFontFamily);
+      changesMade = true;
     }
   
     if (tempFontSize !== fontSize) {
       setFontSize(tempFontSize);
+      changesMade = true;
+    }
+
+    if (changesMade) {
+      Swal.fire({
+        icon: 'success',
+        title: '¡Éxito!',
+        text: 'Los cambios se han guardado correctamente.',
+      });
+    } else {
+      Swal.fire({
+        icon: 'info',
+        title: 'Sin cambios',
+        text: 'No se realizaron cambios para guardar.',
+      });
     }
   };
 
@@ -161,34 +181,33 @@ const Configuration = () => {
             </Typography>
             <FormControl component="fieldset">
               <RadioGroup value={tempFontFamily} onChange={handleTempFontFamilyChange}>
-              <FormControlLabel
-                value="Inika"
-                control={<Radio color="primary" />}
-                label={
-                  <Typography style={{ fontFamily: 'var(--title-inika)', fontSize: 'inherit' }}>
-                    Inika
-                  </Typography>
-                }
-              />
-              <FormControlLabel
-                value="Roboto"
-                control={<Radio color="primary" />}
-                label={
-                  <Typography style={{ fontFamily: 'var(--font-roboto)', fontSize: 'inherit' }}>
-                    Roboto
-                  </Typography>
-                }
-              />
-              <FormControlLabel
-                value="Times New Roman"
-                control={<Radio color="primary" />}
-                label={
-                  <Typography style={{ fontFamily: 'var(--font-times)', fontSize: 'inherit' }}>
-                    Times New Roman
-                  </Typography>
-                }
-              />
-
+                <FormControlLabel
+                  value="Inika"
+                  control={<Radio color="primary" />}
+                  label={
+                    <Typography style={{ fontFamily: 'var(--title-inika)', fontSize: 'inherit' }}>
+                      Inika
+                    </Typography>
+                  }
+                />
+                <FormControlLabel
+                  value="Roboto"
+                  control={<Radio color="primary" />}
+                  label={
+                    <Typography style={{ fontFamily: 'var(--font-roboto)', fontSize: 'inherit' }}>
+                      Roboto
+                    </Typography>
+                  }
+                />
+                <FormControlLabel
+                  value="Times New Roman"
+                  control={<Radio color="primary" />}
+                  label={
+                    <Typography style={{ fontFamily: 'var(--font-times)', fontSize: 'inherit' }}>
+                      Times New Roman
+                    </Typography>
+                  }
+                />
               </RadioGroup>
             </FormControl>
           </Grid>
