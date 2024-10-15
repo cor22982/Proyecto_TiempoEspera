@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import pg from 'pg';
 
 // Carga las variables del archivo .env
-dotenv.config({ path: '../../../.env' });
+dotenv.config({ path: '../../../../.env' });
 
 const { Client } = pg;
 
