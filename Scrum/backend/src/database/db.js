@@ -177,3 +177,7 @@ export async function deleteOTP(otp){
   return result.rows
 }
 
+export async function modifyUserPassword(password, pi){
+  const result = await conn.query('UPDATE users set password = $1 where pi =$2', [password, pi])
+  return result.rows
+}
