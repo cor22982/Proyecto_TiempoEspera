@@ -1,18 +1,38 @@
 import express from 'express';
 import { validationResult } from 'express-validator';
+import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import axios from 'axios';
 import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, 
   getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, 
   insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage
-, getStatistics, getUserBday, get_documents} from '../database/db.js';
+, getStatistics, getUserBday, get_documents, UpdateEmail_telephone, deleteInstitution, addInstitution, UpdatePassw} from '../database/db.js';
 import { getUserLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken } from './jwt.js';
-
+import * as OneSignalLib from '@onesignal/node-onesignal'; 
 
 const app = express();
 const PORT = 5000;
 export default app;
+const ONESIGNAL_APP_ID = '0b7d4e8e-e5ad-4eec-8bda-63563d2dd47a';
+const ONESIGNAL_REST_API_KEY = 'YzI5ZGI0NzgtZWNiMC00ZDEyLTljMzQtMjFjMjMyNzJkNjI3';
+dotenv.config({ path: '../../../.env' });
+
+const configuration = OneSignalLib.createConfiguration({
+  authMethods: {
+    rest_api_key: {
+      tokenProvider: {
+        getToken() {
+          return process.env.ONESIGNAL_REST_API_KEY; // El token de la API
+        },
+      },
+    },
+  },
+});
+
+
+const client = new OneSignalLib.DefaultApi(configuration);
 
 app.use(express.json());
 app.use(cors());
@@ -25,7 +45,7 @@ const getAge = (userBirthDay) =>{
   age = new Date().getFullYear() - new Date(userBirthDay).getFullYear()
   return new Date().getMonth < new Date(userBirthDay).getMonth ? age-- : age
 
-}
+};
 
 const validateRequest = (req, res, next) => {
   const errors = validationResult(req);
@@ -49,6 +69,16 @@ app.post('/register', validateRequest, async (req, res) => {
   res.json({ message: 'user created' });
 });
 
+app.post('/institution_add', async(req, res) => {
+  console.log("body", req.body);
+  const {pi, name, adress, hora_apertura, hora_cierre, telefono, Imagen} =req.params;
+  try {
+    const addition = await addInstitution(pi, name, adress, hora_apertura, hora_cierre, telefono, Imagen)
+  } catch (error) {
+    console.error('Error al crear nueva insitución')
+    res.status(500).json({message: 'Error en el servidor'})
+  }
+});
 
 app.get('/users/:pi', async (req, res) => {
   const { pi } = req.params;
@@ -103,6 +133,7 @@ app.get('/users_age/:pi', async (req, res) => {
 app.post('/login', async (req, res) => {
   try {
     const userLoginInfo = await getUserLoginInfo(req.body.pi, req.body.rol);
+    console.log(userLoginInfo)
     if (!userLoginInfo) {
       return res.status(404).json({ success: false, message: 'Usuario no encontrado' });
     }
@@ -201,6 +232,7 @@ app.get('/rating/:id_institution', async (req, res) => {
     res.status(500).send('Error del servidor :(');
   }
 });
+app.post
 
 app.post('/rating', async (req, res) => {
   try {
@@ -215,13 +247,36 @@ app.post('/rating', async (req, res) => {
 });
 
 app.post('/newAppointment', async (req, res) => {
+  
   try {
     await create_new_appointment(req.body.date, req.body.time, await getprocedure_id(req.body.id_procedure, req.body.institution), req.body.pi);
-    res.status(200).json({succes: true});
+    //Creación de una notificación
+    const result = await getInstitutionByID(req.body.institution)
+    const name_i = result[0].name
+    const notification = new OneSignalLib.Notification();
+    notification.app_id = process.env.ONESIGNAL_APP_ID;
+    notification.included_segments = ['All']; // Enviar a todos los usuarios
+    notification.target_channel = 'push';
+    notification.headings = {
+      en: 'Appointment Scheduled',
+      es: 'Tienes una cita',
+    };
+
+    notification.contents = {
+      en: `You have an apointment today at ${req.body.time} on ${name_i}`,
+      es: `Tienes una cita hoy a las  ${req.body.time} en ${name_i}`,
+    };
+    
+    
+    const [year, month, day] = req.body.date.split('-');
+    const dateString = `${year}-${month}-${day} ${req.body.time}:00 GMT-0600`;
+    notification.send_after = dateString
+    const response = await client.createNotification(notification);
+    res.status(200).json({succes: true, response});
   }
-  catch(error){
+  catch(error){    
     console.error('Error al hacer una nueva reservación :(', error);
-    res.status(500).json({succes: false});
+    res.status(500).json({succes: false, error: error.message});
   }
 
 });
@@ -234,7 +289,7 @@ app.get('/userAppointments/:pi', async (req, res) =>{
     console.error('Error al obtener los datos que buscas :(', error);
     res.status(500).send('ERROR :((');
   }
-})
+});
 
 app.get('/userInfo/:pi', async(req, res)=>{
   try{
@@ -244,7 +299,7 @@ app.get('/userInfo/:pi', async(req, res)=>{
     console.log('Error al obtener datos del usuario :(', error);
     res.status(500).send('ERROR :(')
   }
-})
+});
 
 app.put('/user_Update_Image', async(req, res)=>{
   try{
@@ -261,7 +316,42 @@ app.put('/user_Update_Image', async(req, res)=>{
     console.log('Error al guardar la imagen :(', error);
     res.status(500).send('ERROR :(')
   }
+});
+
+app.post('/requestNewPassword', async(req,res) =>{
+  try {
+
+  }
+  catch{
+
+  }
 })
+
+app.put('/user_Update_info', async(req, res)=>{
+  try{
+    const result = await UpdateEmail_telephone(req.body.pi, req.body.data, req.body.type);
+    if (result.rowCount > 0) {
+      console.log("Se guardó la informacion del usuario");
+      res.status(200).json({ message: "Informacion actualizada correctamente" });
+    } else {
+      console.log("No se encontró un usuario con ese PI");
+      res.status(404).json({ message: "Usuario no encontrado" });
+    }
+  }
+  catch(error){
+    console.log('Error al guardar la imagen :(', error);
+    res.status(500).send('ERROR :(')
+  }
+});
+app.put ('/user_Update_passw', async(req, res)=>{
+  try {
+    const result = await UpdatePassw(req.body.pi ,req.body.passw);
+    console.log("Cambio de contraseña exitoso")
+  } catch (error) {
+    console.log('Error tratar de cambiar la contraseña', error);
+    res.status(500).send('ERROR :(')
+  }
+});
 
 app.delete('/user/:pi', async(req, res) =>{
   try {
@@ -273,7 +363,7 @@ app.delete('/user/:pi', async(req, res) =>{
     console.log('Error al borrar el usuario :(', error)
     res.status(500).send('ERROR :(')
   }
-})
+});
 
 app.get('/statistics/:id_institution', async(req, res) =>{
   try{
@@ -283,7 +373,18 @@ app.get('/statistics/:id_institution', async(req, res) =>{
     console.log('ERROR al encontrar los datos :(')
     res.status(500).send('ERROR :(')
   }
-})
+});
+app.delete('/institution/:id', async(req, res)=>{
+  try {
+    const result = await deleteInstitution(req.params.id);
+    console.log("Institución eliminada con exito")
+    res.status(200).json({success: true})
+  }
+  catch(error){
+    console.log('Error al borrar la institución :(', error)
+    res.status(500).send('ERROR :(')
+  }
+});
 
 app.use((req, res) => {
   res.status(501).json({ error: 'Método no implementado' });

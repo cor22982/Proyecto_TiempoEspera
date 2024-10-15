@@ -28,8 +28,6 @@ const Pages = ({ pi }) => {
         return <Guardados pi={pi} />;
       case 'configuracion':
         return <Configuration />;
-      case 'notificaciones':
-        return <NotificacionesPage />;
       case 'recomendados':
         return <Recomendados />;
       case 'salir':
@@ -59,11 +57,6 @@ const Pages = ({ pi }) => {
       label: "Recomendados",
       icon: faFire,
       to: "recomendados",
-    },
-    {
-      label: "Notificaciones",
-      icon: faBell,
-      to: "notificaciones",
     },
   ];
   const secondarylinksArray = [
@@ -98,6 +91,5 @@ const Pages = ({ pi }) => {
 
 
 const Recomendados = () => <h1>Contenido de Recomendados</h1>;
-const NotificacionesPage = () => <h1>Contenido de la página de notificaciones</h1>;
 
 export default Pages;

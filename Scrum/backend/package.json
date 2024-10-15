@@ -1,0 +1,40 @@
+{
+  "name": "deimos_backend",
+  "version": "1.0.0",
+  "description": "Backend for Proyect",
+  "main": "node ./src/main.js",
+  "scripts": {
+    "test": "mocha",
+    "test:watch": "mocha --watch",
+    "start": "node ./src/controllers/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cor22982/Proyecto_TiempoEspera.git"
+  },
+  "author": "Grupo2",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cor22982/Proyecto_TiempoEspera/issues"
+  },
+  "homepage": "https://github.com/cor22982/Proyecto_TiempoEspera#readme",
+  "type": "module",
+  "dependencies": {
+    "@onesignal/node-onesignal": "^5.0.0-alpha-01",
+    "axios": "^1.7.7",
+    "chai": "^5.1.1",
+    "chai-http": "^5.0.0",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-validator": "^7.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "nodemailer": "^6.9.15",
+    "pg": "^8.11.3",
+    "supertest": "^7.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^10.7.0"
+  }
+}

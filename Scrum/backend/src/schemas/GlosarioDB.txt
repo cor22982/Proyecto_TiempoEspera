@@ -1,0 +1,61 @@
+Users:
+	pi = personal identification (CUI/DPI)
+	name = nombre(s) de la persona
+	lastname = apellido(s) de la persona
+	password = contraseña del usuario
+	age = edad de la persona
+	type_user = tipo de usuario para el common_user (empleador, empresa, etc)
+
+Roles:
+	id_role = id del role (admin/common_user)
+	name = nombre del rol
+
+UserRoles:
+	id_user_role = llave incrementable que identifica a los usuarios y sus roles
+
+Participations:
+	id_participacion = llave incrementable que identifica la conversación y el usuario
+	
+Conversations:
+	id_conversation = llave incrementable que identifica la conversación
+	name = nombre de la conversación
+	date = fecha/hora de creación de la conversación
+
+Message:
+	id_message = llave incrementable que identifica el mensaje
+	content = contenido del mensaje
+	date = fecha/hora de creación del mensaje enviado
+	
+Institutions:
+	id_institution = llave incrementable que identifica la institución
+	name = nombre de la institución
+	address = dirección de la institución
+
+Procedures:
+	id_procedure = llave incrementable que identifica el trámite
+	name = nombre del trámite
+	description = descripción del trámite
+	
+InstitutionsProcedures:
+	id_institution_procedure = llave incrementable que identifica la institución y el trámite
+	
+	
+Documents:
+	id_document = llave incrementable que identifica la papelería del trámite
+	name = nombre del documento/papeleo/requisito
+	description = descripción del documento/papeleo/requisito
+	
+ProceduresDocuments:
+	id_procedure_document = llave incrementable que identifica el trámite y documento
+	
+Appoinments:
+	id_appoinment = llave incrementable que identifica la cita
+	date = fecha de la cita
+	time = hora de la cita
+	
+UsersAppointments:
+	id_user_appointment = llave incrementable que identifica al usuario y la cita
+	
+Statistics:
+	id_statistic = llave incrementable que identifica las estadísticas del instituto/tramite
+	time = tiempo de atención

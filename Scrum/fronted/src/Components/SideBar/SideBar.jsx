@@ -67,7 +67,7 @@ const Container = styled.div`
     transform: ${({ isOpen }) => (isOpen ? `initial` : `rotate(180deg)`)};
     border: none;
     letter-spacing: inherit;
-    font-size: 20px;
+    font-size: 1.25rem;
     text-align: inherit;
     padding: 0;
     font-family: inherit;
@@ -107,7 +107,8 @@ const Container = styled.div`
     width: fill ;
     display: flex;
     gap: 15px;
-    font-size: 22px;
+    font-size: 1.375rem;
+    // font-size: inherit;
     padding: 0 15%;
     cursor: pointer;
     height: 40px;

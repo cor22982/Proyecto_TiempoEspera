@@ -15,7 +15,7 @@
   border: none;
   border-radius: 0.1rem;
   padding: 0.5rem;
-  font-family: 'Inika';
+  font-family: inherit;
   font-size: 2rem;
   font-weight: bold;
   white-space: nowrap; /* Evita el salto de línea */
