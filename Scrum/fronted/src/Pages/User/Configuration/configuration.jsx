@@ -27,24 +27,70 @@ const Configuration = () => {
   const { fontSize, setFontSize } = useContext(FontSizeContext);
   const [password, setPassword] = useState('');
 
-  const handleFontSizeChange = (event, newValue) => {
-    setFontSize(newValue);
+  const [tempIsDarkMode, setTempIsDarkMode] = useState(isDarkMode);
+  const [tempFontFamily, setTempFontFamily] = useState(fontFamily);
+  const [tempFontSize, setTempFontSize] = useState(fontSize);
+
+  const handleTempToggleDarkMode = () => {
+    setTempIsDarkMode((prev) => !prev);
+  };
+
+  const handleTempFontSizeChange = (event, newValue) => {
+    setTempFontSize(newValue);
+  };
+
+  const handleTempFontFamilyChange = (event) => {
+    setTempFontFamily(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
 
-  const handleFontFamilyChange = (event) => {
-    const newFont = event.target.value;
-    console.log(`Familia de fuentes cambiada a: ${newFont}`);
-    changeFontFamily(newFont);
+  const handleSaveChanges = () => {
+    console.log(`Guardando cambios. Fuente seleccionada: ${tempFontFamily}, Tamaño seleccionado: ${tempFontSize}, Modo seleccionado: ${tempIsDarkMode ? 'Oscuro' : 'Claro'}`);
+  
+    if (tempIsDarkMode !== isDarkMode) {
+      console.log(`Cambiando modo oscuro. Anterior: ${isDarkMode ? 'Oscuro' : 'Claro'}, Nuevo: ${tempIsDarkMode ? 'Oscuro' : 'Claro'}`);
+      toggleDarkMode();
+    }
+    
+    if (tempFontFamily !== fontFamily) {
+      console.log(`Cambiando fuente. Anterior: ${fontFamily}, Nueva: ${tempFontFamily}`);
+      changeFontFamily(tempFontFamily);
+    }
+  
+    if (tempFontSize !== fontSize) {
+      console.log(`Cambiando tamaño de fuente. Anterior: ${fontSize}px, Nuevo: ${tempFontSize}px`);
+      setFontSize(tempFontSize);
+    }
   };
 
-  // Efecto para actualizar el font-family del cuerpo
+  // Efecto para aplicar la previsualización
   useEffect(() => {
-    document.body.style.fontFamily = fontFamily;
-  }, [fontFamily]);
+    // Aplica los estilos de previsualización basados en los cambios temporales
+    document.body.style.fontFamily = tempFontFamily;
+    document.body.style.fontSize = `${tempFontSize}px`;
+
+    if (tempIsDarkMode) {
+      document.body.classList.add('darkMode');
+    } else {
+      document.body.classList.remove('darkMode');
+    }
+
+    // Limpiar los estilos de previsualización cuando el componente se desmonte
+    return () => {
+      // Restaurar los estilos definitivos guardados
+      document.body.style.fontFamily = localStorage.getItem('fontFamily') || 'Inika';
+      document.body.style.fontSize = `${localStorage.getItem('fontSize') || 16}px`;
+      const savedTheme = localStorage.getItem('isDarkMode') === 'true';
+      if (savedTheme) {
+        document.body.classList.add('darkMode');
+      } else {
+        document.body.classList.remove('darkMode');
+      }
+    };
+  }, [tempFontFamily, tempFontSize, tempIsDarkMode]);
 
   return (
     <Container className={styles.container}>
@@ -76,11 +122,18 @@ const Configuration = () => {
               </Typography>
             </div>
             <FormControlLabel
-              control={<Switch checked={isDarkMode} onChange={toggleDarkMode} color="primary" />}
+              control={
+                <Switch
+                  checked={tempIsDarkMode}
+                  onChange={handleTempToggleDarkMode}
+                  color="primary"
+                />
+              }
               label="Modo Oscuro"
               className={styles.control}
             />
           </Grid>
+
           <Grid item xs={12}>
             <div className={styles.sectionHeader}>
               <AccessibilityNewIcon className={styles.icon} />
@@ -91,23 +144,21 @@ const Configuration = () => {
             <Typography variant="subtitle1" sx={{ fontSize: '1.15rem' }}>
               Ajuste de Tamaño de Fuente
             </Typography>
-
             <Slider
-            value={fontSize}
-            min={12}
-            max={24}
-            step={1}
-            onChange={handleFontSizeChange}
-            valueLabelDisplay="auto"
-            aria-labelledby="font-size-slider"
-            color="secondary"
+              value={tempFontSize}
+              min={12}
+              max={24}
+              step={1}
+              onChange={handleTempFontSizeChange}
+              valueLabelDisplay="auto"
+              aria-labelledby="font-size-slider"
+              color="secondary"
             />
-
             <Typography variant="subtitle1" sx={{ fontSize: '1.15rem' }}>
               Tipografía Preferida
             </Typography>
             <FormControl component="fieldset">
-              <RadioGroup value={fontFamily} onChange={handleFontFamilyChange}>
+              <RadioGroup value={tempFontFamily} onChange={handleTempFontFamilyChange}>
                 <FormControlLabel value="Inika" control={<Radio color="primary" />} label="Inika" />
                 <FormControlLabel value="Roboto" control={<Radio color="primary" />} label="Roboto" />
                 <FormControlLabel value="Times New Roman" control={<Radio color="primary" />} label="Times New Roman" />
@@ -119,13 +170,7 @@ const Configuration = () => {
         <Button
           className={styles.saveButton}
           variant="contained"
-          sx={{
-            backgroundColor: '#00367E',
-            color: '#fff',
-            '&:hover': {
-              backgroundColor: '#002254',
-            },
-          }}
+          onClick={handleSaveChanges}
         >
           Guardar Cambios
         </Button>

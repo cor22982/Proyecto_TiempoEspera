@@ -3,23 +3,20 @@ import React, { createContext, useState, useEffect } from 'react';
 export const FontContext = createContext();
 
 export const FontProvider = ({ children }) => {
-  const [fontFamily, setFontFamily] = useState('Inika');
+  const [fontFamily, setFontFamily] = useState(localStorage.getItem('fontFamily') || 'Inika');
 
   useEffect(() => {
     const storedFont = localStorage.getItem('fontFamily');
-    if (storedFont) {
-      console.log(`Cargando familia de fuentes desde localStorage: ${storedFont}`);
-      setFontFamily(storedFont);
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('fontFamily', fontFamily);
+    console.log(`Inicializando FontContext. Fuente en localStorage: ${storedFont}, Fuente actual: ${fontFamily}`);
+    
+    // Aplica la fuente al cargar el contexto
+    document.body.style.fontFamily = fontFamily;
   }, [fontFamily]);
 
   const changeFontFamily = (newFont) => {
-    console.log(`Familia de fuentes cambiada a: ${newFont}`);
+    console.log(`Cambiando fuente. Anterior: ${fontFamily}, Nueva: ${newFont}`);
     setFontFamily(newFont);
+    localStorage.setItem('fontFamily', newFont);
   };
 
   return (

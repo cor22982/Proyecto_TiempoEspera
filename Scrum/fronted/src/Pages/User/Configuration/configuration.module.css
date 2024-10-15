@@ -97,21 +97,14 @@
 }
 
 .saveButton {
-  margin-top: 1rem;
-  font-size: 0.5rem;
-  font-weight: bold;
-  border-radius: 3px;
-  text-transform: uppercase;
+  background-color: #00367E !important;
+  color: white !important;
   width: 100%;
-  padding: 0.4rem;
-  background-color: var(--color-dark);
-  color: var(--color-light-bg);
   transition: background-color 0.3s ease, color 0.3s ease;
-  text-align: center;
 }
 
 .saveButton:hover {
-  background-color: #007bff;
+  background-color: #002254 !important;
   color: #fff;
 }
 
