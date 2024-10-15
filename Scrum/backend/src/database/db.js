@@ -167,3 +167,8 @@ export async function getStatistics(id){
   return result.rows
 }
 
+export async function createNewOTP(pi, otp, expiration_date){
+  const result = await conn.query('INSERT INTO otp (pi, otp, exp_date) values ($1, $2, $3);', [pi, otp, expiration_date])
+  return result.rows
+}
+
