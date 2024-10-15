@@ -7,7 +7,7 @@ import axios from 'axios';
 import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, 
   getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, 
   insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage
-, getStatistics, getUserBday, get_documents, UpdateEmail_telephone, deleteInstitution, addInstitution, UpdatePassw} from '../database/db.js';
+, getStatistics, getUserBday, get_documents, UpdateEmail_telephone, deleteInstitution, addInstitution, UpdatePassw, UpdateName_Apellido} from '../database/db.js';
 import { getUserLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken } from './jwt.js';
 import * as OneSignalLib from '@onesignal/node-onesignal'; 
@@ -317,15 +317,23 @@ app.put('/user_Update_Image', async(req, res)=>{
     res.status(500).send('ERROR :(')
   }
 });
-
-app.post('/requestNewPassword', async(req,res) =>{
-  try {
-
+app.put('/user_update_name_lastname', async(req, res)=>{
+  try{
+    const result = await UpdateName_Apellido(req.body.pi, req.body.data, req.body.type);
+    if (result.rowCount > 0) {
+      console.log("Se guardó la informacion del usuario");
+      res.status(200).json({ message: "Informacion actualizada correctamente" });
+    } else {
+      console.log("No se encontró un usuario con ese PI");
+      res.status(404).json({ message: "Usuario no encontrado" });
+    }
   }
-  catch{
-
+  catch(error){
+    console.log('Error al cambiar nombre o apellido', error);
+    res.status(500).send('ERROR :(')
   }
-})
+});
+
 
 app.put('/user_Update_info', async(req, res)=>{
   try{

@@ -150,6 +150,17 @@ export async function UpdateEmail_telephone(pi, data, type){
   
   return result
 }
+export async function UpdateName_Apellido(pi, data, type){
+  let result
+  if (type === 'name'){
+    result = await conn.query(`UPDATE users SET name = $1 WHERE pi = $2;`, [data, pi])
+  }
+  else if (type === 'lastname'){
+    result = await conn.query(`UPDATE users SET lastname = $1 WHERE pi = $2;`, [data, pi])
+  }
+  
+  return result
+}
 
 export async function getStatistics(id){
   const result = await conn.query('SELECT * from Average_people where Institution = $1;', [id])
