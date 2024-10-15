@@ -10,7 +10,7 @@ import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequiere
 , getStatistics, getUserBday, get_documents, UpdateEmail_telephone, deleteInstitution, addInstitution, UpdatePassw} from '../database/db.js';
 import { getUserLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken } from './jwt.js';
-import * as OneSignalLib from '@onesignal/node-onesignal'; 
+import * as OneSignalLibx from '@onesignal/node-onesignal'; 
 
 const app = express();
 const PORT = 5000;
