@@ -172,3 +172,8 @@ export async function createNewOTP(pi, otp, expiration_date){
   return result.rows
 }
 
+export async function deleteOTP(otp){
+  const result = await conn.query('DELETE FROM otp WHERE otp = $1', [otp])
+  return result.rows
+}
+
