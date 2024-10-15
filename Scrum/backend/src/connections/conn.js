@@ -7,11 +7,11 @@ dotenv.config({ path: '../../../../.env' });
 const { Client } = pg;
 
 const client = new Client({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_DATABASE,
-  password: process.env.DB_PASSWORD,
-  port: parseInt(process.env.DB_PORT, 10),
+  user: 'owner',
+  host: 'localhost',
+  database: 'deimos',
+  password: '36L8W7Nm',
+  port: 5000,
 });
 
 client.connect()
