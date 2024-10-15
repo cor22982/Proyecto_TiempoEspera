@@ -15,11 +15,8 @@ import {
     Paper,
 } from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import SettingsIcon from '@mui/icons-material/Settings';
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
-
 import styles from './configuration.module.css';
 
 const Configuration = () => {
@@ -131,7 +128,7 @@ const Configuration = () => {
                                 value={fontFamily}
                                 onChange={handleFontFamilyChange}
                             >
-                                <FormControlLabel value="Arial" control={<Radio color="primary" />} label="Arial" />
+                                <FormControlLabel value="Inika" control={<Radio color="primary" />} label="Inika" />
                                 <FormControlLabel value="Roboto" control={<Radio color="primary" />} label="Roboto" />
                                 <FormControlLabel value="Times New Roman" control={<Radio color="primary" />} label="Times New Roman" />
                             </RadioGroup>

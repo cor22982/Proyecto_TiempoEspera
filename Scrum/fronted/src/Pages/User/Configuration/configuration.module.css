@@ -1,3 +1,5 @@
+@import '@styles/styles.css'; /* Importamos el archivo global */
+
 .container {
   padding: 1rem;
   display: flex;
@@ -5,7 +7,9 @@
   background: none;
   flex-direction: column;
   align-items: center;
+  font-family: var(--title-inika); /* Usamos la tipografía global */
 }
+
 @media (min-width: 768px) {
   .container {
     flex-direction: row;
@@ -14,19 +18,22 @@
 
 .configCard {
   padding: 1rem;
-  background: linear-gradient(to bottom, #ffffff, #f7f7f7);
+  background: linear-gradient(to bottom, var(--color-light-bg), #f7f7f7);
   border-radius: 8px;
   max-width: 800px;
   width: 100%;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
   margin: auto;
   transition: none;
+  font-family: var(--title-inika); /* Fuente global */
 }
+
 @media (max-width: 576px) {
   .configCard {
     padding: 0.5rem;
   }
 }
+
 @media (min-width: 992px) {
   .configCard {
     max-width: 1000px;
@@ -36,14 +43,17 @@
 .title {
   font-size: 1.25rem;
   font-weight: bold;
-  color: #333;
+  color: var(--color-light-text); /* Usamos color global */
   margin-bottom: 0.75rem;
+  font-family: var(--title-inika); /* Fuente global */
 }
+
 @media (max-width: 576px) {
   .title {
     font-size: 1rem;
   }
 }
+
 @media (min-width: 992px) {
   .title {
     font-size: 1.5rem;
@@ -58,17 +68,20 @@
 
 .subtitle {
   margin-left: 0.25rem;
+  font-family: var(--title-inika); /* Fuente global */
 }
 
 .icon {
-  color: #00367E;
+  color: var(--color-dark); /* Color global */
   font-size: 0.75rem;
 }
+
 @media (max-width: 576px) {
   .icon {
     font-size: 0.6rem;
   }
 }
+
 @media (min-width: 992px) {
   .icon {
     font-size: 1rem;
@@ -91,15 +104,17 @@
   text-transform: uppercase;
   width: 100%;
   padding: 0.4rem;
-  background-color: #00367E;
-  color: #fff;
+  background-color: var(--color-dark);
+  color: var(--color-light-bg);
   transition: background-color 0.3s ease, color 0.3s ease;
   text-align: center;
 }
+
 .saveButton:hover {
   background-color: #007bff;
   color: #fff;
 }
+
 @media (max-width: 576px) {
   .saveButton {
     width: auto;
@@ -107,14 +122,17 @@
 }
 
 .darkMode .configCard {
-  background: linear-gradient(to bottom, #3a3a3a, #2b2b2b);
-  color: #ddd;
+  background: linear-gradient(to bottom, var(--color-dark-bg), #3a3a3a);
+  color: var(--color-dark-text);
 }
-.darkMode .title, .darkMode .subtitle {
-  color: #ddd;
+
+.darkMode .title,
+.darkMode .subtitle {
+  color: var(--color-dark-text);
 }
+
 .darkMode .icon {
-  color: white;
+  color: var(--color-dark-text);
 }
 
 .control {
