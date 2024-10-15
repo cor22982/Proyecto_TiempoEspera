@@ -66,9 +66,7 @@ const Configuration = () => {
     }
   };
 
-  // Efecto para aplicar la previsualización
   useEffect(() => {
-    // Aplica los estilos de previsualización basados en los cambios temporales
     document.body.style.fontFamily = tempFontFamily;
     document.body.style.fontSize = `${tempFontSize}px`;
 
@@ -78,9 +76,7 @@ const Configuration = () => {
       document.body.classList.remove('darkMode');
     }
 
-    // Limpiar los estilos de previsualización cuando el componente se desmonte
     return () => {
-      // Restaurar los estilos definitivos guardados
       document.body.style.fontFamily = localStorage.getItem('fontFamily') || 'Inika';
       document.body.style.fontSize = `${localStorage.getItem('fontSize') || 16}px`;
       const savedTheme = localStorage.getItem('isDarkMode') === 'true';
@@ -104,6 +100,7 @@ const Configuration = () => {
               </Typography>
             </div>
             <TextField
+              className={styles.InputMaterial}
               type="password"
               label="Nueva Contraseña"
               variant="outlined"
@@ -111,6 +108,13 @@ const Configuration = () => {
               onChange={handlePasswordChange}
               fullWidth
               margin="normal"
+              InputProps={{
+                style: { fontFamily: 'inherit' },
+              }}
+              InputLabelProps={{
+                style: { fontFamily: 'inherit' },
+              }}
+              placeholder="Ingresa tu nueva contraseña"
             />
           </Grid>
 
@@ -129,8 +133,11 @@ const Configuration = () => {
                   color="primary"
                 />
               }
-              label="Modo Oscuro"
-              className={styles.control}
+              label={
+                <Typography sx={{ fontFamily: 'inherit' }} component="span">
+                  Modo Oscuro
+                </Typography>
+              }
             />
           </Grid>
 
@@ -141,7 +148,7 @@ const Configuration = () => {
                 Accesibilidad
               </Typography>
             </div>
-            <Typography variant="subtitle1" sx={{ fontSize: '1.15rem' }}>
+            <Typography variant="subtitle1" sx={{ fontSize: '1.15rem', fontFamily: 'inherit' }}>
               Ajuste de Tamaño de Fuente
             </Typography>
             <Slider
@@ -154,14 +161,26 @@ const Configuration = () => {
               aria-labelledby="font-size-slider"
               color="secondary"
             />
-            <Typography variant="subtitle1" sx={{ fontSize: '1.15rem' }}>
+            <Typography variant="subtitle1" sx={{ fontSize: '1.15rem', fontFamily: 'inherit' }}>
               Tipografía Preferida
             </Typography>
             <FormControl component="fieldset">
               <RadioGroup value={tempFontFamily} onChange={handleTempFontFamilyChange}>
-                <FormControlLabel value="Inika" control={<Radio color="primary" />} label="Inika" />
-                <FormControlLabel value="Roboto" control={<Radio color="primary" />} label="Roboto" />
-                <FormControlLabel value="Times New Roman" control={<Radio color="primary" />} label="Times New Roman" />
+                <FormControlLabel
+                  value="Inika"
+                  control={<Radio color="primary" />}
+                  label={<span style={{ fontFamily: 'var(--title-inika)' }}>Inika</span>}
+                />
+                <FormControlLabel
+                  value="Roboto"
+                  control={<Radio color="primary" />}
+                  label={<span style={{ fontFamily: 'var(--font-roboto)' }}>Roboto</span>}
+                />
+                <FormControlLabel
+                  value="Times New Roman"
+                  control={<Radio color="primary" />}
+                  label={<span style={{ fontFamily: 'var(--font-times)' }}>Times New Roman</span>}
+                />
               </RadioGroup>
             </FormControl>
           </Grid>

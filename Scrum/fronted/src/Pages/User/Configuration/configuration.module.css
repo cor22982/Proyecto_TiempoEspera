@@ -4,16 +4,23 @@
   padding: 1rem;
   display: flex;
   justify-content: center;
-  background: none;
   flex-direction: column;
   align-items: center;
-  font-family: var(--title-inika); /* Usamos la tipografía global */
+  font-family: inherit !important; /* Usamos la tipografía global */
 }
 
-@media (min-width: 768px) {
-  .container {
-    flex-direction: row;
-  }
+.InputMaterial {
+  font-family: inherit; /* Cambia el texto ingresado a la fuente heredada */
+}
+
+/* Cambiar la fuente de la etiqueta */
+.InputMaterial .MuiFormLabel-root {
+  font-family: inherit !important;
+}
+
+/* Cambiar la fuente del texto dentro del input */
+.InputMaterial .MuiInputBase-input {
+  font-family: inherit !important;
 }
 
 .configCard {
@@ -25,39 +32,7 @@
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
   margin: auto;
   transition: none;
-  font-family: var(--title-inika); /* Fuente global */
-}
-
-@media (max-width: 576px) {
-  .configCard {
-    padding: 0.5rem;
-  }
-}
-
-@media (min-width: 992px) {
-  .configCard {
-    max-width: 1000px;
-  }
-}
-
-.title {
-  font-size: 1.25rem;
-  font-weight: bold;
-  color: var(--color-light-text); /* Usamos color global */
-  margin-bottom: 0.75rem;
-  font-family: var(--title-inika); /* Fuente global */
-}
-
-@media (max-width: 576px) {
-  .title {
-    font-size: 1rem;
-  }
-}
-
-@media (min-width: 992px) {
-  .title {
-    font-size: 1.5rem;
-  }
+  font-family: inherit !important; /* Fuente global */
 }
 
 .sectionHeader {
@@ -68,32 +43,11 @@
 
 .subtitle {
   margin-left: 0.25rem;
-  font-family: var(--title-inika); /* Fuente global */
+  font-family: inherit !important; /* Fuente global */
 }
 
 .icon {
   color: var(--color-dark); /* Color global */
-  font-size: 0.75rem;
-}
-
-@media (max-width: 576px) {
-  .icon {
-    font-size: 0.6rem;
-  }
-}
-
-@media (min-width: 992px) {
-  .icon {
-    font-size: 1rem;
-  }
-}
-
-.subtitle1-custom {
-  font-size: 0.875rem !important;
-  color: red !important;
-  margin-top: 0.5rem !important;
-  font-weight: 400 !important;
-  border: 1px solid black !important;
 }
 
 .saveButton {
@@ -101,37 +55,45 @@
   color: white !important;
   width: 100%;
   transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: inherit !important;
 }
 
 .saveButton:hover {
   background-color: #002254 !important;
-  color: #fff;
 }
 
-@media (max-width: 576px) {
-  .saveButton {
-    width: auto;
-  }
+.darkMode {
+  background-color: #121212;
+  color: #ffffff;
 }
 
-.darkMode .configCard {
-  background: linear-gradient(to bottom, var(--color-dark-bg), #3a3a3a);
-  color: var(--color-dark-text);
+
+.InputMaterial {
+  font-family: inherit; /* Cambia el texto ingresado a la fuente heredada */
+  font-size: inherit; /* Hereda el tamaño de fuente del contenedor */
 }
 
-.darkMode .title,
-.darkMode .subtitle {
-  color: var(--color-dark-text);
+/* Cambiar la fuente de la etiqueta */
+.InputMaterial .MuiFormLabel-root {
+  font-family: inherit !important;
+  font-size: inherit; /* Hereda el tamaño de fuente del contenedor */
 }
 
-.darkMode .icon {
-  color: var(--color-dark-text);
+/* Cambiar la fuente del texto dentro del input */
+.InputMaterial .MuiInputBase-input {
+  font-family: inherit !important;
+  font-size: inherit; /* Hereda el tamaño de fuente del contenedor */
 }
 
-.control {
-  margin-top: 0.5rem;
-}
-
-* {
-  transition: none !important;
+.configCard {
+  padding: 1rem;
+  background: linear-gradient(to bottom, var(--color-light-bg), #f7f7f7);
+  border-radius: 8px;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+  margin: auto;
+  transition: none;
+  font-family: inherit !important; /* Fuente global */
+  font-size: inherit; /* Hereda el tamaño de fuente del contenedor */
 }
