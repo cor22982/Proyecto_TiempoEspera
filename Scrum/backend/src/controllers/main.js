@@ -24,7 +24,7 @@ const configuration = OneSignalLib.createConfiguration({
     rest_api_key: {
       tokenProvider: {
         getToken() {
-          return process.env.ONESIGNAL_REST_API_KEY; // El token de la API
+          return ONESIGNAL_REST_API_KEY; // El token de la API
         },
       },
     },
@@ -254,7 +254,7 @@ app.post('/newAppointment', async (req, res) => {
     const result = await getInstitutionByID(req.body.institution)
     const name_i = result[0].name
     const notification = new OneSignalLib.Notification();
-    notification.app_id = process.env.ONESIGNAL_APP_ID;
+    notification.app_id = ONESIGNAL_APP_ID;
     notification.included_segments = ['All']; // Enviar a todos los usuarios
     notification.target_channel = 'push';
     notification.headings = {
