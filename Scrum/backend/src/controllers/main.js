@@ -17,7 +17,7 @@ const PORT = 5000;
 export default app;
 const ONESIGNAL_APP_ID = '0b7d4e8e-e5ad-4eec-8bda-63563d2dd47a';
 const ONESIGNAL_REST_API_KEY = 'YzI5ZGI0NzgtZWNiMC00ZDEyLTljMzQtMjFjMjMyNzJkNjI3';
-dotenv.config({ path: '../../../.env' });
+dotenv.config({ path: '../../../../.env' });
 
 const configuration = OneSignalLib.createConfiguration({
   authMethods: {
