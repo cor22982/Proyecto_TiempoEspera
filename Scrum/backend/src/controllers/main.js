@@ -6,7 +6,7 @@ import axios from 'axios';
 import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, 
   getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, 
   insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage
-, getStatistics, getUserBday, get_documents, UpdateEmail_telephone} from '../database/db.js';
+, getStatistics, getUserBday, get_documents, UpdateEmail_telephone, deleteInstitution, addInstitution, UpdatePassw} from '../database/db.js';
 import { getUserLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken } from './jwt.js';
 import * as OneSignalLib from '@onesignal/node-onesignal'; 
@@ -44,7 +44,7 @@ const getAge = (userBirthDay) =>{
   age = new Date().getFullYear() - new Date(userBirthDay).getFullYear()
   return new Date().getMonth < new Date(userBirthDay).getMonth ? age-- : age
 
-}
+};
 
 const validateRequest = (req, res, next) => {
   const errors = validationResult(req);
@@ -68,6 +68,16 @@ app.post('/register', validateRequest, async (req, res) => {
   res.json({ message: 'user created' });
 });
 
+app.post('/institution_add', async(req, res) => {
+  console.log("body", req.body);
+  const {pi, name, adress, hora_apertura, hora_cierre, telefono, Imagen} =req.params;
+  try {
+    const addition = await addInstitution(pi, name, adress, hora_apertura, hora_cierre, telefono, Imagen)
+  } catch (error) {
+    console.error('Error al crear nueva insitución')
+    res.status(500).json({message: 'Error en el servidor'})
+  }
+});
 
 app.get('/users/:pi', async (req, res) => {
   const { pi } = req.params;
@@ -221,6 +231,7 @@ app.get('/rating/:id_institution', async (req, res) => {
     res.status(500).send('Error del servidor :(');
   }
 });
+app.post
 
 app.post('/rating', async (req, res) => {
   try {
@@ -277,7 +288,7 @@ app.get('/userAppointments/:pi', async (req, res) =>{
     console.error('Error al obtener los datos que buscas :(', error);
     res.status(500).send('ERROR :((');
   }
-})
+});
 
 app.get('/userInfo/:pi', async(req, res)=>{
   try{
@@ -287,7 +298,7 @@ app.get('/userInfo/:pi', async(req, res)=>{
     console.log('Error al obtener datos del usuario :(', error);
     res.status(500).send('ERROR :(')
   }
-})
+});
 
 app.put('/user_Update_Image', async(req, res)=>{
   try{
@@ -304,7 +315,7 @@ app.put('/user_Update_Image', async(req, res)=>{
     console.log('Error al guardar la imagen :(', error);
     res.status(500).send('ERROR :(')
   }
-})
+});
 
 app.put('/user_Update_info', async(req, res)=>{
   try{
@@ -321,7 +332,16 @@ app.put('/user_Update_info', async(req, res)=>{
     console.log('Error al guardar la imagen :(', error);
     res.status(500).send('ERROR :(')
   }
-})
+});
+app.put ('/user_Update_passw', async(req, res)=>{
+  try {
+    const result = await UpdatePassw(req.body.pi ,req.body.passw);
+    console.log("Cambio de contraseña exitoso")
+  } catch (error) {
+    console.log('Error tratar de cambiar la contraseña', error);
+    res.status(500).send('ERROR :(')
+  }
+});
 
 app.delete('/user/:pi', async(req, res) =>{
   try {
@@ -333,7 +353,7 @@ app.delete('/user/:pi', async(req, res) =>{
     console.log('Error al borrar el usuario :(', error)
     res.status(500).send('ERROR :(')
   }
-})
+});
 
 app.get('/statistics/:id_institution', async(req, res) =>{
   try{
@@ -343,7 +363,18 @@ app.get('/statistics/:id_institution', async(req, res) =>{
     console.log('ERROR al encontrar los datos :(')
     res.status(500).send('ERROR :(')
   }
-})
+});
+app.delete('/institution/:id', async(req, res)=>{
+  try {
+    const result = await deleteInstitution(req.params.id);
+    console.log("Institución eliminada con exito")
+    res.status(200).json({success: true})
+  }
+  catch(error){
+    console.log('Error al borrar la institución :(', error)
+    res.status(500).send('ERROR :(')
+  }
+});
 
 app.use((req, res) => {
   res.status(501).json({ error: 'Método no implementado' });
