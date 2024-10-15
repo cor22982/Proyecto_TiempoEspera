@@ -98,7 +98,7 @@ const Login = ({ onToggle, onLogin }) => {  // Recibe las funciones desde el com
           <div className='login-rol-container'>
             <Dropdowncustom
               nombre='Seleccionar rol'
-              lista={['usuario_comun', 'empleador']}
+              lista={['usuario_comun', 'empleador','administrador']}
               onChange={handleDropdownChange}
             />
           </div>
