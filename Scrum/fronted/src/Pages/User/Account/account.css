@@ -8,7 +8,7 @@
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     background-color: #f9f9f9;
-    font-family: 'Arial', sans-serif;
+    font-family: inherit;
     text-align: center;
 }
 
@@ -16,12 +16,12 @@
 .account-title {
     color: #333;
     margin-bottom: 20px;
-    font-size: 24px;
+    font-size: 1.5rem; /* 24px */
 }
 
 /* Información del usuario */
 .user-info {
-    font-size: 16px;
+    font-size: 1rem; /* 16px */
     color: #555;
     line-height: 1.5;
 }
@@ -86,7 +86,7 @@
     background-color: white;
     border-radius: 50%;
     padding: 10px;
-    font-size: 18px;
+    font-size: 1.125rem; /* 18px */
     color: black;
     cursor: pointer;
     display: flex;
@@ -120,7 +120,7 @@
 
 .custom-file-upload {
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem; /* 16px */
     color: white;
     margin-bottom: 10px;
 }
@@ -141,13 +141,12 @@ input[type="file"] {
     background-color: transparent;
     border: none;
     color: white;
-    font-size: 24px;
+    font-size: 1.5rem; /* 24px */
     cursor: pointer;
     margin: 0 10px;
 }
 
-.custom-file-upload:hover,.cancel-button:hover,
-.confirm-button:hover {
+.custom-file-upload:hover, .cancel-button:hover, .confirm-button:hover {
     color: #ddd;
     transform: scale(1.1); /* Efecto de escala al hacer hover */
     transition: transform 0.2s ease, color 0.2s ease; /* Suaviza la transición */
@@ -159,9 +158,18 @@ input[type="file"] {
     transition: transform 0.2s ease, color 0.2s ease; /* Suaviza la transición */
 }
 
-
 /* Contenedor para mensajes */
 .message-container {
     min-height: 40px;
     margin-bottom: 20px;
 }
+
+.account-container {
+    font-family: inherit; /* Asegura que herede del contexto o del body */
+    font-size: inherit;   /* Asegura que herede el tamaño de fuente */
+  }
+  
+  .user-info {
+    font-family: inherit; /* Hereda la fuente del contexto */
+    font-size: inherit;   /* Hereda el tamaño de fuente del contexto */
+  }

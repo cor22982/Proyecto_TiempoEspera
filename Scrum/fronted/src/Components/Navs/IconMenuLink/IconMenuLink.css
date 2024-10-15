@@ -4,9 +4,9 @@
 
 .link-menu{
   cursor: pointer;
-  font-size: 26px;
+  font-size: 1.625rem;
   color: white;
-  font-family: 'Inter';
+  font-family: inherit;
   font-style: normal;
   text-decoration: none;
   margin-left: 10px;

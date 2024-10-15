@@ -62,22 +62,22 @@
 /*texto */
 .heading {
   color: #00367E;
-  font-family: inika-regular, sans-serif;
-  font-size: 20px;
+  font-family: inherit;
+  font-size: 1.25rem;
 }
 
 .heading1 {
   color: #00367E;
-  font-family: inika-regular, sans-serif;
-  font-size: 26px;
+  font-family: inherit;
+  font-size: 1.625rem;
   font-weight: 700;
 }
 
 .timelapmse {
-  font-family: 'Inika';
+  font-family: inherit;
   font-style: normal;
   font-weight: 400;
-  font-size: 44px;
+  font-size: 2.75rem;
   color: #00367E;
 }
 

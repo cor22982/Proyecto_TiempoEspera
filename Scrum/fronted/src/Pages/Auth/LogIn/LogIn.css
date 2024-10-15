@@ -54,7 +54,7 @@
 
 /* Título en lado derecho */
 .login-title {
-  font-family: var(--title-inika);
+  font-family: inherit;
   font-weight: bold;
   font-size: 6em; /* Ajuste para dispositivos más pequeños en la consulta de medios */
   color: #00367E;
@@ -88,7 +88,7 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  font-family: var(--title-inika);
+  font-family: inherit;
   font-size: 1.5rem;
   font-weight: bold;
 }
