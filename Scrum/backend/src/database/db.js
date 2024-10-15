@@ -186,3 +186,8 @@ export async function getUserEmail(pi){
   const result = await conn.query('SELECT email from users where pi = $1', [pi])
   return result.rows
 }
+
+export async function getOTPData(pi){
+  const result = await conn.query('SELECT otp, exp_date from otp where pi = $1', [pi])
+  return result.rows
+}

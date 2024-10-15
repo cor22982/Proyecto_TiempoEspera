@@ -232,7 +232,15 @@ app.get('/rating/:id_institution', async (req, res) => {
     res.status(500).send('Error del servidor :(');
   }
 });
-app.post
+
+app.post('/passwordRequest', async (req, res) =>{
+  try {
+    
+  }
+  catch(error){
+
+  }
+})
 
 app.post('/rating', async (req, res) => {
   try {
