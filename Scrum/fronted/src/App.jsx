@@ -4,8 +4,9 @@ import Logo from '@components/UI/AnimatedLogo'; // Importa el componente Logo
 import { TokenProvider } from '@hooks/auth/useToken';
 import Indice from '@pages/AppRouter';
 import OneSignal from 'react-onesignal'; // Importa OneSignal
-import { ThemeProvider } from '@contexts/ConfigContext/ThemeContext'; // Importa el ThemeProvider
-import { FontProvider } from '@contexts/ConfigContext/FontContext'; // Asegúrate de usar la ruta correcta para FontContext
+import { ThemeProvider } from '@contexts/ConfigContext/ThemeContext';
+import { FontProvider } from '@contexts/ConfigContext/FontContext';
+import { FontSizeProvider } from '@contexts/ConfigContext/FontSizeContext';
 
 function App() {
   const [showLogo, setShowLogo] = useState(true);
@@ -35,13 +36,15 @@ function App() {
 
   return (
     <TokenProvider>
-      <FontProvider> {/* Envuelve la aplicación con FontProvider */}
-        <ThemeProvider> {/* Envuelve la aplicación con ThemeProvider */}
-          <div className="app-container">
-            {showLogo && <Logo />} {/* Muestra el logo solo si showLogo es true */}
-            {!showLogo && <Indice />}
-          </div>
-        </ThemeProvider>
+      <FontProvider>
+        <FontSizeProvider> {/* Envuelve con FontSizeProvider */}
+          <ThemeProvider>
+            <div className="app-container">
+              {showLogo && <Logo />}
+              {!showLogo && <Indice />}
+            </div>
+          </ThemeProvider>
+        </FontSizeProvider>
       </FontProvider>
     </TokenProvider>
   );

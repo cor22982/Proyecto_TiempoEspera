@@ -19,12 +19,12 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import styles from './configuration.module.css';
 import { ThemeContext } from '@contexts/ConfigContext/ThemeContext';
 import { FontContext } from '@contexts/ConfigContext/FontContext';
+import { FontSizeContext } from '@contexts/ConfigContext/FontSizeContext';
 
 const Configuration = () => {
   const { isDarkMode, toggleDarkMode } = useContext(ThemeContext);
   const { fontFamily, changeFontFamily } = useContext(FontContext);
-
-  const [fontSize, setFontSize] = useState(16);
+  const { fontSize, setFontSize } = useContext(FontSizeContext);
   const [password, setPassword] = useState('');
 
   const handleFontSizeChange = (event, newValue) => {
@@ -93,14 +93,14 @@ const Configuration = () => {
             </Typography>
 
             <Slider
-              value={fontSize}
-              min={12}
-              max={24}
-              step={1}
-              onChange={handleFontSizeChange}
-              valueLabelDisplay="auto"
-              aria-labelledby="font-size-slider"
-              color="secondary"
+            value={fontSize}
+            min={12}
+            max={24}
+            step={1}
+            onChange={handleFontSizeChange}
+            valueLabelDisplay="auto"
+            aria-labelledby="font-size-slider"
+            color="secondary"
             />
 
             <Typography variant="subtitle1" sx={{ fontSize: '1.15rem' }}>

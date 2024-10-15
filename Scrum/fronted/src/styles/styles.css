@@ -13,4 +13,7 @@ body {
     /* font-family: var(--font-times), serif; */
 }
 
-
+* {
+    font-size: inherit; /* Hace que todos los elementos hereden el tamaño de fuente global */
+  }
+  
