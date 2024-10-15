@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Roboto:wght@400;700&display=swap');
+
+:root {
+    --title-inika: 'Inika', serif;
+    --font-roboto: 'Roboto', sans-serif;
+    --font-times: 'Times New Roman', serif;
+    --color-dark: #00367E;
+    --color-light-bg: #ffffff;
+    --color-dark-bg: #2b2b2b;
+    --color-light-text: #333;
+    --color-dark-text: #ddd;
+    --font-size-small: 12px;
+    --font-size-large: 24px;
+}
+
+/* Aquí defines las reglas globales del proyecto */
+body {
+    font-family: var(--title-inika), sans-serif;
+    /* font-family: var(--font-roboto), sans-serif; */
+    /* font-family: var(--font-times), serif; */
+}
