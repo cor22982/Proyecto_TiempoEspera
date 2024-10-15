@@ -1,5 +1,6 @@
 import express from 'express';
 import { validationResult } from 'express-validator';
+import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import axios from 'axios';
@@ -16,14 +17,14 @@ const PORT = 5000;
 export default app;
 const ONESIGNAL_APP_ID = '0b7d4e8e-e5ad-4eec-8bda-63563d2dd47a';
 const ONESIGNAL_REST_API_KEY = 'YzI5ZGI0NzgtZWNiMC00ZDEyLTljMzQtMjFjMjMyNzJkNjI3';
-
+dotenv.config({ path: '../../../.env' });
 
 const configuration = OneSignalLib.createConfiguration({
   authMethods: {
     rest_api_key: {
       tokenProvider: {
         getToken() {
-          return ONESIGNAL_REST_API_KEY; // El token de la API
+          return process.env.ONESIGNAL_REST_API_KEY; // El token de la API
         },
       },
     },
@@ -242,7 +243,7 @@ app.post('/newAppointment', async (req, res) => {
     const result = await getInstitutionByID(req.body.institution)
     const name_i = result[0].name
     const notification = new OneSignalLib.Notification();
-    notification.app_id = ONESIGNAL_APP_ID;
+    notification.app_id = process.env.ONESIGNAL_APP_ID;
     notification.included_segments = ['All']; // Enviar a todos los usuarios
     notification.target_channel = 'push';
     notification.headings = {
@@ -303,6 +304,15 @@ app.put('/user_Update_Image', async(req, res)=>{
   catch(error){
     console.log('Error al guardar la imagen :(', error);
     res.status(500).send('ERROR :(')
+  }
+})
+
+app.post('/requestNewPassword', async(req,res) =>{
+  try {
+
+  }
+  catch{
+
   }
 })
 
