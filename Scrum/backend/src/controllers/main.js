@@ -362,4 +362,11 @@ app.use((req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server listening at http://127.0.0.1:${PORT}`);
+  console.log({
+    user: process.env.DB_OWNER_USER,
+    host: process.env.DB_OWNER_HOST,
+    database: process.env.DB_OWNER_DATABASE,
+    password: process.env.DB_OWNER_PASSWORD,
+    port: process.env.DB_OWNER_PORT,
+  });
 });
