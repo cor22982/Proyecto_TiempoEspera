@@ -90,27 +90,6 @@ const Configuration = () => {
                             className={styles.control}
                         />
                     </Grid>
-
-                    <Grid item xs={12} sm={6}>
-                        <div className={styles.sectionHeader}>
-                            <NotificationsActiveIcon className={styles.icon} />
-                            <Typography className={styles.subtitle} variant="h6">
-                                Notificaciones
-                            </Typography>
-                        </div>
-                        <FormControlLabel
-                            control={
-                                <Switch
-                                    checked={notificationsEnabled}
-                                    onChange={handleNotificationsToggle}
-                                    color="primary"
-                                />
-                            }
-                            label="Activar Notificaciones"
-                            className={styles.control}
-                        />
-                    </Grid>
-
                     <Grid item xs={12}>
                         <div className={styles.sectionHeader}>
                             <AccessibilityNewIcon className={styles.icon} />
