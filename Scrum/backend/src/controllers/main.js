@@ -7,29 +7,40 @@ import axios from 'axios';
 import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, 
   getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, 
   insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage
-, getStatistics, getUserBday, get_documents, UpdateEmail_telephone, deleteInstitution, addInstitution, UpdatePassw} from '../database/db.js';
-import { getUserLoginInfo } from '../database/auth.js';
+, getStatistics, getUserBday, get_documents, UpdateEmail_telephone, deleteInstitution, addInstitution, UpdatePassw, UpdateName_Apellido,
+getUserEmail, getOTPData, deleteOTP, createNewOTP, modifyUserPassword} from '../database/db.js';
+import { getUserLoginInfo, getAdminLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken } from './jwt.js';
-import * as OneSignalLib from '@onesignal/node-onesignal'; 
+import * as OneSignalLib from '@onesignal/node-onesignal';
+import nodemailer from 'nodemailer';
 
 const app = express();
 const PORT = 5000;
 export default app;
 const ONESIGNAL_APP_ID = '0b7d4e8e-e5ad-4eec-8bda-63563d2dd47a';
 const ONESIGNAL_REST_API_KEY = 'YzI5ZGI0NzgtZWNiMC00ZDEyLTljMzQtMjFjMjMyNzJkNjI3';
-dotenv.config({ path: '../../../.env' });
+dotenv.config({ path: '../../../../.env' });
 
 const configuration = OneSignalLib.createConfiguration({
   authMethods: {
     rest_api_key: {
       tokenProvider: {
         getToken() {
-          return process.env.ONESIGNAL_REST_API_KEY; // El token de la API
+          return ONESIGNAL_REST_API_KEY; // El token de la API
         },
       },
     },
   },
 });
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'deimosgt502@gmail.com', 
+    pass: 'nduj ydwl bjkn rlme', 
+  },
+});
+
 
 
 const client = new OneSignalLib.DefaultApi(configuration);
@@ -132,8 +143,13 @@ app.get('/users_age/:pi', async (req, res) => {
 
 app.post('/login', async (req, res) => {
   try {
-    const userLoginInfo = await getUserLoginInfo(req.body.pi, req.body.rol);
-    console.log(userLoginInfo)
+    let userLoginInfo;
+    if (req.body.rol != 'administrador') {
+      userLoginInfo = await getUserLoginInfo(req.body.pi, req.body.rol);  
+    }
+    else{
+      userLoginInfo = await getAdminLoginInfo(req.body.pi, req.body.rol);
+    }
     if (!userLoginInfo) {
       return res.status(404).json({ success: false, message: 'Usuario no encontrado' });
     }
@@ -232,7 +248,46 @@ app.get('/rating/:id_institution', async (req, res) => {
     res.status(500).send('Error del servidor :(');
   }
 });
-app.post
+
+app.post('/passwordRequest', async (req, res) =>{
+  try {
+    const OTP = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000
+    const mail_options = {
+      from: 'deimosgt502@gmail.com',       
+      to: await getUserEmail(req.body.pi),          
+      subject: 'Cambio de contrraseña',    
+      text: 'Has solicitado un cambio de contraseña, este es tu código de verificación',  
+      html: `<h1>Tu código de verificación es: </h1><p>${OTP}</p>` 
+    }
+
+    const currentDate = new Date();  // Get the current date and time
+    currentDate.setMinutes(currentDate.getMinutes() + 10);
+
+    await transporter.sendMail(mail_options)
+    await createNewOTP(req.body.pi, OTP, currentDate)
+    const notification = new OneSignalLib.Notification();
+    notification.app_id = ONESIGNAL_APP_ID;
+    notification.included_segments = ['All']; 
+    notification.target_channel = 'push';
+    notification.headings = {
+      en: 'A verification code has been sent to your email',
+      es: 'Un código de verificación fue enviado a tu correo electrónico',
+    };
+
+    notification.contents = {
+      en: `Revisa tu correo para obtener tu código de verificación`,
+      es: `Check your email for your verification code`,
+    };
+
+    await oneSignalClient.createNotification(notification);
+
+    res.status(200).json({'succes': true})  
+    }
+  catch(error){
+    console.error('Error in /passwordRequest:', error);
+    res.status(500).json({ success: false, error: 'Failed to process the request' });
+  }
+})
 
 app.post('/rating', async (req, res) => {
   try {
@@ -254,7 +309,7 @@ app.post('/newAppointment', async (req, res) => {
     const result = await getInstitutionByID(req.body.institution)
     const name_i = result[0].name
     const notification = new OneSignalLib.Notification();
-    notification.app_id = process.env.ONESIGNAL_APP_ID;
+    notification.app_id = ONESIGNAL_APP_ID;
     notification.included_segments = ['All']; // Enviar a todos los usuarios
     notification.target_channel = 'push';
     notification.headings = {
@@ -317,15 +372,23 @@ app.put('/user_Update_Image', async(req, res)=>{
     res.status(500).send('ERROR :(')
   }
 });
-
-app.post('/requestNewPassword', async(req,res) =>{
-  try {
-
+app.put('/user_update_name_lastname', async(req, res)=>{
+  try{
+    const result = await UpdateName_Apellido(req.body.pi, req.body.data, req.body.type);
+    if (result.rowCount > 0) {
+      console.log("Se guardó la informacion del usuario");
+      res.status(200).json({ message: "Informacion actualizada correctamente" });
+    } else {
+      console.log("No se encontró un usuario con ese PI");
+      res.status(404).json({ message: "Usuario no encontrado" });
+    }
   }
-  catch{
-
+  catch(error){
+    console.log('Error al cambiar nombre o apellido', error);
+    res.status(500).send('ERROR :(')
   }
-})
+});
+
 
 app.put('/user_Update_info', async(req, res)=>{
   try{

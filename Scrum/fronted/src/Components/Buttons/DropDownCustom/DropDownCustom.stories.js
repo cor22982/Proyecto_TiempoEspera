@@ -1,7 +1,7 @@
-import Dropdown from "./Dropdowncustom";
+import Dropdowncustom from "./DropDownCustom";
 
 export default {
-  component: Dropdown,
+  component: Dropdowncustom,
   argTypes: {
     nombre: { control: 'text', description: 'Texto del botón de dropdown' },
     lista: { control: 'array', description: 'Lista de elementos dentro del dropdown' },
