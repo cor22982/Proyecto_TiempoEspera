@@ -457,11 +457,6 @@ app.use((req, res) => {
   res.status(501).json({ error: 'Método no implementado' });
 });
 
-
-app.listen(PORT, () => {
-  console.log(`Server listening at http://127.0.0.1:${PORT}`);
-});
-
 app.get('/users_info', async (req, res) => {
   try {
     const payload = decodeToken(req.body.token)
@@ -477,4 +472,8 @@ app.get('/users_info', async (req, res) => {
     console.error('Error al crear rating:', error);
     res.status(500).json({ succes: false });
   }
+});
+
+app.listen(PORT, () => {
+  console.log(`Server listening at http://127.0.0.1:${PORT}`);
 });
