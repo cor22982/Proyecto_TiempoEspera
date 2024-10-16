@@ -253,8 +253,8 @@ app.post('/passwordRequest', async (req, res) =>{
   try {
     const OTP = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000
     const result = await getUserEmail(req.body.pi)
-    console.log(email)
-    console.log(email.email)
+    console.log(result)
+    console.log(result[0])
     console.log(result[0].email)
     const mail_options = {
       from: 'deimosgt502@gmail.com',       
