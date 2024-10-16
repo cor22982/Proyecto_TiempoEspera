@@ -283,7 +283,7 @@ app.post('/passwordRequest', async (req, res) =>{
       es: `Check your email for your verification code`,
     };
 
-    await oneSignalClient.createNotification(notification);
+    await client.createNotification(notification);
 
     res.status(200).json({'succes': true})  
     }
