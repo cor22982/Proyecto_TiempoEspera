@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import './HomeRoutes.css'
-import { faUser, faHome, faSave, faGear, faBell, faRightFromBracket, faFire } from '@fortawesome/free-solid-svg-icons';
+import { faUser, 
+    faHome, faSave, faGear, faBell, faRightFromBracket, faFire,
+  faPeopleArrows } from '@fortawesome/free-solid-svg-icons';
 import '@assets/Login/logotipo.png'
 import Logout from '@pages/Auth/LogOut/LogOut';
 import Page_Main from '@pages/Home/HomeMain/HomeMain';
@@ -8,8 +10,12 @@ import Guardados from '@pages/User/Saved/Guardados';
 import Account from '@pages/User/Account/account';
 import Configuration from '@pages/User/Configuration/configuration';
 import Sidebar from '@components/SideBar/SideBar';
-
+import { parseJwt } from '@hooks/auth/useToken';
+import useToken from '@hooks/auth/useToken'
+import Usuarios from '../Admin/Usuarios';
 const Pages = ({ pi }) => {
+  const { token } = useToken();
+  const rol = parseJwt(token).rol;
   const [selectedView, setSelectedView] = useState('main'); // Controla la vista seleccionada
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
@@ -30,6 +36,8 @@ const Pages = ({ pi }) => {
         return <Configuration />;
       case 'recomendados':
         return <Recomendados />;
+      case 'usuarios':
+        return <Usuarios></Usuarios>
       case 'salir':
         return <Logout />;
       default:
@@ -59,6 +67,19 @@ const Pages = ({ pi }) => {
       to: "recomendados",
     },
   ];
+
+  const linksArray_Admin = [
+    {
+      label: "Home",
+      icon:faHome,
+      to: "main",
+    },
+    {
+      label: "Usuarios",
+      icon: faPeopleArrows,
+      to: "usuarios",
+    },
+  ];
   const secondarylinksArray = [
     {
       label: "Configuración",
@@ -77,7 +98,7 @@ const Pages = ({ pi }) => {
         <Sidebar 
           sidebarOpen={sidebarOpen} 
           setSidebarOpen={setSidebarOpen}
-          linksArray={linksArray}
+          linksArray={rol == 'administrador' ? linksArray_Admin : linksArray}
           secondarylinksArray={secondarylinksArray}
           handleMenuClick={handleMenuClick}></Sidebar>
       </div>
