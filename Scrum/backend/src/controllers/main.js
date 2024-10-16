@@ -453,7 +453,7 @@ app.delete('/institution/:id', async(req, res)=>{
   }
 });
 
-app.get('/users_info', async (req, res) => {
+app.post('/users_info', async (req, res) => {
   try {
     const payload = decodeToken(req.body.token)
     if (validateToken(req.body.token) && payload.rol == 'administrador'){
