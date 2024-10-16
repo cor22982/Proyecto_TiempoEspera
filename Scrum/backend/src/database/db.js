@@ -191,3 +191,9 @@ export async function getOTPData(pi){
   const result = await conn.query('SELECT otp, exp_date from otp where pi = $1', [pi])
   return result.rows
 }
+
+
+export async function getUsers() {
+  const result = await conn.query('SELECT pi, name, type_user FROM users;')
+  return result.rows
+}
