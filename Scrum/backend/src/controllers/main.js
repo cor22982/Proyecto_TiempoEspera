@@ -431,7 +431,7 @@ app.put('/user_Update_info', async(req, res)=>{
     res.status(500).send('ERROR :(')
   }
 });
-app.put ('/user_Update_passw', async(req, res)=>{
+app.put ('/user_Update_passw',validateRequest, async(req, res)=>{
   try {
     const result = await UpdatePassw(req.body.pi ,req.body.passw);
     console.log("Cambio de contraseña exitoso")
