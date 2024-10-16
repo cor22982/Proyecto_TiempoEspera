@@ -7,10 +7,12 @@ import axios from 'axios';
 import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, 
   getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, 
   insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage
-, getStatistics, getUserBday, get_documents, UpdateEmail_telephone, deleteInstitution, addInstitution, UpdatePassw, UpdateName_Apellido} from '../database/db.js';
+, getStatistics, getUserBday, get_documents, UpdateEmail_telephone, deleteInstitution, addInstitution, UpdatePassw, UpdateName_Apellido,
+getUserEmail, getOTPData, deleteOTP, createNewOTP, modifyUserPassword} from '../database/db.js';
 import { getUserLoginInfo, getAdminLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken } from './jwt.js';
-import * as OneSignalLib from '@onesignal/node-onesignal'; 
+import * as OneSignalLib from '@onesignal/node-onesignal';
+import nodemailer from 'nodemailer';
 
 const app = express();
 const PORT = 5000;
@@ -30,6 +32,15 @@ const configuration = OneSignalLib.createConfiguration({
     },
   },
 });
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'deimosgt502@gmail.com', 
+    password: 'PolloAsado', 
+  },
+});
+
 
 
 const client = new OneSignalLib.DefaultApi(configuration);
@@ -240,10 +251,41 @@ app.get('/rating/:id_institution', async (req, res) => {
 
 app.post('/passwordRequest', async (req, res) =>{
   try {
-    
-  }
-  catch(error){
+    const OTP = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000
+    const mail_options = {
+      from: 'deimosgt502@gmail.com',       
+      to: await getUserEmail(req.body.pi),          
+      subject: 'Cambio de contrraseña',    
+      text: 'Has solicitado un cambio de contraseña, este es tu código de verificación',  
+      html: `<h1>Tu código de verificación es: </h1><p>${OTP}</p>` 
+    }
 
+    const currentDate = new Date();  // Get the current date and time
+    currentDate.setMinutes(currentDate.getMinutes() + 10);
+
+    await transporter.sendMail(mail_options)
+    await createNewOTP(req.body.pi, OTP, currentDate)
+    const notification = new OneSignalLib.Notification();
+    notification.app_id = ONESIGNAL_APP_ID;
+    notification.included_segments = ['All']; 
+    notification.target_channel = 'push';
+    notification.headings = {
+      en: 'A verification code has been sent to your email',
+      es: 'Un código de verificación fue enviado a tu correo electrónico',
+    };
+
+    notification.contents = {
+      en: `Revisa tu correo para obtener tu código de verificación`,
+      es: `Check your email for your verification code`,
+    };
+
+    await oneSignalClient.createNotification(notification);
+
+    res.status(200).json({'succes': true})  
+    }
+  catch(error){
+    console.error('Error in /passwordRequest:', error);
+    res.status(500).json({ success: false, error: 'Failed to process the request' });
   }
 })
 
