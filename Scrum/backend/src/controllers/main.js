@@ -350,6 +350,7 @@ app.get('/userAppointments/:pi', async (req, res) =>{
 app.post('/confirmPasswordChange', async (req, res) =>{
   try {
     const otpData = await getOTPData(req.body.pi)
+    console.log(otpData)
 
     if (!otpData){
       res.status(404).send({'succes': false, 'message': 'No tienes un código de verificación'})
