@@ -25,7 +25,7 @@ import Swal from 'sweetalert2'; // Importar SweetAlert2
 const Configuration = () => {
   const { isDarkMode, toggleDarkMode } = useContext(ThemeContext);
   const { fontFamily, changeFontFamily } = useContext(FontContext);
-  const { fontSize, setFontSize } = useContext(FontSizeContext);
+  const { fontSize, changeFontSize  } = useContext(FontSizeContext);
   const [password, setPassword] = useState('');
 
   const [tempIsDarkMode, setTempIsDarkMode] = useState(isDarkMode);
@@ -62,7 +62,7 @@ const Configuration = () => {
     }
   
     if (tempFontSize !== fontSize) {
-      setFontSize(tempFontSize);
+      changeFontSize (tempFontSize);
       changesMade = true;
     }
 

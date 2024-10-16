@@ -172,8 +172,8 @@ export async function createNewOTP(pi, otp, expiration_date){
   return result.rows
 }
 
-export async function deleteOTP(otp){
-  const result = await conn.query('DELETE FROM otp WHERE otp = $1', [otp])
+export async function deleteOTP(otp, pi){
+  const result = await conn.query('DELETE FROM otp WHERE otp = $1 and pi = $2;', [otp, pi])
   return result.rows
 }
 
@@ -189,5 +189,11 @@ export async function getUserEmail(pi){
 
 export async function getOTPData(pi){
   const result = await conn.query('SELECT otp, exp_date from otp where pi = $1', [pi])
+  return result.rows
+}
+
+
+export async function getUsers() {
+  const result = await conn.query(`SELECT pi, name, type_user, encode(perfi_image, 'base64') as imagen_perfil FROM users;`)
   return result.rows
 }

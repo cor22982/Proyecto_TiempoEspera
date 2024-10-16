@@ -8,9 +8,9 @@ import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequiere
   getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, 
   insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage
 , getStatistics, getUserBday, get_documents, UpdateEmail_telephone, deleteInstitution, addInstitution, UpdatePassw, UpdateName_Apellido,
-getUserEmail, getOTPData, deleteOTP, createNewOTP, modifyUserPassword} from '../database/db.js';
+getUserEmail, getOTPData, deleteOTP, createNewOTP, modifyUserPassword, getUsers} from '../database/db.js';
 import { getUserLoginInfo, getAdminLoginInfo } from '../database/auth.js';
-import { generateToken, decodeToken } from './jwt.js';
+import { generateToken, decodeToken, validateToken } from './jwt.js';
 import * as OneSignalLib from '@onesignal/node-onesignal';
 import nodemailer from 'nodemailer';
 
@@ -252,9 +252,10 @@ app.get('/rating/:id_institution', async (req, res) => {
 app.post('/passwordRequest', async (req, res) =>{
   try {
     const OTP = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000
+    const result = await getUserEmail(req.body.pi)
     const mail_options = {
       from: 'deimosgt502@gmail.com',       
-      to: await getUserEmail(req.body.pi),          
+      to: result[0].email,          
       subject: 'Cambio de contrraseña',    
       text: 'Has solicitado un cambio de contraseña, este es tu código de verificación',  
       html: `<h1>Tu código de verificación es: </h1><p>${OTP}</p>` 
@@ -279,7 +280,7 @@ app.post('/passwordRequest', async (req, res) =>{
       es: `Check your email for your verification code`,
     };
 
-    await oneSignalClient.createNotification(notification);
+    await client.createNotification(notification);
 
     res.status(200).json({'succes': true})  
     }
@@ -346,6 +347,30 @@ app.get('/userAppointments/:pi', async (req, res) =>{
   }
 });
 
+app.post('/confirmPasswordChange', async (req, res) =>{
+  try {
+    const otpData = await getOTPData(req.body.pi)
+    console.log(otpData)
+
+    if (!otpData){
+      res.status(404).send({'succes': false, 'message': 'No tienes un código de verificación'})
+    }
+    if(otpData[0].exp_date < Date.now()){
+      res.status(404).send({'succes': false, 'message': 'Tu código de verificación ha expirado'})
+    }
+    if(req.body.otp != otpData[0].otp){
+      res.status(404).send({'succes': false, 'message': 'Tu código de verificación es incorrecto'})
+    }
+    await modifyUserPassword(req.body.password, req.body.pi);
+    await deleteOTP(req.body.password, req.body.pi);
+    res.status(200).send({'succes': true, 'message': 'Tu contraseña fue modificada'})
+  }
+  catch(error){
+    console.error('Error al confirmar la contraseña :(', error);
+    res.status(500).json({'succes': false})
+  }
+});
+
 app.get('/userInfo/:pi', async(req, res)=>{
   try{
     res.status(200).json(await getUserData(req.params.pi));
@@ -406,7 +431,7 @@ app.put('/user_Update_info', async(req, res)=>{
     res.status(500).send('ERROR :(')
   }
 });
-app.put ('/user_Update_passw', async(req, res)=>{
+app.put ('/user_Update_passw',validateRequest, async(req, res)=>{
   try {
     const result = await UpdatePassw(req.body.pi ,req.body.passw);
     console.log("Cambio de contraseña exitoso")
@@ -446,6 +471,23 @@ app.delete('/institution/:id', async(req, res)=>{
   catch(error){
     console.log('Error al borrar la institución :(', error)
     res.status(500).send('ERROR :(')
+  }
+});
+
+app.post('/users_info', async (req, res) => {
+  try {
+    const payload = decodeToken(req.body.token)
+    if (validateToken(req.body.token) && payload.rol == 'administrador'){
+      res.status(200).json(await getUsers())
+    }
+    else{
+      res.status(401).json({message: 'Non authorized'})
+    }
+    
+  }
+  catch(error){
+    console.error('Error al crear rating:', error);
+    res.status(500).json({ succes: false });
   }
 });
 
