@@ -473,16 +473,7 @@ app.delete('/institution/:id', async(req, res)=>{
   }
 });
 
-app.use((req, res) => {
-  res.status(501).json({ error: 'Método no implementado' });
-});
-
-
-app.listen(PORT, () => {
-  console.log(`Server listening at http://127.0.0.1:${PORT}`);
-});
-
-app.get('/users_info', async (req, res) => {
+app.post('/users_info', async (req, res) => {
   try {
     const payload = decodeToken(req.body.token)
     if (validateToken(req.body.token) && payload.rol == 'administrador'){
@@ -497,4 +488,13 @@ app.get('/users_info', async (req, res) => {
     console.error('Error al crear rating:', error);
     res.status(500).json({ succes: false });
   }
+});
+
+app.use((req, res) => {
+  res.status(501).json({ error: 'Método no implementado' });
+});
+
+
+app.listen(PORT, () => {
+  console.log(`Server listening at http://127.0.0.1:${PORT}`);
 });
