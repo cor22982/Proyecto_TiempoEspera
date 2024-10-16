@@ -253,10 +253,9 @@ app.post('/passwordRequest', async (req, res) =>{
   try {
     const OTP = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000
     const email = await getUserEmail(req.body.pi)
-    console.log(email)
     const mail_options = {
       from: 'deimosgt502@gmail.com',       
-      to: email,          
+      to: email.email,          
       subject: 'Cambio de contrraseña',    
       text: 'Has solicitado un cambio de contraseña, este es tu código de verificación',  
       html: `<h1>Tu código de verificación es: </h1><p>${OTP}</p>` 
