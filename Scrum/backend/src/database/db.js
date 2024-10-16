@@ -194,6 +194,6 @@ export async function getOTPData(pi){
 
 
 export async function getUsers() {
-  const result = await conn.query('SELECT pi, name, type_user, perfi_image FROM users;')
+  const result = await conn.query(`SELECT pi, name, type_user, encode(perfi_image, 'base64') as imagen_perfil FROM users;`)
   return result.rows
 }
