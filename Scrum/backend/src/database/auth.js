@@ -11,3 +11,14 @@ export async function getUserLoginInfo(pi, rol) {
     throw error;
   }
 }
+
+export async function getAdminLoginInfo(pi, rol) {
+  try {
+    const query = 'select users.password , users.name, users.lastname from users where users.pi = $1 and type_user= $2;';
+    const result = await client.query(query, [pi, rol]);
+    return result.rows[0]; // Devuelve solo el primer resultado
+  } catch (error) {
+    console.error('Error fetching user login info:', error);
+    throw error;
+  }
+}
