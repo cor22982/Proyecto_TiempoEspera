@@ -1,6 +1,6 @@
 import { faX} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import './DeletuserCard.css'
+import './DeletuserCard.css' 
 function DeletuserCard({onDelete, name_user, dpi_user, type_user, imagen_src}) {
   return (
     <div className='container-saved'>
@@ -8,7 +8,7 @@ function DeletuserCard({onDelete, name_user, dpi_user, type_user, imagen_src}) {
         <div
         className="checks-buttons"
         style={{ '--icon-color': 'red' }}
-        onClick={async() =>{await onDelete()}} // Aquí corregimos la llamada a la función
+        onClick={onDelete} // Aquí corregimos la llamada a la función
         >
           <FontAwesomeIcon icon={faX} />
         </div>
