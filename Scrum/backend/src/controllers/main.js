@@ -8,7 +8,7 @@ import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequiere
   getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, 
   insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage
 , getStatistics, getUserBday, get_documents, UpdateEmail_telephone, deleteInstitution, addInstitution, UpdatePassw, UpdateName_Apellido} from '../database/db.js';
-import { getUserLoginInfo } from '../database/auth.js';
+import { getUserLoginInfo, getAdminLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken } from './jwt.js';
 import * as OneSignalLib from '@onesignal/node-onesignal'; 
 
@@ -132,8 +132,13 @@ app.get('/users_age/:pi', async (req, res) => {
 
 app.post('/login', async (req, res) => {
   try {
-    const userLoginInfo = await getUserLoginInfo(req.body.pi, req.body.rol);
-    console.log(userLoginInfo)
+    let userLoginInfo;
+    if (req.body.rol != 'administrador') {
+      userLoginInfo = await getUserLoginInfo(req.body.pi, req.body.rol);  
+    }
+    else{
+      userLoginInfo = await getAdminLoginInfo(req.body.pi, req.body.rol);
+    }
     if (!userLoginInfo) {
       return res.status(404).json({ success: false, message: 'Usuario no encontrado' });
     }
