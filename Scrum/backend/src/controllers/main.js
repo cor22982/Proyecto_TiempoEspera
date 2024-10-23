@@ -351,18 +351,19 @@ app.post('/confirmPasswordChange', async (req, res) =>{
   try {
     const otpData = await getOTPData(req.body.pi)
     console.log(otpData)
+    console.log(otpData[0].exp_date)
 
     if (!otpData){
       res.status(404).send({'succes': false, 'message': 'No tienes un código de verificación'})
     }
-    if(otpData[0].exp_date < Date.now()){
+    if(Date(otpData[0].exp_date).getTime() < Date.now()){
       res.status(404).send({'succes': false, 'message': 'Tu código de verificación ha expirado'})
     }
     if(req.body.otp != otpData[0].otp){
       res.status(404).send({'succes': false, 'message': 'Tu código de verificación es incorrecto'})
     }
     await modifyUserPassword(req.body.password, req.body.pi);
-    await deleteOTP(req.body.password, req.body.pi);
+    await deleteOTP(req.body.body.otp, req.body.pi);
     res.status(200).send({'succes': true, 'message': 'Tu contraseña fue modificada'})
   }
   catch(error){
