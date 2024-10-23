@@ -363,7 +363,10 @@ app.post('/confirmPasswordChange', async (req, res) =>{
       res.status(404).send({'succes': false, 'message': 'Tu código de verificación es incorrecto'})
     }
     await modifyUserPassword(req.body.password, req.body.pi);
-    await deleteOTP(req.body.otp, req.body.pi);
+    const deleteResult = await deleteOTP(req.body.otp, req.body.pi);
+    if (deleteResult === 0) {
+      console.warn('No OTP record was deleted');
+    } 
     res.status(200).send({'succes': true, 'message': 'Tu contraseña fue modificada'})
   }
   catch(error){
