@@ -5,7 +5,6 @@
 }
 
 .cabecera{
-  
   grid-row: 1;
   background-color: white;
   height: 60px;
@@ -13,8 +12,6 @@
   align-items: center;
   padding-left: 40px;
   box-shadow: 5px 5px 10px 0 rgb(204, 204, 204);
-
-  
 }
 
 .paginas{

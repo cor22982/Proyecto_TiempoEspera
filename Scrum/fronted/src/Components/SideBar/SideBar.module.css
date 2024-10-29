@@ -1,0 +1,99 @@
+.container {
+  color: white;
+  background: #00367E;
+  position: sticky;
+  padding-top: 1.25rem;
+  padding-left: 2.5rem; /* Espacio en el lado izquierdo */
+  width: auto; /* Tamaño automático basado en el contenido */
+  display: inline-flex; /* Permite crecimiento en ancho */
+  flex-direction: column;
+  height: 100vh;
+  box-sizing: content-box; /* Excluye el padding del ancho total */
+}
+
+.sidebarButton {
+  position: absolute;
+  top: 68px;
+  right: -18px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  color: white;
+  background: #00367E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+  letter-spacing: inherit;
+  font-size: 1.25rem;
+  text-align: inherit;
+  padding: 0;
+  font-family: inherit;
+  outline: none;
+  background-position: 0 0;
+  transition: background-color 0.3s;
+}
+
+.sidebarButton:hover {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: inherit;
+}
+
+.logoContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 24px;
+  width: 120px;
+  height: 50px;
+  padding-bottom: 54px;
+}
+
+.imgContent {
+  display: flex;
+  transition: all 0.3s;
+}
+
+.imgContent img {
+  max-width: 100%;
+  height: auto;
+}
+
+.linkContainer {
+  margin: 0.75rem 0;
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  font-size: 1.375rem;
+  cursor: pointer;
+}
+
+.linkContainer:hover {
+  color: rgba(250, 250, 250, 0.5);
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  height: 50px;
+}
+
+.linkIcon {
+  display: flex;
+}
+
+.linkIcon svg {
+  font-size: 25px;
+}
+
+.divider {
+  height: 1px;
+  width: calc(100% + 2.5rem); /* Se expande al 100% del contenedor más el padding */
+  background: white;
+  margin-left: -2.5rem; /* Compensa el padding de .container */
+}

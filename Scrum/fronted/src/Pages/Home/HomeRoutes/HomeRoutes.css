@@ -4,8 +4,8 @@
   background-color: #E4E4E4;
   display: grid;
   grid-template-columns: 80px auto;
-  transition:all 0.3s ;
-  animation: fadeIn 1s ;
+  transition: all 0.3s;
+  animation: fadeIn 1s;
 }
 
 .contenedor-principal-activate {
@@ -13,22 +13,23 @@
   height: 100vh;
   background-color: #E4E4E4;
   display: grid;
-  grid-template-columns: 225px auto;
-  transition:all 0.3s ;
-  animation: fadeIn 1s ;
+  grid-template-columns: calc(225px + 2.5rem) auto; /* Añade 2.5rem al ancho de la columna del sidebar */
+  transition: all 0.3s;
+  animation: fadeIn 1s;
 }
+
 .opciones {
   grid-column: 1;
-  background-color: #00367E;
-  width: fill ;
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.interfaz{
+.interfaz {
   grid-column: 2;
   display: grid;
 }
+
 
 .imagen-portada{
   height: 130px;
