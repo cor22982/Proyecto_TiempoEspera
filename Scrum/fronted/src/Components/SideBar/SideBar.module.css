@@ -1,99 +1,105 @@
 .container {
-  color: white;
-  background: #00367E;
-  position: sticky;
-  padding-top: 1.25rem;
-  padding-left: 2.5rem; /* Espacio en el lado izquierdo */
-  width: auto; /* Tamaño automático basado en el contenido */
-  display: inline-flex; /* Permite crecimiento en ancho */
-  flex-direction: column;
-  height: 100vh;
-  box-sizing: content-box; /* Excluye el padding del ancho total */
+    color: white;
+    background: #00367E;
+    position: sticky;
+    padding-top: 1.25rem;
+    padding-left: 2.5rem;
+    display: inline-flex;
+    flex-direction: column;
+    height: 100vh;
+    box-sizing: content-box;
+}
+
+.sidebarCollapsed {
+    padding-left: 0;
+    /* Quitar padding en el estado colapsado */
+    width: 80px;
+    /* Ancho reducido */
 }
 
 .sidebarButton {
-  position: absolute;
-  top: 68px;
-  right: -18px;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  color: white;
-  background: #00367E;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s;
-  border: none;
-  letter-spacing: inherit;
-  font-size: 1.25rem;
-  text-align: inherit;
-  padding: 0;
-  font-family: inherit;
-  outline: none;
-  background-position: 0 0;
-  transition: background-color 0.3s;
-}
-
-.sidebarButton:hover {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  font-size: inherit;
+    position: absolute;
+    top: 68px;
+    right: -18px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    color: white;
+    background: #00367E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    font-size: 1.25rem;
+    padding: 0;
+    outline: none;
 }
 
 .logoContent {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 24px;
-  width: 120px;
-  height: 50px;
-  padding-bottom: 54px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 24px;
+    width: 120px;
+    height: 80px;
+    padding-bottom: 54px;
 }
 
-.imgContent {
-  display: flex;
-  transition: all 0.3s;
+.logoCollapsed {
+    width: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
 }
 
 .imgContent img {
-  max-width: 100%;
-  height: auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.sidebarCollapsed .imgContent img {
+    transform: scale(0.6);
+    /* Reducir el logo al 60% */
 }
 
 .linkContainer {
-  margin: 0.75rem 0;
-  width: 100%;
-  display: flex;
-  gap: 1rem;
-  font-size: 1.375rem;
-  cursor: pointer;
+    margin: 0.75rem 0;
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    font-size: 1.375rem;
+    cursor: pointer;
+    align-items: center;
+    height: 2rem;
+    /* Mantener altura constante para cada enlace */
+    padding-left: 0;
+    box-sizing: border-box;
+    /* Asegura que el padding y width no afecten el tamaño total */
 }
 
-.linkContainer:hover {
-  color: rgba(250, 250, 250, 0.5);
+.sidebarCollapsed .linkContainer {
+    justify-content: center;
+    /* Centrar los iconos en el estado colapsado */
 }
 
-.links {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  height: 50px;
+.sidebarCollapsed .linkContainer span {
+    display: none;
+    /* Ocultar texto en el estado colapsado */
 }
 
 .linkIcon {
-  display: flex;
+    display: flex;
+    align-items: center;
 }
 
 .linkIcon svg {
-  font-size: 25px;
+    font-size: 25px;
 }
 
 .divider {
-  height: 1px;
-  width: calc(100% + 2.5rem); /* Se expande al 100% del contenedor más el padding */
-  background: white;
-  margin-left: -2.5rem; /* Compensa el padding de .container */
+    height: 1px;
+    width: calc(100% + 2.5rem);
+    background: white;
+    margin-left: -2.5rem;
 }

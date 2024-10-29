@@ -1,12 +1,11 @@
-
-
-.componentes-1{
-  grid-row: 2;
-  display: flex;
-  flex-wrap: wrap;
-  overflow-y: auto;
+.componentes-1 {
+    grid-row: 2;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
 }
 
-.componentes-1 > :not(:last-child) {
-  margin-bottom: 20px; /* Ajusta el espacio entre los elementos */
+.componentes-1> :not(:last-child) {
+    margin-bottom: 20px;
+    /* Ajusta el espacio entre los elementos */
 }
