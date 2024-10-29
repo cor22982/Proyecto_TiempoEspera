@@ -1,98 +1,18 @@
-/* Paleta clara (por defecto) */
+/* Variables globales para el modo claro */
+
 :root {
-    /* Colores generales */
-    --color-primary: #0069AD;
-    --color-white: #FFFFFF;
-    --color-black: #000000;
-    --color-blue: blue;
-  
-    /* Autenticación (SignUp / Login) */
-    --auth-left-bg: var(--color-primary);
-    --auth-right-bg: var(--color-white);
-  
-    /* Errores */
-    --error-text-border: #e34850;
-    --error-bg: #e3485033;
-  
-    /* Títulos, textos y links */
-    --title-color: #00367E;
-    --text-color: var(--color-black);
-    --link-color: var(--color-blue);
-  
-    /* Componentes de input */
-    --input-placeholder: #6580A5;
-    --input-border-bg: #e5e4e5;
-  
-    /* Dropdown */
-    --dropdown-bg: var(--color-primary);
-    --dropdown-hover-bg: #024069;
-    --dropdown-text-color: var(--color-white);
-    --dropdown-border-menu: #cccccc;
-    --dropdown-menu-bg: var(--color-white);
-    --dropdown-menu-text: var(--color-black);
-  
-    /* Botones */
     --button-bg: #00367E;
-    --button-text: var(--color-white);
-    --button-active: #00153C;
+    --button-text: #FFFFFF;
+    --button-activate: #00153C;
     --button-hover: #002254;
-  
-    /* Otros componentes */
-    --logout-load: var(--color-primary);
-    --logout-text: var(--color-primary);
-    --home-bg: #E4E4E4;
-    --home-bar: #00367E;
-    --sidebar-bg: #00367E;
-    --sidebar-text: var(--color-white);
-    --sidebar-hover-text: #00367E;
-  }
-  
-  /* Paleta para el modo oscuro */
-  .dark-mode {
-    /* Colores generales */
-    --color-primary: #1E3A5F;
-    --color-white: #F0F0F0;
-    --color-black: #1B1B1B;
-    --color-blue: #ADD8E6;
-  
-    /* Autenticación (SignUp / Login) */
-    --auth-left-bg: var(--color-primary);
-    --auth-right-bg: var(--color-black);
-  
-    /* Errores */
-    --error-text-border: #FF6F61;
-    --error-bg: #FF6F6133;
-  
-    /* Títulos, textos y links */
-    --title-color: #78A3CE;
-    --text-color: var(--color-white);
-    --link-color: #76B3E8;
-  
-    /* Componentes de input */
-    --input-placeholder: #91A3B0;
-    --input-border-bg: #3C3C3C;
-  
-    /* Dropdown */
-    --dropdown-bg: var(--color-primary);
-    --dropdown-hover-bg: #1A2B40;
-    --dropdown-text-color: var(--color-white);
-    --dropdown-border-menu: #444444;
-    --dropdown-menu-bg: #222222;
-    --dropdown-menu-text: var(--color-white);
-  
-    /* Botones */
-    --button-bg: #3E5065;
-    --button-text: var(--color-white);
-    --button-active: #2A3445;
-    --button-hover: #2E4B6F;
-  
-    /* Otros componentes */
-    --logout-load: var(--color-primary);
-    --logout-text: var(--color-primary);
-    --home-bg: #2C2C2C;
-    --home-bar: #1E3A5F;
-    --sidebar-bg: #1E3A5F;
-    --sidebar-text: var(--color-white);
-    --sidebar-hover-text: #F0F0F0;
-  }
-  
+}
+
+
+/* Variables globales para el modo oscuro */
+
+body.darkMode {
+    --button-bg: #4A90E2;
+    --button-text: #E5E5E5;
+    --button-activate: #357ABD;
+    --button-hover: #629FDA;
+}

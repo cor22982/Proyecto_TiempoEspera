@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from "react";
 import {
   Container,
   Typography,
@@ -12,21 +12,21 @@ import {
   FormControlLabel,
   Grid,
   Paper,
-} from '@mui/material';
-import LockIcon from '@mui/icons-material/Lock';
-import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
-import SettingsIcon from '@mui/icons-material/Settings';
-import styles from './configuration.module.css';
-import { ThemeContext } from '@contexts/ConfigContext/ThemeContext';
-import { FontContext } from '@contexts/ConfigContext/FontContext';
-import { FontSizeContext } from '@contexts/ConfigContext/FontSizeContext';
-import Swal from 'sweetalert2'; // Importar SweetAlert2
+} from "@mui/material";
+import LockIcon from "@mui/icons-material/Lock";
+import AccessibilityNewIcon from "@mui/icons-material/AccessibilityNew";
+import SettingsIcon from "@mui/icons-material/Settings";
+import styles from "./configuration.module.css";
+import { ThemeContext } from "@contexts/ConfigContext/ThemeContext";
+import { FontContext } from "@contexts/ConfigContext/FontContext";
+import { FontSizeContext } from "@contexts/ConfigContext/FontSizeContext";
+import Swal from "sweetalert2"; // Importar SweetAlert2
 
 const Configuration = () => {
   const { isDarkMode, toggleDarkMode } = useContext(ThemeContext);
   const { fontFamily, changeFontFamily } = useContext(FontContext);
-  const { fontSize, changeFontSize  } = useContext(FontSizeContext);
-  const [password, setPassword] = useState('');
+  const { fontSize, changeFontSize } = useContext(FontSizeContext);
+  const [password, setPassword] = useState("");
 
   const [tempIsDarkMode, setTempIsDarkMode] = useState(isDarkMode);
   const [tempFontFamily, setTempFontFamily] = useState(fontFamily);
@@ -55,28 +55,28 @@ const Configuration = () => {
       toggleDarkMode();
       changesMade = true;
     }
-    
+
     if (tempFontFamily !== fontFamily) {
       changeFontFamily(tempFontFamily);
       changesMade = true;
     }
-  
+
     if (tempFontSize !== fontSize) {
-      changeFontSize (tempFontSize);
+      changeFontSize(tempFontSize);
       changesMade = true;
     }
 
     if (changesMade) {
       Swal.fire({
-        icon: 'success',
-        title: '¡Éxito!',
-        text: 'Los cambios se han guardado correctamente.',
+        icon: "success",
+        title: "¡Éxito!",
+        text: "Los cambios se han guardado correctamente.",
       });
     } else {
       Swal.fire({
-        icon: 'info',
-        title: 'Sin cambios',
-        text: 'No se realizaron cambios para guardar.',
+        icon: "info",
+        title: "Sin cambios",
+        text: "No se realizaron cambios para guardar.",
       });
     }
   };
@@ -85,23 +85,17 @@ const Configuration = () => {
     document.body.style.fontFamily = tempFontFamily;
     document.body.style.fontSize = `${tempFontSize}px`;
 
-    if (tempIsDarkMode) {
-      document.body.classList.add('darkMode');
-    } else {
-      document.body.classList.remove('darkMode');
-    }
+    document.body.classList.toggle("darkMode", tempIsDarkMode);
 
     return () => {
-      document.body.style.fontFamily = localStorage.getItem('fontFamily') || 'Inika';
-      document.body.style.fontSize = `${localStorage.getItem('fontSize') || 16}px`;
-      const savedTheme = localStorage.getItem('isDarkMode') === 'true';
-      if (savedTheme) {
-        document.body.classList.add('darkMode');
-      } else {
-        document.body.classList.remove('darkMode');
-      }
+      document.body.style.fontFamily =
+        localStorage.getItem("fontFamily") || "Inika";
+      document.body.style.fontSize = `${
+        localStorage.getItem("fontSize") || 16
+      }px`;
+      document.body.classList.toggle("darkMode", isDarkMode);
     };
-  }, [tempFontFamily, tempFontSize, tempIsDarkMode]);
+  }, [tempFontFamily, tempFontSize, tempIsDarkMode, isDarkMode]);
 
   return (
     <Container className={styles.container}>
@@ -110,7 +104,11 @@ const Configuration = () => {
           <Grid item xs={12} sm={6}>
             <div className={styles.sectionHeader}>
               <LockIcon className={styles.icon} />
-              <Typography className={styles.subtitle} variant="h6" sx={{ fontSize: 'inherit' }}>
+              <Typography
+                className={styles.subtitle}
+                variant="h6"
+                sx={{ fontSize: "inherit" }}
+              >
                 Cambiar la Contraseña
               </Typography>
             </div>
@@ -124,10 +122,10 @@ const Configuration = () => {
               fullWidth
               margin="normal"
               InputProps={{
-                style: { fontFamily: 'inherit', fontSize: 'inherit' }, // Inherit font size
+                style: { fontFamily: "inherit", fontSize: "inherit" }, // Inherit font size
               }}
               InputLabelProps={{
-                style: { fontFamily: 'inherit', fontSize: 'inherit' }, // Inherit label font size
+                style: { fontFamily: "inherit", fontSize: "inherit" }, // Inherit label font size
               }}
               placeholder="Ingresa tu nueva contraseña"
             />
@@ -136,7 +134,11 @@ const Configuration = () => {
           <Grid item xs={12} sm={6}>
             <div className={styles.sectionHeader}>
               <SettingsIcon className={styles.icon} />
-              <Typography className={styles.subtitle} variant="h6" sx={{ fontSize: 'inherit' }}>
+              <Typography
+                className={styles.subtitle}
+                variant="h6"
+                sx={{ fontSize: "inherit" }}
+              >
                 Tema (Modo Oscuro/Claro)
               </Typography>
             </div>
@@ -149,7 +151,10 @@ const Configuration = () => {
                 />
               }
               label={
-                <Typography sx={{ fontFamily: 'inherit', fontSize: 'inherit' }} component="span">
+                <Typography
+                  sx={{ fontFamily: "inherit", fontSize: "inherit" }}
+                  component="span"
+                >
                   Modo Oscuro
                 </Typography>
               }
@@ -159,11 +164,18 @@ const Configuration = () => {
           <Grid item xs={12}>
             <div className={styles.sectionHeader}>
               <AccessibilityNewIcon className={styles.icon} />
-              <Typography className={styles.subtitle} variant="h6" sx={{ fontSize: 'inherit' }}>
+              <Typography
+                className={styles.subtitle}
+                variant="h6"
+                sx={{ fontSize: "inherit" }}
+              >
                 Accesibilidad
               </Typography>
             </div>
-            <Typography variant="subtitle1" sx={{ fontSize: 'inherit', fontFamily: 'inherit' }}>
+            <Typography
+              variant="subtitle1"
+              sx={{ fontSize: "inherit", fontFamily: "inherit" }}
+            >
               Ajuste de Tamaño de Fuente
             </Typography>
             <Slider
@@ -176,16 +188,27 @@ const Configuration = () => {
               aria-labelledby="font-size-slider"
               color="secondary"
             />
-            <Typography variant="subtitle1" sx={{ fontSize: 'inherit', fontFamily: 'inherit' }}>
+            <Typography
+              variant="subtitle1"
+              sx={{ fontSize: "inherit", fontFamily: "inherit" }}
+            >
               Tipografía Preferida
             </Typography>
             <FormControl component="fieldset">
-              <RadioGroup value={tempFontFamily} onChange={handleTempFontFamilyChange}>
+              <RadioGroup
+                value={tempFontFamily}
+                onChange={handleTempFontFamilyChange}
+              >
                 <FormControlLabel
                   value="Inika"
                   control={<Radio color="primary" />}
                   label={
-                    <Typography style={{ fontFamily: 'var(--title-inika)', fontSize: 'inherit' }}>
+                    <Typography
+                      style={{
+                        fontFamily: "var(--title-inika)",
+                        fontSize: "inherit",
+                      }}
+                    >
                       Inika
                     </Typography>
                   }
@@ -194,7 +217,12 @@ const Configuration = () => {
                   value="Roboto"
                   control={<Radio color="primary" />}
                   label={
-                    <Typography style={{ fontFamily: 'var(--font-roboto)', fontSize: 'inherit' }}>
+                    <Typography
+                      style={{
+                        fontFamily: "var(--font-roboto)",
+                        fontSize: "inherit",
+                      }}
+                    >
                       Roboto
                     </Typography>
                   }
@@ -203,7 +231,12 @@ const Configuration = () => {
                   value="Times New Roman"
                   control={<Radio color="primary" />}
                   label={
-                    <Typography style={{ fontFamily: 'var(--font-times)', fontSize: 'inherit' }}>
+                    <Typography
+                      style={{
+                        fontFamily: "var(--font-times)",
+                        fontSize: "inherit",
+                      }}
+                    >
                       Times New Roman
                     </Typography>
                   }
@@ -217,7 +250,7 @@ const Configuration = () => {
           className={styles.saveButton}
           variant="contained"
           onClick={handleSaveChanges}
-          sx={{ fontSize: 'inherit' }} // Inherit button font size
+          sx={{ fontSize: "inherit" }} // Inherit button font size
         >
           Guardar Cambios
         </Button>

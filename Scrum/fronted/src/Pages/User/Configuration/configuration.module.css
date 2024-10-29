@@ -1,59 +1,75 @@
-@import '@styles/styles.css'; /* Importamos el archivo global */
+@import '@styles/styles.css';
+@import "@styles/colors.css";
+
+/* Importamos el archivo global */
 
 .container {
-  padding: 1rem;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  font-family: inherit !important; /* Usamos la tipografía global */
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-family: inherit !important;
+    /* Usamos la tipografía global */
 }
 
 .InputMaterial {
-  font-family: inherit; /* Cambia el texto ingresado a la fuente heredada */
-  font-size: inherit; /* Asegura que el tamaño de fuente sea heredado */
+    font-family: inherit;
+    /* Cambia el texto ingresado a la fuente heredada */
+    font-size: inherit;
+    /* Asegura que el tamaño de fuente sea heredado */
 }
 
 .configCard {
-  padding: 1rem;
-  background: linear-gradient(to bottom, var(--color-light-bg), #f7f7f7);
-  border-radius: 8px;
-  max-width: 800px;
-  width: 100%;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
-  margin: auto;
-  transition: none;
-  font-family: inherit !important; /* Fuente global */
+    padding: 1rem;
+    background: linear-gradient(to bottom, var(--color-light-bg), #f7f7f7);
+    border-radius: 8px;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    margin: auto;
+    transition: none;
+    font-family: inherit !important;
+    /* Fuente global */
 }
 
 .sectionHeader {
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
 }
 
 .subtitle {
-  margin-left: 0.25rem;
-  font-family: inherit !important; /* Fuente global */
+    margin-left: 0.25rem;
+    font-family: inherit !important;
+    /* Fuente global */
 }
 
 .icon {
-  color: var(--color-dark); /* Color global */
+    color: var(--color-dark);
+    /* Color global */
 }
 
 .saveButton {
-  background-color: #00367E !important;
-  color: white !important;
-  width: 100%;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  font-family: inherit; /* Asegura que el botón tenga el mismo tamaño */
+    background-color: var(--button-bg) !important;
+    color: var(--button-text) !important;
+    width: 100%;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: inherit !important;
+    /* Asegura que el botón tenga el mismo tamaño */
 }
 
 .saveButton:hover {
-  background-color: #002052 !important; /* Color al pasar el cursor */
+    background-color: var(--button-hover) !important;
+    /* Color al pasar el cursor */
+}
+
+.saveButton:active {
+    background-color: var(--button-activate) !important;
+    /* Color de fondo al hacer clic */
 }
 
 .darkMode {
-  background-color: #121212;
-  color: #ffffff;
+    background-color: #121212;
+    color: #ffffff;
 }
