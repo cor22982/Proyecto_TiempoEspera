@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import PropTypes from 'prop-types'
 
 const TextInputIcon = ({ type, name, placeholder, value, onChange, icon, onIconClick, iconOnClick }) => {
-  const [inputType, setInputType] = useState('text') // Nuevo estado para el tipo de input
+  const [inputType, setInputType] = useState(type) // Nuevo estado para el tipo de input
   const [mytype] = useState(type)
   const handleIconClick = () => {
     if (onIconClick) {
