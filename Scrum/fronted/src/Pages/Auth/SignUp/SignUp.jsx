@@ -46,7 +46,7 @@ const Registro = () => {
     const response = await fetch('https://deimoss.web05.lol/register', fetchOptions)
     
     if (response.ok) {
-      
+      window.location.reload();
       console.log('success!')
       setErrorMessage('')
       return
