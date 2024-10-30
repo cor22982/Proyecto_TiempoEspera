@@ -19,12 +19,24 @@
     --hover-bg-checked: #004A9E;
     --check-text: #005a96;
 
+    /* Dropdown */
+    --dd-bg-inactivate: #00367E;
+    --dd-inactivate-text: #ffffff;
+    --dd-bg-activate: #00153C;
+    --dd-content-text: red;
+    --dd-content-bg: #ffffff;
+
     /* Sombras */
-    --shadow: #cccccc;
+    --shadow-primary: #cccccc;
+    --shadow-secundary: rgba(0, 0, 0, 0.1);
+
+    /*Borders*/
+    --border-primary: #cccccc;
 
     /* Sidebar */
     --main-left-size-bg: #00367E;
     --main-right-size-bg: #E4E4E4;
+
     
     /* Text */
     --text-primary: #00367E;

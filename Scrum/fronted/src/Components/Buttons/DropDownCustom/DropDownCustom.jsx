@@ -6,7 +6,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
-import "./DropDownCustom.css";
+import styles from "./DropDownCustom.module.css";
 
 const Dropdowncustom = ({ nombre, lista, onChange }) => {
   const [dropdown, setDropdown] = useState(false);
@@ -23,12 +23,12 @@ const Dropdowncustom = ({ nombre, lista, onChange }) => {
   };
 
   return (
-    <div className="dropdown-container">
+    <div className={styles["dropdown-container"]}>
       <Dropdown isOpen={dropdown} toggle={abrirCerrar}>
-        <DropdownToggle className="dropdown-toggle">
+        <DropdownToggle className={styles["dropdown-toggle"]}>
           {tituloSeleccionado}
         </DropdownToggle>
-        <DropdownMenu>
+        <DropdownMenu className={styles["dropdown-menu"]}>
           {lista.map((item, index) => (
             <DropdownItem key={index} onClick={() => seleccionarItem(item)}>
               {item}
