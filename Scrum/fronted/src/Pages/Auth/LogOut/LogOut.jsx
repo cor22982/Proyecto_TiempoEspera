@@ -1,22 +1,22 @@
-import { useEffect } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import './LogOut.css'
+import { useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import styles from "./LogOut.module.css";
+
 const Logout = () => {
- 
   useEffect(() => {
-    localStorage.clear()
+    localStorage.clear();
     setTimeout(() => {
-      window.location.href = '/';
-    }, 1000)
-  }, [])
+      window.location.href = "/";
+    }, 1000);
+  }, []);
 
   return (
-    <div className='salir'>
-      <FontAwesomeIcon icon={faSpinner} className="icon-logout" />
-      <h1 className='titulosaliendo'>Saliendo</h1>
+    <div className={styles.salir}>
+      <FontAwesomeIcon icon={faSpinner} className={styles.iconLogout} />
+      <h1 className={styles.tituloSaliendo}>Saliendo</h1>
     </div>
-  )
-} 
+  );
+};
 
-export default Logout
+export default Logout;

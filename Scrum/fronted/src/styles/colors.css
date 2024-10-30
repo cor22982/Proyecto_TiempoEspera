@@ -22,7 +22,7 @@
     /* Dropdown */
     --dd-bg-inactivate: #00367E;
     --dd-inactivate-text: #ffffff;
-    --dd-bg-activate: #00153C;
+    --dd-bg-activate: #002254;
     --dd-content-text: red;
     --dd-content-bg: #ffffff;
 
@@ -32,6 +32,19 @@
     /* Sombras */
     --shadow-primary: #cccccc;
     --shadow-secundary: rgba(0, 0, 0, 0.1);
+    
+    /* Sidebar */
+    --main-left-size-bg: #00367E;
+    --main-right-size-bg: #E4E4E4;
+
+    /* Login, SingUp & LogOut*/
+    --lg-left-side: #00367E;
+    --lg-right-side: #ffffff;
+    --lg-icon: #00367E;
+
+    /* Errores & Aceptaciones */
+    --error-bg: #e3485033;
+    --error-border: #e34850;
 
     /* Dividers */
     --dv-info: #A1A1A1;
@@ -40,10 +53,6 @@
     /*Borders*/
     --border-primary: #cccccc;
 
-    /* Sidebar */
-    --main-left-size-bg: #00367E;
-    --main-right-size-bg: #E4E4E4;
-    
     /* Graficas */
     --bar-bg: #005a96;
     
@@ -56,6 +65,7 @@
     --text-black: #000000;
     --text-link: #0000ff;
     --text-hover: #9393B6;
+    --text-error: #e34850;
 }
 
 
