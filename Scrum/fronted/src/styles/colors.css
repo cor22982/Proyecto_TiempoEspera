@@ -26,6 +26,9 @@
     --dd-content-text: red;
     --dd-content-bg: #ffffff;
 
+    /* IconColor */
+    --ib-color: #0069AD;
+
     /* Sombras */
     --shadow-primary: #cccccc;
     --shadow-secundary: rgba(0, 0, 0, 0.1);

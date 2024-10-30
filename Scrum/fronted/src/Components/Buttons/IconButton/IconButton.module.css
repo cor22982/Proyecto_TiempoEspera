@@ -1,23 +1,22 @@
-
-.icon_button{
+.icon_button {
   font-size: 25px;
   cursor: pointer;
-  color: var(--icon-color, black);
+  color: var(--ib-color);
   transition: opacity 0.3s ease;
 }
 
-.icon_button:hover{
+.icon_button:hover {
   opacity: 0.3; 
 }
 
-.icon_text{
-  color: var(--icon-color, black);
+.icon_text {
+  color: var(--ib-color);
   font-weight: bold;
   font-size: 25px;
   cursor: pointer;
   transition: opacity 0.3s ease;
 }
 
-.icon_text:hover{
+.icon_text:hover {
   opacity: 0.3; 
 }
