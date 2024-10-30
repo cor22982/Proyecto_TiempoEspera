@@ -50,10 +50,9 @@ const Informacion = ({ data, ira }) => {
         <div
           style={{ display: "flex", alignItems: "center", marginLeft: "auto" }}
         >
-          <p style={{ margin: 10 }}>Ver tramite pagina oficial</p>
-
           <IconButton
             icono={faArrowUpRightFromSquare}
+            texto="Ver trámite en página oficial"
             color="#0069AD"
             onclick={() => openInNewTab(data.url)}
             style={{ marginLeft: "8px" }} // Añade un margen para separar el icono del texto
