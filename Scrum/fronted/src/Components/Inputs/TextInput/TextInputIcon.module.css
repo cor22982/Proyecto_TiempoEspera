@@ -1,18 +1,20 @@
 @import "@styles/styles.css";
-.input-icon {
+@import "@styles/colors.css";
+
+.inputIcon {
   position: relative;
   display: flex;
   align-items: center;
   width: 100%;
   height: auto;
-  color: white;
-  border: 1px solid #cccccc;
+  color: var(--tic-icon-color);
+  border: 1px solid var(--border-primary);
   border-radius: 0.1rem;
-  background-color: #0069AD;
+  background-color: var(--tic-icon-bg);
 }
 
-.icon-font-condition input,
-.input-icon input {
+.iconFontCondition input,
+.inputIcon input {
   flex: 1;
   border: none;
   padding: 0.5rem;
@@ -20,14 +22,14 @@
   font-family: inherit;
   font-size: 2rem;
   font-weight: bold;
-  white-space: nowrap; /* Evita el salto de línea */
-  overflow: hidden; /* Oculta el texto que desborda */
-  text-overflow: ellipsis; /* Añade puntos suspensivos para indicar texto truncado */
-  background-color: #e5e4e5;
-  color: #6580A5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: var(--tic-bg);
+  color: var(--tic-text);
 }
 
-.icon-font-condition {
+.iconFontCondition {
   position: absolute;
   top: 50%;
   right: 0.5rem;
@@ -35,19 +37,19 @@
   font-family: inherit;
   font-size: 2rem;
   min-width: 2rem;
-  color: black;
+  color: var(--tic-icon-action-color);
   background-color: transparent;
 }
 
-.input-icon input:focus {
+.inputIcon input:focus {
   outline: none !important;
 }
 
-.input-icon input::placeholder {
-  color: #6580A5;
+.inputIcon input::placeholder {
+  color: var(--tic-placeholder);
 }
 
-.icon-font {
+.iconFont {
   padding-right: 1rem;
   padding-left: 1rem;
   font-size: 2rem;
@@ -56,7 +58,7 @@
 
 /* Media query para ajustar el tamaño en pantallas más pequeñas */
 @media (max-width: 768px) {
-  .search-bar input {
+  .searchBar input {
     width: calc(100% - 65px);
   }
 }

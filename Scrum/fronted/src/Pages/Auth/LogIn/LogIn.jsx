@@ -88,7 +88,7 @@ const Login = ({ onToggle, onLogin }) => {
             </div>
           )}
 
-          <div className={styles.loginDpiContainer}>
+          <div>
             <TextInputIcon
               type="text"
               name="pi"
@@ -99,7 +99,7 @@ const Login = ({ onToggle, onLogin }) => {
             />
           </div>
 
-          <div className={styles.loginPasswordContainer}>
+          <div>
             <TextInputIcon
               type="password"
               name="password"

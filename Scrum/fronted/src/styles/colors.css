@@ -19,6 +19,15 @@
     --hover-bg-checked: #004A9E;
     --check-text: #005a96;
 
+    /* TextInputIcon */
+    --tic-icon-bg: #00367E;
+    --tic-icon-color: #ffffff;
+    --tic-bg: #e5e4e5;
+    --tic-text: #024069;
+    --tic-placeholder: #005a96;
+    --tic-icon-action-color: #000000;
+
+
     /* Dropdown */
     --dd-bg-inactivate: #00367E;
     --dd-inactivate-text: #ffffff;
@@ -45,6 +54,8 @@
     /* Errores & Aceptaciones */
     --error-bg: #e3485033;
     --error-border: #e34850;
+    --acceptance-bg: #33e37b33;
+    --acceptance-border: #33e37b;
 
     /* Dividers */
     --dv-info: #A1A1A1;
@@ -66,6 +77,7 @@
     --text-link: #0000ff;
     --text-hover: #9393B6;
     --text-error: #e34850;
+    --text-acceptance: #33e37b;
 }
 
 
