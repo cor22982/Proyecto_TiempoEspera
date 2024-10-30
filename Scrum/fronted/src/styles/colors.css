@@ -27,7 +27,7 @@
     --dd-content-bg: #ffffff;
 
     /* IconColor */
-    --ib-color: #0069AD;
+    --ib-color: #005a96;
 
     /* Sombras */
     --shadow-primary: #cccccc;
@@ -43,7 +43,9 @@
     /* Sidebar */
     --main-left-size-bg: #00367E;
     --main-right-size-bg: #E4E4E4;
-
+    
+    /* Graficas */
+    --bar-bg: #005a96;
     
     /* Text */
     --text-test: red;
