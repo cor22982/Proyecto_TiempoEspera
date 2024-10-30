@@ -44,7 +44,7 @@
 }
 
 .titulo-checkbox {
-  color: var(--text-tertiary);
+  color: var(--check-text);
   line-height: 1.5rem;
   margin: 0;
 }

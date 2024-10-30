@@ -9,7 +9,6 @@
     /* Asegura que el contenedor se adapta al ancho del contenedor padre */
 }
 
-
 /* Contenedor botón */
 
 .custom-button {
@@ -56,7 +55,6 @@
     background-color: var(--button-activate);
     /* Color de fondo al hacer clic */
 }
-
 
 /* Media queries para adaptar los estilos a dispositivos más pequeños */
 
