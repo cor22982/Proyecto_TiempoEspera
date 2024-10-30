@@ -27,6 +27,17 @@
     --tic-placeholder: #005a96;
     --tic-icon-action-color: #000000;
 
+    /* TextArea -> para enviar comentarios*/
+    --ta-bg: #ffffff;
+    --ta-text: #000000;
+    --ta-bt-envio-bg: #00367E;
+    --ta-bt-envio-hover: #002254;
+    --ta-bt-envio-text: #ffffff;
+    --ta-bt-cancel-bg: #dadada;
+    --ta-bt-cancel-hover: #b0b0b0;
+    --ta-bt-cancel-text: #000000;
+
+
 
     /* Dropdown */
     --dd-bg-inactivate: #00367E;
