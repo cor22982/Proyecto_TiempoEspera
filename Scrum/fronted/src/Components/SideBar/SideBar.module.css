@@ -1,4 +1,5 @@
 @import "@styles/colors.css";
+
 .container {
     color: var(--text-white);
     background: transparent;
@@ -13,9 +14,7 @@
 
 .sidebarCollapsed {
     padding-left: 0;
-    /* Quitar padding en el estado colapsado */
     width: 80px;
-    /* Ancho reducido */
 }
 
 .sidebarButton {
@@ -61,9 +60,9 @@
 
 .sidebarCollapsed .imgContent img {
     transform: scale(0.6);
-    /* Reducir el logo al 60% */
 }
 
+/* Estilo para los enlaces y su contenedor */
 .linkContainer {
     margin: 0.75rem 0;
     width: 100%;
@@ -73,29 +72,30 @@
     cursor: pointer;
     align-items: center;
     height: 2rem;
-    /* Mantener altura constante para cada enlace */
     padding-left: 0;
     box-sizing: border-box;
-    /* Asegura que el padding y width no afecten el tamaño total */
+    color: var(--text-white); /* Color de texto predeterminado */
+    transition: color 0.3s ease; /* Transición de color suave */
 }
 
-.sidebarCollapsed .linkContainer {
-    justify-content: center;
-    /* Centrar los iconos en el estado colapsado */
-}
-
-.sidebarCollapsed .linkContainer span {
-    display: none;
-    /* Ocultar texto en el estado colapsado */
+/* Efecto hover que cambia el color del icono y texto a la vez */
+.linkContainer:hover {
+    color: var(--text-hover); /* Cambia el color del texto e icono en hover */
 }
 
 .linkIcon {
     display: flex;
     align-items: center;
+    font-size: 25px;
+    color: inherit; /* Hereda el color de linkContainer */
 }
 
-.linkIcon svg {
-    font-size: 25px;
+.sidebarCollapsed .linkContainer {
+    justify-content: center;
+}
+
+.sidebarCollapsed .linkContainer span {
+    display: none;
 }
 
 .divider {
