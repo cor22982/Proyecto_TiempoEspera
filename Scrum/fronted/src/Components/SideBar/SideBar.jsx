@@ -11,7 +11,7 @@ import {
   faFire,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styles from "./Sidebar.module.css";
+import styles from "./SideBar.module.css";
 
 export function Sidebar({
   sidebarOpen,

@@ -19,9 +19,24 @@ const Usuarios = () => {
     getUsers();
   }, [llamado, token]);
 
-  const DeleteUser = async ({pi}) => {
-    setDelete(true);
-    setDPI(pi)
+  const DeleteUser = async (pi) => {  
+    try {
+      const response = await fetch(`https://deimoss.web05.lol/user/${pi}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+  
+      if (response.ok) {
+        setDelete(true);
+        console.log(`Usuario con DPI ${pi} eliminado correctamente`);
+      } else {
+        console.error(`Error eliminando el usuario con DPI ${pi}`);
+      }
+    } catch (error) {
+      console.error("Error en la solicitud DELETE:", error);
+    }
   }
   return (
     <div className="usuarios-screen">
