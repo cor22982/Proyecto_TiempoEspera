@@ -5,19 +5,11 @@ function IconButton({ icono, onclick, color, texto }) {
   return (
     <div
       onClick={onclick}
-      style={{ display: "flex", gap: "10px" }}
-      className={styles["icon_button"]}
+      className={styles["icon_button-container"]}
+      style={{ "--ib-color": color }}
     >
-      {texto && (
-        <span className={styles["icon_text"]} style={{ "--icon-color": color }}>
-          {texto}
-        </span>
-      )}
-      <FontAwesomeIcon
-        icon={icono}
-        className={styles["icon_button"]}
-        style={{ "--icon-color": color }}
-      />
+      {texto && <span className={styles["icon_text"]}>{texto}</span>}
+      <FontAwesomeIcon icon={icono} className={styles["icon_button"]} />
     </div>
   );
 }

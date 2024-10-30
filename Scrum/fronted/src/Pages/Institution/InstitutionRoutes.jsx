@@ -1,6 +1,5 @@
 import "./InstitutionRoutes.css";
 import MenuOption from "@components/Navs/TextMenuLink";
-import { Route, Routes } from "react-router-dom";
 import Dashboard from "@pages/Institution/InstitutionInfo/InstitutionDataProvider";
 import Comentarios from "@pages/Institution/Comments/Comments";
 import Requisitos from "@pages/Institution/Requirements/Requisitos";

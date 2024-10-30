@@ -1,22 +1,24 @@
-.icon_button {
-  font-size: 25px;
+@import "@styles/colors.css";
+
+.icon_button-container {
+  display: flex;
+  gap: 10px;
   cursor: pointer;
-  color: var(--ib-color);
-  transition: opacity 0.3s ease;
 }
 
-.icon_button:hover {
-  opacity: 0.3; 
+.icon_button,
+.icon_text {
+  font-size: 25px;
+  color: var(--ib-color);
+  transition: color 0.3s ease;
 }
 
 .icon_text {
-  color: var(--ib-color);
   font-weight: bold;
-  font-size: 25px;
-  cursor: pointer;
-  transition: opacity 0.3s ease;
 }
 
-.icon_text:hover {
-  opacity: 0.3; 
+/* Cambia el color en hover para ambos elementos */
+.icon_button-container:hover .icon_button,
+.icon_button-container:hover .icon_text {
+  color: var(--text-hover);
 }

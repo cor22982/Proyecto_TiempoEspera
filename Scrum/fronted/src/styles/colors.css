@@ -33,6 +33,10 @@
     --shadow-primary: #cccccc;
     --shadow-secundary: rgba(0, 0, 0, 0.1);
 
+    /* Dividers */
+    --dv-info: #A1A1A1;
+    --dv-menu: #ffffff;
+
     /*Borders*/
     --border-primary: #cccccc;
 
@@ -42,12 +46,14 @@
 
     
     /* Text */
+    --text-test: red;
     --text-primary: #00367E;
     --text-secondary: #024069;
     --text-tertiary: #005a96;
     --text-white: #ffffff;
     --text-black: #000000;
     --text-link: #0000ff;
+    --text-hover: #9393B6;
 }
 
 
