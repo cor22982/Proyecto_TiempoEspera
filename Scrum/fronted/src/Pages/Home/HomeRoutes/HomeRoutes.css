@@ -1,7 +1,9 @@
+@import "@styles/colors.css";
+
 .contenedor-principal {
     width: 100vw;
     height: 100vh;
-    background-color: #E4E4E4;
+    background-color: var(--main-right-size-bg);
     display: grid;
     grid-template-columns: 80px auto;
     transition: all 0.3s;
@@ -11,7 +13,7 @@
 .contenedor-principal-activate {
     width: 100vw;
     height: 100vh;
-    background-color: #E4E4E4;
+    background-color: var(--main-right-size-bg);
     display: grid;
     grid-template-columns: calc(225px + 2.5rem) auto;
     /* Añade 2.5rem al ancho de la columna del sidebar */
@@ -24,6 +26,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    background-color: var(--main-left-size-bg);
 }
 
 .interfaz {

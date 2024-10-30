@@ -1,6 +1,7 @@
+@import "@styles/colors.css";
 .container {
-    color: white;
-    background: #00367E;
+    color: var(--text-white);
+    background: transparent;
     position: sticky;
     padding-top: 1.25rem;
     padding-left: 2.5rem;

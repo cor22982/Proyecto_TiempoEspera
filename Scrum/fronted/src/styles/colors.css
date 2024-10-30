@@ -1,18 +1,51 @@
-/* Variables globales para el modo claro */
+/* Uso @import "@styles/colors.css"; */
 
+/* Variables globales para el modo claro */
 :root {
+
+    /* Botones */
     --button-bg: #00367E;
-    --button-text: #FFFFFF;
+    --button-text: #ffffff;
     --button-activate: #00153C;
     --button-hover: #002254;
+    
+    /* Checkbox */
+    --check-bg: #ffffff;
+    --list-border-check: #00153C;
+    --list-bg-check: #00367E;
+    --hover-border-check: #002766;
+    --hover-bg-check: #004A9E;
+    --hover-border-checked: #002766;
+    --hover-bg-checked: #004A9E;
+
+    /* Sombras */
+    --shadow: #cccccc;
+
+    /* Sidebar */
+    --main-left-size-bg: #00367E;
+    --main-right-size-bg: #E4E4E4;
+    
+    /* Text */
+    --text-primary: #00367E;
+    --text-secondary: #024069;
+    --text-tertiary: #005a96;
+    --text-white: #ffffff;
+    --text-black: #000000;
+    --text-link: #0000ff;
 }
 
 
 /* Variables globales para el modo oscuro */
-
 body.darkMode {
+    /* Botones */
     --button-bg: #4A90E2;
     --button-text: #E5E5E5;
     --button-activate: #357ABD;
     --button-hover: #629FDA;
+
+    /* Sidebar */
+    --main-left-size-bg: black;
+    --main-right-size-bg: #9e9e9e;
+    --text-white: black;
+    
 }
