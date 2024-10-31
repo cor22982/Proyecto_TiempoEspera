@@ -1,0 +1,36 @@
+@import "@styles/colors.css";
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.styledButtonPen {
+  transition: color 0.3s ease;
+  color: black;
+}
+
+.styledButtonPen:hover {
+  color: blue;
+  cursor: pointer;
+}
+
+.checksButtons {
+  transition: font-size 0.3s ease;
+  color: black; /* Color predeterminado */
+}
+
+.checksButtons.green {
+  color: green;
+}
+
+.checksButtons.red {
+  color: red;
+}
+
+.checksButtons:hover {
+  font-size: 20px;
+  cursor: pointer;
+}
