@@ -201,6 +201,6 @@ export async function getUsers() {
 
 export async function createNewProcedure(id, name, description, steps, url) {
 
-  const result = await conn.query('INSERT INTO procedures (name, description, pasos, url) VALUES ($1, $2, $3, $4, $5)', [id, name, description, steps, url])
+  const result = await conn.query('INSERT INTO procedures (id, name, description, pasos, url) VALUES ($1, $2, $3, $4, $5)', [id, name, description, steps, url])
   return result.rows
 }
