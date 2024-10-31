@@ -37,7 +37,11 @@
     --ta-bt-cancel-hover: #b0b0b0;
     --ta-bt-cancel-text: #000000;
 
-
+    /* Label_input -> cambio de correo, telefono*/
+    --li-bg: #00367E;
+    --li-hover: #002254;
+    --li-check-bg: #00FF00;
+    --li-cancel-bg: #FF0000;
 
     /* Dropdown */
     --dd-bg-inactivate: #00367E;

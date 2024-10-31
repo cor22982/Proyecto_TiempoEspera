@@ -9,25 +9,24 @@
 
 .styledButtonPen {
   transition: color 0.3s ease;
-  color: black;
+  color: var(--li-bg);
 }
 
 .styledButtonPen:hover {
-  color: blue;
+  color: var(--li-hover);
   cursor: pointer;
 }
 
 .checksButtons {
   transition: font-size 0.3s ease;
-  color: black; /* Color predeterminado */
 }
 
 .checksButtons.green {
-  color: green;
+  color: var(--li-check-bg);
 }
 
 .checksButtons.red {
-  color: red;
+  color: var(--li-cancel-bg);
 }
 
 .checksButtons:hover {
