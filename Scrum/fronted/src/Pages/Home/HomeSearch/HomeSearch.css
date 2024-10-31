@@ -3,9 +3,8 @@
     display: flex;
     flex-wrap: wrap;
     overflow-y: auto;
-}
-
-.componentes-1> :not(:last-child) {
-    margin-bottom: 20px;
-    /* Ajusta el espacio entre los elementos */
-}
+    gap: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+  

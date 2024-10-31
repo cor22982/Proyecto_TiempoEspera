@@ -96,6 +96,10 @@
     --ct-bg: #ffffff;
     --ct-icons: #005a96;
 
+    /*InstitutionCard*/
+    --instc-bg: #ffffff;
+    --instc-tramite-bg: #00153C;
+    --instc-tramite-color:#ffffff;
 
     /* Graficas */
     --bar-bg: #00367E;
