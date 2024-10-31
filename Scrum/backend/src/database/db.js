@@ -198,3 +198,9 @@ export async function getUsers() {
   const result = await conn.query(`SELECT pi, name, type_user, encode(perfi_image, 'base64') as imagen_perfil FROM users;`)
   return result.rows
 }
+
+export async function createNewProcedure(name, description, steps, url) {
+
+  const result = await conn.query('INSERT INTO procedures (name, description, pasos, url) VALUES ($1, $2, $3, $4)', [name, description, steps, url])
+  return result.rows
+}
