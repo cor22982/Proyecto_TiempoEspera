@@ -39,11 +39,7 @@ const Informacion = ({ data, ira }) => {
   return (
     <div className="contenedor-info">
       <div className="header_institution">
-        <IconButton
-          icono={faArrowLeft}
-          color="#0069AD"
-          onclick={() => ira(true)}
-        />
+        <IconButton icono={faArrowLeft} onclick={() => ira(true)} />
         <h3 className="titulo-info">{name_institutions}</h3>
 
         <div
@@ -52,7 +48,6 @@ const Informacion = ({ data, ira }) => {
           <IconButton
             icono={faArrowUpRightFromSquare}
             texto="Ver trámite en página oficial"
-            color="#0069AD"
             onclick={() => openInNewTab(data.url)}
             style={{ marginLeft: "8px" }} // Añade un margen para separar el icono del texto
           />

@@ -82,6 +82,8 @@
     --radio-hover-color: rgba(0, 54, 126, 0.2); /* Color del punto en hover */
     --radio-off-color: #757575; /* Color del punto cuando no está seleccionado */
 
+    /*Institution Info*/
+    
 
     /* Account */
     --ac-icon-edit-color: #000000;
@@ -121,7 +123,6 @@
     --text-test: red;
     --text-primary: #00367E;
     --text-secondary: #024069;
-    --text-triday: #2b5a97;
     --text-tertiary: #005a96;
     --text-white: #ffffff;
     --text-black: #000000;
