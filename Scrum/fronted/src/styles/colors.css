@@ -47,15 +47,10 @@
     --dd-bg-inactivate: #00367E;
     --dd-inactivate-text: #ffffff;
     --dd-bg-activate: #002254;
-    --dd-content-text: red;
     --dd-content-bg: #ffffff;
 
     /* IconColor */
     --ib-color: #005a96;
-
-    /* Sombras */
-    --shadow-primary: #cccccc;
-    --shadow-secundary: rgba(0, 0, 0, 0.1);
     
     /* Sidebar */
     --main-left-size-bg: #00367E;
@@ -66,11 +61,29 @@
     --lg-right-side: #ffffff;
     --lg-icon: #00367E;
 
-    /* Errores & Aceptaciones */
-    --error-bg: #e3485033;
-    --error-border: #e34850;
-    --acceptance-bg: #33e37b33;
-    --acceptance-border: #33e37b;
+    /*Configurations*/
+    --cg-bg: #ffffff;
+    --cg-icon-color: #00367E;
+
+    --cg-slider-point-color: #00367E; /* Color del punto del Slider */
+    --cg-slider-point-hover: rgba(0, 54, 126, 0.2);
+    --cg-slider-point-focus: rgba(0, 54, 126, 0.5);;
+    --cg-slider-raid-active-bg: #004A9E;
+    --cg-slider-raid-active-margin: #004A9E;
+    --cg-slider-rail-inactive: #bdbdbd; /* Color de la pista de fondo */
+
+    --cg-switch-color: #00367E; /* Color del punto cuando el Switch está activado */
+    --cg-switch-hover-bg: rgba(0, 54, 126, 0.2); /* Fondo del punto en hover (estado activado) */
+    --cg-switch-focus-shadow: rgba(0, 54, 126, 0.2); /* Sombra cuando el Switch está enfocado */
+    --cg-switch-off-color: #757575; /* Color del punto cuando el Switch está desactivado */
+    --cg-switch-track-off: #bdbdbd; /* Color de la pista cuando el Switch está desactivado */
+    
+    --radio-color: #00367E; /* Color del punto del radio cuando está seleccionado */
+    --radio-hover-color: rgba(0, 54, 126, 0.2); /* Color del punto en hover */
+    --radio-off-color: #757575; /* Color del punto cuando no está seleccionado */
+
+    /* Graficas */
+    --bar-bg: #005a96;
 
     /* Dividers */
     --dv-info: #A1A1A1;
@@ -79,9 +92,16 @@
     /*Borders*/
     --border-primary: #cccccc;
 
-    /* Graficas */
-    --bar-bg: #005a96;
+    /* Sombras */
+    --shadow-primary: #cccccc;
+    --shadow-secundary: rgba(0, 0, 0, 0.1);
     
+    /* Errores & Aceptaciones */
+    --error-bg: #e3485033;
+    --error-border: #e34850;
+    --acceptance-bg: #33e37b33;
+    --acceptance-border: #33e37b;
+
     /* Text */
     --text-test: red;
     --text-primary: #00367E;
@@ -96,9 +116,8 @@
     --text-acceptance: #33e37b;
 
     /* Cards  */
-    --card-color: white;
+    --card-color: #ffffff;
 }
-
 
 /* Variables globales para el modo oscuro */
 body.darkMode {
@@ -120,3 +139,4 @@ body.darkMode {
     --card-color: rgb(0, 0, 0);
     
 }
+
