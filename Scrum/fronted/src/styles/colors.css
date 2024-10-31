@@ -82,7 +82,18 @@
     --radio-hover-color: rgba(0, 54, 126, 0.2); /* Color del punto en hover */
     --radio-off-color: #757575; /* Color del punto cuando no está seleccionado */
 
-    /*Institution Info*/
+    /* SerachInput */
+    --si-icon-search-color: #737373;
+    --si-icon-search-color-hover: #ffffff;
+    --si-icon-search-bg: #277ae0;
+
+    --si-icon-clear-color: #000000;
+    --si-icon-clear-color-hover: #ffffff;
+    --si-icon-clear-bg: #737373;
+
+    --si-text-recomendation: #b6b6b6;
+    --si-bg-recomendation-list: #ffffff;
+    --si-recomendation-list-hover: #f0f0f0;
     
 
     /* Account */
@@ -107,6 +118,7 @@
     /* Dividers */
     --dv-main: #eee;
     --dv-info: #A1A1A1;
+    --dv-search: #f1f1f1;
     --dv-menu: #ffffff;
 
     /*Borders*/
