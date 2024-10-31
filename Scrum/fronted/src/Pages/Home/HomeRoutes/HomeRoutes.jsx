@@ -9,6 +9,8 @@ import {
   faRightFromBracket,
   faFire,
   faPeopleArrows,
+  faFolder,
+  faBuilding
 } from "@fortawesome/free-solid-svg-icons";
 import "@assets/Login/logotipo.png";
 import Logout from "@pages/Auth/LogOut/LogOut";
@@ -20,6 +22,8 @@ import Sidebar from "@components/SideBar/SideBar";
 import { parseJwt } from "@hooks/auth/useToken";
 import useToken from "@hooks/auth/useToken";
 import Usuarios from "../Admin/Usuarios";
+import Tramite from "../Admin/Tramite/Tramite";
+import Institutions from "../Admin/Institutions/Institutions";
 const Pages = ({ pi }) => {
   const { token } = useToken();
   const rol = parseJwt(token).rol;
@@ -46,6 +50,10 @@ const Pages = ({ pi }) => {
         return <Usuarios></Usuarios>;
       case "salir":
         return <Logout />;
+      case "tramite":
+        return <Tramite />;
+      case "institutions":
+        return <Institutions />;
       default:
         return <Page_Main pi={pi}></Page_Main>;
     }
@@ -76,9 +84,14 @@ const Pages = ({ pi }) => {
 
   const linksArray_Admin = [
     {
-      label: "Home",
-      icon: faHome,
-      to: "main",
+      label: "Instituciones",
+      icon: faBuilding,
+      to: "institutions",
+    },
+    {
+      label: "Tramite",
+      icon: faFolder,
+      to: "tramite",
     },
     {
       label: "Usuarios",

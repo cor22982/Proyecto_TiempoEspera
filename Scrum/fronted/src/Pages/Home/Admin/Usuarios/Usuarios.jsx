@@ -5,7 +5,7 @@ import PopUpDelete_User from "@components/Modals/PopUpDelete_User/PopUpDelete_Us
 import DeletuserCard from "@components/Cards/DeletuserCard/DeletuserCard";
 import './Usuarios.css'
 import Spinner from "../../../../Components/UI/Spinner/Spinner";
-const Usuarios = () => {
+const Usuarios = () => {  
   const { token } = useToken();
   const { llamado } = useApi(`https://deimoss.web05.lol/users_info`);
   const [users, setUsers] = useState([]);

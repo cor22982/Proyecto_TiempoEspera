@@ -82,6 +82,7 @@
     --text-test: red;
     --text-primary: #00367E;
     --text-secondary: #024069;
+    --text-triday: #2b5a97;
     --text-tertiary: #005a96;
     --text-white: #ffffff;
     --text-black: #000000;
@@ -89,6 +90,9 @@
     --text-hover: #9393B6;
     --text-error: #e34850;
     --text-acceptance: #33e37b;
+
+    /* Cards  */
+    --card-color: white;
 }
 
 
@@ -99,10 +103,16 @@ body.darkMode {
     --button-text: #E5E5E5;
     --button-activate: #357ABD;
     --button-hover: #629FDA;
-
+    
+    /*Texto*/
+    --text-triday: #12263f;
     /* Sidebar */
     --main-left-size-bg: black;
     --main-right-size-bg: #9e9e9e;
     --text-white: black;
+    --text-black: white;
+
+    /* Cards*/
+    --card-color: rgb(0, 0, 0);
     
 }
