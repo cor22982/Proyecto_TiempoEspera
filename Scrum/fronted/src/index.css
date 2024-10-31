@@ -1,8 +1,9 @@
+@import '@styles/colors.css';
 body {
   margin: 0;
   padding: 0;
   height: 100vh; /* Establece la altura al 100% de la ventana del navegador */
-  background-color: #0069AD;
+  background-color: var(--body-bg);
   overflow-y: hidden; /* Esto podría no ser necesario dependiendo de tus necesidades */
 }
 

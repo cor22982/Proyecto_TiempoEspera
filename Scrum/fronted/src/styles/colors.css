@@ -128,7 +128,7 @@
     /*HomeMain*/
     --hm-bg-card: rgba(0, 0, 0, 0.4);
     --hm-text-card: #ffffff;
-    --hm-text:#000000
+    --hm-text:#000000;
 
     /* Dividers */
     --dv-main: #eee;
@@ -164,6 +164,9 @@
 
     /* Cards  */
     --card-color: #ffffff;
+
+    /*Body*/
+    --body-bg: #00367E;
 }
 
 /* Variables globales para el modo oscuro */
@@ -332,4 +335,7 @@ body.darkMode {
 
     /* Cards  */
     --card-color: #1E1E1E;
+
+    /*Body*/
+    --body-bg: #1E1E1E;
 }
