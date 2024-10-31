@@ -83,6 +83,7 @@
     --radio-off-color: #757575; /* Color del punto cuando no está seleccionado */
 
     /* SerachInput */
+    --si-bg: #ffffff;
     --si-icon-search-color: #737373;
     --si-icon-search-color-hover: #ffffff;
     --si-icon-search-bg: #277ae0;
@@ -90,13 +91,16 @@
     --si-icon-clear-color: #000000;
     --si-icon-clear-color-hover: #ffffff;
     --si-icon-clear-bg: #737373;
-
+    --si-shadow: rgba(0, 0, 0, 0.1);
     --si-text-recomendation: #b6b6b6;
+	--si-text: #000000;
+	--si-text-list: #000000;
     --si-bg-recomendation-list: #ffffff;
     --si-recomendation-list-hover: #f0f0f0;
     
     /*Guardados*/
     --spc-bg: #ffffff;
+    --spc-text: #000000;
 
     /* Account */
     --ac-icon-edit-color: #000000;
@@ -108,14 +112,23 @@
     /* Comentarios */
     --ct-bg: #ffffff;
     --ct-icons: #005a96;
+	--ct-text: #000000;
 
     /*InstitutionCard*/
     --instc-bg: #ffffff;
     --instc-tramite-bg: #00153C;
     --instc-tramite-color:#ffffff;
 
+    /*InstitutionInfo*/
+    --ii-icon-color: #005a96;
+
     /* Graficas */
     --bar-bg: #00367E;
+
+    /*HomeMain*/
+    --hm-bg-card: rgba(0, 0, 0, 0.4);
+    --hm-text-card: #ffffff;
+    --hm-text:#000000
 
     /* Dividers */
     --dv-main: #eee;
@@ -181,7 +194,7 @@ body.darkMode {
     --tic-icon-action-color: #FFFFFF;
 
     /* TextArea -> para enviar comentarios*/
-    --ta-bg: #2C3E50;
+    --ta-bg: #1E1E1E;
     --ta-text: #FFFFFF;
     --ta-bt-envio-bg: #4A90E2;
     --ta-bt-envio-hover: #2A72C3;
@@ -238,45 +251,58 @@ body.darkMode {
     --radio-off-color: #B0C4DE;
 
     /* SerachInput */
-    --si-icon-search-color: #B0C4DE;
+    --si-bg: #ffffff;
+    --si-icon-search-color: #000000;
     --si-icon-search-color-hover: #1E1E1E;
     --si-icon-search-bg: #4A90E2;
 
-    --si-icon-clear-color: #FFFFFF;
+    --si-icon-clear-color: #000000;
     --si-icon-clear-color-hover: #1E1E1E;
-    --si-icon-clear-bg: #B0C4DE;
-
-    --si-text-recomendation: #A3D1FF;
-    --si-bg-recomendation-list: #2C3E50;
-    --si-recomendation-list-hover: #3A3A3A;
+    --si-icon-clear-bg: #4A90E2;
+    --si-shadow: rgba(0, 0, 0, 0.1);
+    --si-text-recomendation: #b6b6b6;
+	--si-text: #000000;
+	--si-text-list: #FFFFFF;
+    --si-bg-recomendation-list:  #3A3A3A;
+    --si-recomendation-list-hover:#1E1E1E;
     
     /*Guardados*/
-    --spc-bg: #2C3E50;
+    --spc-bg: #1E1E1E;
+    --spc-text: #4A90E2;
 
     /* Account */
     --ac-icon-edit-color: #FFFFFF;
     --ac-icon-edit-bg: #1E1E1E;
-    --ac-bg-image: rgba(255, 255, 255, 0.1);
-    --ac-icon-editing-color: #1E1E1E;
-    --ac-icon-editing-hover: #A3D1FF;
+    --ac-bg-image: rgba(0, 0, 0, 0.4);
+    --ac-icon-editing-color: #ffffff;
+    --ac-icon-editing-hover: #4A90E2;
 
     /* Comentarios */
-    --ct-bg: #2C3E50;
+    --ct-bg: #1E1E1E;
     --ct-icons: #A3D1FF;
+	--ct-text: #ffffff;
 
     /*InstitutionCard*/
     --instc-bg: #1E1E1E;
     --instc-tramite-bg: #4A90E2;
     --instc-tramite-color: #1E1E1E;
 
+    /*InstitutionInfo*/
+    --ii-icon-color: #A3D1FF;
+
     /* Graficas */
     --bar-bg: #4A90E2;
+
+    /*HomeMain*/
+    --hm-bg-card: rgba(0, 0, 0, 0.4);
+    --hm-text-card: #ffffff;
+    --hm-text: #ffffff;
 
     /* Dividers */
     --dv-main: #3A3A3A;
     --dv-info: #6A6A6A;
-    --dv-search: #3A3A3A;
-    --dv-menu: #1E1E1E;
+    --dv-search: #FFFFFF;
+    --dv-menu: #FFFFFF;
 
     /*Borders*/
     --border-primary: #6A6A6A;
@@ -305,5 +331,5 @@ body.darkMode {
     --text-acceptance: #00FA9A;
 
     /* Cards  */
-    --card-color: #2C3E50;
+    --card-color: #1E1E1E;
 }

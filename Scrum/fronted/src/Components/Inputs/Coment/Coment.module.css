@@ -4,24 +4,24 @@
   display: flex;
   flex-direction: row;
   gap: 30px;
-  color: var(--text-black); /* Aplica el color negro al encabezado */
+  color: var(--ct-text); /* Aplica el color negro al encabezado */
 }
 
 .comentario {
   margin-bottom: 20px;
-  color: var(--text-black); /* Aplica el color negro al texto del comentario */
+  color: var(--ct-text); /* Aplica el color negro al texto del comentario */
 }
 
 .headComent {
   font-weight: bold;
-  color: var(--text-black); /* Aplica el color negro al nombre */
+  color: var(--ct-text); /* Aplica el color negro al nombre */
 }
 
 .dateComent {
   font-size: 0.9rem;
-  color: var(--text-black); /* Aplica el color negro a la fecha */
+  color: var(--ct-text); /* Aplica el color negro a la fecha */
 }
 
 .comentContent {
-  color: var(--text-black); /* Aplica el color negro al contenido del comentario */
+  color: var(--ct-text); /* Aplica el color negro al contenido del comentario */
 }

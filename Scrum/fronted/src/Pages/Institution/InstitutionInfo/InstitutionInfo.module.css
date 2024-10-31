@@ -1,4 +1,4 @@
-@import "@styles/colors.css"; /* Importa los colores globales si es necesario */
+@import "@styles/colors.css";
 
 .identificacionChat {
   height: 2em;
@@ -30,14 +30,8 @@
 .iconStar {
   padding-left: 1em;
   font-size: 2em;
-  cursor: pointer;
   transition: opacity 0.3s ease;
-  color: #005a96;
-}
-
-.iconStar:hover {
-  opacity: 0.6;
-  cursor: pointer;
+  color: var(--ii-icon-color);
 }
 
 .farFaStar {

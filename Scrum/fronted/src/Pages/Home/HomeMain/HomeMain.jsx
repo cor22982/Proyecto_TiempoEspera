@@ -1,4 +1,4 @@
-import "./HomeMain.css";
+import styles from "./HomeMain.module.css"; // Importar como CSS Modules
 import Principal from "@pages/Home/HomeSearch/HomeSearch";
 import useApi from "@hooks/api/useApi";
 import { useState, useEffect } from "react";
@@ -27,7 +27,6 @@ const Page_Main = ({ pi }) => {
     "Actualización de cédula",
   ];
 
-  // Usar useEffect para ejecutar fetchData cuando `busqueda` cambie
   useEffect(() => {
     if (busqueda.trim() !== "") {
       fetchData();
@@ -51,8 +50,8 @@ const Page_Main = ({ pi }) => {
   };
 
   return (
-    <div className="contenido">
-      <div className="cabecera">
+    <div className={styles.contenido}>
+      <div className={styles.cabecera}>
         <SearchInput
           icono={faSearch}
           placeholder="Buscar tramite"
@@ -62,7 +61,7 @@ const Page_Main = ({ pi }) => {
           suggestions={sugerenciasTramites}
         />
       </div>
-      <div className="paginas">
+      <div className={styles.paginas}>
         {pantalla ? (
           seeScreens ? (
             <Principal
@@ -73,23 +72,23 @@ const Page_Main = ({ pi }) => {
               setSearch={setBusqueda}
             />
           ) : (
-            <div className="tramites-container">
+            <div className={styles.tramitesContainer}>
               <h1>Trámites más comunes</h1>
-              <div className="tramites-grid">
+              <div className={styles.tramitesGrid}>
                 <div
-                  className="box-search red"
+                  className={`${styles.boxSearch} ${styles.red}`}
                   onClick={() => setBusqueda("Cita controlada")}
                 >
                   <span>Cita controlada</span>
                 </div>
                 <div
-                  className="box-search blue"
+                  className={`${styles.boxSearch} ${styles.blue}`}
                   onClick={() => setBusqueda("Solicitud Electrónica de NIT")}
                 >
                   <span>Solicitud Electrónica de NIT</span>
                 </div>
                 <div
-                  className="box-search yellow"
+                  className={`${styles.boxSearch} ${styles.yellow}`}
                   onClick={() =>
                     setBusqueda(
                       "Inscripción NIT sin Obligaciones con invalidez física"
@@ -101,7 +100,7 @@ const Page_Main = ({ pi }) => {
                   </span>
                 </div>
                 <div
-                  className="box-search green"
+                  className={`${styles.boxSearch} ${styles.green}`}
                   onClick={() => setBusqueda("Inscripción de sociedad")}
                 >
                   <span>Inscripción de sociedad</span>

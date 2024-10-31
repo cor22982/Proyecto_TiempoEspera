@@ -49,6 +49,7 @@
 
 .iconStar:hover {
   opacity: 0.6;
+  cursor: pointer;
 }
 
 /* Estilo de las estrellas vacías */

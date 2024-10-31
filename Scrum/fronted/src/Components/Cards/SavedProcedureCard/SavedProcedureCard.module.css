@@ -39,11 +39,11 @@
 /* Título de la información */
 .tituloInformation {
   font-size: 40px;
-  color: var(--text-black); /* Color del texto del título */
+  color: var(--spc-text); /* Color del texto del título */
 }
 
 /* Descripción de la información */
 .descriptionInformation {
   font-size: 20px;
-  color: var(--text-black); /* Color del texto de la descripción */
+  color: var(--spc-text); /* Color del texto de la descripción */
 }

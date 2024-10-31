@@ -47,7 +47,7 @@
   outline: none;
   transition: border-color 0.3s;
   box-sizing: border-box; /* Asegura que el padding y el ancho se calculen correctamente */
-  color: var(--text-black);
+  color: var(--si-text);
 }
 
 .clearButton {
@@ -113,12 +113,13 @@
   cursor: pointer;
   border-bottom: 1px solid var(--dv-search);
   transition: background-color 0.3s, color 0.3s;
+  color: var(--si-text-list);
 }
 
 .suggestionItem:hover,
 .suggestionItem.active {
   background-color: var(--si-recomendation-list-hover);
-  color: var(--text-black);
+  color: var(--si-text-list);
 }
 
 .suggestionItem:last-child {
