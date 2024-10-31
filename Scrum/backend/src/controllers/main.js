@@ -500,7 +500,7 @@ app.post('/newProcedure', async (req, res) =>{
     await createNewProcedure(req.body.name, req.body.description, req.body.steps, req.body.url);
     res.status(200).json({succes: true});
   }
-  catch{
+  catch(error){
     console.error('Error al insertar el trámite: '. error);
     res.status(500).json({succes: false });
   }
