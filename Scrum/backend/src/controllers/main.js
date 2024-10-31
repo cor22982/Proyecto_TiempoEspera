@@ -495,6 +495,17 @@ app.post('/users_info', async (req, res) => {
   }
 });
 
+app.post('/newProcedure', async (req, res) =>{
+  try {
+    await createNewProcedure(req.body.name, req.body.description, req.body.steps, req.body.url);
+    res.status(200).json({succes: true});
+  }
+  catch{
+    console.error('Error al insertar el trámite: '. error);
+    res.status(500).json({succes: false });
+  }
+});
+
 app.use((req, res) => {
   res.status(501).json({ error: 'Método no implementado' });
 });
