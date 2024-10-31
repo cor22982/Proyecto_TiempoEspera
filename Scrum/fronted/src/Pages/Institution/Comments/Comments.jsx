@@ -1,5 +1,5 @@
 import TextArea from "@components/Inputs/TextArea";
-import "./Comments.css";
+import styles from "./Comments.module.css";
 import Coment from "@components/Inputs/Coment";
 import useApi from "@hooks/api/useApi";
 import { useEffect, useState } from "react";
@@ -56,7 +56,7 @@ const Comentarios = ({ data }) => {
         stars.push(
           <FontAwesomeIcon
             key={`full-${i}`}
-            className="icon-star"
+            className={styles.iconStar}
             icon={faStar}
             onClick={() => handleStarClick(i)}
           />
@@ -65,7 +65,7 @@ const Comentarios = ({ data }) => {
         stars.push(
           <FontAwesomeIcon
             key={"half"}
-            className="icon-star"
+            className={styles.iconStar}
             icon={faStarHalfAlt}
             onClick={() => handleStarClick(i)}
           />
@@ -74,7 +74,7 @@ const Comentarios = ({ data }) => {
         stars.push(
           <i
             key={`empty-${i}`}
-            className="far fa-star icon-star"
+            className={`far fa-star ${styles.iconStar}`}
             onClick={() => handleStarClick(i)}
           ></i>
         );
@@ -85,17 +85,17 @@ const Comentarios = ({ data }) => {
   };
 
   return (
-    <div className="comentarios-container-institution">
-      <div className="rating">{calcularEstrellas()}</div>
+    <div className={styles.comentariosContainerInstitution}>
+      <div className={styles.rating}>{calcularEstrellas()}</div>
       <TextArea
         placeholder="Agregar Comentario"
         value={contenido}
         onChange={(value) => setContenido(value)}
         onclick={postComent}
-        className="Comentario-Institution"
+        className={styles.textareaContainer}
       />
       <br />
-      <div className="coments">
+      <div className={styles.coments}>
         {coments.map((com, index) => (
           <Coment
             key={index}

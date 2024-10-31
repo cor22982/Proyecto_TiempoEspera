@@ -90,8 +90,13 @@
     --ac-icon-editing-color: #ffffff;
     --ac-icon-editing-hover: #ddd;
 
+    /* Comentarios */
+    --ct-bg: #ffffff;
+    --ct-icons: #005a96;
+
+
     /* Graficas */
-    --bar-bg: #005a96;
+    --bar-bg: #00367E;
 
     /* Dividers */
     --dv-main: #eee;
