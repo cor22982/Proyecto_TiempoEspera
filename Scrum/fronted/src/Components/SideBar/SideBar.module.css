@@ -101,6 +101,6 @@
 .divider {
     height: 1px;
     width: calc(100% + 2.5rem);
-    background: white;
+    background: var(--dv-menu);
     margin-left: -2.5rem;
 }

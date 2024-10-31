@@ -82,15 +82,25 @@
     --radio-hover-color: rgba(0, 54, 126, 0.2); /* Color del punto en hover */
     --radio-off-color: #757575; /* Color del punto cuando no está seleccionado */
 
+
+    /* Account */
+    --ac-icon-edit-color: #000000;
+    --ac-icon-edit-bg: #ffffff;
+    --ac-bg-image: rgba(0, 0, 0, 0.4);
+    --ac-icon-editing-color: #ffffff;
+    --ac-icon-editing-hover: #ddd;
+
     /* Graficas */
     --bar-bg: #005a96;
 
     /* Dividers */
+    --dv-main: #eee;
     --dv-info: #A1A1A1;
     --dv-menu: #ffffff;
 
     /*Borders*/
     --border-primary: #cccccc;
+    --border-secundary: #ddd;
 
     /* Sombras */
     --shadow-primary: #cccccc;

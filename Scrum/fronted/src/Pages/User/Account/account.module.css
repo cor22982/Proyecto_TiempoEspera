@@ -1,0 +1,131 @@
+@import "@styles/colors.css";
+
+/* Contenedor general de la cuenta */
+.accountContainer {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid var(--border-primary);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px var(--shadow-secundary);
+    background-color: var(--cg-bg);
+    font-family: inherit;
+    text-align: center;
+}
+
+/* Título de la cuenta */
+.accountTitle {
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Información del usuario */
+.userInfo {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.userInfo p {
+    margin: 10px 0;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--dv-main);
+}
+
+.userInfo strong {
+    color: var(--text-secondary);
+}
+
+/* Contenedor de la imagen de perfil */
+.profileImageContainer {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 5rem;
+}
+
+.profileImage {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--border-secundary);
+}
+
+.editIcon {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: var(--ac-icon-edit-bg);
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 1.125rem;
+    color: var(--ac-icon-edit-color);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 5px var(--border-secundary);
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.editOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--ac-bg-image);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    cursor: default;
+}
+
+.customFileUpload {
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--ac-icon-editing-color);
+    margin-bottom: 10px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.editActions {
+    display: flex;
+    justify-content: space-between;
+    width: 100px;
+    margin-top: 10px;
+}
+
+.cancelButton,
+.confirmButton {
+    background-color: transparent;
+    border: none;
+    color: var(--ac-icon-editing-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.customFileUpload:hover,
+.cancelButton:hover,
+.confirmButton:hover {
+    color: var(--ac-icon-editing-hover);
+    transform: scale(1.1);
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.editIcon:hover {
+    color: var(--ac-icon-edit-color);
+    transform: scale(1.1);
+    transition: transform 0.2s ease, color 0.2s ease;
+}
