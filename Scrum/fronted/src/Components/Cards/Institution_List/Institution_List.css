@@ -1,6 +1,7 @@
+@import "@styles/colors.css";
 .list-institutions {
   overflow-y: scroll;
-  height: 45rem;
+  height: 40rem;
   width: 90%;
   padding: 4rem;
   gap: 2rem;

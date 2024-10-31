@@ -7,6 +7,7 @@ import IconButton from '@components/Buttons/IconButton/IconButton';
 import './Institutions.css'
 import {faPlus} from "@fortawesome/free-solid-svg-icons";
 import PopUpDelete_User from "@components/Modals/PopUpDelete_User/PopUpDelete_User";
+import PopInsert from '@components/Modals/PopInsert/PopInsert';
 function Institutions() {
   const {  llamadowithoutbody } = useApi(`https://deimoss.web05.lol/institutions`);
   const [inst, setInst] = useState([]);
@@ -43,10 +44,10 @@ function Institutions() {
           </div>
         </div>
       )}
-      <PopUpDelete_User
+      <PopInsert
         activar={showInst}
         setActivar={setInst_Show}
-        ></PopUpDelete_User>
+        ></PopInsert>
     </div>
   )
 }
