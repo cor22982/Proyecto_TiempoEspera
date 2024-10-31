@@ -19,7 +19,7 @@
     color: var(--button-text);
     width: 100%;
     /* Adaptación completa dentro del contenedor */
-    max-width: 15rem;
+    max-width: 20rem;
     /* Ancho máximo del botón */
     min-width: 10rem;
     /* Ancho mínimo del botón */
