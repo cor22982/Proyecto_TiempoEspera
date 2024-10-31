@@ -1,16 +1,15 @@
-import './SavedProcedureCard.css'
-const SavedComponent = ({image, title, description, funtion}) => {
+import styles from "./SavedProcedureCard.module.css";
+
+const SavedComponent = ({ image, title, description, funtion }) => {
   return (
-    <div className='container-saved' onClick={funtion}>
-      <img 
-        src= {image}
-        className='imagen-institution'></img>
-      <div className='saved-information'>
-        <h2 className='titulo-information'>{title}</h2>
-        <p className='description-information'>{description}</p>
+    <div className={styles.containerSaved} onClick={funtion}>
+      <img src={image} className={styles.imagenInstitution} alt="Institution" />
+      <div className={styles.savedInformation}>
+        <h2 className={styles.tituloInformation}>{title}</h2>
+        <p className={styles.descriptionInformation}>{description}</p>
       </div>
     </div>
   );
-}
+};
 
-export default SavedComponent
+export default SavedComponent;

@@ -10,7 +10,7 @@ import {
   faFire,
   faPeopleArrows,
   faFolder,
-  faBuilding
+  faBuilding,
 } from "@fortawesome/free-solid-svg-icons";
 import "@assets/Login/logotipo.png";
 import Logout from "@pages/Auth/LogOut/LogOut";
