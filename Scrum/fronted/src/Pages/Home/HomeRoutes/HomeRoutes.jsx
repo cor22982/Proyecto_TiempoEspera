@@ -44,8 +44,6 @@ const Pages = ({ pi }) => {
         return <Guardados pi={pi} />;
       case "configuracion":
         return <Configuration />;
-      case "recomendados":
-        return <Recomendados />;
       case "usuarios":
         return <Usuarios></Usuarios>;
       case "salir":
@@ -75,11 +73,7 @@ const Pages = ({ pi }) => {
       icon: faSave,
       to: "guardados",
     },
-    {
-      label: "Recomendados",
-      icon: faFire,
-      to: "recomendados",
-    },
+
   ];
 
   const linksArray_Admin = [
@@ -99,6 +93,14 @@ const Pages = ({ pi }) => {
       to: "usuarios",
     },
   ];
+
+  if (rol === "empleador") {
+    linksArray.push({
+      label: "Colaboradores",
+      icon: faPeopleArrows,
+      to: "recomendados",
+    });
+  }
   const secondarylinksArray = [
     {
       label: "Configuración",
