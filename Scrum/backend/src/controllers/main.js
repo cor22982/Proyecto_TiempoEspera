@@ -9,8 +9,8 @@ import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequiere
   getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, 
   insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage
 , getStatistics, getUserBday, get_documents, UpdateEmail_telephone, deleteInstitution, addInstitution, UpdatePassw, UpdateName_Apellido,
-getUserEmail, getOTPData, deleteOTP, createNewOTP, modifyUserPassword, getUsers, createNewProcedure, getLastIDPrcedure, getProcedures} from '../database/db.js';
-import { getUserLoginInfo, getAdminLoginInfo, deleteAppointment } from '../database/auth.js';
+getUserEmail, getOTPData, deleteOTP, createNewOTP, modifyUserPassword, getUsers, createNewProcedure, getLastIDPrcedure, getProcedures, deleteAppointment} from '../database/db.js';
+import { getUserLoginInfo, getAdminLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken, validateToken } from './jwt.js';
 import * as OneSignalLib from '@onesignal/node-onesignal';
 import nodemailer from 'nodemailer';
