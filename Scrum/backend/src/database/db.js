@@ -204,3 +204,9 @@ export async function createNewProcedure(id, name, description, steps, url) {
   const result = await conn.query('INSERT INTO procedures (id, name, description, pasos, url) VALUES ($1, $2, $3, $4, $5)', [id, name, description, steps, url])
   return result.rows
 }
+
+
+export async function getLastIDPrcedure(){
+  const result = await conn.query('select id from procedures order by id desc limit 1;')
+  return result.rows
+}
