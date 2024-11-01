@@ -8,7 +8,7 @@ import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequiere
   getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, 
   insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage
 , getStatistics, getUserBday, get_documents, UpdateEmail_telephone, deleteInstitution, addInstitution, UpdatePassw, UpdateName_Apellido,
-getUserEmail, getOTPData, deleteOTP, createNewOTP, modifyUserPassword, getUsers, createNewProcedure} from '../database/db.js';
+getUserEmail, getOTPData, deleteOTP, createNewOTP, modifyUserPassword, getUsers, createNewProcedure, getLastIDPrcedure} from '../database/db.js';
 import { getUserLoginInfo, getAdminLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken, validateToken } from './jwt.js';
 import * as OneSignalLib from '@onesignal/node-onesignal';
@@ -497,7 +497,10 @@ app.post('/users_info', async (req, res) => {
 
 app.post('/newProcedure', async (req, res) =>{
   try {
-    await createNewProcedure(req.body.id, req.body.name, req.body.description, req.body.steps, req.body.url);
+    let query_result = await getLastIDPrcedure()
+    let id_procedure = query_result[0].id
+    console.log(id_procedure)
+    await createNewProcedure(id_procedure +1 , req.body.name, req.body.description, req.body.steps, req.body.url);
     res.status(200).json({succes: true});
   }
   catch(error){
