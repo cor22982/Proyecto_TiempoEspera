@@ -549,7 +549,7 @@ app.get('/all_procedures', async (req, res) => {
   }
 });
 
-app.get('/contactInfo/', async(req, res) =>{
+app.get('/contactInfo', async(req, res) =>{
   try {
     res.status(200).json(await getInstitutionContactInfo())
   }
