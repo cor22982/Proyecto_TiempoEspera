@@ -129,6 +129,11 @@ export async function deleteInstitution(pi){
   return result.rows
 }
 
+export async function deleteProcedure(id){
+  const result = await conn.query('DELETE FROM procedures WHERE id = $1', [id])
+  return result.rows
+}
+
 export async function deleteUser(pi){
   const result = await conn.query('DELETE FROM users WHERE pi = $1', [pi])
   return result.rows

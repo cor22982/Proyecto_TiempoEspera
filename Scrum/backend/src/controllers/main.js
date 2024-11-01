@@ -480,6 +480,18 @@ app.delete('/institution/:id', async(req, res)=>{
   }
 });
 
+app.delete('/procedure/:id', async(req, res)=>{
+  try {
+    const result = await deleteProcedure(req.params.id);
+    console.log("Procedimiento eliminada con exito")
+    res.status(200).json({success: true})
+  }
+  catch(error){
+    console.log('Error al borrar la institución :(', error)
+    res.status(500).send('ERROR :(')
+  }
+});
+
 app.post('/users_info', async (req, res) => {
   try {
     const payload = decodeToken(req.body.token)
