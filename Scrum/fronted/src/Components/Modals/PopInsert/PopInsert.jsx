@@ -1,152 +1,107 @@
 import PopUp from "@components/Modals/MessagePopUp";
+import CustomTextField from "@components/Inputs/TextFieldUi/TextFieldUi";
 import Swal from "sweetalert2";
-import {
-  Container,
-  Typography,
-  Button,
-  TextField,
-  FormControl,
-  RadioGroup,
-  Radio,
-  FormControlLabel,
-  Grid,
-  Paper,
-} from "@mui/material";
+import { Button } from "@mui/material";
 import styles from "../../../Pages/User/Configuration/configuration.module.css";
 import Close from "@mui/icons-material/Close";
 import House from "@mui/icons-material/House";
 import Place from "@mui/icons-material/Place";
-function PopInsert ({activar, setActivar}){
-  return(
-    <PopUp trigger={activar} setTrigger={setActivar}>
-        <div style={{display:'flex', flexDirection: 'column', alignItems: 'center'}}>
-        <h1 className="titulo-info">Insertar Institucion</h1>
-        <div style={{display: 'flex', flexDirection: 'row'}}>
-        
-        </div>
-        
-        <TextField
-              type="text"
-              label="Nombre Institucion"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-              InputProps={{
-                style: { fontFamily: "inherit", fontSize: "inherit" },
-              }}
-              InputLabelProps={{
-                style: { fontFamily: "inherit", fontSize: "inherit" },
-              }}
-              placeholder="Ingresa el nombre de la institucion"
-            />
 
-          <div style={{display: 'flex', flexDirection: 'row'}}>
-          
-          </div>
-       
-            <TextField
-              type="text"
-              label="Direccion"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-              InputProps={{
-                style: { fontFamily: "inherit", fontSize: "inherit" },
-              }}
-              InputLabelProps={{
-                style: { fontFamily: "inherit", fontSize: "inherit" },
-              }}
-              placeholder="Ingresa la direccion"
-            />
-          
-          <div style={{display: 'flex', flexDirection: 'row', width: '100%', gap: '2rem'}}>
-            <TextField
-              type="time"
-              label="Hora Apertura"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-              InputProps={{
-                style: { fontFamily: "inherit", fontSize: "inherit" },
-              }}
-              InputLabelProps={{
-                style: { fontFamily: "inherit", fontSize: "inherit" },
-              }}
-              placeholder="Ingresa la Hora de Apertura"
-            />
-            <TextField
-              type="time"
-              label="Hora Cierre"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-              InputProps={{
-                style: { fontFamily: "inherit", fontSize: "inherit" },
-              }}
-              InputLabelProps={{
-                style: { fontFamily: "inherit", fontSize: "inherit" },
-              }}
-              placeholder="Ingresa la Hora de Apertura"
-            />
-          </div>
-          <TextField
-              type="number"
-              label="Telefono"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-              InputProps={{
-                style: { fontFamily: "inherit", fontSize: "inherit" },
-              }}
-              InputLabelProps={{
-                style: { fontFamily: "inherit", fontSize: "inherit" },
-              }}
-              placeholder="Ingresa el telefono"
-            />
-          
-          <div style={{display: 'flex', flexDirection: 'row', width: '100%', gap: '2rem'}}>
-            <TextField
-              type="text"
-              label="Latitud"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-              InputProps={{
-                style: { fontFamily: "inherit", fontSize: "inherit" },
-              }}
-              InputLabelProps={{
-                style: { fontFamily: "inherit", fontSize: "inherit" },
-              }}
-              placeholder="Ingresa la Latidud"
-            />
-            <TextField
-              type="text"
-              label="Longitud"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-              InputProps={{
-                style: { fontFamily: "inherit", fontSize: "inherit" },
-              }}
-              InputLabelProps={{
-                style: { fontFamily: "inherit", fontSize: "inherit" },
-              }}
-              placeholder="Ingresa la Longitud"
-            /></div>
-        <TextField
-              type="text"
-              label="Imagen"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-              InputProps={{
-                style: { fontFamily: "inherit", fontSize: "inherit" },
-              }}
-              InputLabelProps={{
-                style: { fontFamily: "inherit", fontSize: "inherit" },
-              }}
-              placeholder="Ingresa el link de la imagen"
-            />
+function PopInsert({ activar, setActivar }) {
+  return (
+    <PopUp trigger={activar} setTrigger={setActivar}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <h1 className="titulo-info">Insertar Institucion</h1>
+
+        {/* Wrapper with margin for spacing */}
+        <div style={{ marginBottom: "1rem", width: "100%" }}>
+          <CustomTextField
+            type="text"
+            label="Nombre Institucion"
+            fullWidth
+            placeholder="Ingresa el nombre de la institucion"
+          />
+        </div>
+
+        <div style={{ marginBottom: "1rem", width: "100%" }}>
+          <CustomTextField
+            type="text"
+            label="Direccion"
+            fullWidth
+            placeholder="Ingresa la direccion"
+          />
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            width: "100%",
+            gap: "2rem",
+            marginBottom: "1rem",
+          }}
+        >
+          <CustomTextField
+            type="time"
+            label="Hora Apertura"
+            fullWidth
+            placeholder="Ingresa la Hora de Apertura"
+          />
+          <CustomTextField
+            type="time"
+            label="Hora Cierre"
+            fullWidth
+            placeholder="Ingresa la Hora de Cierre"
+          />
+        </div>
+
+        <div style={{ marginBottom: "1rem", width: "100%" }}>
+          <CustomTextField
+            type="number"
+            label="Telefono"
+            fullWidth
+            placeholder="Ingresa el telefono"
+          />
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            width: "100%",
+            gap: "2rem",
+            marginBottom: "1rem",
+          }}
+        >
+          <CustomTextField
+            type="text"
+            label="Latitud"
+            fullWidth
+            placeholder="Ingresa la Latitud"
+          />
+          <CustomTextField
+            type="text"
+            label="Longitud"
+            fullWidth
+            placeholder="Ingresa la Longitud"
+          />
+        </div>
+
+        <div style={{ marginBottom: "1rem", width: "100%" }}>
+          <CustomTextField
+            type="text"
+            label="Imagen"
+            fullWidth
+            placeholder="Ingresa el link de la imagen"
+          />
+        </div>
+
         <Button
           className={styles.saveButton}
           variant="contained"
@@ -154,9 +109,9 @@ function PopInsert ({activar, setActivar}){
         >
           Ingresar Institucion
         </Button>
-        </div>
-      </PopUp>
-  )
+      </div>
+    </PopUp>
+  );
 }
 
-export default PopInsert
+export default PopInsert;

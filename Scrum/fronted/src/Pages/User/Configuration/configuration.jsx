@@ -215,7 +215,7 @@ const Configuration = () => {
             </div>
 
             <CustomTextField
-              type="text"
+              type="password"
               label="Nueva Contraseña"
               value={password}
               onChange={handlePasswordChange}

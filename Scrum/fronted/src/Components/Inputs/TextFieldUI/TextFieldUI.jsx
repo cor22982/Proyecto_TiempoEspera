@@ -73,6 +73,7 @@ const CustomTextFieldComponent = ({
   placeholder,
   value,
   onChange,
+  label, // Agrega label como prop
 }) => {
   const [inputType, setInputType] = useState(type);
   const [isDarkMode, setIsDarkMode] = useState(
@@ -107,6 +108,7 @@ const CustomTextFieldComponent = ({
       className={styles.inputMaterial}
       type={inputType}
       name={name}
+      label={label} // Pasa la prop label
       placeholder={placeholder}
       value={value}
       onChange={onChange}
@@ -126,8 +128,7 @@ const CustomTextFieldComponent = ({
 CustomTextFieldComponent.propTypes = {
   type: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  label: PropTypes.string,
 };
 
 export default CustomTextFieldComponent;
