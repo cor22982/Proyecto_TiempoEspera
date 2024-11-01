@@ -210,3 +210,9 @@ export async function getLastIDPrcedure(){
   const result = await conn.query('select id from procedures order by id desc limit 1;')
   return result.rows
 }
+
+
+export async function getProcedures(){
+  const result = await conn.query('select id, name, description from procedures;')
+  return result.rows
+}
