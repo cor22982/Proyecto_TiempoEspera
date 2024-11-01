@@ -228,5 +228,6 @@ export async function getProcedures(){
 }
 
 export async function getInstitutionContactInfo(id){
-  const reslt = await conn.query('SELECT telefono from intitutions WHERE id_institutions = $1;', [id])
+  const result = await conn.query('SELECT telefono from intitutions WHERE id_institutions = $1;', [id])
+  return result.rows
 }
