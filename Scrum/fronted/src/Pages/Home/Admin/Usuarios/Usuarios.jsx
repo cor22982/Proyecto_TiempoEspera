@@ -43,10 +43,11 @@ const Usuarios = () => {
   }
   return (
     <div className="usuarios-screen">
-
+      <h1 className='titulo-info'>Usuarios</h1>
     {loading ? ( // Muestra el spinner si está cargando
         <Spinner/>
       ) : (
+        
         users.map((user, index) => (
           <div key={index} style={{ marginBottom: '5px' }}>
             <DeletuserCard

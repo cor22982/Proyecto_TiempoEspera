@@ -1,3 +1,4 @@
+@import "@styles/colors.css";
 .image-container-user {
   width: 50px;
   height: 50px;
@@ -8,6 +9,9 @@
   align-items: center;
 }
 
+.container-saved p{
+  color: var(--text-tertiary);
+}
 .image-container-user img {
   width: 100%; /* La imagen toma el 100% del ancho del contenedor */
   height: 100%; /* La imagen toma el 100% del alto del contenedor */
