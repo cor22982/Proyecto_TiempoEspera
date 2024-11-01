@@ -32,7 +32,7 @@ export async function addInstitution(name, adress, hora_apertura, hora_cierre, t
 
     // Realizar la inserción con el nuevo ID
     const result = await conn.query(
-      'INSERT INTO intitutions (id_institutions, name, adress, hora_apertura, hora_cierre, telefono, imagen, coordenadas) VALUES($1, $2, $3, $4, $5, $6, $7, point($8, $9))',
+      'INSERT INTO intitutions (id_institutions, name, adress, hora_apertura, hora_cierre, telefono, imagen, coordenadas) VALUES($1, $2, $3, $4, $5, $6, $7, ST_MakePoint($8, $9))',
       [newId, name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud]
     );
     
