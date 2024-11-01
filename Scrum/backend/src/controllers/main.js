@@ -87,7 +87,7 @@ app.post('/institution_add', async(req, res) => {
     res.status(200).send({'succes': true})
   } catch (error) {
     console.error('Error al crear nueva insitución')
-    res.status(500).json({message: 'Error en crear la institución'})
+    res.status(500).json({message: 'Error en crear la institución', error})
   }
 });
 
