@@ -23,7 +23,7 @@ import { FontContext } from "@contexts/ConfigContext/FontContext";
 import { FontSizeContext } from "@contexts/ConfigContext/FontSizeContext";
 import Swal from "sweetalert2";
 import { red } from "@mui/material/colors";
-import CustomTextField from "@components/Inputs/TextFieldUi/TextFieldUi";
+import CustomTextField from "@components/Inputs/TextFieldUI/TextFieldUI";
 
 // Obtén el valor de las variables CSS usando JavaScript
 const rootStyle = getComputedStyle(document.documentElement);
