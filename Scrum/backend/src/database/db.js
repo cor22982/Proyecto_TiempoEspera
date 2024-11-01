@@ -22,7 +22,7 @@ export async function UpdatePassw(pi, password) {
   
 }
 export async function addInstitution(name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud) {
-  const result = await conn.query('Instert INTO intitutions (name, adress, hora_apertura, hora_cierre, telefono, imagen, coordenadas) VALUES($1, $2, $3, $4, $5, $6, point($7, $8);', [name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud]);
+  const result = await conn.query('Insert INTO intitutions (name, adress, hora_apertura, hora_cierre, telefono, imagen, coordenadas) VALUES($1, $2, $3, $4, $5, $6, point($7, $8));', [name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud]);
   return result.rows;
 }
 export async function getUserByPi(pi) {
