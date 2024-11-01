@@ -549,9 +549,9 @@ app.get('/all_procedures', async (req, res) => {
   }
 });
 
-app.get('/contactInfo/:id', async(req, res) =>{
+app.get('/contactInfo/', async(req, res) =>{
   try {
-    res.status(200).json(await getInstitutionContactInfo(req.params.id))
+    res.status(200).json(await getInstitutionContactInfo())
   }
   catch (error){
     console.error('Error al obtener los datos de contacto :(', error);
