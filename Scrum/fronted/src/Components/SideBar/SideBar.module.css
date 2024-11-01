@@ -1,0 +1,106 @@
+@import "@styles/colors.css";
+
+.container {
+    color: var(--text-white);
+    background: transparent;
+    position: sticky;
+    padding-top: 1.25rem;
+    padding-left: 2.5rem;
+    display: inline-flex;
+    flex-direction: column;
+    height: 100vh;
+    box-sizing: content-box;
+}
+
+.sidebarCollapsed {
+    padding-left: 0;
+    width: 80px;
+}
+
+.sidebarButton {
+    position: absolute;
+    top: 68px;
+    right: -18px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    color: var(--sb-icon-color);
+    background: var(--sb-button-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    font-size: 1.25rem;
+    padding: 0;
+    outline: none;
+}
+
+.logoContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 24px;
+    width: 120px;
+    height: 80px;
+    padding-bottom: 54px;
+}
+
+.logoCollapsed {
+    width: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+}
+
+.imgContent img {
+    max-width: 100%;
+    height: auto;
+}
+
+.sidebarCollapsed .imgContent img {
+    transform: scale(0.6);
+}
+
+/* Estilo para los enlaces y su contenedor */
+.linkContainer {
+    margin: 0.75rem 0;
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    font-size: 1.375rem;
+    cursor: pointer;
+    align-items: center;
+    height: 2rem;
+    padding-left: 0;
+    box-sizing: border-box;
+    color: var(--text-white); /* Color de texto predeterminado */
+    transition: color 0.3s ease; /* Transición de color suave */
+}
+
+/* Efecto hover que cambia el color del icono y texto a la vez */
+.linkContainer:hover {
+    color: var(--text-hover); /* Cambia el color del texto e icono en hover */
+}
+
+.linkIcon {
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+    color: inherit; /* Hereda el color de linkContainer */
+}
+
+.sidebarCollapsed .linkContainer {
+    justify-content: center;
+}
+
+.sidebarCollapsed .linkContainer span {
+    display: none;
+}
+
+.divider {
+    height: 1px;
+    width: calc(100% + 2.5rem);
+    background: var(--dv-menu);
+    margin-left: -2.5rem;
+}

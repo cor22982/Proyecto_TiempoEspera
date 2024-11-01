@@ -1,20 +1,22 @@
-import './Checkbox.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState } from 'react';
-import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
-const Checkbox = ({name}) => {
+import styles from "./Checkbox.module.css";
+import { useState } from "react";
+
+const Checkbox = ({ name }) => {
   const [pressed, setPressed] = useState(false);
   const handleClick = () => {
-    setPressed(!pressed); // Cambiar el estado de presionado
+    setPressed(!pressed);
   };
   return (
-    <div className='checkbox-container'>
-      <button 
-        className= {pressed ? 'button-checkbox-click' : 'button-checkbox' } 
-        onClick={handleClick}></button>
-      <p className='titulo-checkbox'>{name}</p>
+    <div className={styles["checkbox-container"]}>
+      <button
+        className={
+          pressed ? styles["button-checkbox-click"] : styles["button-checkbox"]
+        }
+        onClick={handleClick}
+      ></button>
+      <p className={styles["titulo-checkbox"]}>{name}</p>
     </div>
-  )
-}
+  );
+};
 
-export default Checkbox
+export default Checkbox;

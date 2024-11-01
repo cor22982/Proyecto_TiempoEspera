@@ -1,0 +1,35 @@
+@import "@styles/colors.css";
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.styledButtonPen {
+  transition: color 0.3s ease;
+  color: var(--li-bg);
+}
+
+.styledButtonPen:hover {
+  color: var(--li-hover);
+  cursor: pointer;
+}
+
+.checksButtons {
+  transition: font-size 0.3s ease;
+}
+
+.checksButtons.green {
+  color: var(--li-check-bg);
+}
+
+.checksButtons.red {
+  color: var(--li-cancel-bg);
+}
+
+.checksButtons:hover {
+  font-size: 20px;
+  cursor: pointer;
+}

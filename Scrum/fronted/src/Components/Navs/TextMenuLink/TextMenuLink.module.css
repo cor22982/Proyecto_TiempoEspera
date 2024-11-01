@@ -1,0 +1,12 @@
+@import "@styles/colors.css";
+.link-menu-option {
+  font-size: 1.375rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.link-menu-option:hover {
+  color: var(--text-hover);
+}
+

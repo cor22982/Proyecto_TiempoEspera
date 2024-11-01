@@ -174,7 +174,8 @@ export async function createNewOTP(pi, otp, expiration_date){
 
 export async function deleteOTP(otp, pi){
   const result = await conn.query('DELETE FROM otp WHERE otp = $1 and pi = $2;', [otp, pi])
-  return result.rows
+  console.log('Delete OTP result:', result);
+  return result.rowCount;  
 }
 
 export async function modifyUserPassword(password, pi){
@@ -195,5 +196,23 @@ export async function getOTPData(pi){
 
 export async function getUsers() {
   const result = await conn.query(`SELECT pi, name, type_user, encode(perfi_image, 'base64') as imagen_perfil FROM users;`)
+  return result.rows
+}
+
+export async function createNewProcedure(id, name, description, steps, url, institutions) {
+
+  const result = await conn.query('CALL create_procedure_with_institutions($1, $2, $3, $4, $5, $6)', [id, name, description, steps, url, institutions])
+  return result.rows
+}
+
+
+export async function getLastIDPrcedure(){
+  const result = await conn.query('select id from procedures order by id desc limit 1;')
+  return result.rows
+}
+
+
+export async function getProcedures(){
+  const result = await conn.query('select id, name, description from procedures;')
   return result.rows
 }

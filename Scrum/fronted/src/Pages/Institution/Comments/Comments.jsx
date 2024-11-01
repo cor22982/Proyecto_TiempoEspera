@@ -1,21 +1,23 @@
 import TextArea from "@components/Inputs/TextArea";
-import './Comments.css';
+import styles from "./Comments.module.css";
 import Coment from "@components/Inputs/Coment";
-import useApi from '@hooks/api/useApi';
-import { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStarHalfAlt, faStar } from '@fortawesome/free-solid-svg-icons';
+import useApi from "@hooks/api/useApi";
+import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStarHalfAlt, faStar } from "@fortawesome/free-solid-svg-icons";
 
 const Comentarios = ({ data }) => {
-  const { llamadowithoutbody } = useApi(`https://deimoss.web05.lol/comments/${data.id_institutions}`);
+  const { llamadowithoutbody } = useApi(
+    `https://deimoss.web05.lol/comments/${data.id_institutions}`
+  );
   const [coments, setComents] = useState([]);
   const [conver, setConver] = useState(null);
-  const [contenido, setContenido] = useState('');
+  const [contenido, setContenido] = useState("");
   const [rating, setRating] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
-      const coment = await llamadowithoutbody('GET');
+      const coment = await llamadowithoutbody("GET");
       setConver(data.id_conversation);
       setComents(coment);
     };
@@ -25,19 +27,19 @@ const Comentarios = ({ data }) => {
 
   const postComent = async () => {
     const body = {
-      token: localStorage.getItem('access_token'),
+      token: localStorage.getItem("access_token"),
       content: contenido,
       conversation_id: conver,
-      rating: rating // Incluyendo la calificación en el cuerpo
+      rating: rating, // Incluyendo la calificación en el cuerpo
     };
     const fetchOptions = {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify(body),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        "Content-Type": "application/json",
+      },
     };
-    await fetch('https://deimoss.web05.lol/comment', fetchOptions);
+    await fetch("https://deimoss.web05.lol/comment", fetchOptions);
     console.log("Comentario enviado");
   };
 
@@ -54,7 +56,7 @@ const Comentarios = ({ data }) => {
         stars.push(
           <FontAwesomeIcon
             key={`full-${i}`}
-            className='icon-star'
+            className={styles.iconStar}
             icon={faStar}
             onClick={() => handleStarClick(i)}
           />
@@ -62,8 +64,8 @@ const Comentarios = ({ data }) => {
       } else if (i === Math.floor(rating) && rating % 1 !== 0) {
         stars.push(
           <FontAwesomeIcon
-            key={'half'}
-            className='icon-star'
+            key={"half"}
+            className={styles.iconStar}
             icon={faStarHalfAlt}
             onClick={() => handleStarClick(i)}
           />
@@ -72,7 +74,7 @@ const Comentarios = ({ data }) => {
         stars.push(
           <i
             key={`empty-${i}`}
-            className="far fa-star icon-star"
+            className={`far fa-star ${styles.iconStar}`}
             onClick={() => handleStarClick(i)}
           ></i>
         );
@@ -83,29 +85,25 @@ const Comentarios = ({ data }) => {
   };
 
   return (
-    <div className="comentarios-container-institution">
-      <div className="rating">
-        {calcularEstrellas()}
-      </div>
-      <TextArea 
+    <div className={styles.comentariosContainerInstitution}>
+      <div className={styles.rating}>{calcularEstrellas()}</div>
+      <TextArea
         placeholder="Agregar Comentario"
         value={contenido}
-        onChange={(value) => setContenido(value)} 
+        onChange={(value) => setContenido(value)}
         onclick={postComent}
-        className="Comentario-Institution"
+        className={styles.textareaContainer}
       />
       <br />
-      <div className="coments">
-        {
-          coments.map((com, index) => (
-            <Coment 
-              key={index}
-              from={com.name}
-              date={com.date.substring(0, com.date.indexOf("T"))}
-              coment={com.content}
-            />
-          ))
-        }
+      <div className={styles.coments}>
+        {coments.map((com, index) => (
+          <Coment
+            key={index}
+            from={com.name}
+            date={com.date.substring(0, com.date.indexOf("T"))}
+            coment={com.content}
+          />
+        ))}
       </div>
     </div>
   );

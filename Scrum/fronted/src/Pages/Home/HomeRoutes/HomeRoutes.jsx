@@ -1,24 +1,34 @@
-import { useState } from 'react';
-import './HomeRoutes.css'
-import { faUser, 
-    faHome, faSave, faGear, faBell, faRightFromBracket, faFire,
-  faPeopleArrows } from '@fortawesome/free-solid-svg-icons';
-import '@assets/Login/logotipo.png'
-import Logout from '@pages/Auth/LogOut/LogOut';
-import Page_Main from '@pages/Home/HomeMain/HomeMain';
-import Guardados from '@pages/User/Saved/Guardados';
-import Account from '@pages/User/Account/account';
-import Configuration from '@pages/User/Configuration/configuration';
-import Sidebar from '@components/SideBar/SideBar';
-import { parseJwt } from '@hooks/auth/useToken';
-import useToken from '@hooks/auth/useToken'
-import Usuarios from '../Admin/Usuarios';
+import { useState } from "react";
+import "./HomeRoutes.css";
+import {
+  faUser,
+  faHome,
+  faSave,
+  faGear,
+  faBell,
+  faRightFromBracket,
+  faFire,
+  faPeopleArrows,
+  faFolder,
+  faBuilding,
+} from "@fortawesome/free-solid-svg-icons";
+import "@assets/Login/logotipo.png";
+import Logout from "@pages/Auth/LogOut/LogOut";
+import Page_Main from "@pages/Home/HomeMain/HomeMain";
+import Guardados from "@pages/User/Saved/Guardados";
+import Account from "@pages/User/Account/account";
+import Configuration from "@pages/User/Configuration/configuration";
+import Sidebar from "@components/SideBar/SideBar";
+import { parseJwt } from "@hooks/auth/useToken";
+import useToken from "@hooks/auth/useToken";
+import Usuarios from "../Admin/Usuarios";
+import Tramite from "../Admin/Tramite/Tramite";
+import Institutions from "../Admin/Institutions/Institutions";
 const Pages = ({ pi }) => {
   const { token } = useToken();
   const rol = parseJwt(token).rol;
-  const [selectedView, setSelectedView] = useState('main'); // Controla la vista seleccionada
+  const [selectedView, setSelectedView] = useState("main"); // Controla la vista seleccionada
   const [sidebarOpen, setSidebarOpen] = useState(true);
-
 
   const handleMenuClick = (view) => {
     setSelectedView(view);
@@ -26,20 +36,24 @@ const Pages = ({ pi }) => {
 
   const renderView = () => {
     switch (selectedView) {
-      case 'main':
+      case "main":
         return <Page_Main pi={pi}></Page_Main>;
-      case 'cuenta':
+      case "cuenta":
         return <Account />;
-      case 'guardados':
+      case "guardados":
         return <Guardados pi={pi} />;
-      case 'configuracion':
+      case "configuracion":
         return <Configuration />;
-      case 'recomendados':
+      case "recomendados":
         return <Recomendados />;
-      case 'usuarios':
-        return <Usuarios></Usuarios>
-      case 'salir':
+      case "usuarios":
+        return <Usuarios></Usuarios>;
+      case "salir":
         return <Logout />;
+      case "tramite":
+        return <Tramite />;
+      case "institutions":
+        return <Institutions />;
       default:
         return <Page_Main pi={pi}></Page_Main>;
     }
@@ -48,7 +62,7 @@ const Pages = ({ pi }) => {
   const linksArray = [
     {
       label: "Home",
-      icon:faHome,
+      icon: faHome,
       to: "main",
     },
     {
@@ -70,9 +84,14 @@ const Pages = ({ pi }) => {
 
   const linksArray_Admin = [
     {
-      label: "Home",
-      icon:faHome,
-      to: "main",
+      label: "Instituciones",
+      icon: faBuilding,
+      to: "institutions",
+    },
+    {
+      label: "Tramite",
+      icon: faFolder,
+      to: "tramite",
     },
     {
       label: "Usuarios",
@@ -83,7 +102,7 @@ const Pages = ({ pi }) => {
   const secondarylinksArray = [
     {
       label: "Configuración",
-      icon: faGear, 
+      icon: faGear,
       to: "configuracion",
     },
     {
@@ -93,23 +112,27 @@ const Pages = ({ pi }) => {
     },
   ];
   return (
-    <div className={sidebarOpen ? "contenedor-principal-activate": "contenedor-principal"}>
-      <div className='opciones'>
-        <Sidebar 
-          sidebarOpen={sidebarOpen} 
+    <div
+      className={
+        sidebarOpen ? "contenedor-principal-activate" : "contenedor-principal"
+      }
+    >
+      <div className="opciones">
+        <Sidebar
+          sidebarOpen={sidebarOpen}
           setSidebarOpen={setSidebarOpen}
-          linksArray={rol == 'administrador' ? linksArray_Admin : linksArray}
+          linksArray={rol == "administrador" ? linksArray_Admin : linksArray}
           secondarylinksArray={secondarylinksArray}
-          handleMenuClick={handleMenuClick}></Sidebar>
+          handleMenuClick={handleMenuClick}
+        ></Sidebar>
       </div>
 
-      <div className='interfaz'>
+      <div className="interfaz">
         {renderView()} {/* Renderiza la vista seleccionada */}
       </div>
     </div>
   );
 };
-
 
 const Recomendados = () => <h1>Contenido de Recomendados</h1>;
 

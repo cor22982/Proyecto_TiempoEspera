@@ -1,0 +1,73 @@
+@import "@styles/colors.css";
+
+/* Contenedor de comentarios */
+.coments {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  padding: 20px;
+  background-color: var(--ct-bg);
+  box-shadow: 0 2px 4px var(--shadow-secundary);
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+/* Contenedor principal de comentarios para la institución */
+.comentariosContainerInstitution {
+  margin-bottom: 10px;
+  height: 40rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilo de cada comentario */
+.coment {
+  padding: 10px;
+  border-bottom: 1px solid red;
+  margin-bottom: 10px;
+}
+
+.coment:last-child {
+  border-bottom: none;
+}
+
+/* Estilo de la calificación (estrellas) */
+.rating {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+/* Estilo de las estrellas */
+.iconStar {
+  padding-left: 1em;
+  font-size: 2em;
+  transition: opacity 0.3s ease;
+  color: var(--ct-icons);
+}
+
+.iconStar:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+/* Estilo de las estrellas vacías */
+.farFaStar {
+  padding-left: 1em;
+  font-size: 2em;
+}
+
+/* Contenedor del área de texto */
+.textareaContainer {
+  margin-bottom: 20px;
+}
+
+.textareaContainer textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid blue;
+  box-shadow: 0 1px 3px var(--shadow-secundary);
+  resize: none;
+}

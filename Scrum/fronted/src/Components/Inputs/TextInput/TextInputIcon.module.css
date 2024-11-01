@@ -1,0 +1,64 @@
+@import "@styles/styles.css";
+@import "@styles/colors.css";
+
+.inputIcon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  color: var(--tic-icon-color);
+  border: 1px solid var(--border-primary);
+  border-radius: 0.1rem;
+  background-color: var(--tic-icon-bg);
+}
+
+.iconFontCondition input,
+.inputIcon input {
+  flex: 1;
+  border: none;
+  padding: 0.5rem;
+  padding-right: 3rem;
+  font-family: inherit;
+  font-size: 2rem;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: var(--tic-bg);
+  color: var(--tic-text);
+}
+
+.iconFontCondition {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+  font-family: inherit;
+  font-size: 2rem;
+  min-width: 2rem;
+  color: var(--tic-icon-action-color);
+  background-color: transparent;
+}
+
+.inputIcon input:focus {
+  outline: none !important;
+}
+
+.inputIcon input::placeholder {
+  color: var(--tic-placeholder);
+}
+
+.iconFont {
+  padding-right: 1rem;
+  padding-left: 1rem;
+  font-size: 2rem;
+  min-width: 2rem;
+}
+
+/* Media query para ajustar el tamaño en pantallas más pequeñas */
+@media (max-width: 768px) {
+  .searchBar input {
+    width: calc(100% - 65px);
+  }
+}

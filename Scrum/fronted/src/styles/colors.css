@@ -1,0 +1,341 @@
+/* Variables globales para el modo claro */
+:root {
+
+    /* Botones */
+    --button-bg: #00367E;
+    --button-text: #ffffff;
+    --button-activate: #00153C;
+    --button-hover: #002254;
+    
+    /* Checkbox */
+    --check-bg: #ffffff;
+    --list-border-check: #00153C;
+    --list-bg-check: #00367E;
+    --hover-border-check: #002766;
+    --hover-bg-check: #004A9E;
+    --hover-border-checked: #002766;
+    --hover-bg-checked: #004A9E;
+    --check-text: #005a96;
+
+    /* TextInputIcon */
+    --tic-icon-bg: #00367E;
+    --tic-icon-color: #ffffff;
+    --tic-bg: #e5e4e5;
+    --tic-text: #024069;
+    --tic-placeholder: #005a96;
+    --tic-icon-action-color: #000000;
+
+    /* TextArea -> para enviar comentarios*/
+    --ta-bg: #ffffff;
+    --ta-text: #000000;
+    --ta-bt-envio-bg: #00367E;
+    --ta-bt-envio-hover: #002254;
+    --ta-bt-envio-text: #ffffff;
+    --ta-bt-cancel-bg: #dadada;
+    --ta-bt-cancel-hover: #b0b0b0;
+    --ta-bt-cancel-text: #000000;
+
+    /* Label_input -> cambio de correo, telefono*/
+    --li-bg: #00367E;
+    --li-hover: #002254;
+    --li-check-bg: #00FF00;
+    --li-cancel-bg: #FF0000;
+
+    /* Dropdown */
+    --dd-bg-inactivate: #00367E;
+    --dd-inactivate-text: #ffffff;
+    --dd-bg-activate: #002254;
+    --dd-content-bg: #ffffff;
+
+    /* IconColor */
+    --ib-color: #005a96;
+    
+    /* Sidebar */
+    --main-left-size-bg: #00367E;
+    --main-right-size-bg: #E4E4E4;
+    --sb-button-bg: #00367E;
+    --sb-icon-color: #ffffff;
+
+    /* Login, SingUp & LogOut*/
+    --lg-left-side: #00367E;
+    --lg-right-side: #ffffff;
+    --lg-icon: #00367E;
+
+    /*Configurations*/
+    --cg-bg: #ffffff;
+    --cg-icon-color: #00367E;
+
+    --cg-slider-point-color: #00367E; /* Color del punto del Slider */
+    --cg-slider-point-hover: rgba(0, 54, 126, 0.2);
+    --cg-slider-point-focus: rgba(0, 54, 126, 0.5);;
+    --cg-slider-raid-active-bg: #004A9E;
+    --cg-slider-raid-active-margin: #004A9E;
+    --cg-slider-rail-inactive: #bdbdbd; /* Color de la pista de fondo */
+
+    --cg-switch-color: #00367E; /* Color del punto cuando el Switch está activado */
+    --cg-switch-hover-bg: rgba(0, 54, 126, 0.2); /* Fondo del punto en hover (estado activado) */
+    --cg-switch-focus-shadow: rgba(0, 54, 126, 0.2); /* Sombra cuando el Switch está enfocado */
+    --cg-switch-off-color: #757575; /* Color del punto cuando el Switch está desactivado */
+    --cg-switch-track-off: #bdbdbd; /* Color de la pista cuando el Switch está desactivado */
+    
+    --radio-color: #00367E; /* Color del punto del radio cuando está seleccionado */
+    --radio-hover-color: rgba(0, 54, 126, 0.2); /* Color del punto en hover */
+    --radio-off-color: #757575; /* Color del punto cuando no está seleccionado */
+
+    /* SerachInput */
+    --si-bg: #ffffff;
+    --si-icon-search-color: #737373;
+    --si-icon-search-color-hover: #ffffff;
+    --si-icon-search-bg: #277ae0;
+
+    --si-icon-clear-color: #000000;
+    --si-icon-clear-color-hover: #ffffff;
+    --si-icon-clear-bg: #737373;
+    --si-shadow: rgba(0, 0, 0, 0.1);
+    --si-text-recomendation: #b6b6b6;
+	--si-text: #000000;
+	--si-text-list: #000000;
+    --si-bg-recomendation-list: #ffffff;
+    --si-recomendation-list-hover: #f0f0f0;
+    
+    /*Guardados*/
+    --spc-bg: #ffffff;
+    --spc-text: #000000;
+
+    /* Account */
+    --ac-icon-edit-color: #000000;
+    --ac-icon-edit-bg: #ffffff;
+    --ac-bg-image: rgba(0, 0, 0, 0.4);
+    --ac-icon-editing-color: #ffffff;
+    --ac-icon-editing-hover: #ddd;
+
+    /* Comentarios */
+    --ct-bg: #ffffff;
+    --ct-icons: #005a96;
+	--ct-text: #000000;
+
+    /*InstitutionCard*/
+    --instc-bg: #ffffff;
+    --instc-tramite-bg: #00153C;
+    --instc-tramite-color:#ffffff;
+
+    /*InstitutionInfo*/
+    --ii-icon-color: #005a96;
+
+    /* Graficas */
+    --bar-bg: #00367E;
+
+    /*HomeMain*/
+    --hm-bg-card: rgba(0, 0, 0, 0.4);
+    --hm-text-card: #ffffff;
+    --hm-text:#000000;
+
+    /* Dividers */
+    --dv-main: #eee;
+    --dv-info: #A1A1A1;
+    --dv-search: #f1f1f1;
+    --dv-menu: #ffffff;
+
+    /*Borders*/
+    --border-primary: #cccccc;
+    --border-secundary: #ddd;
+
+    /* Sombras */
+    --shadow-primary: #cccccc;
+    --shadow-secundary: rgba(0, 0, 0, 0.1);
+    
+    /* Errores & Aceptaciones */
+    --error-bg: #e3485033;
+    --error-border: #e34850;
+    --acceptance-bg: #33e37b33;
+    --acceptance-border: #33e37b;
+
+    /* Text */
+    --text-test: red;
+    --text-primary: #00367E;
+    --text-secondary: #024069;
+    --text-tertiary: #005a96;
+    --text-white: #ffffff;
+    --text-black: #000000;
+    --text-link: #0000ff;
+    --text-hover: #9393B6;
+    --text-error: #e34850;
+    --text-acceptance: #33e37b;
+
+    /* Cards  */
+    --card-color: #ffffff;
+
+    /*Body*/
+    --body-bg: #00367E;
+}
+
+/* Variables globales para el modo oscuro */
+/* Variables globales para el modo oscuro */
+body.darkMode {
+    /* Botones */
+    --button-bg: #4A90E2;
+    --button-text: #1E1E1E;
+    --button-activate: #2C3E50;
+    --button-hover: #2A72C3;
+    
+    /* Checkbox */
+    --check-bg: #1E1E1E;
+    --list-border-check: #4A90E2;
+    --list-bg-check: #2A72C3;
+    --hover-border-check: #2A72C3;
+    --hover-bg-check: #357ABD;
+    --hover-border-checked: #2A72C3;
+    --hover-bg-checked: #357ABD;
+    --check-text: #A3D1FF;
+
+    /* TextInputIcon */
+    --tic-icon-bg: #4A90E2;
+    --tic-icon-color: #1E1E1E;
+    --tic-bg: #2C3E50;
+    --tic-text: #B0C4DE;
+    --tic-placeholder: #A3D1FF;
+    --tic-icon-action-color: #FFFFFF;
+
+    /* TextArea -> para enviar comentarios*/
+    --ta-bg: #1E1E1E;
+    --ta-text: #FFFFFF;
+    --ta-bt-envio-bg: #4A90E2;
+    --ta-bt-envio-hover: #2A72C3;
+    --ta-bt-envio-text: #1E1E1E;
+    --ta-bt-cancel-bg: #454545;
+    --ta-bt-cancel-hover: #6A6A6A;
+    --ta-bt-cancel-text: #FFFFFF;
+
+    /* Label_input -> cambio de correo, telefono*/
+    --li-bg: #4A90E2;
+    --li-hover: #2A72C3;
+    --li-check-bg: #00FF00;
+    --li-cancel-bg: #FF0000;
+
+    /* Dropdown */
+    --dd-bg-inactivate: #4A90E2;
+    --dd-inactivate-text: #1E1E1E;
+    --dd-bg-activate: #2A72C3;
+    --dd-content-bg: #1E1E1E;
+
+    /* IconColor */
+    --ib-color: #A3D1FF;
+    
+    /* Sidebar */
+    --main-left-size-bg: #1E1E1E;
+    --main-right-size-bg: #454545;
+    --sb-button-bg: #4A90E2;
+    --sb-icon-color: #1E1E1E;
+
+    /* Login, SingUp & LogOut*/
+    --lg-left-side: #1E1E1E;
+    --lg-right-side: #2C3E50;
+    --lg-icon: #4A90E2;
+
+    /*Configurations*/
+    --cg-bg: #1E1E1E;
+    --cg-icon-color: #4A90E2;
+
+    --cg-slider-point-color: #4A90E2;
+    --cg-slider-point-hover: rgba(74, 144, 226, 0.2);
+    --cg-slider-point-focus: rgba(74, 144, 226, 0.5);
+    --cg-slider-raid-active-bg: #357ABD;
+    --cg-slider-raid-active-margin: #357ABD;
+    --cg-slider-rail-inactive: #6A6A6A;
+
+    --cg-switch-color: #4A90E2;
+    --cg-switch-hover-bg: rgba(74, 144, 226, 0.2);
+    --cg-switch-focus-shadow: rgba(74, 144, 226, 0.5);
+    --cg-switch-off-color: #B0C4DE;
+    --cg-switch-track-off: #6A6A6A;
+    
+    --radio-color: #4A90E2;
+    --radio-hover-color: rgba(74, 144, 226, 0.2);
+    --radio-off-color: #B0C4DE;
+
+    /* SerachInput */
+    --si-bg: #ffffff;
+    --si-icon-search-color: #000000;
+    --si-icon-search-color-hover: #1E1E1E;
+    --si-icon-search-bg: #4A90E2;
+
+    --si-icon-clear-color: #000000;
+    --si-icon-clear-color-hover: #1E1E1E;
+    --si-icon-clear-bg: #4A90E2;
+    --si-shadow: rgba(0, 0, 0, 0.1);
+    --si-text-recomendation: #b6b6b6;
+	--si-text: #000000;
+	--si-text-list: #FFFFFF;
+    --si-bg-recomendation-list:  #3A3A3A;
+    --si-recomendation-list-hover:#1E1E1E;
+    
+    /*Guardados*/
+    --spc-bg: #1E1E1E;
+    --spc-text: #4A90E2;
+
+    /* Account */
+    --ac-icon-edit-color: #FFFFFF;
+    --ac-icon-edit-bg: #1E1E1E;
+    --ac-bg-image: rgba(0, 0, 0, 0.4);
+    --ac-icon-editing-color: #ffffff;
+    --ac-icon-editing-hover: #4A90E2;
+
+    /* Comentarios */
+    --ct-bg: #1E1E1E;
+    --ct-icons: #A3D1FF;
+	--ct-text: #ffffff;
+
+    /*InstitutionCard*/
+    --instc-bg: #1E1E1E;
+    --instc-tramite-bg: #4A90E2;
+    --instc-tramite-color: #1E1E1E;
+
+    /*InstitutionInfo*/
+    --ii-icon-color: #A3D1FF;
+
+    /* Graficas */
+    --bar-bg: #4A90E2;
+
+    /*HomeMain*/
+    --hm-bg-card: rgba(0, 0, 0, 0.4);
+    --hm-text-card: #ffffff;
+    --hm-text: #ffffff;
+
+    /* Dividers */
+    --dv-main: #3A3A3A;
+    --dv-info: #6A6A6A;
+    --dv-search: #FFFFFF;
+    --dv-menu: #FFFFFF;
+
+    /*Borders*/
+    --border-primary: #6A6A6A;
+    --border-secundary: #3A3A3A;
+
+    /* Sombras */
+    --shadow-primary: #3A3A3A;
+    --shadow-secundary: rgba(255, 255, 255, 0.1);
+    
+    /* Errores & Aceptaciones */
+    --error-bg: #e3485055;
+    --error-border: #e34850;
+    --acceptance-bg: #33e37b55;
+    --acceptance-border: #33e37b;
+
+    /* Text */
+    --text-test: #FF6347;
+    --text-primary: #A3D1FF;
+    --text-secondary: #B0C4DE;
+    --text-tertiary: #FFFFFF;
+    --text-white: #FFFFFF;
+    --text-black: #1E1E1E;
+    --text-link: #A3D1FF;
+    --text-hover: #6A6A6A;
+    --text-error: #FF4500;
+    --text-acceptance: #00FA9A;
+
+    /* Cards  */
+    --card-color: #1E1E1E;
+
+    /*Body*/
+    --body-bg: #1E1E1E;
+}

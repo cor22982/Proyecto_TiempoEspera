@@ -1,28 +1,35 @@
-import './SearchInput.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState, useRef } from 'react';
+import styles from "./SearchInput.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState, useRef } from "react";
 
-const SearchInput = ({ icono, placeholder, onChange, value, onpressenter, suggestions }) => {
-  const [suggestion, setSuggestion] = useState(''); // Para el autocompletado inline
-  const [filteredSuggestions, setFilteredSuggestions] = useState([]); // Para el dropdown de sugerencias
-  const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1); // Para las teclas de navegación
+const SearchInput = ({
+  icono,
+  placeholder,
+  onChange,
+  value,
+  onpressenter,
+  suggestions,
+}) => {
+  const [suggestion, setSuggestion] = useState("");
+  const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+  const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1);
   const inputRef = useRef(null);
 
   const minCharToSearch = 2;
 
   const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       handleSearch(); // Llamar a la función de búsqueda al presionar Enter
     }
 
-    if (event.key === 'Tab' && suggestion) {
+    if (event.key === "Tab" && suggestion) {
       event.preventDefault(); // Prevenir el comportamiento por defecto de Tab
       onChange(value + suggestion); // Completar con la sugerencia inline
       setFilteredSuggestions([]); // Limpiar sugerencias
-      setSuggestion('');
+      setSuggestion("");
     }
 
-    if (event.key === 'ArrowDown') {
+    if (event.key === "ArrowDown") {
       event.preventDefault();
       if (filteredSuggestions.length > 0) {
         setActiveSuggestionIndex((prevIndex) =>
@@ -31,7 +38,7 @@ const SearchInput = ({ icono, placeholder, onChange, value, onpressenter, sugges
       }
     }
 
-    if (event.key === 'ArrowUp') {
+    if (event.key === "ArrowUp") {
       event.preventDefault();
       if (filteredSuggestions.length > 0) {
         setActiveSuggestionIndex((prevIndex) =>
@@ -47,7 +54,7 @@ const SearchInput = ({ icono, placeholder, onChange, value, onpressenter, sugges
       setFilteredSuggestions([]);
     } else if (suggestion) {
       onChange(value + suggestion); // Completar inline con la sugerencia
-      setSuggestion(''); // Limpiar la sugerencia después de seleccionar
+      setSuggestion(""); // Limpiar la sugerencia después de seleccionar
     }
     onpressenter(); // Ejecutar la búsqueda al presionar Enter o al hacer clic en el ícono
   };
@@ -56,11 +63,11 @@ const SearchInput = ({ icono, placeholder, onChange, value, onpressenter, sugges
     onChange(inputValue);
 
     if (inputValue.trim().length >= minCharToSearch) {
-      const filtered = suggestions.filter(suggestion =>
+      const filtered = suggestions.filter((suggestion) =>
         suggestion.toLowerCase().includes(inputValue.toLowerCase())
       );
 
-      const startsWithSuggestions = filtered.filter(suggestion =>
+      const startsWithSuggestions = filtered.filter((suggestion) =>
         suggestion.toLowerCase().startsWith(inputValue.toLowerCase())
       );
 
@@ -69,62 +76,68 @@ const SearchInput = ({ icono, placeholder, onChange, value, onpressenter, sugges
         setSuggestion(remainingText); // Mostrar la parte restante inline
         setFilteredSuggestions([]); // No mostrar dropdown si es inline
       } else {
-        setSuggestion('');
+        setSuggestion("");
         setFilteredSuggestions(filtered); // Mostrar dropdown si no es inline
         setActiveSuggestionIndex(-1); // Reiniciar el índice activo
       }
     } else {
-      setSuggestion('');
+      setSuggestion("");
       setFilteredSuggestions([]);
     }
   };
 
   const clearInput = () => {
-    onChange(''); // Limpiar el campo de entrada
-    setSuggestion('');
+    onChange(""); // Limpiar el campo de entrada
+    setSuggestion("");
     setFilteredSuggestions([]);
     setActiveSuggestionIndex(-1);
   };
 
   return (
-    <div className="autocomplete-container">
-      <div className="search-icon-container" onClick={handleSearch} style={{ cursor: 'pointer' }}>
-        <FontAwesomeIcon icon={icono} className="icon-serchad" />
+    <div className={styles.autocompleteContainer}>
+      <div
+        className={styles.searchIconContainer}
+        onClick={handleSearch}
+        style={{ cursor: "pointer" }}
+      >
+        <FontAwesomeIcon icon={icono} className={styles.iconSerchad} />
       </div>
-      <div className="input-wrapper">
+      <div className={styles.inputWrapper}>
         <input
           ref={inputRef}
           placeholder={placeholder}
           onChange={({ target: { value } }) => handleInputChange(value)}
           value={value}
-          className="input-search"
-          onKeyDown={handleKeyPress} // Escuchar teclas, incluyendo Enter
+          className={styles.inputSearch}
+          onKeyDown={handleKeyPress}
         />
         {value && (
-          <button className="clear-button" onClick={clearInput} tabIndex={-1}>
+          <button
+            className={styles.clearButton}
+            onClick={clearInput}
+            tabIndex={-1}
+          >
             ×
           </button>
         )}
-
-        {/* Inline Autocompletado */}
         {suggestion && (
-          <span className="input-suggestion">
+          <span className={styles.inputSuggestion}>
             {value}
-            <span className="suggestion-text">{suggestion}</span>
+            <span className={styles.suggestionText}>{suggestion}</span>
           </span>
         )}
-
-        {/* Dropdown para las sugerencias */}
         {filteredSuggestions.length > 0 && (
-          <ul className="suggestions-list">
+          <ul className={styles.suggestionsList}>
             {filteredSuggestions.map((filteredSuggestion, index) => (
               <li
                 key={index}
-                className={`suggestion-item ${index === activeSuggestionIndex ? 'active' : ''}`}
+                className={`${styles.suggestionItem} ${
+                  index === activeSuggestionIndex ? styles.active : ""
+                }`}
                 onClick={() => {
-                  onChange(filteredSuggestion); // Completar el valor del input
-                  setFilteredSuggestions([]); // Limpiar sugerencias
-                  setSuggestion(''); // Reiniciar autocompletado inline
+                  onChange(filteredSuggestion);
+                  setFilteredSuggestions([]);
+                  setSuggestion("");
                   setActiveSuggestionIndex(-1);
                   inputRef.current.focus();
                 }}
@@ -140,4 +153,3 @@ const SearchInput = ({ icono, placeholder, onChange, value, onpressenter, sugges
 };
 
 export default SearchInput;
-

@@ -1,0 +1,120 @@
+@import "@styles/colors.css";
+
+.identificacionChat {
+  height: 2em;
+  width: 2em;
+  border-radius: 50%;
+  background: #0069AD;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+}
+
+.identificacionChat:hover {
+  background: #005a96;
+}
+
+.mapaApi {
+  padding-top: 30px;
+}
+
+.identificacion {
+  display: flex;
+  align-items: center;
+  color: var(--text-black); /* Color negro para el texto */
+}
+
+.iconStar {
+  padding-left: 1em;
+  font-size: 2em;
+  transition: opacity 0.3s ease;
+  color: var(--ii-icon-color);
+}
+
+.farFaStar {
+  padding-left: 1em;
+  font-size: 2em;
+}
+
+.identificacionName {
+  margin-right: 10px;
+  color: #00367E;
+  font-family: inherit;
+  font-size: 6em;
+  text-align: left;
+  font-weight: bold;
+}
+
+.textBold {
+  
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  color: var(--text-tertiary);
+  font-family: inherit;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+.infoItem {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.infoTitulo {
+  width: 10em;
+  padding-right: 2em;
+  font-size: 2em;
+  color: var(--text-tertiary);
+  font-weight: bold;
+}
+
+.infoDato {
+  flex: 1;
+  text-align: left;
+  font-size: 1.5em;
+  justify-content: center;
+}
+
+.stats {
+  font-family: inherit;
+  color: var(--text-tertiary);
+  width: 100%;
+  height: 600px;
+  overflow: visible;
+}
+
+.statsName {
+  font-size: 2.5em;
+  padding-bottom: 2em;
+  font-weight: bold;
+}
+
+.mapa {
+  font-size: inherit;
+  padding-top: 2em;
+}
+
+.mapaTitulo {
+  font-size: inherit;
+  font-size: 2.5em;
+  padding-bottom: 1em;
+}
+
+.header img {
+  width: 100%;
+  max-height: 15em;
+  object-fit: cover;
+  overflow: hidden;
+  padding-bottom: 1em;
+}
+
+.tramiteContainer {
+  background-color: transparent;
+  max-height: 100vh;
+}

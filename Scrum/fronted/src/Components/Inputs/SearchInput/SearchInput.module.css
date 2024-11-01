@@ -1,0 +1,132 @@
+.autocompleteContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Alinear todo el contenido horizontalmente */
+  position: relative;
+  width: 97%; /* Asegura que ocupe todo el espacio horizontal */
+}
+
+.searchIconContainer {
+  display: flex;
+  align-items: center;
+  margin-right: 8px; /* Espacio entre el icono y el input */
+  justify-content: center; /* Alinear el ícono en el centro */
+  border-radius: 50%; /* Hacerlo circular */
+  width: 40px; /* Tamaño del contenedor del ícono */
+  height: 40px; /* Tamaño del contenedor del ícono */
+  cursor: pointer; /* Hacer que el cursor cambie a pointer */
+  transition: background-color 0.5s ease, transform 0.3s ease-out, box-shadow 0.3s ease; /* Reducir duración de la transformación */
+  will-change: transform; /* Optimización para el navegador */
+}
+
+.searchIconContainer:hover {
+  background-color: var(--si-icon-search-bg); /* Cambiar color de fondo en hover */
+  transform: scale(1.1); /* Ligeramente agrandar el ícono al pasar el cursor */
+  box-shadow: 0 4px 10px var(--shadow-secundary); /* Hacer la sombra más visible en hover */
+}
+
+.iconSerchad {
+  color: var(--si-icon-search-color);
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.searchIconContainer:hover .iconSerchad {
+  color: var(--si-icon-search-color-hover);
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%; /* Asegura que el input ocupe todo el ancho disponible */
+}
+
+.inputSearch {
+  width: 100%; /* Ocupar todo el espacio */
+  border: none;
+  padding: 8px 30px 8px 5px; /* Ajustar padding para dejar espacio suficiente al texto */
+  outline: none;
+  transition: border-color 0.3s;
+  box-sizing: border-box; /* Asegura que el padding y el ancho se calculen correctamente */
+  color: var(--si-text);
+}
+
+.clearButton {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--si-icon-clear-color);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s, color 0.3s, transform 0.2s ease;
+  transform-origin: center;
+  border: none;
+}
+
+.clearButton:hover {
+  background-color: var(--si-icon-clear-bg);
+  transform: scale(1.1);
+  color: var(--si-icon-clear-color-hover);
+}
+
+.inputSuggestion {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  color: transparent;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.suggestionText {
+  color: var(--si-text-recomendation);
+}
+
+.suggestionsList {
+  position: absolute;
+  top: calc(100% + 9.5px);
+  width: 100%;
+  border: 1px solid var(--border-primary);
+  border-top: none;
+  background-color: var(--si-bg-recomendation-list);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0px 4px 8px var(--shadow-secundary);
+  border-radius: 0px 0px 8px 8px;
+}
+
+.suggestionItem {
+  padding: 12px 20px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--dv-search);
+  transition: background-color 0.3s, color 0.3s;
+  color: var(--si-text-list);
+}
+
+.suggestionItem:hover,
+.suggestionItem.active {
+  background-color: var(--si-recomendation-list-hover);
+  color: var(--si-text-list);
+}
+
+.suggestionItem:last-child {
+  border-bottom: none;
+}
+
+/* Estilo para el placeholder */
+.inputSearch::placeholder {
+  color: var(--si-text-recomendation);
+}

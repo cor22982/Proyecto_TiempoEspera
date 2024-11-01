@@ -1,0 +1,24 @@
+@import "@styles/colors.css";
+
+.icon_button-container {
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.icon_button,
+.icon_text {
+  font-size: 25px;
+  color: var(--ib-color);
+  transition: color 0.3s ease;
+}
+
+.icon_text {
+  font-weight: bold;
+}
+
+/* Cambia el color en hover para ambos elementos */
+.icon_button-container:hover .icon_button,
+.icon_button-container:hover .icon_text {
+  color: var(--text-hover);
+}

@@ -8,7 +8,7 @@ import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequiere
   getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, 
   insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage
 , getStatistics, getUserBday, get_documents, UpdateEmail_telephone, deleteInstitution, addInstitution, UpdatePassw, UpdateName_Apellido,
-getUserEmail, getOTPData, deleteOTP, createNewOTP, modifyUserPassword, getUsers} from '../database/db.js';
+getUserEmail, getOTPData, deleteOTP, createNewOTP, modifyUserPassword, getUsers, createNewProcedure, getLastIDPrcedure, getProcedures} from '../database/db.js';
 import { getUserLoginInfo, getAdminLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken, validateToken } from './jwt.js';
 import * as OneSignalLib from '@onesignal/node-onesignal';
@@ -249,6 +249,8 @@ app.get('/rating/:id_institution', async (req, res) => {
   }
 });
 
+
+
 app.post('/passwordRequest', async (req, res) =>{
   try {
     const OTP = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000
@@ -351,18 +353,22 @@ app.post('/confirmPasswordChange', async (req, res) =>{
   try {
     const otpData = await getOTPData(req.body.pi)
     console.log(otpData)
+    console.log(otpData[0].exp_date)
 
     if (!otpData){
       res.status(404).send({'succes': false, 'message': 'No tienes un código de verificación'})
     }
-    if(otpData[0].exp_date < Date.now()){
+    if(Date(otpData[0].exp_date).getTime() < Date.now()){
       res.status(404).send({'succes': false, 'message': 'Tu código de verificación ha expirado'})
     }
     if(req.body.otp != otpData[0].otp){
       res.status(404).send({'succes': false, 'message': 'Tu código de verificación es incorrecto'})
     }
     await modifyUserPassword(req.body.password, req.body.pi);
-    await deleteOTP(req.body.password, req.body.pi);
+    const deleteResult = await deleteOTP(req.body.otp, req.body.pi);
+    if (deleteResult === 0) {
+      console.warn('No OTP record was deleted');
+    } 
     res.status(200).send({'succes': true, 'message': 'Tu contraseña fue modificada'})
   }
   catch(error){
@@ -488,6 +494,30 @@ app.post('/users_info', async (req, res) => {
   catch(error){
     console.error('Error al crear rating:', error);
     res.status(500).json({ succes: false });
+  }
+});
+
+app.post('/newProcedure', async (req, res) =>{
+  try {
+    let query_result = await getLastIDPrcedure()
+    let id_procedure = query_result[0].id
+    console.log(id_procedure)
+    await createNewProcedure(id_procedure +1 , req.body.name, req.body.description, req.body.steps, req.body.url, req.body.institutions);
+    res.status(200).json({succes: true});
+  }
+  catch(error){
+    console.error('Error al insertar el trámite: ', error);
+    res.status(500).json({succes: false });
+  }
+});
+
+app.get('/all_procedures', async (req, res) => {
+  try {
+    res.status(200).json(await getProcedures());
+  }
+  catch(error){
+    console.error('Error en la búsqueda de tramites:', error);
+    res.status(500).send('Error del servidor :(');
   }
 });
 

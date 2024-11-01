@@ -1,12 +1,14 @@
-import { useState } from 'react';
-import './TextArea.css';
+import { useState } from "react";
+import styles from "./TextArea.module.css";
 
 const TextArea = ({ placeholder, onChange, value, onclick }) => {
   const [change, setChange] = useState(true);
-  const [textareaValue, setTextareaValue] = useState(value || ''); // Estado para el valor del textarea
+  const [textareaValue, setTextareaValue] = useState(value || "");
+  const [isWriting, setIsWriting] = useState(false); // Nuevo estado para detectar escritura
 
   const oncancel = () => {
     setChange(true);
+    setIsWriting(false); // Reinicia el estado al cancelar
   };
 
   const onpush = () => {
@@ -14,31 +16,37 @@ const TextArea = ({ placeholder, onChange, value, onclick }) => {
   };
 
   const handleSend = () => {
-    onclick(); // Ejecuta la función pasada por props
-    setTextareaValue(''); // Resetea el textarea
+    onclick();
+    setTextareaValue("");
+    setIsWriting(false); // Reinicia el estado al enviar
+  };
+
+  const handleTextChange = (value) => {
+    setTextareaValue(value);
+    onChange(value);
+    setIsWriting(value.length > 0); // Activa el estado si hay texto
   };
 
   return (
-    <div className="textarea-contenedor">
+    <div className={styles.textareaContenedor}>
       {change ? (
-        <div className="input-to-text" onClick={onpush}>
+        <div className={styles.inputToText} onClick={onpush}>
           {placeholder}
         </div>
       ) : (
         <div>
           <textarea
-            className="text-area"
-            onChange={({ target: { value } }) => {
-              setTextareaValue(value); // Actualiza el valor del textarea
-              onChange(value); // Ejecuta la función onChange pasada por props
-            }}
+            className={`${styles.textArea} ${
+              isWriting ? styles.inputActive : ""
+            }`}
+            onChange={({ target: { value } }) => handleTextChange(value)}
             value={textareaValue}
           />
-          <div className="botones-textarea">
-            <button className="button-textarea1" onClick={oncancel}>
+          <div className={styles.botonesTextarea}>
+            <button className={styles.buttonTextareaCancel} onClick={oncancel}>
               Cancelar
             </button>
-            <button className="button-textarea" onClick={handleSend}>
+            <button className={styles.buttonTextarea} onClick={handleSend}>
               Enviar
             </button>
           </div>
@@ -49,4 +57,3 @@ const TextArea = ({ placeholder, onChange, value, onclick }) => {
 };
 
 export default TextArea;
-

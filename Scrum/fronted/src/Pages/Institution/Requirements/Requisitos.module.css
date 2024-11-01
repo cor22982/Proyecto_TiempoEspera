@@ -1,0 +1,12 @@
+@import "@styles/colors.css"; /* Importar los colores globales si es necesario */
+
+.container {
+  overflow-y: auto;
+  max-height: 450px;
+  color: var(--text-tertiary); /* Aplica el color del texto */
+}
+
+.heading {
+  font-weight: bold;
+  margin-bottom: 10px;
+}

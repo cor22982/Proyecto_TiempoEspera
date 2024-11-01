@@ -1,0 +1,123 @@
+@import '@styles/styles.css';
+@import '@styles/colors.css';
+
+/* Animación básica */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Contenedor principal */
+.registerContainer {
+  display: flex;
+  width: 100%;
+  animation: fadeIn 1s;
+  overflow-y: auto;
+}
+
+/* Contenedor izquierdo */
+.registerLeftSide {
+  display: flex;
+  flex: 1.2;
+  padding: 1rem;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  background-color: var(--lg-left-side);
+}
+
+.registerLeftSide img {
+  width: 100%;
+  height: auto;
+}
+
+/* Contenedor derecho */
+.registerRightSide {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  flex: 2;
+  background-color: var(--lg-right-side);
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 2rem 0;
+}
+
+.contentRightSide {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  gap: 2rem;
+}
+
+.registerTitle {
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 6em;
+  color: var(--text-primary);
+}
+
+.errorMessage {
+  border: 1px solid var(--error-border);
+  color: var(--text-error);
+  background-color: var(--error-bg);
+  border-radius: 0.3rem;
+  width: 100%;
+  padding: 0.5rem;
+}
+
+/* Contenedores para formularios */
+.registerDpiContainer,
+.registerPasswordContainer,
+.registerRolContainer,
+.registerButtonContainer {
+  width: 100%;
+  max-width: 80%;
+  margin: auto;
+}
+
+/* Registro y otros contenedores de texto */
+.registerRegisterContainer,
+.textRegisterContainer,
+.textInfoRegisterContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-family: inherit;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.textRegisterContainer{
+  color: var(--text-link)
+}
+
+.textInfoRegisterContainer {
+  color: var(--text-black)
+}
+
+
+/* Consultas de medios para responsividad */
+@media (max-width: 768px) {
+  .registerContainer,
+  .registerLeftSide,
+  .registerRightSide,
+  .contentRightSide {
+    flex-direction: column;
+    width: 100%;
+    flex: none;
+  }
+
+  .registerTitle {
+    font-size: 3em;
+  }
+
+  .registerDpiContainer,
+  .registerPasswordContainer,
+  .registerRolContainer,
+  .registerButtonContainer {
+    max-width: 80%;
+  }
+}

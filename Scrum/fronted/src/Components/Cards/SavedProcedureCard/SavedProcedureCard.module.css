@@ -1,0 +1,49 @@
+@import "@styles/colors.css"; /* Importa tus variables globales de color */
+
+/* Contenedor principal de la tarjeta guardada */
+.containerSaved {
+  height: fit-content;
+  width: 100%;
+  background-color: var(--spc-bg);
+  box-shadow: 5px 5px 10px 0 var(--border-primary);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  cursor: pointer;
+  transition: filter 0.4s;
+}
+
+.containerSaved:hover {
+  filter: brightness(90%);
+}
+
+/* Imagen de la institución */
+.imagenInstitution {
+  height: 110px;
+  width: 150px;
+  object-fit: fill;
+}
+
+/* Contenedor de la información guardada */
+.savedInformation {
+  margin-left: 5px;
+  height: 110px;
+  width: 100%;
+  background-color: var(--spc-bg);
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
+/* Título de la información */
+.tituloInformation {
+  font-size: 40px;
+  color: var(--spc-text); /* Color del texto del título */
+}
+
+/* Descripción de la información */
+.descriptionInformation {
+  font-size: 20px;
+  color: var(--spc-text); /* Color del texto de la descripción */
+}

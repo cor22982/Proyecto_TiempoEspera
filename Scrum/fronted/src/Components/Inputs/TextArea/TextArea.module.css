@@ -1,0 +1,85 @@
+@import "@styles/colors.css";
+
+.textArea {
+  width: 100%;
+  border-radius: 10px;
+  background-color: var(--ta-bg);
+  box-shadow: 5px 5px 10px 0 var(--shadow-secundary);
+  border: none;
+  outline: none;
+  height: 70px;
+}
+
+.inputToText {
+  width: 100%;
+  border-radius: 10px;
+  background-color: var(--ta-bg);
+  height: 36px;
+  cursor: pointer;
+  color: var(--ta-text);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 10px;
+  box-shadow: 5px 5px 10px 0 var(--shadow-secundary);
+  transition: filter 0.3s;
+}
+.inputToText {
+  width: 100%;
+  border-radius: 10px;
+  background-color: var(--ta-bg);
+  height: 36px;
+  cursor: pointer;
+  color: var(--ta-text);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 10px;
+  box-shadow: 5px 5px 10px 0 var(--shadow-secundary);
+  transition: filter 0.3s;
+}
+
+.inputActive {
+  background-color: var(--ta-bg);
+  color: var(--ta-text);
+}
+
+.inputToText:hover {
+  filter: brightness(90%);
+}
+
+.buttonTextarea {
+  color: var(--ta-bt-envio-text);
+  background-color: var(--ta-bt-envio-bg);
+  width: 80px;
+  height: 30px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+}
+
+.buttonTextareaCancel {
+  border: none;
+  color: var(--ta-bt-cancel-text);
+  background-color: var(--ta-bt-cancel-bg);
+  width: 80px;
+  height: 30px;
+  font-size: 16px;
+  border-radius: 10px;
+}
+
+.buttonTextarea:hover{
+  background-color: var(--ta-bt-envio-hover);
+}
+
+.buttonTextareaCancel:hover {
+  background-color: var(--ta-bt-cancel-hover);
+}
+
+.botonesTextarea {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+  transform: translateY(-40px);
+  margin-right: 11px;
+}
