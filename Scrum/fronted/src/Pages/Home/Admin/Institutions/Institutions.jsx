@@ -5,7 +5,7 @@ import useApi from '@hooks/api/useApi';
 import Institution_List from '@components/Cards/Institution_List/Institution_List';
 import IconButton from '@components/Buttons/IconButton/IconButton';
 import './Institutions.css'
-import {faPlus} from "@fortawesome/free-solid-svg-icons";
+import {faPlus, faBuilding} from "@fortawesome/free-solid-svg-icons";
 import PopUpDelete_User from "@components/Modals/PopUpDelete_User/PopUpDelete_User";
 import PopInsert from '@components/Modals/PopInsert/PopInsert';
 function Institutions() {
