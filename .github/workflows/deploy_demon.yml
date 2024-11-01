@@ -5,6 +5,7 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -29,7 +30,7 @@ jobs:
           cd Scrum/fronted
           npm run build
 
-      - name: Deploy to Netlifys
+      - name: Deploy to Netlify
         run: |
           cd Scrum/fronted
           npm install -g netlify-cli
