@@ -129,6 +129,11 @@ export async function deleteInstitution(pi){
   return result.rows
 }
 
+export async function deleteProcedure(id){
+  const result = await conn.query('DELETE FROM procedures WHERE id = $1', [id])
+  return result.rows
+}
+
 export async function deleteUser(pi){
   const result = await conn.query('DELETE FROM users WHERE pi = $1', [pi])
   return result.rows
@@ -204,8 +209,20 @@ export async function getUsers() {
   return result.rows
 }
 
-export async function createNewProcedure(id, name, description, steps, url) {
+export async function createNewProcedure(id, name, description, steps, url, institutions) {
 
-  const result = await conn.query('INSERT INTO procedures (id, name, description, pasos, url) VALUES ($1, $2, $3, $4, $5)', [id, name, description, steps, url])
+  const result = await conn.query('CALL create_procedure_with_institutions($1, $2, $3, $4, $5, $6)', [id, name, description, steps, url, institutions])
+  return result.rows
+}
+
+
+export async function getLastIDPrcedure(){
+  const result = await conn.query('select id from procedures order by id desc limit 1;')
+  return result.rows
+}
+
+
+export async function getProcedures(){
+  const result = await conn.query('select id, name, description from procedures;')
   return result.rows
 }
