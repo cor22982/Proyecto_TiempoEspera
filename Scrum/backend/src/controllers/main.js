@@ -8,7 +8,7 @@ import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequiere
   getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, 
   insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage
 , getStatistics, getUserBday, get_documents, UpdateEmail_telephone, deleteInstitution, addInstitution, UpdatePassw, UpdateName_Apellido,
-getUserEmail, getOTPData, deleteOTP, createNewOTP, modifyUserPassword, getUsers, createNewProcedure, getLastIDPrcedure, getProcedures, deleteAppointment} from '../database/db.js';
+getUserEmail, getOTPData, deleteOTP, createNewOTP, modifyUserPassword, getUsers, createNewProcedure, getLastIDPrcedure, getProcedures, deleteAppointment, getInstitutionContactInfo} from '../database/db.js';
 import { getUserLoginInfo, getAdminLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken, validateToken } from './jwt.js';
 import * as OneSignalLib from '@onesignal/node-onesignal';
@@ -545,6 +545,16 @@ app.get('/all_procedures', async (req, res) => {
     res.status(500).send('Error del servidor :(');
   }
 });
+
+app.get('/contactInfo/:id', async(req, res) =>{
+  try {
+    res.status(200).json(await getInstitutionContactInfo(req.params.id))
+  }
+  catch (error){
+    console.error('Error al obtener los datos de contacto :(', error);
+    res.status(500).json({succes:false})
+  }
+})
 
 app.use((req, res) => {
   res.status(501).json({ error: 'Método no implementado' });
