@@ -7,6 +7,7 @@ import {faPlus, faBuilding} from "@fortawesome/free-solid-svg-icons";
 import ProcedureCard from '@components/Cards/ProcedureCard/ProcedureCard';
 import PopDeletTramite from '@components/Modals/PopDeletTramite/PopDeletTramite';
 import PopUpInsertTramite from '@components/Modals/PopUpInsertTramite/PopUpInsertTramite';
+import {CircularProgress } from "@mui/material";
 function Tramite() {
   const {  llamadowithoutbody } = useApi(`https://deimoss.web05.lol/all_procedures`);
   const [loading, setLoading] = useState(true);
@@ -45,7 +46,7 @@ function Tramite() {
   return (
     <div className="lista_screen">
       {loading ? ( // Muestra el spinner si está cargando
-        <Spinner/>
+        <CircularProgress />
       ) : (
         <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
           <div style={{ padding: '4rem', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
