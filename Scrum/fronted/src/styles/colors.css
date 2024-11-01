@@ -25,13 +25,13 @@
     --tic-placeholder: #005a96;
     --tic-icon-action-color: #000000;
 
-    /*TextFiel*/
-    --text-field-border-color: #d1d5db; /* Un gris claro para el borde */
-    --text-field-hover-border-color: #6b7280; /* Un gris medio para el borde en hover */
-    --text-field-focus-border-color: #2563eb; /* Un azul para el borde en enfoque */
-    --text-field-placeholder-color: #9ca3af; /* Un gris para el texto del placeholder */
-    --text-field-text-color: #111827; /* Un gris oscuro casi negro para el texto */
-    --text-field-background-color: #f9fafb; /* Un gris muy claro para el fondo */
+    /*TextField*/
+    --text-field-border-color: #cccccc;
+    --text-field-hover-border-color: #004A9E;
+    --text-field-focus-border-color: #00367E;
+    --text-field-placeholder-color: #005a96;
+    --text-field-text-color: #024069;
+    --text-field-background-color: #ffffff;
 
     /* TextArea -> para enviar comentarios*/
     --ta-bg: #ffffff;
@@ -178,7 +178,6 @@
 }
 
 /* Variables globales para el modo oscuro */
-/* Variables globales para el modo oscuro */
 body.darkMode {
     /* Botones */
     --button-bg: #4A90E2;
@@ -203,6 +202,14 @@ body.darkMode {
     --tic-text: #B0C4DE;
     --tic-placeholder: #A3D1FF;
     --tic-icon-action-color: #FFFFFF;
+
+    /*TextField*/
+    --text-field-border-color-dm: #707070;
+    --text-field-hover-border-color-dm: #4A90E2;
+    --text-field-focus-border-color-dm: #66A3FF;
+    --text-field-placeholder-color-dm: #B0C4DE;
+    --text-field-text-color-dm: #A3D1FF;
+    --text-field-background-color-dm: #454545;
 
     /* TextArea -> para enviar comentarios*/
     --ta-bg: #1E1E1E;

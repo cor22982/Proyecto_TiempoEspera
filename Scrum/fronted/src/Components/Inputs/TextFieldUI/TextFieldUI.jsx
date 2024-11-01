@@ -1,58 +1,71 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
 import styles from "./TextFieldUI.module.css";
 
-// Obtén los valores de las variables CSS de tu tema personalizado
-const rootStyle = getComputedStyle(document.documentElement);
-
-const borderColor = rootStyle
-  .getPropertyValue("--text-field-border-color")
-  .trim();
-const hoverBorderColor = rootStyle
-  .getPropertyValue("--text-field-hover-border-color")
-  .trim();
-const focusBorderColor = rootStyle
-  .getPropertyValue("--text-field-focus-border-color")
-  .trim();
-const placeholderColor = rootStyle
-  .getPropertyValue("--text-field-placeholder-color")
-  .trim();
-const textColor = rootStyle.getPropertyValue("--text-field-text-color").trim();
-const backgroundColor = rootStyle
-  .getPropertyValue("--text-field-background-color")
-  .trim();
+const getColors = (isDarkMode) => {
+  // Colores para el modo claro y oscuro
+  return isDarkMode
+    ? {
+        borderColor: "#707070",
+        hoverBorderColor: "#4A90E2",
+        focusBorderColor: "#66A3FF",
+        placeholderColor: "#B0C4DE",
+        textColor: "#A3D1FF",
+        backgroundColor: "#454545",
+      }
+    : {
+        borderColor: "#cccccc",
+        hoverBorderColor: "#004A9E",
+        focusBorderColor: "#00367E",
+        placeholderColor: "#005a96",
+        textColor: "#024069",
+        backgroundColor: "#ffffff",
+      };
+};
 
 // Define un TextField personalizado
-const CustomTextField = styled(TextField)(({ theme }) => ({
-  "& .MuiOutlinedInput-root": {
-    backgroundColor: backgroundColor, // Color de fondo
-    "& fieldset": {
-      borderColor: borderColor, // Color del borde
+const CustomTextField = styled(TextField)(({ theme }) => {
+  const isDarkMode = document.body.classList.contains("darkMode");
+  const {
+    borderColor,
+    hoverBorderColor,
+    focusBorderColor,
+    placeholderColor,
+    textColor,
+    backgroundColor,
+  } = getColors(isDarkMode);
+
+  return {
+    "& .MuiOutlinedInput-root": {
+      backgroundColor: backgroundColor,
+      "& fieldset": {
+        borderColor: borderColor,
+      },
+      "&:hover fieldset": {
+        borderColor: hoverBorderColor,
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: focusBorderColor,
+      },
+      color: textColor,
     },
-    "&:hover fieldset": {
-      borderColor: hoverBorderColor, // Color del borde en hover
+    "& .MuiInputBase-input": {
+      color: textColor,
     },
-    "&.Mui-focused fieldset": {
-      borderColor: focusBorderColor, // Color del borde cuando está enfocado
+    "& .MuiInputLabel-root": {
+      color: textColor,
     },
-    color: textColor, // Color del texto
-  },
-  "& .MuiInputBase-input": {
-    color: textColor, // Color del texto
-  },
-  "& .MuiInputLabel-root": {
-    color: textColor, // Color del label
-  },
-  "& .MuiInputLabel-root.Mui-focused": {
-    color: focusBorderColor, // Color del label cuando está enfocado
-  },
-  "& .MuiInputBase-input::placeholder": {
-    color: placeholderColor, // Color del placeholder
-    opacity: 1,
-  },
-}));
+    "& .MuiInputLabel-root.Mui-focused": {
+      color: focusBorderColor,
+    },
+    "& .MuiInputBase-input::placeholder": {
+      color: placeholderColor,
+      opacity: 1,
+    },
+  };
+});
 
 const CustomTextFieldComponent = ({
   type,
@@ -62,11 +75,31 @@ const CustomTextFieldComponent = ({
   onChange,
 }) => {
   const [inputType, setInputType] = useState(type);
-  const [myType] = useState(type);
+  const [isDarkMode, setIsDarkMode] = useState(
+    document.body.classList.contains("darkMode")
+  );
+
+  useEffect(() => {
+    // Crea un observer para detectar cambios en las clases de body
+    const observer = new MutationObserver(() => {
+      setIsDarkMode(document.body.classList.contains("darkMode"));
+    });
+
+    // Observa los cambios en las clases de body
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    // Limpia el observer cuando el componente se desmonta
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   const handleFocus = () => {
-    if (myType === "date") setInputType("date");
-    else if (myType === "time") setInputType("time");
+    if (type === "date") setInputType("date");
+    else if (type === "time") setInputType("time");
   };
 
   return (
@@ -92,7 +125,6 @@ const CustomTextFieldComponent = ({
 
 CustomTextFieldComponent.propTypes = {
   type: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
