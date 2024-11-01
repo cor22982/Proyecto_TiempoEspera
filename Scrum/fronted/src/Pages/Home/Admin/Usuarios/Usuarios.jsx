@@ -48,17 +48,18 @@ const Usuarios = () => {
         <Spinner/>
       ) : (
         
-        users.map((user, index) => (
-          <div key={index} style={{ marginBottom: '5px' }}>
-            <DeletuserCard
-              name_user={user.name}
-              dpi_user={user.pi}
-              type_user={user.type_user}
-              imagen_src={'data:image/png;base64,' + user.imagen_perfil}
-              onDelete={() => DeleteUser(user.pi)}
-            />
-          </div>
-        ))
+        <div className="list-institutions">{
+          users.map((user, index) => (
+            <div key={index} style={{ marginBottom: '5px' }}>
+              <DeletuserCard
+                name_user={user.name}
+                dpi_user={user.pi}
+                type_user={user.type_user}
+                imagen_src={'data:image/png;base64,' + user.imagen_perfil}
+                onDelete={() => DeleteUser(user.pi)}
+              />
+            </div>
+        ))}</div>
       )}
       <PopUpDelete_User
         activar={showdelete}
