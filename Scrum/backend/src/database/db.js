@@ -21,8 +21,8 @@ export async function UpdatePassw(pi, password) {
   const result = await conn.query(`UPDATE users SET password = decode($2, 'base64') where id = $1 ; `, [pi, password]);
   
 }
-export async function addInstitution(pi, name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud) {
-  const result = await conn.query('Instert INTO intitutions (name, adress, hora_apertura, hora_cierre, telefono, imagen, coordenadas) VALUES($1, $2, $3, $4, $5, $6, $7,  point($8, $9);', [pi, name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud]);
+export async function addInstitution(name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud) {
+  const result = await conn.query('Instert INTO intitutions (name, adress, hora_apertura, hora_cierre, telefono, imagen, coordenadas) VALUES($1, $2, $3, $4, $5, $6, point($7, $8);', [name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud]);
   return result.rows;
 }
 export async function getUserByPi(pi) {
@@ -224,5 +224,10 @@ export async function getLastIDPrcedure(){
 
 export async function getProcedures(){
   const result = await conn.query('select id, name, description from procedures;')
+  return result.rows
+}
+
+export async function getInstitutionContactInfo(id){
+  const result = await conn.query('SELECT telefono from intitutions WHERE id_institutions = $1;', [id])
   return result.rows
 }
