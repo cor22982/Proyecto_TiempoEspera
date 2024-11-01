@@ -9,7 +9,7 @@ import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequiere
   insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage
 , getStatistics, getUserBday, get_documents, UpdateEmail_telephone, deleteInstitution, addInstitution, UpdatePassw, UpdateName_Apellido,
 getUserEmail, getOTPData, deleteOTP, createNewOTP, modifyUserPassword, getUsers, createNewProcedure, getLastIDPrcedure, getProcedures} from '../database/db.js';
-import { getUserLoginInfo, getAdminLoginInfo } from '../database/auth.js';
+import { getUserLoginInfo, getAdminLoginInfo, deleteAppointment } from '../database/auth.js';
 import { generateToken, decodeToken, validateToken } from './jwt.js';
 import * as OneSignalLib from '@onesignal/node-onesignal';
 import nodemailer from 'nodemailer';
@@ -458,6 +458,19 @@ app.delete('/user/:pi', async(req, res) =>{
     res.status(500).send('ERROR :(')
   }
 });
+
+app.delete('/appointment/:pi', async(req, res) =>{
+  try {
+    const result = await deleteAppointment(req.params.pi);
+    console.log("Appointment eliminado con exito")
+    res.status(200).json({success: true})
+  }
+  catch(error){
+    console.log('Error al borrar :(', error)
+    res.status(500).send('ERROR :(')
+  }
+});
+
 
 app.get('/statistics/:id_institution', async(req, res) =>{
   try{
