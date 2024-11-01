@@ -22,9 +22,28 @@ export async function UpdatePassw(pi, password) {
   
 }
 export async function addInstitution(name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud) {
-  const result = await conn.query('Insert INTO intitutions (name, adress, hora_apertura, hora_cierre, telefono, imagen, coordenadas) VALUES($1, $2, $3, $4, $5, $6, point($7, $8));', [name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud]);
-  return result.rows;
+  try {
+    // Contar el número de registros actuales en la tabla
+    const countResult = await conn.query('SELECT COUNT(*) as count FROM intitutions');
+    const currentCount = parseInt(countResult.rows[0].count, 10);
+    
+    // Calcular el nuevo ID
+    const newId = currentCount + 1;
+
+    // Realizar la inserción con el nuevo ID
+    const result = await conn.query(
+      'INSERT INTO intitutions (id_institutions, name, adress, hora_apertura, hora_cierre, telefono, imagen, coordenadas) VALUES($1, $2, $3, $4, $5, $6, $7, point($8, $9))',
+      [newId, name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud]
+    );
+    
+    // Retornar la nueva fila creada
+    return result.rows;
+  } catch (error) {
+    console.error('Error en addInstitution:', error.message);
+    throw error; // Re-lanzar el error para que se maneje en la llamada de la API
+  }
 }
+
 export async function getUserByPi(pi) {
   const result = await conn.query('SELECT pi, name, lastname, birthdate, type_user FROM users WHERE pi = $1;', [pi]);
   return result.rows;
