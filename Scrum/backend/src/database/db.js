@@ -134,6 +134,11 @@ export async function deleteUser(pi){
   return result.rows
 }
 
+export async function deleteAppointment(pi){
+  const result = await conn.query('DELETE FROM appointments WHERE id = $1', [pi])
+  return result.rows
+}
+
 export async function UpdateImage(pi, image){
   const result = await conn.query(`UPDATE users SET perfi_image = decode($1, 'base64') WHERE pi = $2;`, [image, pi])
   return result
