@@ -47,15 +47,23 @@ const Guardados = ({ pi }) => {
 
   //Eliminar cita
   const handleDelete = async (appointmentId) => {
-    const { deleteAppointment } = useApi(`https://deimoss.web05.lol/appointments/${appointmentId}`);
-    const response = await deleteAppointment(null, "DELETE");
 
-    if (response.succes) {
-      setSaved((prevSaved) => prevSaved.filter((save) => save.id !== appointmentId));
-    } else {
-      console.error("Error al eliminar la cita");
+    try{
+      const response = await fetch(`https://deimoss.web05.lol/appointments/${appointmentId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+        if (response.succes) {
+          setSaved((prevSaved) => prevSaved.filter((save) => save.id !== appointmentId));
+        } else {
+          console.error("Error al eliminar la cita");
+        }
+    }catch (error) {
+      console.error("Error en la solicitud DELETE:", error);
     }
-  };
+  }; 
 
   return (
     <div style={{ padding: "10px", gap: "10px" }}>

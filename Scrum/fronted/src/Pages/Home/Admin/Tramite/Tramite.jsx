@@ -68,7 +68,7 @@ function Tramite() {
         ))}</div>
           
         </div>
-      )}
+      )} 
     
     <PopDeletTramite
       activar={showTramites} setActivar={setTramitesShow} id={id_t}></PopDeletTramite>
