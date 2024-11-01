@@ -1,0 +1,13 @@
+@import "@styles/colors.css";
+.list-container{
+  border: 1px solid #4B4B4B;
+  width: 220px;
+  padding: 10px;
+  overflow: auto;
+  max-height: 180px;
+}
+
+.list-item{
+  font-size: inherit;
+  color: var(--text-secondary);
+}
