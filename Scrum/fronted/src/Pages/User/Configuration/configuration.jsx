@@ -23,6 +23,7 @@ import { FontContext } from "@contexts/ConfigContext/FontContext";
 import { FontSizeContext } from "@contexts/ConfigContext/FontSizeContext";
 import Swal from "sweetalert2";
 import { red } from "@mui/material/colors";
+import CustomTextField from "@components/Inputs/TextFieldUi/TextFieldUi";
 
 // Obtén el valor de las variables CSS usando JavaScript
 const rootStyle = getComputedStyle(document.documentElement);
@@ -212,21 +213,14 @@ const Configuration = () => {
                 Cambiar la Contraseña
               </Typography>
             </div>
-            <TextField
-              className={styles.InputMaterial}
+
+            <CustomTextField
               type="password"
               label="Nueva Contraseña"
-              variant="outlined"
               value={password}
               onChange={handlePasswordChange}
               fullWidth
               margin="normal"
-              InputProps={{
-                style: { fontFamily: "inherit", fontSize: "inherit" },
-              }}
-              InputLabelProps={{
-                style: { fontFamily: "inherit", fontSize: "inherit" },
-              }}
               placeholder="Ingresa tu nueva contraseña"
             />
           </Grid>

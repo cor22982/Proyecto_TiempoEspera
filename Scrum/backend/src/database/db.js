@@ -21,10 +21,29 @@ export async function UpdatePassw(pi, password) {
   const result = await conn.query(`UPDATE users SET password = decode($2, 'base64') where id = $1 ; `, [pi, password]);
   
 }
-export async function addInstitution(pi, name, adress, hora_apertura, hora_cierre, telefono, Imagen) {
-  const result = await conn.query('Instert INTO intitutions (id_institutions, name, adress, hora_apertura, hora_cierre, telefono, imagen) VALUES($1, $2, $3, $4, $5, $6, $7);', [pi, name, adress, hora_apertura, hora_cierre, telefono, Imagen]);
-  return result.rows;
+export async function addInstitution(name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud) {
+  try {
+    // Contar el número de registros actuales en la tabla
+    const countResult = await conn.query('SELECT COUNT(*) as count FROM intitutions');
+    const currentCount = parseInt(countResult.rows[0].count, 10);
+    
+    // Calcular el nuevo ID
+    const newId = currentCount + 1;
+
+    // Realizar la inserción con el nuevo ID
+    const result = await conn.query(
+      'INSERT INTO intitutions (id_institutions, name, adress, hora_apertura, hora_cierre, telefono, imagen, coordenadas) VALUES($1, $2, $3, $4, $5, $6, $7, ST_MakePoint($8, $9))',
+      [newId, name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud]
+    );
+    
+    // Retornar la nueva fila creada
+    return result.rows;
+  } catch (error) {
+    console.error('Error en addInstitution:', error.message);
+    throw error; // Re-lanzar el error para que se maneje en la llamada de la API
+  }
 }
+
 export async function getUserByPi(pi) {
   const result = await conn.query('SELECT pi, name, lastname, birthdate, type_user FROM users WHERE pi = $1;', [pi]);
   return result.rows;
@@ -129,8 +148,18 @@ export async function deleteInstitution(pi){
   return result.rows
 }
 
+export async function deleteProcedure(id){
+  const result = await conn.query('DELETE FROM procedures WHERE id = $1', [id])
+  return result.rows
+}
+
 export async function deleteUser(pi){
   const result = await conn.query('DELETE FROM users WHERE pi = $1', [pi])
+  return result.rows
+}
+
+export async function deleteAppointment(pi){
+  const result = await conn.query('DELETE FROM appointments WHERE id = $1', [pi])
   return result.rows
 }
 
@@ -214,5 +243,10 @@ export async function getLastIDPrcedure(){
 
 export async function getProcedures(){
   const result = await conn.query('select id, name, description from procedures;')
+  return result.rows
+}
+
+export async function getInstitutionContactInfo(id){
+  const result = await conn.query('SELECT telefono from intitutions WHERE id_institutions = $1;', [id])
   return result.rows
 }

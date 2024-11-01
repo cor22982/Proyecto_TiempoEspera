@@ -1,0 +1,18 @@
+/* Aplica font-family y font-size a la entrada principal */
+.inputMaterial .MuiOutlinedInput-input {
+    font-family: inherit !important;
+    font-size: inherit !important;
+  }
+  
+  /* Aplica font-family y font-size al label del TextField */
+  .inputMaterial .MuiInputLabel-root {
+    font-family: inherit !important;
+    font-size: inherit !important;
+  }
+  
+  /* Estilo para el placeholder */
+  .inputMaterial .MuiOutlinedInput-input::placeholder {
+    font-family: inherit !important;
+    font-size: inherit !important;
+  }
+  

@@ -2,6 +2,9 @@ import SavedComponent from "@components/Cards/SavedProcedureCard";
 import { useState, useEffect } from "react";
 import PopUpSave from "@components/Modals/PopSuave/PopUpSave";
 import useApi from "@hooks/api/useApi";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+
 const Guardados = ({ pi }) => {
   const [showsave, setShowSave] = useState(false);
   const [information, setInformation] = useState({
@@ -10,9 +13,7 @@ const Guardados = ({ pi }) => {
     imagen: "",
     address: "",
   });
-  const { llamadowithoutbody } = useApi(
-    `https://deimoss.web05.lol/userAppointments/${pi}`
-  );
+  const { llamadowithoutbody } = useApi(`https://deimoss.web05.lol/userAppointments/${pi}`);
   const [saved, setSaved] = useState([]);
 
   const setValue = (name, value) => {
@@ -26,7 +27,6 @@ const Guardados = ({ pi }) => {
     const getSaved = async () => {
       const response = await llamadowithoutbody("GET");
       setSaved(response);
-      console.log(response);
     };
     getSaved();
   }, [llamadowithoutbody, pi]);
@@ -45,15 +45,48 @@ const Guardados = ({ pi }) => {
     setShowSave(true);
   };
 
+  //Eliminar cita
+  const handleDelete = async (appointmentId) => {
+
+    try{
+      const response = await fetch(`https://deimoss.web05.lol/appointments/${appointmentId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+        if (response.succes) {
+          setSaved((prevSaved) => prevSaved.filter((save) => save.id !== appointmentId));
+        } else {
+          console.error("Error al eliminar la cita");
+        }
+    }catch (error) {
+      console.error("Error en la solicitud DELETE:", error);
+    }
+  }; 
+
   return (
     <div style={{ padding: "10px", gap: "10px" }}>
       {saved.map((save, index) => (
-        <div key={index} style={{ marginBottom: "5px" }}>
+        <div key={index} style={{ position: "relative", marginBottom: "5px" }}>
           <SavedComponent
             image={save.imagen}
             title={save.name}
             description={`Agendada para el ${save.date} a la hora ${save.time}`}
             funtion={() => pressOnSave(save)}
+          />
+          <FontAwesomeIcon
+            icon={faTrash}
+            onClick={() => handleDelete(save.id)}
+            style={{
+              position: "absolute",
+              top: "10px",
+              right: "10px",
+              cursor: "pointer",
+              color: "red",
+              fontSize: "1.5rem"
+            }}
+            title="Eliminar cita"
           />
         </div>
       ))}

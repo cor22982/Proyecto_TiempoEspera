@@ -8,6 +8,7 @@ import './Institutions.css'
 import {faPlus, faBuilding} from "@fortawesome/free-solid-svg-icons";
 import PopUpDelete_User from "@components/Modals/PopUpDelete_User/PopUpDelete_User";
 import PopInsert from '@components/Modals/PopInsert/PopInsert';
+import {CircularProgress } from "@mui/material";
 function Institutions() {
   const {  llamadowithoutbody } = useApi(`https://deimoss.web05.lol/institutions`);
   const [inst, setInst] = useState([]);
@@ -29,7 +30,7 @@ function Institutions() {
   return (
     <div className="lista_screen">
       {loading ? ( // Muestra el spinner si está cargando
-        <Spinner/>
+        <CircularProgress />
       ) : (
         <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
           <div style={{ padding: '4rem', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>

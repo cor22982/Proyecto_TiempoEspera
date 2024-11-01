@@ -4,11 +4,12 @@ import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import axios from 'axios';
+import { md5 } from "js-md5";
 import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, 
   getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, 
   insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage
 , getStatistics, getUserBday, get_documents, UpdateEmail_telephone, deleteInstitution, addInstitution, UpdatePassw, UpdateName_Apellido,
-getUserEmail, getOTPData, deleteOTP, createNewOTP, modifyUserPassword, getUsers, createNewProcedure, getLastIDPrcedure, getProcedures} from '../database/db.js';
+getUserEmail, getOTPData, deleteOTP, createNewOTP, modifyUserPassword, getUsers, createNewProcedure, getLastIDPrcedure, getProcedures, deleteAppointment, getInstitutionContactInfo} from '../database/db.js';
 import { getUserLoginInfo, getAdminLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken, validateToken } from './jwt.js';
 import * as OneSignalLib from '@onesignal/node-onesignal';
@@ -81,13 +82,15 @@ app.post('/register', validateRequest, async (req, res) => {
 });
 
 app.post('/institution_add', async(req, res) => {
-  console.log("body", req.body);
-  const {pi, name, adress, hora_apertura, hora_cierre, telefono, Imagen} =req.params;
+  const {name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud} =req.body;
+  let respuesta;
   try {
-    const addition = await addInstitution(pi, name, adress, hora_apertura, hora_cierre, telefono, Imagen)
-  } catch (error) {
-    console.error('Error al crear nueva insitución')
-    res.status(500).json({message: 'Error en el servidor'})
+    const addition = await addInstitution(name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud)
+    respuesta = addition
+    res.status(200).send({'succes': true})
+  } catch (error) {    
+    console.error('Error al crear nueva insitución', respuesta)
+    res.status(500).json({message: 'Error en crear la institución', error})
   }
 });
 
@@ -364,7 +367,7 @@ app.post('/confirmPasswordChange', async (req, res) =>{
     if(req.body.otp != otpData[0].otp){
       res.status(404).send({'succes': false, 'message': 'Tu código de verificación es incorrecto'})
     }
-    await modifyUserPassword(req.body.password, req.body.pi);
+    await modifyUserPassword(md5(req.body.password), req.body.pi);
     const deleteResult = await deleteOTP(req.body.otp, req.body.pi);
     if (deleteResult === 0) {
       console.warn('No OTP record was deleted');
@@ -459,6 +462,19 @@ app.delete('/user/:pi', async(req, res) =>{
   }
 });
 
+app.delete('/appointment/:pi', async(req, res) =>{
+  try {
+    const result = await deleteAppointment(req.params.pi);
+    console.log("Appointment eliminado con exito")
+    res.status(200).json({success: true})
+  }
+  catch(error){
+    console.log('Error al borrar :(', error)
+    res.status(500).send('ERROR :(')
+  }
+});
+
+
 app.get('/statistics/:id_institution', async(req, res) =>{
   try{
     res.status(200).json(await getStatistics(req.params.id_institution))
@@ -472,6 +488,18 @@ app.delete('/institution/:id', async(req, res)=>{
   try {
     const result = await deleteInstitution(req.params.id);
     console.log("Institución eliminada con exito")
+    res.status(200).json({success: true})
+  }
+  catch(error){
+    console.log('Error al borrar la institución :(', error)
+    res.status(500).send('ERROR :(')
+  }
+});
+
+app.delete('/procedure/:id', async(req, res)=>{
+  try {
+    const result = await deleteProcedure(req.params.id);
+    console.log("Procedimiento eliminada con exito")
     res.status(200).json({success: true})
   }
   catch(error){
@@ -520,6 +548,16 @@ app.get('/all_procedures', async (req, res) => {
     res.status(500).send('Error del servidor :(');
   }
 });
+
+app.get('/contactInfo/:id', async(req, res) =>{
+  try {
+    res.status(200).json(await getInstitutionContactInfo(req.params.id))
+  }
+  catch (error){
+    console.error('Error al obtener los datos de contacto :(', error);
+    res.status(500).json({succes:false})
+  }
+})
 
 app.use((req, res) => {
   res.status(501).json({ error: 'Método no implementado' });

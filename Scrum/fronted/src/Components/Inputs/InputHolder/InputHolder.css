@@ -1,0 +1,14 @@
+@import "@styles/colors.css";
+.input-holder {
+  border: none;
+  border-bottom: 1px solid var(--text-primary);
+  background-clip: padding-box;
+  font-size: 22px;
+  outline: none;
+  color: var(--text-primary);
+  background-color: transparent;
+  
+}
+.input-holder:focus{
+  border-bottom: 4px solid var(--ib-color);
+}
