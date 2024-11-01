@@ -1,0 +1,62 @@
+@import "@styles/styles.css";
+.input-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  color: white;
+  border: 1px solid #cccccc;
+  border-radius: 0.1rem;
+  background-color: #0069AD;
+}
+
+.icon-font-condition input,
+.input-icon input {
+  flex: 1;
+  border: none;
+  padding: 0.5rem;
+  padding-right: 3rem;
+  font-family: inherit;
+  font-size: 2rem;
+  font-weight: bold;
+  white-space: nowrap; /* Evita el salto de línea */
+  overflow: hidden; /* Oculta el texto que desborda */
+  text-overflow: ellipsis; /* Añade puntos suspensivos para indicar texto truncado */
+  background-color: #e5e4e5;
+  color: #6580A5;
+}
+
+.icon-font-condition {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+  font-family: inherit;
+  font-size: 2rem;
+  min-width: 2rem;
+  color: black;
+  background-color: transparent;
+}
+
+.input-icon input:focus {
+  outline: none !important;
+}
+
+.input-icon input::placeholder {
+  color: #6580A5;
+}
+
+.icon-font {
+  padding-right: 1rem;
+  padding-left: 1rem;
+  font-size: 2rem;
+  min-width: 2rem;
+}
+
+/* Media query para ajustar el tamaño en pantallas más pequeñas */
+@media (max-width: 768px) {
+  .search-bar input {
+    width: calc(100% - 65px);
+  }
+}

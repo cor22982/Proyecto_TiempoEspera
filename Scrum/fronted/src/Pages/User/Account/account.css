@@ -1,0 +1,175 @@
+/* Contenedor general de la cuenta */
+.account-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    font-family: inherit;
+    text-align: center;
+}
+
+/* Título de la cuenta */
+.account-title {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.5rem; /* 24px */
+}
+
+/* Información del usuario */
+.user-info {
+    font-size: 1rem; /* 16px */
+    color: #555;
+    line-height: 1.5;
+}
+
+.user-info strong {
+    color: #222;
+}
+
+.user-info p {
+    margin: 10px 0;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* Mensajes de error y éxito */
+.error, .success {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
+    position: relative;
+    animation: fadeOut 4s forwards;
+}
+
+/* Animación de desaparición */
+@keyframes fadeOut {
+    0%, 90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* Contenedor de la imagen de perfil */
+.profile-image-container {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #ddd;
+}
+
+.edit-icon {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: white;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 1.125rem; /* 18px */
+    color: black;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s ease-in-out;
+}
+
+.edit-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    cursor: default;
+}
+
+.edit-overlay .edit-icon {
+    opacity: 1;
+    border-radius: 1px solid black;
+}
+
+.custom-file-upload {
+    cursor: pointer;
+    font-size: 1rem; /* 16px */
+    color: white;
+    margin-bottom: 10px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.edit-actions {
+    display: flex;
+    justify-content: space-between;
+    width: 100px;
+    margin-top: 10px;
+}
+
+.cancel-button,
+.confirm-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem; /* 24px */
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.custom-file-upload:hover, .cancel-button:hover, .confirm-button:hover {
+    color: #ddd;
+    transform: scale(1.1); /* Efecto de escala al hacer hover */
+    transition: transform 0.2s ease, color 0.2s ease; /* Suaviza la transición */
+}
+
+.edit-icon:hover {
+    color: black; /* Cambia esto al color que prefieras */
+    transform: scale(1.1); /* Efecto de escala al hacer hover */
+    transition: transform 0.2s ease, color 0.2s ease; /* Suaviza la transición */
+}
+
+/* Contenedor para mensajes */
+.message-container {
+    min-height: 40px;
+    margin-bottom: 20px;
+}
+
+.account-container {
+    font-family: inherit; /* Asegura que herede del contexto o del body */
+    font-size: inherit;   /* Asegura que herede el tamaño de fuente */
+  }
+  
+  .user-info {
+    font-family: inherit; /* Hereda la fuente del contexto */
+    font-size: inherit;   /* Hereda el tamaño de fuente del contexto */
+  }

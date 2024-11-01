@@ -1,0 +1,9 @@
+ SELECT id_intitutions,
+    avg("Lunes") AS l,
+    avg("Martes") AS m,
+    avg("Miercoles") AS mi,
+    avg("Jueves") AS j,
+    avg("Viernes") AS v,
+    avg("Finde") AS f
+   FROM times
+  GROUP BY id_intitutions;
