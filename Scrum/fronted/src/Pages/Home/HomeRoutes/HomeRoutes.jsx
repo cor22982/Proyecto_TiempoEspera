@@ -24,6 +24,7 @@ import useToken from "@hooks/auth/useToken";
 import Usuarios from "../Admin/Usuarios";
 import Tramite from "../Admin/Tramite/Tramite";
 import Institutions from "../Admin/Institutions/Institutions";
+import Colaboradores from "../../User/Empleador/Colaboradores/Colaboradores";
 const Pages = ({ pi }) => {
   const { token } = useToken();
   const rol = parseJwt(token).rol;
@@ -52,6 +53,8 @@ const Pages = ({ pi }) => {
         return <Tramite />;
       case "institutions":
         return <Institutions />;
+      case "colaboradores":
+        return <Colaboradores />;
       default:
         return <Page_Main pi={pi}></Page_Main>;
     }
@@ -98,7 +101,7 @@ const Pages = ({ pi }) => {
     linksArray.push({
       label: "Colaboradores",
       icon: faPeopleArrows,
-      to: "recomendados",
+      to: "colaboradores",
     });
   }
   const secondarylinksArray = [
