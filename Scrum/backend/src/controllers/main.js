@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import axios from 'axios';
+import { md5 } from "js-md5";
 import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, 
   getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, 
   insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage
@@ -364,7 +365,7 @@ app.post('/confirmPasswordChange', async (req, res) =>{
     if(req.body.otp != otpData[0].otp){
       res.status(404).send({'succes': false, 'message': 'Tu código de verificación es incorrecto'})
     }
-    await modifyUserPassword(req.body.password, req.body.pi);
+    await modifyUserPassword(md5(req.body.password), req.body.pi);
     const deleteResult = await deleteOTP(req.body.otp, req.body.pi);
     if (deleteResult === 0) {
       console.warn('No OTP record was deleted');
