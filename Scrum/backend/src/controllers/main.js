@@ -83,11 +83,13 @@ app.post('/register', validateRequest, async (req, res) => {
 
 app.post('/institution_add', async(req, res) => {
   const {name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud} =req.body;
+  let respuesta;
   try {
     const addition = await addInstitution(name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud)
+    respuesta = addition
     res.status(200).send({'succes': true})
-  } catch (error) {
-    console.error('Error al crear nueva insitución')
+  } catch (error) {    
+    console.error('Error al crear nueva insitución', respuesta)
     res.status(500).json({message: 'Error en crear la institución', error})
   }
 });
