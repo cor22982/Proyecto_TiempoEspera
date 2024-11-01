@@ -199,9 +199,9 @@ export async function getUsers() {
   return result.rows
 }
 
-export async function createNewProcedure(id, name, description, steps, url) {
+export async function createNewProcedure(id, name, description, steps, url, institutions) {
 
-  const result = await conn.query('INSERT INTO procedures (id, name, description, pasos, url) VALUES ($1, $2, $3, $4, $5)', [id, name, description, steps, url])
+  const result = await conn.query('CALL create_procedure_with_institutions($1, $2, $3, $4, $5, $6)', [id, name, description, steps, url, institutions])
   return result.rows
 }
 

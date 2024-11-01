@@ -500,7 +500,7 @@ app.post('/newProcedure', async (req, res) =>{
     let query_result = await getLastIDPrcedure()
     let id_procedure = query_result[0].id
     console.log(id_procedure)
-    await createNewProcedure(id_procedure +1 , req.body.name, req.body.description, req.body.steps, req.body.url);
+    await createNewProcedure(id_procedure +1 , req.body.name, req.body.description, req.body.steps, req.body.url, req.body.institutions);
     res.status(200).json({succes: true});
   }
   catch(error){
