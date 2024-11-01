@@ -9,7 +9,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import InputHolder from "@components/Inputs/InputHolder/InputHolder";
 import IconButton from "@components/Buttons/IconButton/IconButton";
 import Checkbox from "@components/Buttons/Checkbox";
-import CustomTextField from "@components/Inputs/TextFieldUi/TextFieldUi";
+import CustomTextField from "@components/Inputs/TextFieldUI/TextFieldUI";
 import "./PopUpInsertTramite.css";
 
 function PopUpInsertTramite({ activar, setActivar }) {

@@ -1,5 +1,5 @@
 import PopUp from "@components/Modals/MessagePopUp";
-import CustomTextField from "@components/Inputs/TextFieldUi/TextFieldUi";
+import CustomTextField from "@components/Inputs/TextFieldUI/TextFieldUI";
 import Swal from "sweetalert2";
 import { Button } from "@mui/material";
 import styles from "../../../Pages/User/Configuration/configuration.module.css";
