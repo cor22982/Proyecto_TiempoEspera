@@ -25,6 +25,14 @@
     --tic-placeholder: #005a96;
     --tic-icon-action-color: #000000;
 
+    /*TextFiel*/
+    --text-field-border-color: #d1d5db; /* Un gris claro para el borde */
+    --text-field-hover-border-color: #6b7280; /* Un gris medio para el borde en hover */
+    --text-field-focus-border-color: #2563eb; /* Un azul para el borde en enfoque */
+    --text-field-placeholder-color: #9ca3af; /* Un gris para el texto del placeholder */
+    --text-field-text-color: #111827; /* Un gris oscuro casi negro para el texto */
+    --text-field-background-color: #f9fafb; /* Un gris muy claro para el fondo */
+
     /* TextArea -> para enviar comentarios*/
     --ta-bg: #ffffff;
     --ta-text: #000000;
