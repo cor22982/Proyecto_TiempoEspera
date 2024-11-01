@@ -1,4 +1,5 @@
 import PopUp from "@components/Modals/MessagePopUp";
+import CustomTextField from "@components/Inputs/TextFieldUI/TextFieldUI";
 import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
 import {
@@ -78,7 +79,13 @@ function PopInsert ({activar, setActivar}){
 
   return(
     <PopUp trigger={activar} setTrigger={setActivar}>
-        <div style={{display:'flex', flexDirection: 'column', alignItems: 'center'}}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
         <h1 className="titulo-info">Insertar Institucion</h1>
         <div style={{display: 'flex', flexDirection: 'row'}}>
         
@@ -222,9 +229,9 @@ function PopInsert ({activar, setActivar}){
         >
           Ingresar Institucion
         </Button>
-        </div>
-      </PopUp>
-  )
+      </div>
+    </PopUp>
+  );
 }
 
-export default PopInsert
+export default PopInsert;
