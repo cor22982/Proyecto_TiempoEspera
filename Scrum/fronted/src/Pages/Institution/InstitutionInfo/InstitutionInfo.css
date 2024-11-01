@@ -1,0 +1,130 @@
+.identificacion-chat {
+    height: 2em;
+    width: 2em;
+    border-radius: 50%;
+    background: #0069AD;
+    color: white; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; 
+    outline: none; 
+  }
+
+.mapa_api{
+  padding-top: 30px;
+}
+
+.identificacion-chat:hover{
+    background: #005a96;
+}
+  
+  .identificacion {
+    display: flex;
+    align-items: center;
+  }
+
+  .icon-star {
+    padding-left: 1em;
+    font-size: 2em;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    color:#005a96
+  }
+
+  .icon-star:hover{
+    opacity: 0.6; 
+    cursor: pointer;
+  }
+
+  .far.fa-star {
+    padding-left: 1em;
+    font-size: 2em;
+  }
+
+  .identificacion-name {
+    margin-right: 10px;
+    color: #00367E;
+    font-family: inherit;
+    font-size: 6em;
+    text-align: left;
+    font-weight: bold;
+    
+  }
+  
+  .identificacion-chat {
+    margin-left: 10px;
+    align-items: center;
+  }
+
+  .text-bold {
+    font-weight: bold;
+
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    color: #00367E;
+    font-family: inherit;
+    padding-top: 2em;
+    padding-bottom: 2em;
+  }
+  
+  .info-item {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  .info-titulo {
+    width: 10em;
+    padding-right: 2em; 
+    font-size: 2em;
+  }
+  
+  .info-dato {
+    flex: 1; 
+    text-align: left;
+    font-size: 1.5em;
+    justify-content: center;
+  }
+  
+  .stats {
+    font-family: inherit;
+    color: #00367E;
+    width: 100%;
+    height: 600px;
+    overflow: visible;
+  }
+  .stats-name{
+    font-size: 2.5em;
+    padding-bottom: 2em;
+
+  }
+
+  .mapa {
+    font-size: Inika;
+    color: #00367E;
+    padding-top: 2em;
+  }
+
+  .mapa_titulo {
+    font-size: Inika;
+    color: #00367E;
+    font-size: 2.5em;
+    padding-bottom: 1em;
+  }
+
+  .header img{
+    width: 100%;
+    max-height: 15em;
+    object-fit: cover;
+    overflow: hidden;
+    padding-bottom: 1em;
+  }
+
+
+  .tramite-container {
+    background-color: #e5e4e5;
+    max-height: 100vh;
+  }
