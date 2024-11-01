@@ -82,7 +82,7 @@ app.post('/register', validateRequest, async (req, res) => {
 
 app.post('/institution_add', async(req, res) => {
   console.log("body", req.body);
-  const {name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud} =req.params;
+  const {name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud} =req.body;
   try {
     const addition = await addInstitution(name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud)
   } catch (error) {
