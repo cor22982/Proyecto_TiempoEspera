@@ -82,12 +82,12 @@ app.post('/register', validateRequest, async (req, res) => {
 
 app.post('/institution_add', async(req, res) => {
   console.log("body", req.body);
-  const {pi, name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud} =req.params;
+  const {name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud} =req.params;
   try {
-    const addition = await addInstitution(pi, name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud)
+    const addition = await addInstitution(name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud)
   } catch (error) {
     console.error('Error al crear nueva insitución')
-    res.status(500).json({message: 'Error en el servidor'})
+    res.status(500).json({message: 'Corroboración'})
   }
 });
 
