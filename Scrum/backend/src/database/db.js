@@ -21,15 +21,7 @@ export async function UpdatePassw(pi, password) {
   const result = await conn.query(`UPDATE users SET password = decode($2, 'base64') where id = $1 ; `, [pi, password]);
   
 }
-app.get('/contactInfo', async(req, res) =>{
-  try {
-    res.status(200).json(await getInstitutionContactInfo())
-  }
-  catch (error){
-    console.error('Error al obtener los datos de contacto :(', error);
-    res.status(500).json({succes:false})
-  }
-})
+
 export async function addInstitution(name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud) {
   try {
     // Contar el número de registros actuales en la tabla

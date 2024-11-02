@@ -250,6 +250,15 @@ app.post('/create_new_relation', async (req, res) => {
     res.status(500).json({message: 'Error no se pudo crear la relación'})
   }
 });
+app.get('/contactInfo', async(req, res) =>{
+  try {
+    res.status(200).json(await getInstitutionContactInfo())
+  }
+  catch (error){
+    console.error('Error al obtener los datos de contacto :(', error);
+    res.status(500).json({succes:false})
+  }
+})
 
 app.get('/relations/:pi', async (req, res) => {
   try {
