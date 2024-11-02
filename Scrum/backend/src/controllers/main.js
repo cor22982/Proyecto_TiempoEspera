@@ -359,7 +359,7 @@ app.post('/confirmPasswordChange', async (req, res) =>{
     if (!otpData){
       res.status(404).send({'succes': false, 'message': 'No tienes un código de verificación'})
     }
-    if(Date(otpData[0].exp_date).getTime() < Date.now()){
+    if(new Date(otpData[0].exp_date).getTime() < Date.now()){
       res.status(404).send({'succes': false, 'message': 'Tu código de verificación ha expirado'})
     }
     if(req.body.otp != otpData[0].otp){
