@@ -244,10 +244,10 @@ app.post('/comment', async (req, res) => {
 });
 app.post('/create_new_relation', async (req, res) => {
   console.log("body", req.body);
-  const {empleador, usuario} =req.body;
   try {
+    const {empleador, usuario} =req.body;
     const addition = await create_new_relation({empleador, usuario});
-    res.status(201).json({ message: 'Relación creada', data: addition });
+    res.status(201).json({ message: 'Relación creada'});
   } catch (error) {
     console.error('Error en crear relación')
     res.status(500).json({message: 'Error no se pudo crear la relación'})
