@@ -117,7 +117,7 @@ export async function create_new_appointment(date, time, procedure, pi){
   return result.rows
 }
 export async function create_new_relation(empleador, usuario){
-  const result = await conn.query('INSERT INTO RELACIONES (empleador, usuario ) values ($1, $2);', [empleador, usuario]);
+  const result = await conn.query('INSERT INTO relaciones (empleador, usuario ) values ($1, $2);', [empleador, usuario]);
   return result.rows
 }
 export async function get_appointments(pi){
