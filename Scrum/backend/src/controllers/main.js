@@ -246,11 +246,6 @@ app.post('/create_new_relation', async (req, res) => {
   console.log("body", req.body);
   try {
     const { empleador, usuario } = req.body;
-
-    if (!empleador || !usuario) {
-      return res.status(400).json({ message: 'Faltan datos: empleador y usuario son requeridos' });
-    }
-
     const addition = await create_new_relation({ empleador, usuario });
 
     res.status(201).json({ message: 'Relación creada', data: addition });
