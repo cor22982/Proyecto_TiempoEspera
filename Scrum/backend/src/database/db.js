@@ -69,7 +69,8 @@ export async function get_Relation_by_id_raw(pi) {
   const result = await conn.query('SELECT empleador, string_agg(usuario, ) FROM the_table where empleador = $1 GROUP BY id')
 }
 export async function get_Relation_by_id(pi) {
-  const result = await conn.query('SELECT empleador, usuario FROM relaciones INNER JOIN usuarios ON relaciones.usuario = users.id INNER JOIN empleadores ON relaciones.empleador = users.id WHERE empleador = $1 ORDER BY ASC;', [id])
+  const result = await conn.query(`select pi, name, encode(perfi_image, 'base64'), email from users join relaciones on relaciones.usuario = pi where relaciones.empleador =$1;`, [pi])
+  return result.rows
 }
 
 
@@ -117,8 +118,8 @@ export async function create_new_appointment(date, time, procedure, pi){
   return result.rows
 }
 export async function create_new_relation(empleador, usuario){
-  const result = await conn.query('INSERT INTO RELACIONES ($1, $2,)', [empleador, usuario]);
-  return result.rows
+  const result = await conn.query('insert into relaciones (empleador, usuario) values ($1, $2);', [empleador, usuario]);
+  return result.rowCount;
 }
 export async function get_appointments(pi){
   const result = await conn.query('select a.date::DATE, a.time::TIME, i.imagen, i.name as institution_name, i.hora_cierre, i.adress,p.name from appointments a join userappointments us on us."id appointment" = a.id join institutionsprocedures ip on a."id institution procedure" = ip."id institution procedure" join intitutions i on i.id_institutions = ip."id intitution" join procedures p on p.id = ip."id procedure" where us.pi = $1 and a.date >= CURRENT_DATE;', [pi]);
