@@ -69,7 +69,8 @@ export async function get_Relation_by_id_raw(pi) {
   const result = await conn.query('SELECT empleador, string_agg(usuario, ) FROM the_table where empleador = $1 GROUP BY id')
 }
 export async function get_Relation_by_id(pi) {
-  const result = await conn.query('SELECT empleador, usuario FROM relaciones INNER JOIN usuarios ON relaciones.usuario = users.id INNER JOIN empleadores ON relaciones.empleador = users.id WHERE empleador = $1 ORDER BY ASC;', [id])
+  const result = await conn.query('select pi, name, perfi_image, email from users join relaciones on relaciones.usuario = pi where relaciones.empleador =$1;', [pi])
+  return result.rows
 }
 
 
