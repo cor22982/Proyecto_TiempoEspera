@@ -245,14 +245,21 @@ app.post('/comment', async (req, res) => {
 app.post('/create_new_relation', async (req, res) => {
   console.log("body", req.body);
   try {
-    const {empleador, usuario} =req.body;
-    const addition = await create_new_relation({empleador, usuario});
-    res.status(201).json({ message: 'Relación creada'});
+    const { empleador, usuario } = req.body;
+
+    if (!empleador || !usuario) {
+      return res.status(400).json({ message: 'Faltan datos: empleador y usuario son requeridos' });
+    }
+
+    const addition = await create_new_relation({ empleador, usuario });
+
+    res.status(201).json({ message: 'Relación creada', data: addition });
   } catch (error) {
-    console.error('Error en crear relación')
-    res.status(500).json({message: 'Error no se pudo crear la relación'})
+    console.error('Error en crear relación', error);
+    res.status(500).json({ message: 'Error: no se pudo crear la relación' });
   }
 });
+
 app.get('/contactInfo', async(req, res) =>{
   try {
     res.status(200).json(await getInstitutionContactInfo())
