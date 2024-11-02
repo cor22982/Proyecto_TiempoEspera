@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import axios from 'axios';
+import { md5 } from "js-md5";
 import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, 
   getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, 
   insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage
@@ -83,12 +84,14 @@ app.post('/register', validateRequest, async (req, res) => {
 app.post('/institution_add', async(req, res) => {
   console.log("body", req.body);
   const {name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud} =req.body;
+  let respuesta;
   try {
-    const addition = await addInstitution(name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud);
-    res.status(201).json({ message: 'Institución creada exitosamente', data: addition });
-  } catch (error) {
-    console.error('Error al crear nueva insitución')
-    res.status(500).json({message: 'Error en crear la institución'})
+    const addition = await addInstitution(name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud)
+    respuesta = addition
+    res.status(200).send({'succes': true})
+  } catch (error) {    
+    console.error('Error al crear nueva insitución', respuesta)
+    res.status(500).json({message: 'Error en crear la institución', error})
   }
 });
 
