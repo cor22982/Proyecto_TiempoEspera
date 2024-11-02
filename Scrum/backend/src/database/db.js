@@ -247,6 +247,6 @@ export async function getProcedures(){
 }
 
 export async function getInstitutionContactInfo(){
-  const result = await conn.query('SELECT id_institutions, telefono from intitutions;')
+  const result = await conn.query('SELECT id_institutions, telefono, imagen from intitutions;')
   return result.rows
 }
