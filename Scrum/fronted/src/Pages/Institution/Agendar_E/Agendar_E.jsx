@@ -7,12 +7,19 @@ import Checkbox from "@components/Buttons/Checkbox";
 import { parseJwt } from "@hooks/auth/useToken";
 import useToken from "@hooks/auth/useToken";
 import { CircularProgress } from "@mui/material";
+import Button from '@components/Buttons/CustomButton/CustomButton';
+import useFormCita from '@hooks/forms/useFormCita';
+import Swal from "sweetalert2";
 function Agendar_E({ data }) {
     const { token } = useToken();
     const dpi = parseJwt(token).dpi;
-    const [userData, setUserData] = useState([]); // Inicializa como un arreglo vacío
+    const [userData, setUserData] = useState([dpi]); // Inicializa como un arreglo vacío
     const { llamadowithoutbody } = useApi(`https://deimoss.web05.lol/relations/${dpi}`);
     const [loading, setLoading] = useState(false); 
+    const [selectedPis, setSelectedPis] = useState([]);
+    const { formData, handleChange } = useFormCita({ time: '', date: ''});
+    const { llamado } = useApi('https://deimoss.web05.lol/newAppointment_byEmpleador');
+    
     useEffect(() => {
     const getUsers = async () => {
         const response = await llamadowithoutbody('GET');
@@ -21,7 +28,48 @@ function Agendar_E({ data }) {
     };
     getUsers();
     }, [llamadowithoutbody]); // Asegúrate de incluir llamadowithoutbody en las dependencias
+    const handleCheckboxChange = (pi) => {
+        setSelectedPis((prevSelected) => {
+            if (prevSelected.includes(pi)) {
+                return prevSelected.filter(item => item !== pi); // Remover si ya está seleccionado
+            } else {
+                return [...prevSelected, pi]; // Agregar si no está seleccionado
+            }
+        });
+    };
 
+    const send_Procedures = async () => {
+        const body = {  
+            date: formData.date,
+            id_procedure: data.id_procedure,
+            institution: data.id_institutions,
+            time: formData.time,
+            pi_list: selectedPis
+        };
+
+        try {
+            const { succes } = await llamado(body, 'POST');
+            if (succes) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Cita agendada',
+                    text: 'La cita se ha agendado correctamente.',
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Hubo un problema al agendar la cita. Inténtalo nuevamente.',
+                });
+            }
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Hubo un error en la solicitud. Verifica tu conexión o intenta más tarde.',
+            });
+        }
+    };
   return (
     <div className={styles.container}>
       <h4 className={styles.heading}>Tramite</h4>
@@ -32,6 +80,7 @@ function Agendar_E({ data }) {
             name='procedure_name'
             placeholder={data.name_procedure}
             value={data.name_procedure}
+           
             icon={faFile}
             readOnly={true}
           />
@@ -41,6 +90,7 @@ function Agendar_E({ data }) {
             type='time'
             name='time'
             placeholder='Ingrese la hora'
+            onChange={handleChange}
             icon={faClock}
           />
         </div>
@@ -49,6 +99,7 @@ function Agendar_E({ data }) {
             type='date'
             name='date'
             placeholder='Ingrese la fecha'
+            onChange={handleChange}
             icon={faCalendar}
           />
         </div>
@@ -58,12 +109,17 @@ function Agendar_E({ data }) {
       <div className="colaboradores_data">
         {userData && userData.length > 0 &&  loading  ? (
           userData.map((req, index) => (
-            <Checkbox key={index} name={'Dpi: '+req.pi + ' |  Nombre:' + req.name} />
+            <Checkbox 
+                key={index}
+                id ={req.pi}
+                name={'Dpi: '+req.pi + ' |  Nombre:' + req.name}
+                onChange={handleCheckboxChange}  />
           ))
         ) : (
             <CircularProgress />  // Mensaje alternativo en caso de que no haya colaboradores
         )}
       </div>
+      <Button  buttonText='Agendar Cita' onClick={send_Procedures} />
     </div>
   );
 }
