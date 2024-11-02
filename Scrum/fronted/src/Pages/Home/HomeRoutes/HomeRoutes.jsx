@@ -25,6 +25,7 @@ import Usuarios from "../Admin/Usuarios";
 import Tramite from "../Admin/Tramite/Tramite";
 import Institutions from "../Admin/Institutions/Institutions";
 import Colaboradores from "../../User/Empleador/Colaboradores/Colaboradores";
+import Instituciones_E from "../../User/Empleador/Instituciones_E/Instituciones_E";
 const Pages = ({ pi }) => {
   const { token } = useToken();
   const rol = parseJwt(token).rol;
@@ -55,6 +56,9 @@ const Pages = ({ pi }) => {
         return <Institutions />;
       case "colaboradores":
         return <Colaboradores />;
+      
+      case "institutions_empleador":
+        return <Instituciones_E />;
       default:
         return <Page_Main pi={pi}></Page_Main>;
     }
@@ -102,6 +106,11 @@ const Pages = ({ pi }) => {
       label: "Colaboradores",
       icon: faPeopleArrows,
       to: "colaboradores",
+    },
+    {
+      label: "Instituciones",
+      icon: faBuilding,
+      to: "institutions_empleador",
     });
   }
   const secondarylinksArray = [
