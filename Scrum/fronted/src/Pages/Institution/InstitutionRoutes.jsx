@@ -5,6 +5,9 @@ import Comentarios from "@pages/Institution/Comments/Comments";
 import Requisitos from "@pages/Institution/Requirements/Requisitos";
 import Cita from "@pages/Institution/Appointments/Cita";
 import IconButton from "@components/Buttons/IconButton";
+import Agendar_E from "@pages/Institution/Agendar_E/Agendar_E";
+import { parseJwt } from "@hooks/auth/useToken";
+import useToken from "@hooks/auth/useToken";
 import {
   faArrowLeft,
   faArrowUpRightFromSquare,
@@ -12,10 +15,11 @@ import {
 import { useState } from "react";
 
 const Informacion = ({ data, ira }) => {
+  const { token } = useToken();
+  const rol = parseJwt(token).rol;
   const { name_institutions } = data;
-  const [selectedSection, setSelectedSection] = useState("dashboard"); // Estado para controlar la sección
+  const [selectedSection, setSelectedSection] = useState("dashboard");
 
-  // Función para renderizar la sección según el estado
   const renderContent = () => {
     switch (selectedSection) {
       case "dashboard":
@@ -26,6 +30,8 @@ const Informacion = ({ data, ira }) => {
         return <Requisitos data={data} />;
       case "agendar":
         return <Cita data={data} />;
+      case "agendar_e":
+        return <Agendar_E data={data}/>;
       default:
         return <Dashboard data={data} />;
     }
@@ -49,7 +55,7 @@ const Informacion = ({ data, ira }) => {
             icono={faArrowUpRightFromSquare}
             texto="Ver trámite en página oficial"
             onclick={() => openInNewTab(data.url)}
-            style={{ marginLeft: "8px" }} // Añade un margen para separar el icono del texto
+            style={{ marginLeft: "8px" }}
           />
         </div>
       </div>
@@ -70,6 +76,13 @@ const Informacion = ({ data, ira }) => {
           nombre="Agendar"
           onClick={() => setSelectedSection("agendar")}
         />
+        {/* Mostrar este menú solo si el rol es 'empleador' */}
+        {rol === "empleador" && (
+          <MenuOption
+            nombre="Agendar Empleador"
+            onClick={() => setSelectedSection("agendar_e")}
+          />
+        )}
       </div>
 
       <div className="informacion-contenido">{renderContent()}</div>

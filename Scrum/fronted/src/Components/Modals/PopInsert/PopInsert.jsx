@@ -3,9 +3,7 @@ import CustomTextField from "@components/Inputs/TextFieldUI/TextFieldUI";
 import Swal from "sweetalert2";
 import { Button } from "@mui/material";
 import styles from "../../../Pages/User/Configuration/configuration.module.css";
-import Close from "@mui/icons-material/Close";
-import House from "@mui/icons-material/House";
-import Place from "@mui/icons-material/Place";
+
 import useApi from '@hooks/api/useApi';
 import { useEffect, useState } from "react";
 
@@ -172,7 +170,7 @@ function PopInsert({ activar, setActivar }) {
           className={styles.saveButton}
           variant="contained"
           sx={{ fontSize: "inherit" }}
-          onClick={insertInstitution}
+          onClick={insertInstitution} 
         >
           Ingresar Institucion
         </Button>
