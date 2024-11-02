@@ -15,19 +15,33 @@ function generateRandom13DigitNumber() {
 
 function getRandomDate() {
   const currentDate = new Date();
-  const nextYearDate = new Date();
-  nextYearDate.setFullYear(currentDate.getFullYear() + 1);
+  
+  // Set the date range to be 2 to 3 days from the current date
+  const minDate = new Date(currentDate);
+  minDate.setDate(currentDate.getDate() + 2);
 
-  const randomTimestamp = currentDate.getTime() + Math.random() * (nextYearDate.getTime() - currentDate.getTime());
+  const maxDate = new Date(currentDate);
+  maxDate.setDate(currentDate.getDate() + 3);
 
-
+  // Generate a random timestamp within the 2-3 day range
+  const randomTimestamp = minDate.getTime() + Math.random() * (maxDate.getTime() - minDate.getTime());
   const randomDate = new Date(randomTimestamp);
 
-  const year = randomDate.getFullYear();
-  const month = String(randomDate.getMonth() + 1).padStart(2, '0'); 
-  const day = String(randomDate.getDate()).padStart(2, '0');
+  // Set the time to a random hour between 13:00 and 15:00
+  const randomHour = 13 + Math.floor(Math.random() * 3); // Generates either 13, 14, or 15
+  randomDate.setHours(randomHour);
+  randomDate.setMinutes(0);
+  randomDate.setSeconds(0);
+  randomDate.setMilliseconds(0);
 
-  return `${year}-${month}-${day}`;
+  // Format the date as YYYY-MM-DD HH:mm
+  const year = randomDate.getFullYear();
+  const month = String(randomDate.getMonth() + 1).padStart(2, '0');
+  const day = String(randomDate.getDate()).padStart(2, '0');
+  const hours = String(randomDate.getHours()).padStart(2, '0');
+  const minutes = String(randomDate.getMinutes()).padStart(2, '0');
+
+  return `${year}-${month}-${day} ${hours}:${minutes}`;
 }
 
 function getRandomTime() {
@@ -236,6 +250,18 @@ describe('API Endpoints', () => {
         expect(response.body).to.be.an('array');
         expect(response.body[0]).to.be.an('object');
         expect(response.body[0]).to.have.property('pi')
+      })
+    })
+
+    describe('GET /contactInfo/:id', () =>{
+      it('Should get the contact information from an specific institution', async() =>{
+        const response = await request(API_BASE_URL)
+        .get(`/contactInfo/${Math.floor(Math.random() * (20 - 0 + 1)) + 0}`)
+
+        expect(response.status).to.equal(200);
+        expect(response.body).to.be.an('array');
+        expect(response.body[0]).to.be.an('object');
+        expect(response.body[0]).to.have.property('id')
       })
     })
   })

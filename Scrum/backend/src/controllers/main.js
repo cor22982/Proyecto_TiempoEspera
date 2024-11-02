@@ -44,6 +44,8 @@ const transporter = nodemailer.createTransport({
 
 
 
+
+
 const client = new OneSignalLib.DefaultApi(configuration);
 
 app.use(express.json());
@@ -67,6 +69,27 @@ const validateRequest = (req, res, next) => {
   return next();
 };
 
+/*
+
+    const OTP = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000
+    const result = await getUserEmail(req.body.pi)
+    const mail_options = {
+      from: 'deimosgt502@gmail.com',       
+      to: result[0].email,          
+      subject: 'Cambio de contrraseña',    
+      text: 'Has solicitado un cambio de contraseña, este es tu código de verificación',  
+      html: `<h1>Tu código de verificación es: </h1><p>${OTP}</p>` 
+    }
+
+    const currentDate = new Date();  // Get the current date and time
+    currentDate.setMinutes(currentDate.getMinutes() + 10);
+
+    await transporter.sendMail(mail_options)
+
+*/
+const sendNotificaton = async () => {
+  
+}
 
 app.get('/', (req, res) => {
   res.send('Hello from API PROYECTO DEIMOS');
