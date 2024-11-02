@@ -375,6 +375,56 @@ app.post('/newAppointment', async (req, res) => {
 
 });
 
+app.post('/newAppointment_byEmpleador', async (req, res) => {
+  try {
+      // Asegúrate de que req.body.pi es un arreglo
+      const piList = req.body.pi_list; // Lista de PI
+
+      // Verifica que piList sea un arreglo y no esté vacío
+      if (!Array.isArray(piList) || piList.length === 0) {
+          return res.status(400).json({ succes: false, error: 'La lista de PI está vacía o no es un arreglo.' });
+      }
+
+      // Obtener el ID del procedimiento una sola vez
+      const procedureId = await getprocedure_id(req.body.id_procedure, req.body.institution);
+
+      // Iterar sobre cada PI y crear la cita
+      for (const pi of piList) {
+          await create_new_appointment(req.body.date, req.body.time, procedureId, pi);
+
+          // Creación de una notificación
+          const result = await getInstitutionByID(req.body.institution);
+          const name_i = result[0].name;
+          const notification = new OneSignalLib.Notification();
+          notification.app_id = ONESIGNAL_APP_ID;
+          notification.included_segments = ['All']; // Enviar a todos los usuarios
+          notification.target_channel = 'push';
+          notification.headings = {
+              en: 'Appointment Scheduled',
+              es: 'Tienes una cita',
+          };
+
+          notification.contents = {
+              en: `You have an appointment today at ${req.body.time} on ${name_i}`,
+              es: `Tienes una cita hoy a las ${req.body.time} en ${name_i}`,
+          };
+
+          const [year, month, day] = req.body.date.split('-');
+          const dateString = `${year}-${month}-${day} ${req.body.time}:00 GMT-0600`;
+          notification.send_after = dateString;
+
+          // Enviar la notificación solo si es necesario
+          const response = await client.createNotification(notification);
+      }
+
+      res.status(200).json({ succes: true, message: 'Citas creadas y notificaciones enviadas.' });
+  } catch (error) {
+      console.error('Error al hacer una nueva reservación :(', error);
+      res.status(500).json({ succes: false, error: error.message });
+  }
+});
+
+
 app.get('/userAppointments/:pi', async (req, res) =>{
   try {
     res.status(200).json(await get_appointments(req.params.pi));
