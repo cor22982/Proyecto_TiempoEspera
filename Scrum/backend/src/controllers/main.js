@@ -251,13 +251,13 @@ app.post('/create_new_relation', async (req, res) => {
   }
 });
 
-app.get('/relations', async (req, res) => {
+app.get('/relations/:pi', async (req, res) => {
   try {
-    res.status(200).json(await getComments(req.params.id_institution));
+    res.status(200).json(await get_Relation_by_id(req.params.pi));
   }
   catch(error){
-    console.error('Error en la búsqueda de comentarios:', error);
-    res.status(500).send('Error del servidor :(');
+    console.error('Error al obtener los datos que buscas :(', error);
+    res.status(500).send('ERROR :((');
   }
 });
 
