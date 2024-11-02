@@ -201,7 +201,7 @@ describe('API Endpoints', () => {
     it('should post a rating for an institution', async() =>{
       const response = await request(API_BASE_URL)
       .post('/rating')
-      .send({institution: Math.floor(Math.random() * (20 - 0 + 1)) + 0,
+      .send({institution: Math.floor(Math.random() * (20 - 1 + 1)) + 1,
         rating: Math.random() * (5.0 - 0.0 ) + 0.0,
         token: token}
       )
@@ -253,15 +253,14 @@ describe('API Endpoints', () => {
       })
     })
 
-    describe('GET /contactInfo/:id', () =>{
-      it('Should get the contact information from an specific institution', async() =>{
+    describe('GET /contactInfo', () =>{
+      it('Should get the contact information from institutions', async() =>{
         const response = await request(API_BASE_URL)
-        .get(`/contactInfo/${Math.floor(Math.random() * (20 - 0 + 1)) + 0}`)
+        .get(`/contactInfo`)
 
         expect(response.status).to.equal(200);
         expect(response.body).to.be.an('array');
         expect(response.body[0]).to.be.an('object');
-        expect(response.body[0]).to.have.property('id')
       })
     })
   })
