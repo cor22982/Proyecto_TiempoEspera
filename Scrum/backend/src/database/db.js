@@ -21,10 +21,30 @@ export async function UpdatePassw(pi, password) {
   const result = await conn.query(`UPDATE users SET password = decode($2, 'base64') where id = $1 ; `, [pi, password]);
   
 }
+
 export async function addInstitution(name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud) {
-  const result = await conn.query('Instert INTO intitutions (name, adress, hora_apertura, hora_cierre, telefono, imagen, coordenadas) VALUES($1, $2, $3, $4, $5, $6, point($7, $8);', [name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud]);
-  return result.rows;
+  try {
+    // Contar el número de registros actuales en la tabla
+    const countResult = await conn.query('SELECT COUNT(*) as count FROM intitutions');
+    const currentCount = parseInt(countResult.rows[0].count, 10);
+    
+    // Calcular el nuevo ID
+    const newId = currentCount + 1;
+
+    // Realizar la inserción con el nuevo ID
+    const result = await conn.query(
+      'INSERT INTO intitutions (id_institutions, name, adress, hora_apertura, hora_cierre, telefono, imagen, coordenadas) VALUES($1, $2, $3, $4, $5, $6, $7, ST_MakePoint($8, $9))',
+      [newId, name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud]
+    );
+    
+    // Retornar la nueva fila creada
+    return result.rows;
+  } catch (error) {
+    console.error('Error en addInstitution:', error.message);
+    throw error; // Re-lanzar el error para que se maneje en la llamada de la API
+  }
 }
+
 export async function getUserByPi(pi) {
   const result = await conn.query('SELECT pi, name, lastname, birthdate, type_user FROM users WHERE pi = $1;', [pi]);
   return result.rows;
@@ -44,6 +64,12 @@ export async function getProcedureInfo(name){
 export async function getAllInstitutionInfo(){
   const result = await conn.query('SELECT * FROM intitutions;');
   return result.rows
+}
+export async function get_Relation_by_id_raw(pi) {
+  const result = await conn.query('SELECT empleador, string_agg(usuario, ) FROM the_table where empleador = $1 GROUP BY id')
+}
+export async function get_Relation_by_id(pi) {
+  const result = await conn.query('SELECT empleador, usuario FROM relaciones INNER JOIN usuarios ON relaciones.usuario = users.id INNER JOIN empleadores ON relaciones.empleador = users.id WHERE empleador = $1 ORDER BY ASC;', [id])
 }
 
 
@@ -90,7 +116,10 @@ export async function create_new_appointment(date, time, procedure, pi){
   const result = await conn.query('CALL  create_appointment($1, $2, $3, $4)', [date, time, procedure, pi]);
   return result.rows
 }
-
+export async function create_new_relation(empleador, usuario){
+  const result = await conn.query('INSERT INTO RELACIONES ($1, $2,)', [empleador, usuario]);
+  return result.rows
+}
 export async function get_appointments(pi){
   const result = await conn.query('select a.date::DATE, a.time::TIME, i.imagen, i.name as institution_name, i.hora_cierre, i.adress,p.name from appointments a join userappointments us on us."id appointment" = a.id join institutionsprocedures ip on a."id institution procedure" = ip."id institution procedure" join intitutions i on i.id_institutions = ip."id intitution" join procedures p on p.id = ip."id procedure" where us.pi = $1 and a.date >= CURRENT_DATE;', [pi]);
   const formattedRows = result.rows.map(row => ({
@@ -227,7 +256,7 @@ export async function getProcedures(){
   return result.rows
 }
 
-export async function getInstitutionContactInfo(id){
-  const result = await conn.query('SELECT telefono from intitutions WHERE id_institutions = $1;', [id])
+export async function getInstitutionContactInfo(){
+  const result = await conn.query('SELECT id_institutions, name, telefono, imagen from intitutions;')
   return result.rows
 }
