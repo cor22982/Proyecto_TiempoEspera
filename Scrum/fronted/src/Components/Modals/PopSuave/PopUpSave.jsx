@@ -1,4 +1,6 @@
 import PopUp from "@components/Modals/MessagePopUp";
+import styles from "./PopUpSave.module.css"; // Importa las clases CSS Modules
+
 function PopUpSave({
   activar,
   setActivar,
@@ -9,20 +11,11 @@ function PopUpSave({
 }) {
   return (
     <PopUp trigger={activar} setTrigger={setActivar}>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <h2>{nombre}</h2>
-        <img
-          src={image}
-          style={{ width: "500px", height: "200px", objectFit: "fill" }}
-        ></img>
-        <p style={{ fontSize: "20px", display: "flex" }}>{description}</p>
-        <p style={{ fontSize: "20px", display: "flex" }}>{address}</p>
+      <div className={styles.popupContainer}>
+        <h2 className={styles.title}>{nombre}</h2>
+        <img className={styles.image} src={image} alt="Imagen" />
+        <p className={styles.description}>{description}</p>
+        <p className={styles.address}>{address}</p>
       </div>
     </PopUp>
   );

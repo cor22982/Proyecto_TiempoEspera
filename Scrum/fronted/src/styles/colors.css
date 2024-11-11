@@ -114,7 +114,6 @@
     --spc-edit-bg: #4CAF50;
     --spc-edit-bg-hover: #388E3C;
     
-    --spc-edit-bg-screen: rgba(0, 0, 0, 0.5);
     --spc-edit-content-bg: #FFFFFF;
     --spc-edit-content-text: #000000;
 
@@ -199,6 +198,7 @@
     --card-text: #000000;
     --card-border: #00367E;
     --card-hover: #002254;
+    --card-bg-screen: rgba(0, 0, 0, 0.5);
 
     /*Body*/
     --body-bg: #00367E;
@@ -319,7 +319,6 @@ body.darkMode {
     --spc-edit-bg: #4CAF50;
     --spc-edit-bg-hover: #388E3C;
     
-    --spc-edit-bg-screen: rgba(0, 0, 0, 0.5);
     --spc-edit-content-bg: #1E1E1E;
     --spc-edit-content-text: #4A90E2;
 
@@ -404,6 +403,7 @@ body.darkMode {
     --card-text: #4A90E2;
     --card-border: #1C3A5D;
     --card-hover: #357ABD;
+    --card-bg-screen: rgba(0, 0, 0, 0.5);
 
     /*Body*/
     --body-bg: #1E1E1E;

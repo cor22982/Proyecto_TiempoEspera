@@ -48,7 +48,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--spc-edit-bg-screen);
+  background-color: var(--card-bg-screen);
   display: flex;
   justify-content: center;
   align-items: center;
