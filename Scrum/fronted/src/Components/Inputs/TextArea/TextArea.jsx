@@ -1,4 +1,3 @@
-// TextArea.js
 import { useState } from "react";
 import styles from "./TextArea.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -40,6 +39,10 @@ const TextArea = ({ placeholder, onChange, value, onClick }) => {
     }
   };
 
+  const discardImage = () => {
+    setImage(null); // Elimina la imagen seleccionada
+  };
+
   return (
     <div className={styles.textareaContenedor}>
       {change ? (
@@ -56,11 +59,6 @@ const TextArea = ({ placeholder, onChange, value, onClick }) => {
                 alt="Vista previa"
                 className={styles.imagePreview}
               />
-              <FontAwesomeIcon
-                icon={faTimesCircle}
-                className={styles.removeImageButton}
-                onClick={() => setImage(null)}
-              />
             </div>
           )}
           <textarea
@@ -72,22 +70,35 @@ const TextArea = ({ placeholder, onChange, value, onClick }) => {
             placeholder={placeholder}
           />
           <div className={styles.botonesTextarea}>
-            <input
-              type="file"
-              accept="image/*"
-              id="imageUpload"
-              style={{ display: "none" }}
-              onChange={handleImageUpload}
-            />
-            <label htmlFor="imageUpload" className={styles.imageUploadLabel}>
-              <FontAwesomeIcon icon={faPaperclip} /> {/* Icono de clip */}
-            </label>
-            <button className={styles.buttonTextareaCancel} onClick={onCancel}>
-              Cancelar
-            </button>
-            <button className={styles.buttonTextarea} onClick={handleSend}>
-              Enviar
-            </button>
+            <div className={styles.botonesFila}>
+              <input
+                type="file"
+                accept="image/*"
+                id="imageUpload"
+                style={{ display: "none" }}
+                onChange={handleImageUpload}
+              />
+              <label htmlFor="imageUpload" className={styles.imageUploadLabel}>
+                <FontAwesomeIcon icon={faPaperclip} className={styles.icon} />
+              </label>
+              <button
+                className={styles.buttonTextareaCancel}
+                onClick={onCancel}
+              >
+                Cancelar
+              </button>
+              <button className={styles.buttonTextarea} onClick={handleSend}>
+                Enviar
+              </button>
+            </div>
+            {image && (
+              <button
+                className={styles.discardImageButton}
+                onClick={discardImage}
+              >
+                Descartar imagen
+              </button>
+            )}
           </div>
         </div>
       )}
