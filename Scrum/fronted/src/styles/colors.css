@@ -109,6 +109,35 @@
     /*Guardados*/
     --spc-bg: #ffffff;
     --spc-text: #000000;
+    --spc-cancel-bg: #F44336;
+    --spc-cancel-hover: #D32F2F;
+    --spc-edit-bg: #4CAF50;
+    --spc-edit-bg-hover: #388E3C;
+    
+    --spc-edit-bg-screen: rgba(0, 0, 0, 0.5);
+    --spc-edit-content-bg: #FFFFFF;
+    --spc-edit-content-text: #000000;
+
+    --spc-edit-input-border: #cccccc;
+    --spc-edit-input-bg: #ffffff;
+    --spc-edit-input-text:#000000;
+    --spc-edit-input-border-hover: #004A9E;
+    --spc-edit-input-border-focus: #00367E;
+
+    --spc-button-disabled-bg: #737373;
+    --spc-edit-content-cancel-bg: #F44336;
+    --spc-edit-content-cancel-border:#D32F2F;
+    --spc-edit-content-cancel-hover: #D32F2F;
+    --spc-edit-content-cancel-text: #FFFFFF;
+    --spc-edit-content-save-bg: #4CAF50;
+    --spc-edit-content-save-border:#388E3C;
+    --spc-edit-content-save-hover:#388E3C;
+    --spc-edit-content-save-text: #FFFFFF;
+    
+    --spc-title-color: #4CAF50;
+    --spc-info-color: #FF5722;
+    --spc-address-color: #2196F3;
+
 
     /* Account */
     --ac-icon-edit-color: #000000;
@@ -287,6 +316,30 @@ body.darkMode {
     /*Guardados*/
     --spc-bg: #1E1E1E;
     --spc-text: #4A90E2;
+    --spc-cancel-bg: #F44336;
+    --spc-cancel-hover: #D32F2F;
+    --spc-edit-bg: #4CAF50;
+    --spc-edit-bg-hover: #388E3C;
+    
+    --spc-edit-bg-screen: rgba(0, 0, 0, 0.5);
+    --spc-edit-content-bg: #1E1E1E;
+    --spc-edit-content-text: #4A90E2;
+
+    --spc-edit-input-border: #707070;
+    --spc-edit-input-bg: #454545;
+    --spc-edit-input-text:#A3D1FF;
+    --spc-edit-input-border-hover: #4A90E2;
+    --spc-edit-input-border-focus: #66A3FF;
+
+    --spc-button-disabled-bg: #737373;
+    --spc-edit-content-cancel-bg: #F44336;
+    --spc-edit-content-cancel-border:#D32F2F;
+    --spc-edit-content-cancel-hover: #D32F2F;
+    --spc-edit-content-cancel-text: #FFFFFF;
+    --spc-edit-content-save-bg: #4CAF50;
+    --spc-edit-content-save-border:#388E3C;
+    --spc-edit-content-save-hover:#388E3C;
+    --spc-edit-content-save-text: #FFFFFF;
 
     /* Account */
     --ac-icon-edit-color: #FFFFFF;

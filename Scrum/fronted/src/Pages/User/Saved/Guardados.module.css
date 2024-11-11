@@ -1,0 +1,141 @@
+@import "@styles/colors.css";
+
+/* Guardados.module.css */
+
+/* Contenedor principal */
+.container {
+  padding: 10px;
+  gap: 10px;
+}
+
+/* Tarjetas */
+.cardContainer {
+  position: relative;
+  margin-bottom: 5px;
+}
+
+/* Íconos de acción */
+.deleteIcon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: var(--spc-cancel-bg);
+  font-size: 1.5rem;
+}
+
+.deleteIcon:hover {
+  color: var(--spc-cancel-hover); /* Hover para ícono de eliminar */
+}
+
+.editIcon {
+  position: absolute;
+  top: 10px;
+  right: 40px; /* Espaciado para no superponerse con el icono de eliminar */
+  cursor: pointer;
+  color: var(--spc-edit-bg);
+  font-size: 1.5rem;
+}
+
+.editIcon:hover {
+  color: var(--spc-edit-bg-hover); /* Hover para ícono de editar */
+}
+
+/* Modal */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--spc-edit-bg-screen);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background-color: var(--spc-edit-content-bg);
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 5px 5px 10px 0 var(--border-primary);
+}
+
+.modalContent h3 {
+  color: var(--spc-edit-content-text);
+}
+
+.modalContent label {
+  color: var(--spc-edit-content-text);
+}
+
+.modalContent input {
+  border-radius: 5px;
+  border: 1px solid var(--spc-edit-input-border);
+  background-color: var(--spc-edit-input-bg);
+  color: var(--spc-edit-input-text);
+  padding: 8px;
+  margin: 10px 0;
+  width: 100%;
+}
+
+/* Hover en el input */
+.modalContent input:hover {
+  border-color: var(--spc-edit-input-border-hover); /* Cambia el borde al hacer hover */
+  cursor: pointer;
+}
+
+/* Focus en el input */
+.modalContent input:active {
+  border-color: var(--spc-edit-input-border-focus); /* Cambia el borde al hacer focus */
+  cursor: pointer;
+}
+
+.modalButton:disabled {
+  background-color: var(--spc-button-disabled-bg); /* Usando la variable para el fondo deshabilitado */
+}
+
+/* Botones del modal */
+.modalButton {
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+
+.modalCancelButton {
+  border: 2px solid var(--spc-edit-content-cancel-hover);
+  background-color: var(--spc-edit-content-cancel-bg);
+  color: var(--spc-edit-content-cancel-text);
+}
+
+.modalCancelButton:hover {
+  background-color: var(--spc-edit-content-cancel-hover); /* Hover para botón de cancelar */
+}
+
+.modalSaveButton {
+  border: 2px solid var(--spc-edit-content-save-border);
+  background-color: var(--spc-edit-content-save-bg);
+  color: var(--spc-edit-content-save-text);
+}
+
+.modalSaveButton:hover {
+  background-color: var(--spc-edit-content-save-hover); /* Hover para botón de guardar */
+}
+
+/* Estilos adicionales opcionales */
+.title {
+  color: var(--spc-title-color); /* Cambia a cualquier color que desees */
+  font-size: 1.5rem;
+}
+
+.information {
+  color: var(--spc-info-color); /* Cambia el color del texto informativo */
+  font-size: 1rem;
+}
+
+.address {
+  color: var(--spc-address-color); /* Cambia el color de la dirección */
+  font-size: 1rem;
+}
