@@ -8,7 +8,7 @@ import { faStarHalfAlt, faStar } from "@fortawesome/free-solid-svg-icons";
 
 const Comentarios = ({ data }) => {
   const { llamadowithoutbody } = useApi(
-    `https://deimoss.web05.lol/comments/${data.id_institutions}`
+    `https://deimoss.web05.lol/messages/${data.id_conversation}`
   );
   const [coments, setComents] = useState([]);
   const [conver, setConver] = useState(null);
@@ -30,7 +30,7 @@ const Comentarios = ({ data }) => {
       token: localStorage.getItem("access_token"),
       content: contenido,
       conversation_id: conver,
-      rating: rating, // Incluyendo la calificación en el cuerpo
+      rating: rating,
     };
     const fetchOptions = {
       method: "POST",
@@ -44,7 +44,7 @@ const Comentarios = ({ data }) => {
   };
 
   const handleStarClick = (index) => {
-    setRating(index + 1); // Actualiza la calificación al hacer clic en una estrella
+    setRating(index + 1);
   };
 
   const calcularEstrellas = () => {
@@ -102,6 +102,7 @@ const Comentarios = ({ data }) => {
             from={com.name}
             date={com.date.substring(0, com.date.indexOf("T"))}
             coment={com.content}
+            imageUrl={com.image_url} // Pasar la URL de la imagen al componente Coment
           />
         ))}
       </div>
