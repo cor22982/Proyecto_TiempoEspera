@@ -99,10 +99,10 @@ const Comentarios = ({ data }) => {
         {coments.map((com, index) => (
           <Coment
             key={index}
-            from={com.name}
+            from={`${com.name} ${com.lastname}`}
             date={com.date.substring(0, com.date.indexOf("T"))}
             coment={com.content}
-            imageUrl={com.image_url} // Pasar la URL de la imagen al componente Coment
+            imageUrl={com.image_url}
           />
         ))}
       </div>

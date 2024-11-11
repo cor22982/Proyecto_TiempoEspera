@@ -1,43 +1,42 @@
-@import "@styles/colors.css";
+.comentario {
+  margin-bottom: 20px;
+  color: var(--ct-text);
+}
 
 .headerComent {
   display: flex;
   flex-direction: row;
-  gap: 30px;
-  color: var(--ct-text); /* Aplica el color negro al encabezado */
-}
-
-.comentario {
-  margin-bottom: 20px;
-  color: var(--ct-text); /* Aplica el color negro al texto del comentario */
+  gap: 10px;
+  color: var(--ct-text);
 }
 
 .headComent {
   font-weight: bold;
-  color: var(--ct-text); /* Aplica el color negro al nombre */
 }
 
 .dateComent {
-  font-size: 0.9rem;
-  color: var(--ct-text); /* Aplica el color negro a la fecha */
+  font-style: italic;
 }
 
 .comentContent {
-  color: var(--ct-text); /* Aplica el color negro al contenido del comentario */
+  margin-bottom: 10px;
 }
 
-/* Contenedor de la imagen */
 .imageContainer {
-  margin-top: 10px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  margin-top: 5px;
 }
 
-/* Imagen del comentario */
 .commentImage {
-  max-height: 300px; /* Altura máxima para imágenes verticales */
-  width: auto; /* Ajusta el ancho automáticamente */
-  max-width: 100%; /* Limita el ancho para adaptarse al contenedor */
-  object-fit: cover; /* Recorta la imagen para que se ajuste sin distorsionarse */
-  border-radius: 8px; /* Bordes redondeados para un mejor estilo */
+  height: 200px; /* Altura fija para todas las imágenes */
+  width: auto; /* Ajusta el ancho automáticamente para mantener la proporción */
+  max-width: 100%; /* Evita que las imágenes se salgan del contenedor si son muy anchas */
+  cursor: pointer;
+  border-radius: 5px; /* Bordes redondeados de 5px */
+  transition: transform 0.2s;
+}
+
+.commentImage:hover {
+  transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
 }
