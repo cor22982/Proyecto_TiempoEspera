@@ -3,14 +3,21 @@ import { validationResult } from 'express-validator';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import axios from 'axios';
 import multer from 'multer';
-import path from 'path';
 import nodemailer from 'nodemailer';
 import { md5 } from "js-md5";
 import * as OneSignalLib from '@onesignal/node-onesignal';
 
-import { addMessage,getMessagesByConversationId, register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage, getStatistics, getUserBday, get_documents, UpdateEmail_telephone, deleteInstitution, addInstitution, UpdatePassw, UpdateName_Apellido, getUserEmail, getOTPData, deleteOTP, createNewOTP, create_new_relation, modifyUserPassword, getUsers, createNewProcedure, getLastIDPrcedure, getProcedures, deleteAppointment, getInstitutionContactInfo, get_Relation_by_id } from '../database/db.js';
+import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements,
+         getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating,
+         insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, 
+         deleteUser, UpdateImage, getStatistics, getUserBday, get_documents, UpdateEmail_telephone, 
+         deleteInstitution, addInstitution, UpdatePassw, UpdateName_Apellido,getUserEmail, getOTPData, 
+         deleteOTP, createNewOTP,create_new_relation, modifyUserPassword, getUsers, createNewProcedure, 
+         getLastIDPrcedure, getProcedures, deleteAppointment, getInstitutionContactInfo, get_Relation_by_id,
+         addMessage, getMessagesByConversationId} from '../database/db.js';
+import { getUserLoginInfo, getAdminLoginInfo } from '../database/auth.js';
+import { generateToken, decodeToken, validateToken } from './jwt.js';
 
 dotenv.config({ path: '../../../../.env' });
 
