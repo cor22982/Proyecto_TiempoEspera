@@ -10,7 +10,7 @@ import nodemailer from 'nodemailer';
 import { md5 } from "js-md5";
 import * as OneSignalLib from '@onesignal/node-onesignal';
 
-import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage, getStatistics, getUserBday, get_documents, UpdateEmail_telephone, deleteInstitution, addInstitution, UpdatePassw, UpdateName_Apellido, getUserEmail, getOTPData, deleteOTP, createNewOTP, create_new_relation, modifyUserPassword, getUsers, createNewProcedure, getLastIDPrcedure, getProcedures, deleteAppointment, getInstitutionContactInfo, get_Relation_by_id } from '../database/db.js';
+import { addMessage,getMessagesByConversationId, register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage, getStatistics, getUserBday, get_documents, UpdateEmail_telephone, deleteInstitution, addInstitution, UpdatePassw, UpdateName_Apellido, getUserEmail, getOTPData, deleteOTP, createNewOTP, create_new_relation, modifyUserPassword, getUsers, createNewProcedure, getLastIDPrcedure, getProcedures, deleteAppointment, getInstitutionContactInfo, get_Relation_by_id } from '../database/db.js';
 
 dotenv.config({ path: '../../../../.env' });
 
@@ -113,7 +113,36 @@ app.get('/', (req, res) => {
   res.send('Hello from API PROYECTO DEIMOS');
 });
 
+// Endpoint para enviar un mensaje (con o sin imagen)
+app.post('/messages', upload.single('image'), async (req, res) => {
+  try {
+    const { content, pi, conversation_id } = req.body;
+    let imageUrl = null;
 
+    if (req.file) {
+      imageUrl = req.file.path; // Ruta de la imagen en el servidor
+    }
+
+    // Llama a la función que almacena el mensaje en la base de datos
+    const newMessage = await addMessage(content, pi, conversation_id, imageUrl);
+    res.status(201).json({ message: 'Mensaje enviado con éxito', data: newMessage });
+  } catch (error) {
+    console.error('Error en /messages:', error.message);
+    res.status(500).send('Error al enviar el mensaje');
+  }
+});
+
+// Endpoint para obtener todos los mensajes de una conversación específica
+app.get('/messages/:conversation_id', async (req, res) => {
+  try {
+    const { conversation_id } = req.params;
+    const messages = await getMessagesByConversationId(conversation_id);
+    res.status(200).json(messages);
+  } catch (error) {
+    console.error('Error en /messages/:conversation_id:', error.message);
+    res.status(500).send('Error al obtener los mensajes');
+  }
+});
 
 app.post('/register', validateRequest, async (req, res) => {
   console.log("body", req.body);
