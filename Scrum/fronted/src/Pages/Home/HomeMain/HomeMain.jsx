@@ -16,16 +16,31 @@ const Page_Main = ({ pi }) => {
   const [object_datos, setobject_datos] = useState(null);
   const [seeScreens, setSeeScren] = useState(false);
 
-  const sugerenciasTramites = [
-    "Cita controlada",
-    "Solicitud Electrónica de NIT",
-    "Inscripción NIT sin Obligaciones con invalidez física",
-    "Inscripción de sociedad",
-    "Renovación de pasaporte",
-    "Licencia de conducción",
-    "Cambio de nombre",
-    "Actualización de cédula",
-  ];
+  // Estado para manejar los trámites sugeridos dinámicamente
+  const [sugerenciasTramites, setSugerenciasTramites] = useState([]);
+
+  // Estado para manejar la notificación de "no hay resultados"
+  const [noResultados, setNoResultados] = useState(false);
+
+  useEffect(() => {
+    // Fetch dinámico para obtener los trámites desde el endpoint
+    const fetchTramites = async () => {
+      try {
+        const response = await fetch(
+          "https://deimoss.web05.lol/all_procedures"
+        );
+        const data = await response.json();
+
+        // Extraer solo el 'name' de cada trámite y actualizar el estado
+        const tramitesNames = data.map((procedimiento) => procedimiento.name);
+        setSugerenciasTramites(tramitesNames);
+      } catch (error) {
+        console.error("Error al obtener los trámites:", error);
+      }
+    };
+
+    fetchTramites(); // Llamar a la función para obtener los trámites
+  }, []); // Solo se ejecuta una vez al montar el componente
 
   useEffect(() => {
     if (busqueda.trim() !== "") {
@@ -40,12 +55,21 @@ const Page_Main = ({ pi }) => {
         "GET",
         `https://deimoss.web05.lol/institutions/${busquedaParseada}`
       );
+
+      // Si no hay resultados, se establece noResultados como true
+      if (response.length === 0) {
+        setNoResultados(true);
+      } else {
+        setNoResultados(false);
+      }
+
       setDatos(response);
       setSeeScren(true);
       console.log("Nuevo estado de `datos` después de setDatos:", response);
     } catch (e) {
       console.log("Error en la solicitud:", e);
       setDatos([]);
+      setNoResultados(true); // En caso de error también mostramos el mensaje de no resultados
     }
   };
 
@@ -61,55 +85,67 @@ const Page_Main = ({ pi }) => {
           suggestions={sugerenciasTramites}
         />
       </div>
+
       <div className={styles.paginas}>
-        {pantalla ? (
-          seeScreens ? (
-            <Principal
-              ira={setPantalla}
-              datos={datos}
-              setobj={setobject_datos}
-              pi={pi}
-              setSearch={setBusqueda}
-            />
-          ) : (
-            <div className={styles.tramitesContainer}>
-              <h1>Trámites más comunes</h1>
-              <div className={styles.tramitesGrid}>
-                <div
-                  className={`${styles.boxSearch} ${styles.red}`}
-                  onClick={() => setBusqueda("Cita controlada")}
-                >
-                  <span>Cita controlada</span>
-                </div>
-                <div
-                  className={`${styles.boxSearch} ${styles.blue}`}
-                  onClick={() => setBusqueda("Solicitud Electrónica de NIT")}
-                >
-                  <span>Solicitud Electrónica de NIT</span>
-                </div>
-                <div
-                  className={`${styles.boxSearch} ${styles.yellow}`}
-                  onClick={() =>
-                    setBusqueda(
-                      "Inscripción NIT sin Obligaciones con invalidez física"
-                    )
-                  }
-                >
-                  <span>
-                    Inscripción NIT sin Obligaciones con invalidez física
-                  </span>
-                </div>
-                <div
-                  className={`${styles.boxSearch} ${styles.green}`}
-                  onClick={() => setBusqueda("Inscripción de sociedad")}
-                >
-                  <span>Inscripción de sociedad</span>
-                </div>
-              </div>
-            </div>
-          )
+        {/* Mostrar mensaje de no resultados si es necesario */}
+        {noResultados ? (
+          <div className={styles.noResultsMessage}>
+            <p>No se encontraron resultados para "{busqueda}"</p>
+          </div>
         ) : (
-          <Informacion data={object_datos} ira={setPantalla} />
+          <>
+            {pantalla ? (
+              seeScreens ? (
+                <Principal
+                  ira={setPantalla}
+                  datos={datos}
+                  setobj={setobject_datos}
+                  pi={pi}
+                  setSearch={setBusqueda}
+                />
+              ) : (
+                <div className={styles.tramitesContainer}>
+                  <h1>Trámites más comunes</h1>
+                  <div className={styles.tramitesGrid}>
+                    <div
+                      className={`${styles.boxSearch} ${styles.red}`}
+                      onClick={() => setBusqueda("Cita controlada")}
+                    >
+                      <span>Cita controlada</span>
+                    </div>
+                    <div
+                      className={`${styles.boxSearch} ${styles.blue}`}
+                      onClick={() =>
+                        setBusqueda("Solicitud Electrónica de NIT")
+                      }
+                    >
+                      <span>Solicitud Electrónica de NIT</span>
+                    </div>
+                    <div
+                      className={`${styles.boxSearch} ${styles.yellow}`}
+                      onClick={() =>
+                        setBusqueda(
+                          "Inscripción NIT sin Obligaciones con invalidez física"
+                        )
+                      }
+                    >
+                      <span>
+                        Inscripción NIT sin Obligaciones con invalidez física
+                      </span>
+                    </div>
+                    <div
+                      className={`${styles.boxSearch} ${styles.green}`}
+                      onClick={() => setBusqueda("Inscripción de sociedad")}
+                    >
+                      <span>Inscripción de sociedad</span>
+                    </div>
+                  </div>
+                </div>
+              )
+            ) : (
+              <Informacion data={object_datos} ira={setPantalla} />
+            )}
+          </>
         )}
       </div>
     </div>

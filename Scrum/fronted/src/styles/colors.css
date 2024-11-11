@@ -160,6 +160,8 @@
     --hm-bg-card: rgba(0, 0, 0, 0.4);
     --hm-text-card: #ffffff;
     --hm-text:#000000;
+    --hm-no-result-text: #ffffff;
+    --hm-no-result-bg:rgba(0, 0, 0, 0.7); 
 
     /* Dividers */
     --dv-main: #eee;
@@ -365,6 +367,8 @@ body.darkMode {
     --hm-bg-card: rgba(0, 0, 0, 0.4);
     --hm-text-card: #ffffff;
     --hm-text: #ffffff;
+    --hm-no-result-text: #000000;
+    --hm-no-result-bg: rgba(255, 255, 255, 0.7); 
 
     /* Dividers */
     --dv-main: #3A3A3A;
