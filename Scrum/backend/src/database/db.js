@@ -38,7 +38,11 @@ export async function addMessage(content, pi, conversation_id, imageUrl = null) 
 export async function getMessagesByConversationId(conversation_id) {
   try {
     const result = await conn.query(
-      'SELECT * FROM messages WHERE conversation_id = $1 ORDER BY date DESC',
+      `SELECT u.name, u.lastname, m.content, m.date, m.conversation_id, m.image_url, m.pi
+       FROM messages m
+       JOIN users u ON m.pi = u.pi
+       WHERE m.conversation_id = $1
+       ORDER BY m.date DESC`,
       [conversation_id]
     );
     return result.rows;
