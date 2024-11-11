@@ -4,26 +4,36 @@ import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import axios from 'axios';
-import { md5 } from "js-md5";
-import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, 
-  getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, 
-  insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage
-, getStatistics, getUserBday, get_documents, UpdateEmail_telephone, deleteInstitution, addInstitution, UpdatePassw, UpdateName_Apellido,
-getUserEmail, getOTPData, deleteOTP, createNewOTP,create_new_relation, modifyUserPassword, getUsers, createNewProcedure, getLastIDPrcedure, getProcedures, deleteAppointment, getInstitutionContactInfo, get_Relation_by_id} from '../database/db.js';
-import { getUserLoginInfo, getAdminLoginInfo } from '../database/auth.js';
-import {addMessage, getMessagesByConversationId} from '../database/db.js'
-import { generateToken, decodeToken, validateToken } from './jwt.js';
-import * as OneSignalLib from '@onesignal/node-onesignal';
-import nodemailer from 'nodemailer';
 import multer from 'multer';
 import path from 'path';
+import nodemailer from 'nodemailer';
+import { md5 } from "js-md5";
+import * as OneSignalLib from '@onesignal/node-onesignal';
+
+import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequierements, getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage, getStatistics, getUserBday, get_documents, UpdateEmail_telephone, deleteInstitution, addInstitution, UpdatePassw, UpdateName_Apellido, getUserEmail, getOTPData, deleteOTP, createNewOTP, create_new_relation, modifyUserPassword, getUsers, createNewProcedure, getLastIDPrcedure, getProcedures, deleteAppointment, getInstitutionContactInfo, get_Relation_by_id } from '../database/db.js';
 
 dotenv.config({ path: '../../../../.env' });
 
 const app = express();
 const PORT = 5000;
 
-// Configuración de multer para almacenar archivos
+const ONESIGNAL_APP_ID = '0b7d4e8e-e5ad-4eec-8bda-63563d2dd47a';
+const ONESIGNAL_REST_API_KEY = 'YzI5ZGI0NzgtZWNiMC00ZDEyLTljMzQtMjFjMjMyNzJkNjI3';
+
+const corsOptions = {
+  origin: ['https://deimosappforteest.netlify.app', 'http://127.0.0.1:3000'], // Permite tanto el dominio de Netlify como el local
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  optionsSuccessStatus: 200,
+};
+
+// Configuración de CORS
+app.use(cors(corsOptions));
+
+// Middleware de JSON
+app.use(express.json());
+
+// Configuración de almacenamiento de archivos con multer
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, '/home/ubuntu/Proyecto_TiempoEspera/images');
@@ -35,55 +45,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// Endpoint para enviar un mensaje (con o sin imagen)
-app.post('/messages', upload.single('image'), async (req, res) => {
-  try {
-    const { content, pi, conversation_id } = req.body;
-    let imageUrl = null;
-
-    if (req.file) {
-      imageUrl = req.file.path; // Ruta de la imagen
-    }
-
-    // Llamar a la función para agregar el mensaje a la base de datos
-    const newMessage = await addMessage(content, pi, conversation_id, imageUrl);
-    res.status(201).json({ message: 'Mensaje enviado con éxito', data: newMessage });
-  } catch (error) {
-    console.error('Error en el endpoint /messages:', error.message);
-    res.status(500).send('Error al enviar el mensaje');
-  }
-});
-
-// Endpoint para obtener los mensajes de una conversación
-app.get('/messages/:conversation_id', async (req, res) => {
-  try {
-    const { conversation_id } = req.params;
-    const messages = await getMessagesByConversationId(conversation_id);
-    res.status(200).json(messages);
-  } catch (error) {
-    console.error('Error en el endpoint /messages/:conversation_id:', error.message);
-    res.status(500).send('Error al obtener los mensajes');
-  }
-});
-
-export default app;
-
-const ONESIGNAL_APP_ID = '0b7d4e8e-e5ad-4eec-8bda-63563d2dd47a';
-const ONESIGNAL_REST_API_KEY = 'YzI5ZGI0NzgtZWNiMC00ZDEyLTljMzQtMjFjMjMyNzJkNjI3';
-
-
-const configuration = OneSignalLib.createConfiguration({
-  authMethods: {
-    rest_api_key: {
-      tokenProvider: {
-        getToken() {
-          return ONESIGNAL_REST_API_KEY; // El token de la API
-        },
-      },
-    },
-  },
-});
-
+// Configuración de Nodemailer
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -92,21 +54,20 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-
-
-
-
+// Configuración de OneSignal
+const configuration = OneSignalLib.createConfiguration({
+  authMethods: {
+    rest_api_key: {
+      tokenProvider: {
+        getToken() {
+          return ONESIGNAL_REST_API_KEY;
+        },
+      },
+    },
+  },
+});
 const client = new OneSignalLib.DefaultApi(configuration);
 
-app.use(express.json());
-const corsOptions = {
-  origin: 'http://127.0.0.1:3000', // Origen de tu frontend en desarrollo
-  optionsSuccessStatus: 200, // Algunos navegadores antiguos (como IE11) requieren este status
-};
-
-// Usa las opciones configuradas en CORS
-app.use(cors(corsOptions));
-app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -720,3 +681,5 @@ app.use((req, res) => {
 app.listen(PORT, () => {
   console.log(`Server listening at http://127.0.0.1:${PORT}`);
 });
+
+export default app;
