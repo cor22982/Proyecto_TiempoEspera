@@ -25,11 +25,13 @@ const TextArea = ({ placeholder, onChange, value, onClick }) => {
   };
 
   const handleSend = () => {
-    onClick(textareaValue, image); // Enviar el mensaje y la imagen
-    setTextareaValue("");
-    setImage(null); // Resetear la imagen después de enviar
-    setIsWriting(false);
-    if (fileInputRef.current) fileInputRef.current.value = ""; // Resetear el input de archivo
+    if (textareaValue.trim()) {
+      onClick(textareaValue, fileInputRef.current.files[0]); // Pasa el contenido y la imagen seleccionada
+      setTextareaValue("");
+      setImage(null); // Resetear la imagen después de enviar
+      setIsWriting(false);
+      if (fileInputRef.current) fileInputRef.current.value = ""; // Resetear el input de archivo
+    }
   };
 
   const handleTextChange = (value) => {

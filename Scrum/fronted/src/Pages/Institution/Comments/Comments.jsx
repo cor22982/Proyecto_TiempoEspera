@@ -25,22 +25,38 @@ const Comentarios = ({ data }) => {
     fetchData();
   }, [llamadowithoutbody]);
 
-  const postComent = async () => {
-    const body = {
-      token: localStorage.getItem("access_token"),
-      content: contenido,
-      conversation_id: conver,
-      rating: rating,
-    };
-    const fetchOptions = {
-      method: "POST",
-      body: JSON.stringify(body),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    await fetch("https://deimoss.web05.lol/comment", fetchOptions);
-    console.log("Comentario enviado");
+  const postComent = async (texto, imagen) => {
+    const formData = new FormData();
+    formData.append("content", texto);
+    formData.append("conversation_id", conver);
+
+    if (imagen) {
+      formData.append("image", imagen); // Adjunta la imagen si existe
+    }
+
+    try {
+      const response = await fetch("https://deimoss.web05.lol/messages", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`, // Añade el token en el encabezado
+        },
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("Error al enviar el comentario:", errorText);
+        return;
+      }
+
+      const responseData = await response.json();
+      console.log("Comentario enviado:", responseData);
+
+      setContenido(""); // Resetea el contenido del comentario
+      setComents(await llamadowithoutbody("GET")); // Actualiza los comentarios después de enviar
+    } catch (error) {
+      console.error("Error en postComent:", error);
+    }
   };
 
   const handleStarClick = (index) => {
@@ -91,7 +107,7 @@ const Comentarios = ({ data }) => {
         placeholder="Agrega tu comentario"
         value={contenido}
         onChange={(value) => setContenido(value)}
-        onclick={postComent}
+        onClick={postComent} // Pasa postComent como onClick
         className={styles.textareaContainer}
       />
       <br />
