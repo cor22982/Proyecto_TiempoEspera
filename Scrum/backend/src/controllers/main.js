@@ -10,17 +10,66 @@ import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequiere
   insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage
 , getStatistics, getUserBday, get_documents, UpdateEmail_telephone, deleteInstitution, addInstitution, UpdatePassw, UpdateName_Apellido,
 getUserEmail, getOTPData, deleteOTP, createNewOTP,create_new_relation, modifyUserPassword, getUsers, createNewProcedure, getLastIDPrcedure, getProcedures, deleteAppointment, getInstitutionContactInfo, get_Relation_by_id} from '../database/db.js';
-import { getUserLoginInfo, getAdminLoginInfo } from '../database/auth.js';
+import { getUserLoginInfo, getAdminLoginInfo, addMessage, getMessagesByConversationId } from '../database/auth.js';
 import { generateToken, decodeToken, validateToken } from './jwt.js';
 import * as OneSignalLib from '@onesignal/node-onesignal';
 import nodemailer from 'nodemailer';
+import multer from 'multer';
+import path from 'path';
+
+dotenv.config({ path: '../../../../.env' });
 
 const app = express();
 const PORT = 5000;
+
+// Configuración de multer para almacenar archivos
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '/home/ubuntu/Proyecto_TiempoEspera/images');
+  },
+  filename: function (req, file, cb) {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  }
+});
+
+const upload = multer({ storage: storage });
+
+// Endpoint para enviar un mensaje (con o sin imagen)
+app.post('/messages', upload.single('image'), async (req, res) => {
+  try {
+    const { content, pi, conversation_id } = req.body;
+    let imageUrl = null;
+
+    if (req.file) {
+      imageUrl = req.file.path; // Ruta de la imagen
+    }
+
+    // Llamar a la función para agregar el mensaje a la base de datos
+    const newMessage = await addMessage(content, pi, conversation_id, imageUrl);
+    res.status(201).json({ message: 'Mensaje enviado con éxito', data: newMessage });
+  } catch (error) {
+    console.error('Error en el endpoint /messages:', error.message);
+    res.status(500).send('Error al enviar el mensaje');
+  }
+});
+
+// Endpoint para obtener los mensajes de una conversación
+app.get('/messages/:conversation_id', async (req, res) => {
+  try {
+    const { conversation_id } = req.params;
+    const messages = await getMessagesByConversationId(conversation_id);
+    res.status(200).json(messages);
+  } catch (error) {
+    console.error('Error en el endpoint /messages/:conversation_id:', error.message);
+    res.status(500).send('Error al obtener los mensajes');
+  }
+});
+
 export default app;
+
 const ONESIGNAL_APP_ID = '0b7d4e8e-e5ad-4eec-8bda-63563d2dd47a';
 const ONESIGNAL_REST_API_KEY = 'YzI5ZGI0NzgtZWNiMC00ZDEyLTljMzQtMjFjMjMyNzJkNjI3';
-dotenv.config({ path: '../../../../.env' });
+
 
 const configuration = OneSignalLib.createConfiguration({
   authMethods: {

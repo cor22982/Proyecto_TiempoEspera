@@ -22,6 +22,32 @@ export async function UpdatePassw(pi, password) {
   
 }
 
+export async function addMessage(content, pi, conversation_id, imageUrl = null) {
+  try {
+    const result = await conn.query(
+      'INSERT INTO messages (content, date, pi, conversation_id, image_url) VALUES ($1, CURRENT_TIMESTAMP, $2, $3, $4) RETURNING *',
+      [content, pi, conversation_id, imageUrl]
+    );
+    return result.rows[0];
+  } catch (error) {
+    console.error('Error en addMessage:', error.message);
+    throw error;
+  }
+}
+
+export async function getMessagesByConversationId(conversation_id) {
+  try {
+    const result = await conn.query(
+      'SELECT * FROM messages WHERE conversation_id = $1 ORDER BY date DESC',
+      [conversation_id]
+    );
+    return result.rows;
+  } catch (error) {
+    console.error('Error en getMessagesByConversationId:', error.message);
+    throw error;
+  }
+}
+
 export async function addInstitution(name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud) {
   try {
     // Contar el número de registros actuales en la tabla
