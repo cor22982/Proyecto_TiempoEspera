@@ -1,4 +1,5 @@
-@import "@styles/colors.css";
+@import "@styles/colors.css"; /* Importa tus variables de colores si las necesitas */
+
 .popup {
   position: fixed;
   top: 0;
@@ -15,10 +16,10 @@
 .popup-inner {
   position: relative;
   padding: 15px;
-  background-color: var(--card-color);
+  background-color: var(--card-color); /* Ajusta esto si usas variables */
   width: 100%;
   max-width: 600px;
-  border: 3px solid #032946;
+  border: 3px solid var(--card-border); /* Usando una variable de color o un valor por defecto */
   display: flex;
   justify-content: center;
   animation: popupIn 0.5s ease-out;
@@ -35,8 +36,6 @@
   }
 }
 
-
-
 @keyframes fadeInBackground {
   from {
     opacity: 0;
@@ -46,10 +45,7 @@
   }
 }
 
-
-
-
-.popup-inner .closed-button {
+.closed-button {
   position: absolute;
   top: 16px;
   right: 16px;
@@ -58,12 +54,11 @@
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
-  color: #1B75BA;
+  color: var(--card-text); /* También puedes usar una variable para el color */
 }
 
-
-.popup-inner .closed-button:hover,
-.popup-inner .closed-button:focus {
-  color: #032946;
+.closed-button:hover,
+.closed-button:focus {
+  color: var(--card-hover);
   font-size: 22px;
 }

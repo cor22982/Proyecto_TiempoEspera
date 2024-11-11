@@ -133,11 +133,6 @@
     --spc-edit-content-save-border:#388E3C;
     --spc-edit-content-save-hover:#388E3C;
     --spc-edit-content-save-text: #FFFFFF;
-    
-    --spc-title-color: #4CAF50;
-    --spc-info-color: #FF5722;
-    --spc-address-color: #2196F3;
-
 
     /* Account */
     --ac-icon-edit-color: #000000;
@@ -201,6 +196,9 @@
 
     /* Cards  */
     --card-color: #ffffff;
+    --card-text: #000000;
+    --card-border: #00367E;
+    --card-hover: #002254;
 
     /*Body*/
     --body-bg: #00367E;
@@ -403,6 +401,9 @@ body.darkMode {
 
     /* Cards  */
     --card-color: #1E1E1E;
+    --card-text: #4A90E2;
+    --card-border: #1C3A5D;
+    --card-hover: #357ABD;
 
     /*Body*/
     --body-bg: #1E1E1E;
