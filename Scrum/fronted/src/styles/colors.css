@@ -42,8 +42,8 @@
     --ta-bt-cancel-bg: #dadada;
     --ta-bt-cancel-hover: #b0b0b0;
     --ta-bt-cancel-text: #000000;
-    --ta-image-icon-rm-bg: #ff0000;
-    --ta-image-icon-rm-bg-hover: #cc0000;
+    --ta-image-icon-rm-bg: #ff3333;
+    --ta-image-icon-rm-bg-hover: #cc2929;
     --ta-image-icon-rm-text: #ffffff;
 
     /* Label_input -> cambio de correo, telefono*/
@@ -252,8 +252,8 @@ body.darkMode {
     --ta-bt-cancel-bg: #454545;
     --ta-bt-cancel-hover: #6A6A6A;
     --ta-bt-cancel-text: #FFFFFF;
-    --ta-image-icon-rm-bg: #ff0000;
-    --ta-image-icon-rm-bg-hover: #cc0000;
+    --ta-image-icon-rm-bg: #ff3333;
+    --ta-image-icon-rm-bg-hover: #cc2929;
     --ta-image-icon-rm-text: #ffffff;
 
     /* Label_input -> cambio de correo, telefono*/

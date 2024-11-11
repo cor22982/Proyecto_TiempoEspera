@@ -60,6 +60,7 @@
   border-radius: 8px;
   padding: 3px;
   background-color: var(--ta-bg);
+  cursor: pointer;
 }
 
 .imagePreview {

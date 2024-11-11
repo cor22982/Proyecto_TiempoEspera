@@ -1,13 +1,15 @@
 import { useState } from "react";
 import styles from "./TextArea.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperclip, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import { faPaperclip } from "@fortawesome/free-solid-svg-icons";
+import ImageModal from "@components/Modals/ImageModal/ImageModal";
 
 const TextArea = ({ placeholder, onChange, value, onClick }) => {
   const [change, setChange] = useState(true);
   const [textareaValue, setTextareaValue] = useState(value || "");
   const [isWriting, setIsWriting] = useState(false);
   const [image, setImage] = useState(null); // Estado para la imagen adjunta
+  const [showModal, setShowModal] = useState(false); // Estado para controlar el modal
 
   const onCancel = () => {
     setChange(true);
@@ -39,8 +41,12 @@ const TextArea = ({ placeholder, onChange, value, onClick }) => {
     }
   };
 
-  const discardImage = () => {
-    setImage(null); // Elimina la imagen seleccionada
+  const openModal = () => {
+    setShowModal(true); // Mostrar el modal
+  };
+
+  const closeModal = () => {
+    setShowModal(false); // Cerrar el modal
   };
 
   return (
@@ -51,9 +57,9 @@ const TextArea = ({ placeholder, onChange, value, onClick }) => {
         </div>
       ) : (
         <div className={styles.textAreaContainer}>
-          {/* Vista previa de la imagen a la izquierda del textarea */}
+          {/* Vista previa de la imagen y abre el modal al hacer clic */}
           {image && (
-            <div className={styles.imagePreviewContainer}>
+            <div className={styles.imagePreviewContainer} onClick={openModal}>
               <img
                 src={image}
                 alt="Vista previa"
@@ -94,12 +100,14 @@ const TextArea = ({ placeholder, onChange, value, onClick }) => {
             {image && (
               <button
                 className={styles.discardImageButton}
-                onClick={discardImage}
+                onClick={() => setImage(null)}
               >
                 Descartar imagen
               </button>
             )}
           </div>
+          {/* Modal para mostrar la imagen en tamaño grande */}
+          {showModal && <ImageModal imageSrc={image} onClose={closeModal} />}
         </div>
       )}
     </div>
