@@ -88,7 +88,7 @@ const Comentarios = ({ data }) => {
     <div className={styles.comentariosContainerInstitution}>
       <div className={styles.rating}>{calcularEstrellas()}</div>
       <TextArea
-        placeholder="Agregar Comentario"
+        placeholder="Agrega tu comentario"
         value={contenido}
         onChange={(value) => setContenido(value)}
         onclick={postComent}

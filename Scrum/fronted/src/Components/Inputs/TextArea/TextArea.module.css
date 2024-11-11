@@ -1,32 +1,28 @@
 @import "@styles/colors.css";
 
+.textAreaContainer {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  position: relative; 
+}
+
 .textArea {
   width: 100%;
-  border-radius: 10px;
+  border-radius: 8px;
   background-color: var(--ta-bg);
   box-shadow: 5px 5px 10px 0 var(--shadow-secundary);
   border: none;
   outline: none;
-  height: 70px;
+  height: 80px; /* Altura ajustada para concordar con la imagen */
+  padding: 0.625rem 1rem 0.625rem 1rem; /* Espacio para el texto y vista previa */
+  resize: none;
+  color: var(--ta-text);
 }
 
 .inputToText {
   width: 100%;
-  border-radius: 10px;
-  background-color: var(--ta-bg);
-  height: 36px;
-  cursor: pointer;
-  color: var(--ta-text);
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding-left: 10px;
-  box-shadow: 5px 5px 10px 0 var(--shadow-secundary);
-  transition: filter 0.3s;
-}
-.inputToText {
-  width: 100%;
-  border-radius: 10px;
+  border-radius: 8px;
   background-color: var(--ta-bg);
   height: 36px;
   cursor: pointer;
@@ -48,13 +44,46 @@
   filter: brightness(90%);
 }
 
+.imageUploadLabel {
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.imagePreviewContainer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 3px;
+  background-color: #f9f9f9;
+}
+
+.imagePreview {
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.removeImageButton {
+  color: #ff0000;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: white;
+  border-radius: 50%;
+  padding: 2px;
+}
+
 .buttonTextarea {
   color: var(--ta-bt-envio-text);
   background-color: var(--ta-bt-envio-bg);
-  width: 80px;
+  width: 70px;
   height: 30px;
-  font-size: 16px;
-  border-radius: 10px;
+  font-size: 14px;
+  border-radius: 8px;
   border: none;
 }
 
@@ -62,13 +91,13 @@
   border: none;
   color: var(--ta-bt-cancel-text);
   background-color: var(--ta-bt-cancel-bg);
-  width: 80px;
+  width: 70px;
   height: 30px;
-  font-size: 16px;
-  border-radius: 10px;
+  font-size: 14px;
+  border-radius: 8px;
 }
 
-.buttonTextarea:hover{
+.buttonTextarea:hover {
   background-color: var(--ta-bt-envio-hover);
 }
 
@@ -78,8 +107,7 @@
 
 .botonesTextarea {
   display: flex;
-  gap: 20px;
+  gap: 10px;
+  align-items: center;
   justify-content: flex-end;
-  transform: translateY(-40px);
-  margin-right: 11px;
 }
