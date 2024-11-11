@@ -1,4 +1,4 @@
-import "./InstitutionRoutes.css";
+import styles from "./InstitutionRoutes.module.css";
 import MenuOption from "@components/Navs/TextMenuLink";
 import Dashboard from "@pages/Institution/InstitutionInfo/InstitutionDataProvider";
 import Comentarios from "@pages/Institution/Comments/Comments";
@@ -31,7 +31,7 @@ const Informacion = ({ data, ira }) => {
       case "agendar":
         return <Cita data={data} />;
       case "agendar_e":
-        return <Agendar_E data={data}/>;
+        return <Agendar_E data={data} />;
       default:
         return <Dashboard data={data} />;
     }
@@ -43,11 +43,10 @@ const Informacion = ({ data, ira }) => {
   };
 
   return (
-    <div className="contenedor-info">
-      <div className="header_institution">
+    <div className={styles.contenedorInfo}>
+      <div className={styles.headerInstitution}>
         <IconButton icono={faArrowLeft} onclick={() => ira(true)} />
-        <h3 className="titulo-info">{name_institutions}</h3>
-
+        <h3 className={styles.tituloInfo}>{name_institutions}</h3>
         <div
           style={{ display: "flex", alignItems: "center", marginLeft: "auto" }}
         >
@@ -59,7 +58,7 @@ const Informacion = ({ data, ira }) => {
           />
         </div>
       </div>
-      <div className="menu-info">
+      <div className={styles.menuInfo}>
         <MenuOption
           nombre="Información"
           onClick={() => setSelectedSection("dashboard")}
@@ -76,7 +75,6 @@ const Informacion = ({ data, ira }) => {
           nombre="Agendar"
           onClick={() => setSelectedSection("agendar")}
         />
-        {/* Mostrar este menú solo si el rol es 'empleador' */}
         {rol === "empleador" && (
           <MenuOption
             nombre="Agendar Empleador"
@@ -84,8 +82,7 @@ const Informacion = ({ data, ira }) => {
           />
         )}
       </div>
-
-      <div className="informacion-contenido">{renderContent()}</div>
+      <div className={styles.informacionContenido}>{renderContent()}</div>
     </div>
   );
 };
