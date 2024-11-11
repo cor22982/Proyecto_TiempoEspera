@@ -126,7 +126,15 @@ app.get('/', (req, res) => {
 // Endpoint para enviar un mensaje (con o sin imagen)
 app.post('/messages', upload.single('image'), async (req, res) => {
   try {
-    const { content, pi, conversation_id } = req.body;
+    // Decodificar el token para extraer el PI del usuario
+    const token = req.headers.authorization?.split(" ")[1];
+    if (!token) {
+      return res.status(401).json({ message: 'No se proporcionó el token de autorización' });
+    }
+    const payload = decodeToken(token); // Usar una función `decodeToken` para decodificar el token y obtener el `pi`
+
+    const { content, conversation_id } = req.body;
+    const pi = payload.dpi; // Extraer el `pi` del payload decodificado
     let imageUrl = null;
 
     if (req.file) {
@@ -141,6 +149,7 @@ app.post('/messages', upload.single('image'), async (req, res) => {
     res.status(500).send('Error al enviar el mensaje');
   }
 });
+
 
 // Endpoint para obtener todos los mensajes de una conversación específica
 app.get('/messages/:conversation_id', async (req, res) => {
