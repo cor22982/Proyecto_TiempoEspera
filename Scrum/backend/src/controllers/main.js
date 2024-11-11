@@ -40,6 +40,9 @@ app.use(cors(corsOptions));
 // Middleware de JSON
 app.use(express.json());
 
+// Servir archivos estáticos desde la carpeta de imágenes
+app.use('/images', express.static('/home/ubuntu/Proyecto_TiempoEspera/images'));
+
 // Configuración de almacenamiento de archivos con multer
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
