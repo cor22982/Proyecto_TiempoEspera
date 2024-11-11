@@ -12,7 +12,9 @@ const Coment = ({ from, date, coment, imageUrl }) => {
       {imageUrl && (
         <div className={styles.imageContainer}>
           <img
-            src={imageUrl}
+            src={`https://deimoss.web05.lol/images/${imageUrl
+              .split("/")
+              .pop()}`} // Solo el nombre del archivo
             alt="Comentario adjunto"
             className={styles.commentImage}
           />
