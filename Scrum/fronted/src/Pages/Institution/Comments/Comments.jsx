@@ -29,6 +29,7 @@ const Comentarios = ({ data }) => {
     const formData = new FormData();
     formData.append("content", texto);
     formData.append("conversation_id", conver);
+    formData.append("date", new Date().toISOString()); // Agrega la fecha y hora actual
 
     if (imagen) {
       formData.append("image", imagen); // Adjunta la imagen si existe
