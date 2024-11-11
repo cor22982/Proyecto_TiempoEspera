@@ -25,3 +25,19 @@
 .comentContent {
   color: var(--ct-text); /* Aplica el color negro al contenido del comentario */
 }
+
+/* Contenedor de la imagen */
+.imageContainer {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Imagen del comentario */
+.commentImage {
+  max-height: 300px; /* Altura máxima para imágenes verticales */
+  width: auto; /* Ajusta el ancho automáticamente */
+  max-width: 100%; /* Limita el ancho para adaptarse al contenedor */
+  object-fit: cover; /* Recorta la imagen para que se ajuste sin distorsionarse */
+  border-radius: 8px; /* Bordes redondeados para un mejor estilo */
+}

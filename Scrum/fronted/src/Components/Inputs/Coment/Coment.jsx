@@ -1,6 +1,6 @@
 import styles from "./Coment.module.css";
 
-const Coment = ({ from, date, coment }) => {
+const Coment = ({ from, date, coment, imageUrl }) => {
   return (
     <div className={styles.comentario}>
       <div className={styles.headerComent}>
@@ -8,6 +8,16 @@ const Coment = ({ from, date, coment }) => {
         <p className={styles.dateComent}>{date}</p>
       </div>
       <p className={styles.comentContent}>{coment}</p>
+
+      {imageUrl && (
+        <div className={styles.imageContainer}>
+          <img
+            src={imageUrl}
+            alt="Comentario adjunto"
+            className={styles.commentImage}
+          />
+        </div>
+      )}
     </div>
   );
 };
