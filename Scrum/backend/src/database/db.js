@@ -22,11 +22,11 @@ export async function UpdatePassw(pi, password) {
   
 }
 
-export async function addMessage(content, pi, conversation_id, imageUrl = null) {
+export async function addMessage(content, pi, conversation_id, imageUrl = null, date) {
   try {
     const result = await conn.query(
-      'INSERT INTO messages (content, date, pi, conversation_id, image_url) VALUES ($1, CURRENT_TIMESTAMP, $2, $3, $4) RETURNING *',
-      [content, pi, conversation_id, imageUrl]
+      'INSERT INTO messages (content, date, pi, conversation_id, image_url) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+      [content, date, pi, conversation_id, imageUrl]
     );
     return result.rows[0];
   } catch (error) {

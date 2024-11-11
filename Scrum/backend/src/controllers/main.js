@@ -133,7 +133,7 @@ app.post('/messages', upload.single('image'), async (req, res) => {
     }
     const payload = decodeToken(token); // Usar una función `decodeToken` para decodificar el token y obtener el `pi`
 
-    const { content, conversation_id } = req.body;
+    const { content, conversation_id, date } = req.body; // Incluimos `date` aquí
     const pi = payload.dpi; // Extraer el `pi` del payload decodificado
     let imageUrl = null;
 
@@ -141,8 +141,8 @@ app.post('/messages', upload.single('image'), async (req, res) => {
       imageUrl = req.file.path; // Ruta de la imagen en el servidor
     }
 
-    // Llama a la función que almacena el mensaje en la base de datos
-    const newMessage = await addMessage(content, pi, conversation_id, imageUrl);
+    // Llama a la función que almacena el mensaje en la base de datos, pasando `date`
+    const newMessage = await addMessage(content, pi, conversation_id, imageUrl, date);
     res.status(201).json({ message: 'Mensaje enviado con éxito', data: newMessage });
   } catch (error) {
     console.error('Error en /messages:', error.message);
