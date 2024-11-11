@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import styles from "./TextArea.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperclip } from "@fortawesome/free-solid-svg-icons";
@@ -11,10 +11,13 @@ const TextArea = ({ placeholder, onChange, value, onClick }) => {
   const [image, setImage] = useState(null); // Estado para la imagen adjunta
   const [showModal, setShowModal] = useState(false); // Estado para controlar el modal
 
+  const fileInputRef = useRef(null); // Referencia para el input de archivo
+
   const onCancel = () => {
     setChange(true);
     setIsWriting(false);
     setImage(null); // Resetear la imagen adjunta
+    if (fileInputRef.current) fileInputRef.current.value = ""; // Resetear el input de archivo
   };
 
   const onPush = () => {
@@ -26,6 +29,7 @@ const TextArea = ({ placeholder, onChange, value, onClick }) => {
     setTextareaValue("");
     setImage(null); // Resetear la imagen después de enviar
     setIsWriting(false);
+    if (fileInputRef.current) fileInputRef.current.value = ""; // Resetear el input de archivo
   };
 
   const handleTextChange = (value) => {
@@ -83,6 +87,7 @@ const TextArea = ({ placeholder, onChange, value, onClick }) => {
                 id="imageUpload"
                 style={{ display: "none" }}
                 onChange={handleImageUpload}
+                ref={fileInputRef} // Asignar la referencia al input
               />
               <label htmlFor="imageUpload" className={styles.imageUploadLabel}>
                 <FontAwesomeIcon icon={faPaperclip} className={styles.icon} />
@@ -100,7 +105,10 @@ const TextArea = ({ placeholder, onChange, value, onClick }) => {
             {image && (
               <button
                 className={styles.discardImageButton}
-                onClick={() => setImage(null)}
+                onClick={() => {
+                  setImage(null); // Descarta la imagen
+                  if (fileInputRef.current) fileInputRef.current.value = ""; // Resetear el input de archivo
+                }}
               >
                 Descartar imagen
               </button>
