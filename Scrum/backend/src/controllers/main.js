@@ -99,6 +99,13 @@ const transporter = nodemailer.createTransport({
 const client = new OneSignalLib.DefaultApi(configuration);
 
 app.use(express.json());
+const corsOptions = {
+  origin: 'http://127.0.0.1:3000', // Origen de tu frontend en desarrollo
+  optionsSuccessStatus: 200, // Algunos navegadores antiguos (como IE11) requieren este status
+};
+
+// Usa las opciones configuradas en CORS
+app.use(cors(corsOptions));
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
