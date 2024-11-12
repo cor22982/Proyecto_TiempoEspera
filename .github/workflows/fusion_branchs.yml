@@ -1,0 +1,47 @@
+name: Merge Specific Folders
+
+on:
+  workflow_dispatch: # Permite ejecutar el flujo de trabajo manualmente
+
+permissions:
+  contents: write # Permitir a la acción hacer push al repositorio
+
+jobs:
+  merge-folders:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Esto asegura que se descarguen todas las ramas
+
+      - name: Fetch All Branches
+        run: |
+          git fetch --all
+          git branch -a # Muestra las ramas disponibles para verificar
+
+      - name: Merge Backend Changes
+        run: |
+          git checkout origin/backend -- Scrum/backend
+          git status # Verifica el estado después de la fusión de la carpeta backend
+
+      - name: Merge Frontend Changes
+        run: |
+          git checkout origin/dev -- Scrum/fronted
+          git status # Verifica el estado después de la fusión de la carpeta frontend
+
+      - name: Commit Changes
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.event.pusher.email }}" # Usa la dirección de correo electrónico del que ejecuta el flujo
+          git add Scrum/backend Scrum/fronted
+          git commit -m "Merged specific folders from backend and dev" || echo "No changes to commit"
+
+      - name: Check Git Status Before Push
+        run: |
+          git status # Verifica el estado antes de hacer push
+
+      - name: Push Changes
+        run: |
+          git push origin main

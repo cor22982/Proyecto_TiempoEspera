@@ -1,4 +1,4 @@
-name: Run tests and backend
+name: Run Test Frontend and Backend
 
 on:
   pull_request:

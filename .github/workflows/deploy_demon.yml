@@ -1,4 +1,4 @@
-name: Desplegar aplicacion en Netlify
+name: Run Deploy Netlify
 
 on:
   push:
