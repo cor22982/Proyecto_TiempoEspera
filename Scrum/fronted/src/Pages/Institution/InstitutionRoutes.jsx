@@ -8,9 +8,6 @@ import IconButton from "@components/Buttons/IconButton";
 import Agendar_E from "@pages/Institution/Agendar_E/Agendar_E";
 import { parseJwt } from "@hooks/auth/useToken";
 import useToken from "@hooks/auth/useToken";
-import Agendar_E from "@pages/Institution/Agendar_E/Agendar_E";
-import { parseJwt } from "@hooks/auth/useToken";
-import useToken from "@hooks/auth/useToken";
 import {
   faArrowLeft,
   faArrowUpRightFromSquare,
