@@ -1,12 +1,6 @@
 # 🕒 Proyecto de Gestión de Tiempos en Instituciones Públicas 🏛️
 
-[![Run Deploy Netlify](https://github.com/cor22982/Proyecto_TiempoEspera/actions/workflows/deploy_demon.yml/badge.svg)](https://github.com/cor22982/Proyecto_TiempoEspera/actions/workflows/deploy_demon.yml)
-
-[![Run Frontend Test](https://github.com/cor22982/Proyecto_TiempoEspera/actions/workflows/test_frontend.yml/badge.svg)](https://github.com/cor22982/Proyecto_TiempoEspera/actions/workflows/test_frontend.yml)
-
-[![Run Backend Test](https://github.com/cor22982/Proyecto_TiempoEspera/actions/workflows/test_backend.yml/badge.svg)](https://github.com/cor22982/Proyecto_TiempoEspera/actions/workflows/test_backend.yml)
-
-[![Run Test Frontend and Backend](https://github.com/cor22982/Proyecto_TiempoEspera/actions/workflows/test.yml/badge.svg)](https://github.com/cor22982/Proyecto_TiempoEspera/actions/workflows/test.yml)
+[![Run Deploy Netlify](https://github.com/cor22982/Proyecto_TiempoEspera/actions/workflows/deploy_demon.yml/badge.svg)](https://github.com/cor22982/Proyecto_TiempoEspera/actions/workflows/deploy_demon.yml) [![Run Frontend Test](https://github.com/cor22982/Proyecto_TiempoEspera/actions/workflows/test_frontend.yml/badge.svg)](https://github.com/cor22982/Proyecto_TiempoEspera/actions/workflows/test_frontend.yml) [![Run Backend Test](https://github.com/cor22982/Proyecto_TiempoEspera/actions/workflows/test_backend.yml/badge.svg)](https://github.com/cor22982/Proyecto_TiempoEspera/actions/workflows/test_backend.yml) [![Run Test Frontend and Backend](https://github.com/cor22982/Proyecto_TiempoEspera/actions/workflows/test.yml/badge.svg)](https://github.com/cor22982/Proyecto_TiempoEspera/actions/workflows/test.yml)
 
 ## 🌟 Introducción
 
