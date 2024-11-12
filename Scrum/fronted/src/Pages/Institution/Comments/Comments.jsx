@@ -2,7 +2,7 @@ import TextArea from "@components/Inputs/TextArea";
 import styles from "./Comments.module.css";
 import Coment from "@components/Inputs/Coment";
 import useApi from "@hooks/api/useApi";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStarHalfAlt, faStar } from "@fortawesome/free-solid-svg-icons";
 
@@ -14,6 +14,8 @@ const Comentarios = ({ data }) => {
   const [conver, setConver] = useState(null);
   const [contenido, setContenido] = useState("");
   const [rating, setRating] = useState(0);
+  const [isExpanded, setIsExpanded] = useState(false); // Estado para controlar la expansión
+  const contentRef = useRef(null); // Ref para el contenido del mensaje destacado
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,17 +31,17 @@ const Comentarios = ({ data }) => {
     const formData = new FormData();
     formData.append("content", texto);
     formData.append("conversation_id", conver);
-    formData.append("date", new Date().toISOString()); // Agrega la fecha y hora actual
+    formData.append("date", new Date().toISOString());
 
     if (imagen) {
-      formData.append("image", imagen); // Adjunta la imagen si existe
+      formData.append("image", imagen);
     }
 
     try {
       const response = await fetch("https://deimoss.web05.lol/messages", {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`, // Añade el token en el encabezado
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
         body: formData,
       });
@@ -53,8 +55,8 @@ const Comentarios = ({ data }) => {
       const responseData = await response.json();
       console.log("Comentario enviado:", responseData);
 
-      setContenido(""); // Resetea el contenido del comentario
-      setComents(await llamadowithoutbody("GET")); // Actualiza los comentarios después de enviar
+      setContenido("");
+      setComents(await llamadowithoutbody("GET"));
     } catch (error) {
       console.error("Error en postComent:", error);
     }
@@ -101,12 +103,15 @@ const Comentarios = ({ data }) => {
     return stars;
   };
 
-  // Encuentra el último comentario según la fecha
   const latestComment = coments.reduce((latest, current) => {
     return new Date(current.date) > new Date(latest.date) ? current : latest;
   }, coments[0]);
 
-  // console.log("Comentario destacado:", latestComment); // Log de depuración
+  // console.log("Comentario destacado:", latestComment);
+
+  const toggleExpanded = () => {
+    setIsExpanded(!isExpanded);
+  };
 
   return (
     <div className={styles.comentariosContainerInstitution}>
@@ -115,23 +120,38 @@ const Comentarios = ({ data }) => {
         placeholder="Agrega tu comentario"
         value={contenido}
         onChange={(value) => setContenido(value)}
-        onClick={postComent} // Pasa postComent como onClick
+        onClick={postComent}
         className={styles.textareaContainer}
       />
       <br />
       <div className={styles.coments}>
         {latestComment && (
-          <div className={styles.highlightedComment}>
-            <Coment
-              key={"latest"}
-              from={`${latestComment.name} ${latestComment.lastname}`}
-              date={latestComment.date.substring(
-                0,
-                latestComment.date.indexOf("T")
-              )}
-              coment={latestComment.content}
-              imageUrl={latestComment.image_url}
-            />
+          <div
+            ref={contentRef}
+            className={`${styles.highlightedComment} ${
+              isExpanded ? styles.expanded : styles.collapsed
+            }`}
+            onClick={toggleExpanded}
+            style={{
+              height: isExpanded
+                ? `${contentRef.current.scrollHeight}px`
+                : "40px",
+            }}
+          >
+            {isExpanded ? (
+              <Coment
+                key={"latest"}
+                from={`${latestComment.name} ${latestComment.lastname}`}
+                date={latestComment.date.substring(
+                  0,
+                  latestComment.date.indexOf("T")
+                )}
+                coment={latestComment.content}
+                imageUrl={latestComment.image_url}
+              />
+            ) : (
+              <div className={styles.collapsedText}>Mensaje Destacado</div>
+            )}
           </div>
         )}
         {coments

@@ -74,20 +74,42 @@
 
 /* Mensaje destacado */
 .highlightedComment {
-  padding: 15px;
   margin-bottom: 15px;
   border: 1px solid var(--highlight-border);
   border-radius: 10px;
   background-color: var(--highlight-bg);
-  box-shadow: 0 2px 6px var(--highlight-shadow);
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  position: sticky; /* Hace que el mensaje se mantenga fijo */
-  top: 0; /* Lo fija en la parte superior del contenedor */
-  z-index: 10; /* Asegura que esté por encima de otros elementos */
+  box-shadow: 0 2px 6px var(--shadow-primary);
+  transition: height 0.3s ease, padding 0.6s ease, transform 0.4s ease-in-out;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  overflow: hidden;
+  cursor: pointer;
+
+
 }
 
-/* Hover para el mensaje destacado */
-.highlightedComment:hover {
-  transform: scale(1.02);
-  box-shadow: 0 4px 8px var(--highlight-shadow-hover);
+/* Aumenta la especificidad para sobrescribir otros estilos */
+.highlightedComment, .highlightedComment * {
+  color: var(--highlight-text) !important;
+}
+
+
+/* Estado expandido */
+.expanded {
+  padding: 15px;
+}
+
+/* Estado colapsado */
+.collapsed {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Texto cuando está colapsado */
+.collapsedText {
+  font-weight: bold;
+  color: var(--highlight-text);
 }

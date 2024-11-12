@@ -147,10 +147,10 @@
     --ct-bg: #ffffff;
     --ct-icons: #005a96;
 	--ct-text: #000000;
-    --highlight-bg: #f9f7db;         /* Fondo amarillo pálido */
-    --highlight-border: #f4e285;     /* Borde amarillo suave */
-    --highlight-shadow: rgba(0, 0, 0, 0.15); /* Sombra suave */
-    --highlight-shadow-hover: rgba(0, 0, 0, 0.25); /* Sombra más intensa al pasar el mouse */
+
+    --highlight-border: #00367E; /* Borde azul oscuro */
+    --highlight-bg: #e1edf7;     /* Fondo azul muy claro */
+    --highlight-text: #000000; /* Sombra suave */
 
     /*InstitutionCard*/
     --instc-bg: #ffffff;
@@ -361,6 +361,9 @@ body.darkMode {
     --ct-bg: #1E1E1E;
     --ct-icons: #A3D1FF;
 	--ct-text: #ffffff;
+    --highlight-border: #1E1E1E; /* Borde gris oscuro */
+    --highlight-bg: #E5E5E5;     /* Fondo gris claro */
+    --highlight-text: #000000; /* Sombra suave */
 
     /*InstitutionCard*/
     --instc-bg: #1E1E1E;
