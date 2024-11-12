@@ -1,6 +1,8 @@
 # 🕒 Proyecto de Gestión de Tiempos en Instituciones Públicas 🏛️
 
-![Workflow Status](https://github.com/cor22982/Proyecto_TiempoEspera/actions/workflows/test_dev.yml/badge.svg)
+[![Run frontend tests on dev branch](https://github.com/cor22982/Proyecto_TiempoEspera/actions/workflows/test_frontend.yml/badge.svg)](https://github.com/cor22982/Proyecto_TiempoEspera/actions/workflows/test_frontend.yml)
+
+Este es un proyecto para...
 
 ## 🌟 Introducción
 
