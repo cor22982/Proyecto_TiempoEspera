@@ -1,14 +1,14 @@
-.cita-container {
+.citaContainer {
     display: grid;
     gap: 2rem;
 }
 
-.info-cita-container {
+.infoCitaContainer {
     display: grid;
     gap: 1rem;
 }
 
-.button-cita-container {
+.buttonCitaContainer {
     display: flex;
     justify-content: center;
 }

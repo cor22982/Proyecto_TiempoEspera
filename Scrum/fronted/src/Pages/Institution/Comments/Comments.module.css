@@ -71,3 +71,48 @@
   box-shadow: 0 1px 3px var(--shadow-secundary);
   resize: none;
 }
+
+/* Mensaje destacado */
+.highlightedComment {
+  margin-bottom: 15px;
+  border: 1px solid var(--highlight-border);
+  border-radius: 10px;
+  background-color: var(--highlight-bg);
+  box-shadow: 0 2px 6px var(--shadow-primary);
+  transition: height 0.3s ease, padding 0.6s ease, transform 0.4s ease-in-out, opacity 0.3s ease;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 1; /* Opacidad normal */
+}
+
+/* Aumenta la especificidad para sobrescribir otros estilos */
+.highlightedComment, .highlightedComment * {
+  color: var(--highlight-text) !important;
+}
+
+/* Hover para oscurecer */
+.highlightedComment:hover {
+  opacity: 0.85; /* Reduce opacidad en hover para efecto de oscurecimiento */
+}
+
+/* Estado expandido */
+.expanded {
+  padding: 15px;
+}
+
+/* Estado colapsado */
+.collapsed {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Texto cuando está colapsado */
+.collapsedText {
+  font-weight: bold;
+  color: var(--highlight-text);
+}

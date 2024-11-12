@@ -1,10 +1,13 @@
-import "./InstitutionRoutes.css";
+import styles from "./InstitutionRoutes.module.css";
 import MenuOption from "@components/Navs/TextMenuLink";
 import Dashboard from "@pages/Institution/InstitutionInfo/InstitutionDataProvider";
 import Comentarios from "@pages/Institution/Comments/Comments";
 import Requisitos from "@pages/Institution/Requirements/Requisitos";
 import Cita from "@pages/Institution/Appointments/Cita";
 import IconButton from "@components/Buttons/IconButton";
+import Agendar_E from "@pages/Institution/Agendar_E/Agendar_E";
+import { parseJwt } from "@hooks/auth/useToken";
+import useToken from "@hooks/auth/useToken";
 import Agendar_E from "@pages/Institution/Agendar_E/Agendar_E";
 import { parseJwt } from "@hooks/auth/useToken";
 import useToken from "@hooks/auth/useToken";
@@ -17,7 +20,10 @@ import { useState } from "react";
 const Informacion = ({ data, ira }) => {
   const { token } = useToken();
   const rol = parseJwt(token).rol;
+  const { token } = useToken();
+  const rol = parseJwt(token).rol;
   const { name_institutions } = data;
+  const [selectedSection, setSelectedSection] = useState("dashboard");
   const [selectedSection, setSelectedSection] = useState("dashboard");
 
   const renderContent = () => {
@@ -31,7 +37,7 @@ const Informacion = ({ data, ira }) => {
       case "agendar":
         return <Cita data={data} />;
       case "agendar_e":
-        return <Agendar_E data={data}/>;
+        return <Agendar_E data={data} />;
       default:
         return <Dashboard data={data} />;
     }
@@ -43,11 +49,10 @@ const Informacion = ({ data, ira }) => {
   };
 
   return (
-    <div className="contenedor-info">
-      <div className="header_institution">
+    <div className={styles.contenedorInfo}>
+      <div className={styles.headerInstitution}>
         <IconButton icono={faArrowLeft} onclick={() => ira(true)} />
-        <h3 className="titulo-info">{name_institutions}</h3>
-
+        <h3 className={styles.tituloInfo}>{name_institutions}</h3>
         <div
           style={{ display: "flex", alignItems: "center", marginLeft: "auto" }}
         >
@@ -56,10 +61,11 @@ const Informacion = ({ data, ira }) => {
             texto="Ver trámite en página oficial"
             onclick={() => openInNewTab(data.url)}
             style={{ marginLeft: "8px" }}
+            style={{ marginLeft: "8px" }}
           />
         </div>
       </div>
-      <div className="menu-info">
+      <div className={styles.menuInfo}>
         <MenuOption
           nombre="Información"
           onClick={() => setSelectedSection("dashboard")}
@@ -84,8 +90,7 @@ const Informacion = ({ data, ira }) => {
           />
         )}
       </div>
-
-      <div className="informacion-contenido">{renderContent()}</div>
+      <div className={styles.informacionContenido}>{renderContent()}</div>
     </div>
   );
 };

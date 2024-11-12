@@ -120,3 +120,21 @@
     margin-bottom: 15px;
   }
 }
+
+/* Estilos para el mensaje de error "No se encontraron resultados" */
+.noResultsMessage {
+  position: relative;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centrado en la pantalla */
+  font-size: 2rem;
+  color: var(--hm-no-result-text); /* Color de texto */
+  background-color: var(--hm-no-result-bg); /* Fondo oscuro y semitransparente */
+  padding: 20px 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px var(--shadow-primary);
+  z-index: 10; /* Asegurarse de que aparezca encima del contenido */
+  text-align: center;
+  max-width: 90%; /* No ocupe toda la pantalla */
+  white-space: nowrap; /* Evitar que el texto se divida */
+}

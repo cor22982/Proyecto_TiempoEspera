@@ -1,0 +1,27 @@
+.popupContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content; /* Asegura que el contenedor se ajuste al contenido */
+  }
+  
+  .title {
+    color: var(--card-text);
+    margin: 0; /* Evitar margen adicional */
+  }
+  
+  .description,
+  .address {
+    font-size: 20px;
+    color: var(--card-text);
+    max-width: 500px; /* Limita el ancho del texto al ancho de la imagen */
+    text-align: justify; /* Justifica el texto dentro de su contenedor */
+    margin: 0; /* Eliminar márgenes adicionales */
+  }
+  
+  .image {
+    width: 500px;
+    height: 200px;
+    object-fit: fill; /* Deja que la imagen se ajuste como antes */
+  }
+  

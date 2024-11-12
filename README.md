@@ -1,5 +1,9 @@
 # 🕒 Proyecto de Gestión de Tiempos en Instituciones Públicas 🏛️
 
+[![Run frontend tests on dev branch](https://github.com/cor22982/Proyecto_TiempoEspera/actions/workflows/test_frontend.yml/badge.svg)](https://github.com/cor22982/Proyecto_TiempoEspera/actions/workflows/test_frontend.yml)
+
+Este es un proyecto para...
+
 ## 🌟 Introducción
 
 En el contexto de la vida diaria, la asistencia a instituciones públicas a menudo se ve obstaculizada por la incertidumbre en cuanto al tiempo de espera. Este proyecto aborda el desafío común de la falta de información sobre la duración de las colas, proporcionando a los ciudadanos una herramienta para gestionar eficientemente su tiempo y reducir el estrés asociado con la espera.

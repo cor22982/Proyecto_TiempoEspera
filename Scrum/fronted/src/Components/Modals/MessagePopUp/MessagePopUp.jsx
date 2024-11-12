@@ -1,10 +1,12 @@
-import "./MessagePopUp.css";
+import React from "react";
+import styles from "./MessagePopUp.module.css"; // Importar el módulo CSS
+
 const PopUp = (props) => {
   return props.trigger ? (
-    <div className="popup">
-      <div className="popup-inner">
+    <div className={styles.popup}>
+      <div className={styles["popup-inner"]}>
         <button
-          className="closed-button"
+          className={styles["closed-button"]}
           onClick={() => props.setTrigger(false)}
         >
           X
