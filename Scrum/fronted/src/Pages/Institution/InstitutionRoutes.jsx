@@ -20,10 +20,7 @@ import { useState } from "react";
 const Informacion = ({ data, ira }) => {
   const { token } = useToken();
   const rol = parseJwt(token).rol;
-  const { token } = useToken();
-  const rol = parseJwt(token).rol;
   const { name_institutions } = data;
-  const [selectedSection, setSelectedSection] = useState("dashboard");
   const [selectedSection, setSelectedSection] = useState("dashboard");
 
   const renderContent = () => {
@@ -60,7 +57,6 @@ const Informacion = ({ data, ira }) => {
             icono={faArrowUpRightFromSquare}
             texto="Ver trámite en página oficial"
             onclick={() => openInNewTab(data.url)}
-            style={{ marginLeft: "8px" }}
             style={{ marginLeft: "8px" }}
           />
         </div>
