@@ -147,6 +147,10 @@
     --ct-bg: #ffffff;
     --ct-icons: #005a96;
 	--ct-text: #000000;
+    --highlight-bg: #f9f7db;         /* Fondo amarillo pálido */
+    --highlight-border: #f4e285;     /* Borde amarillo suave */
+    --highlight-shadow: rgba(0, 0, 0, 0.15); /* Sombra suave */
+    --highlight-shadow-hover: rgba(0, 0, 0, 0.25); /* Sombra más intensa al pasar el mouse */
 
     /*InstitutionCard*/
     --instc-bg: #ffffff;

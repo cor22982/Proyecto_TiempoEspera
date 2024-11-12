@@ -71,3 +71,23 @@
   box-shadow: 0 1px 3px var(--shadow-secundary);
   resize: none;
 }
+
+/* Mensaje destacado */
+.highlightedComment {
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 1px solid var(--highlight-border);
+  border-radius: 10px;
+  background-color: var(--highlight-bg);
+  box-shadow: 0 2px 6px var(--highlight-shadow);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  position: sticky; /* Hace que el mensaje se mantenga fijo */
+  top: 0; /* Lo fija en la parte superior del contenedor */
+  z-index: 10; /* Asegura que esté por encima de otros elementos */
+}
+
+/* Hover para el mensaje destacado */
+.highlightedComment:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px var(--highlight-shadow-hover);
+}

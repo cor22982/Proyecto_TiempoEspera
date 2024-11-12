@@ -101,6 +101,13 @@ const Comentarios = ({ data }) => {
     return stars;
   };
 
+  // Encuentra el último comentario según la fecha
+  const latestComment = coments.reduce((latest, current) => {
+    return new Date(current.date) > new Date(latest.date) ? current : latest;
+  }, coments[0]);
+
+  // console.log("Comentario destacado:", latestComment); // Log de depuración
+
   return (
     <div className={styles.comentariosContainerInstitution}>
       <div className={styles.rating}>{calcularEstrellas()}</div>
@@ -113,15 +120,31 @@ const Comentarios = ({ data }) => {
       />
       <br />
       <div className={styles.coments}>
-        {coments.map((com, index) => (
-          <Coment
-            key={index}
-            from={`${com.name} ${com.lastname}`}
-            date={com.date.substring(0, com.date.indexOf("T"))}
-            coment={com.content}
-            imageUrl={com.image_url}
-          />
-        ))}
+        {latestComment && (
+          <div className={styles.highlightedComment}>
+            <Coment
+              key={"latest"}
+              from={`${latestComment.name} ${latestComment.lastname}`}
+              date={latestComment.date.substring(
+                0,
+                latestComment.date.indexOf("T")
+              )}
+              coment={latestComment.content}
+              imageUrl={latestComment.image_url}
+            />
+          </div>
+        )}
+        {coments
+          .filter((com) => com !== latestComment)
+          .map((com, index) => (
+            <Coment
+              key={index}
+              from={`${com.name} ${com.lastname}`}
+              date={com.date.substring(0, com.date.indexOf("T"))}
+              coment={com.content}
+              imageUrl={com.image_url}
+            />
+          ))}
       </div>
     </div>
   );
