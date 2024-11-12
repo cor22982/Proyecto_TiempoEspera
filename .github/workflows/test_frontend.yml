@@ -1,4 +1,4 @@
-name: Run frontend tests on dev branch
+name: Run Frontend Tests
 
 on:
   push:

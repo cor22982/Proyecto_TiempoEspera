@@ -1,8 +1,8 @@
-name: Run tests and backend
+name: Run Test Frontend and Backend
 
 on:
   pull_request:
-    branches: ['main']
+    branches: ["main"]
 
   workflow_dispatch:
 
@@ -51,4 +51,3 @@ jobs:
         run: |
           cd Scrum/backend
           npm test
-
