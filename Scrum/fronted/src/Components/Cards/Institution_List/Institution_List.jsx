@@ -7,7 +7,7 @@ function Institution_List({ institutions_items }) {
     <div className="list-institutions">
       {institutions_items.map((institution) => (
         <div key={institution.id_institutions} className="component-list">
-          <div className="info">
+          <div className="info"> 
             <h3>{institution.name}</h3>
             <p><strong>Dirección:</strong> {institution.adress}</p>
             <p><strong>Teléfono:</strong> {institution.telefono ? institution.telefono : 'No disponible'}</p>
