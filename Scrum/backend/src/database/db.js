@@ -291,3 +291,20 @@ export async function getInstitutionContactInfo(){
   const result = await conn.query('SELECT id_institutions, name, telefono, imagen from intitutions;')
   return result.rows
 }
+
+
+export async function returnInfoAppointments(){
+  const result = await conn.query(`
+    SELECT i.name AS institution_name,
+       i.id_institutions as institution_id,
+       p.name AS procedure_name,
+       a.date AS appointment_date,
+       a.time AS appointment_time
+    FROM appointments a
+    JOIN institutionsprocedures ip ON a."id institution procedure" = ip."id institution procedure"
+    JOIN intitutions i ON ip."id intitution" = i.id_institutions
+    JOIN procedures p ON ip."id procedure" = p.id
+    ORDER BY i.name, p.name, a.date, a.time;
+    `)
+  return result.rows
+}
