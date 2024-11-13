@@ -296,6 +296,7 @@ export async function getInstitutionContactInfo(){
 export async function returnInfoAppointments(){
   const result = await conn.query(`
     SELECT i.name AS institution_name,
+       encode(i.imagen, 'base64') as institution_imagen,
        i.id_institutions as institution_id,
        p.name AS procedure_name,
        a.date AS appointment_date,
