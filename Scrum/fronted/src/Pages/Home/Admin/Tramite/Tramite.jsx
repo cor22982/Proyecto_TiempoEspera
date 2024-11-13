@@ -50,7 +50,7 @@ function Tramite() {
       ) : (
         <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
           <div style={{ padding: '4rem', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-            <h1 className='titulo-info'>Tramites</h1>
+          <div className="titule">Tramites</div>
             <div style={{paddingRight: '4rem'}}>
               <IconButton icono={faPlus}  onclick={()=>{setShowInsert(true)}} />
             </div>

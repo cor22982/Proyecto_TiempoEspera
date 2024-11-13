@@ -34,7 +34,7 @@ function Institutions() {
       ) : (
         <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
           <div style={{ padding: '4rem', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-            <h1 className='titulo-info'>Instituciones</h1>
+          <div className="titule">Instituciones</div>
             <div style={{paddingRight: '4rem'}}>
               <IconButton icono={faPlus} onclick={onPlus}/>
             </div>

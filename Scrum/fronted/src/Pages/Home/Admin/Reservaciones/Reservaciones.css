@@ -1,0 +1,5 @@
+@import "@styles/colors.css";
+.titule{
+  font-size: 2.5rem;
+  color: var(--hm-text);
+}

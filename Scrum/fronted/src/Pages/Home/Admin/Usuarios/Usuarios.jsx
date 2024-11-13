@@ -51,7 +51,7 @@ const Usuarios = () => {
 
   return (
     <div className="usuarios-screen">
-      <h1 className="titulo-info">Usuarios</h1>
+      <div className="titule">Usuarios</div>
       {loading ? (
         <CircularProgress /> // Show spinner while loading users
       ) : (
