@@ -15,7 +15,7 @@ import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequiere
          deleteInstitution, addInstitution, UpdatePassw, UpdateName_Apellido,getUserEmail, getOTPData, 
          deleteOTP, createNewOTP,create_new_relation, modifyUserPassword, getUsers, createNewProcedure, 
          getLastIDPrcedure, getProcedures, deleteAppointment, getInstitutionContactInfo, get_Relation_by_id,
-         addMessage, getMessagesByConversationId} from '../database/db.js';
+         addMessage, getMessagesByConversationId, returnInfoAppointments} from '../database/db.js';
 import { getUserLoginInfo, getAdminLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken, validateToken } from './jwt.js';
 
@@ -717,6 +717,16 @@ app.get('/all_procedures', async (req, res) => {
   }
   catch(error){
     console.error('Error en la búsqueda de tramites:', error);
+    res.status(500).send('Error del servidor :(');
+  }
+});
+
+app.get('/all_appointments', async (req, res) => {
+  try {
+    res.status(200).json(await returnInfoAppointments());
+  }
+  catch(error){
+    console.error('Error en la búsqueda de reservas:', error);
     res.status(500).send('Error del servidor :(');
   }
 });
