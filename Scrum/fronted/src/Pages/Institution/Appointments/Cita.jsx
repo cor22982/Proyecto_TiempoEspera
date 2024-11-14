@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import useFormCita from "@hooks/forms/useFormCita";
 import PopUpAgendar from "@components/Modals/PopUpAgendar/PopUpAgendar";
 import PopUpAgendarError from "@components/Modals/PopUpAgendar/PopUpAgendarError";
+import PopUpConfirmation from "@components/Modals/PopUpConfirmation/PopUpConfirmation";
 
 const Cita = ({ data }) => {
   const [userData, setUserData] = useState(null);
@@ -29,24 +30,42 @@ const Cita = ({ data }) => {
   const [agendar, setAgendar] = useState(false);
   const [erragendar, setErrAgendar] = useState(false);
   const [showacepted, setShowAcepted] = useState("");
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
-  const onClick = async () => {
-    const { name_user, procedure_name, ...filteredFormData } = formData;
-    const updatedFormData = {
-      ...filteredFormData,
-      id_procedure: data.id_procedure,
-      institution: data.id_institutions,
-    };
-    const { succes } = await llamado(updatedFormData, "POST");
-    if (succes) {
-      setShowAcepted(
-        `SE AGENDO UNA CITA PARA ${data.name_institutions} el dia ${formData.date} a las ${formData.time}`
-      );
-      setAgendar(true);
-    } else {
-      setErrAgendar(true);
-    }
+  const handleConfirmClick = () => {
+    setShowConfirmation(true); 
   };
+
+    const handleConfirm = async () => {
+      setShowConfirmation(false);
+    
+      const { name_user, procedure_name, ...filteredFormData } = formData;
+      const updatedFormData = {
+        ...filteredFormData,
+        id_procedure: data.id_procedure,
+        institution: data.id_institutions,
+      };
+    
+      try {
+        const response = await llamado(updatedFormData, "POST");
+    
+        if (response.succes) {
+          setShowAcepted(
+            `SE AGENDO UNA CITA PARA ${data.name_institutions} el dia ${formData.date} a las ${formData.time}`
+          );
+          setAgendar(true);
+        } else {
+          setErrAgendar(true);
+        }
+      } catch (error) {
+        console.error("Error al agendar la cita:", error);
+        setErrAgendar(true);
+      }
+    };
+
+    const handleCancel = () => {
+      setShowConfirmation(false); 
+    };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -118,9 +137,15 @@ const Cita = ({ data }) => {
       </div>
 
       <div className={styles.buttonCitaContainer}>
-        <Button onClick={onClick} buttonText="Agendar Cita" />
+        <Button onClick={handleConfirmClick} buttonText="Agendar Cita" />
       </div>
 
+      <PopUpConfirmation
+        message="¿Desea agendar la cita?"
+        onConfirm={handleConfirm}
+        onCancel={handleCancel}
+        isVisible={showConfirmation}
+      />
       <PopUpAgendar
         activar={agendar}
         setActivar={setAgendar}
