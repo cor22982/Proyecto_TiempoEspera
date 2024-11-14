@@ -15,7 +15,7 @@ import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequiere
          deleteInstitution, addInstitution, UpdatePassw, UpdateName_Apellido,getUserEmail, getOTPData, 
          deleteOTP, createNewOTP,create_new_relation, modifyUserPassword, getUsers, createNewProcedure, 
          getLastIDPrcedure, getProcedures, deleteAppointment, getInstitutionContactInfo, get_Relation_by_id,
-         addMessage, getMessagesByConversationId, returnInfoAppointments} from '../database/db.js';
+         addMessage, getMessagesByConversationId, returnInfoAppointments, getUserRating, appointment_update} from '../database/db.js';
 import { getUserLoginInfo, getAdminLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken, validateToken } from './jwt.js';
 
@@ -374,6 +374,16 @@ app.get('/rating/:id_institution', async (req, res) => {
   }
 });
 
+app.get('/ratings/:id_institution', async (req, res) => {
+  try {
+    res.status(200).json(await getUserRating(req.params.id_institution));
+  }
+  catch(error){
+    console.error('Error en la búsqueda de ratings:', error);
+    res.status(500).send('Error del servidor :(');
+  }
+});
+
 
 
 app.post('/passwordRequest', async (req, res) =>{
@@ -612,6 +622,24 @@ app.put('/user_Update_info', async(req, res)=>{
     res.status(500).send('ERROR :(')
   }
 });
+
+app.put('/appointment_update', async (req, res) => {
+  try {
+    const { id, date, time } = req.body;
+    const result = await appointment_update(id, date, time);
+    if (result.length > 0) {
+      console.log("Se actualizó la información de la cita");
+      res.status(200).json({ message: "Cita actualizada correctamente" });
+    } else {
+      console.log("No se encontró una cita con ese ID");
+      res.status(404).json({ message: "Cita no encontrada" });
+    }
+  } catch (error) {
+    console.log('Error al actualizar la cita :(', error);
+    res.status(500).send('ERROR :(');
+  }
+});
+
 app.put ('/user_Update_passw',validateRequest, async(req, res)=>{
   try {
     const result = await UpdatePassw(req.body.pi ,req.body.passw);
@@ -621,6 +649,7 @@ app.put ('/user_Update_passw',validateRequest, async(req, res)=>{
     res.status(500).send('ERROR :(')
   }
 });
+
 
 app.delete('/user/:pi', async(req, res) =>{
   try {

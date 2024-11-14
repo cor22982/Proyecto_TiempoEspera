@@ -137,6 +137,10 @@ export async function insertNewRating(institution, rating, pi){
   const result = await conn.query('INSERT INTO user_rating (id_institution, rating, user_pi) VALUES ($1, $2, $3);', [institution, rating, pi]);
   return result.rows
 }
+export async function getUserRating(institution, rating, pi){
+  const result = await conn.query('SELECT user_pi, rating, id_institution FROM user_rating WHERE id_institution = $1 ORDER BY rating;', [institution]);
+  return result.rows
+}
 
 export async function getRating(id_institution){
   const result = await conn.query('SELECT rating FROM intitutions WHERE id_institutions = $1;', [id_institution]);
@@ -159,6 +163,10 @@ export async function get_appointments(pi){
   }));
 
   return formattedRows;
+}
+export async function appointment_update(id, date, time,){
+  const result = await conn.query('UPDATE appointments SET time = $1, date = $2 WHERE pi = $3;', [date, time, id]);
+  return result.rows
 }
 
 export async function getprocedure_id(id_procedure, institution) {
