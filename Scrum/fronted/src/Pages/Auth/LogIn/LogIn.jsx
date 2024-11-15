@@ -4,6 +4,7 @@ import { md5 } from "js-md5";
 import LoginContext from "../../../Contexts/LoginContex/LoginContext";
 import Dropdowncustom from "@components/Buttons/DropDownCustom/DropDownCustom";
 import useToken from "@hooks/auth/useToken";
+import Spinner from "@components/UI/Spinner/Spinner";
 import {
   faUser,
   faEye,
@@ -14,7 +15,7 @@ import TextInputIcon from "@components/Inputs/TextInput/TextInputIcon";
 import useFormLogin from "@hooks/forms/useFormLogin";
 import styles from "./LogIn.module.css";
 
-const Login = ({ onToggle, onLogin }) => {
+const Login = ({ onToggle, onLogin, onForgotPassword }) => {
   const [formState, setFormState] = useState({
     pi: "",
     type_user: "",
@@ -25,6 +26,7 @@ const Login = ({ onToggle, onLogin }) => {
   const { formData, handleChange } = useFormLogin({ pi: "", password: "" });
   const { setLoggedIn } = useContext(LoginContext);
   const { setToken } = useToken();
+  const [loading, setLoading] = useState(false);
 
   const handlePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -42,6 +44,7 @@ const Login = ({ onToggle, onLogin }) => {
   };
 
   const handleClick = async () => {
+    setLoading(true)
     const body = {
       pi: formData.pi,
       rol: formState.type_user,
@@ -78,7 +81,7 @@ const Login = ({ onToggle, onLogin }) => {
           alt="Logo"
         />
       </div>
-
+     
       <div className={styles.loginRightSide}>
         <div className={styles.contentRightSide}>
           <h1 className={styles.loginTitle}>Iniciar sesión</h1>
@@ -137,10 +140,31 @@ const Login = ({ onToggle, onLogin }) => {
             >
               Registrate aquí
             </div>
+            
+          </div>
+          <div className={styles.loginRegisterContainer}>
+            <div className={styles.textInfoRegisterContainer}>
+              ¿Perdiste tu contraseña?
+            </div>
+            <div
+              className={styles.textRegisterContainer}
+              onClick={onForgotPassword}
+              style={{
+                cursor: "pointer",
+                textDecoration: "underline",
+              }}
+            >
+             Olvide la contraseña
+            </div>
+            
           </div>
 
           <div className={styles.loginButtonContainer}>
-            <CustomButton buttonText="Iniciar sesión" onClick={handleClick} />
+          {loading ? (
+              <Spinner />
+            ) : (
+              <CustomButton buttonText="Iniciar sesión" onClick={handleClick} />
+            )}
           </div>
         </div>
       </div>
