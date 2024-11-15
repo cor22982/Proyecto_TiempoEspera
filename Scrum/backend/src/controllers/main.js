@@ -400,7 +400,7 @@ app.get('/rating/:id_institution', async (req, res) => {
 app.get('/get_message_rating', async (req, res) => {
   try {
     const result = await getMessagerating();
-    res.status(200).json({ message: "exito en los ratings"});
+    res.status(200).json({ success: true, data: result});
   } catch (error) {
     res.status(500).json({ message: "error al buscar  ratings" });
   }
