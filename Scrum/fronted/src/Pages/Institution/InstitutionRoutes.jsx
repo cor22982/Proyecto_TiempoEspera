@@ -4,7 +4,7 @@ import Dashboard from "@pages/Institution/InstitutionInfo/InstitutionDataProvide
 import Comentarios from "@pages/Institution/Comments/Comments";
 import Requisitos from "@pages/Institution/Requirements/Requisitos";
 import Cita from "@pages/Institution/Appointments/Cita";
-import IconButton from "@components/Buttons/IconButton";
+import IconButton from "@components/Buttons/IconButton/IconButton";
 import Agendar_E from "@pages/Institution/Agendar_E/Agendar_E";
 import { parseJwt } from "@hooks/auth/useToken";
 import useToken from "@hooks/auth/useToken";

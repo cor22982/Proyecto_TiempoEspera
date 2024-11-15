@@ -13,7 +13,7 @@ import MapView from "@components/UI/InteractiveMap/InteractiveMap";
 import useApi from "@hooks/api/useApi";
 import useToken from "@hooks/auth/useToken";
 import PopUpMap from "@components/Modals/PopUpMap/PopUpMap";
-import IconButton from "@components/Buttons/IconButton";
+import IconButton from "@components/Buttons/IconButton/IconButton";
 
 const Tramite = ({ institucion }) => {
   const [viewMap, setviewMap] = useState(false);

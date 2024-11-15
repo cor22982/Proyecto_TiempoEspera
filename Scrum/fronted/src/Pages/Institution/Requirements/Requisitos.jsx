@@ -1,5 +1,5 @@
 import useApi from "@hooks/api/useApi";
-import Checkbox from "@components/Buttons/Checkbox";
+import Checkbox from "@components/Buttons/Checkbox/Checkbox";
 import { useEffect, useState } from "react";
 import styles from "./Requisitos.module.css";
 
