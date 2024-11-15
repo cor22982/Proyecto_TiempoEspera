@@ -27,7 +27,7 @@ const Informacion = ({ data, ira }) => {
       case "comentarios":
         return <Comentarios data={data} />;
       case "requisitos":
-        return <Requisitos data={data} />;
+        return <Requisitos data={data} ira={ira}/>;
       case "agendar":
         return <Cita data={data} />;
       case "agendar_e":

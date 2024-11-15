@@ -13,6 +13,7 @@ import {
   faBuilding,
   faCalendar
 } from "@fortawesome/free-solid-svg-icons";
+
 import "@assets/Login/logotipo.png";
 import Logout from "@pages/Auth/LogOut/LogOut";
 import Page_Main from "@pages/Home/HomeMain/HomeMain";
@@ -28,7 +29,9 @@ import Institutions from "../Admin/Institutions/Institutions";
 import Colaboradores from "../../User/Empleador/Colaboradores/Colaboradores";
 import Instituciones_E from "../../User/Empleador/Instituciones_E/Instituciones_E";
 import Reservaciones from "../Admin/Reservaciones/Reservaciones";
+import { useBusqueda } from "@hooks/busqueda/useBusqueda";
 const Pages = ({ pi }) => {
+  const { busqueda, setBusqueda } = useBusqueda();
   const { token } = useToken();
   const rol = parseJwt(token).rol;
   const [selectedView, setSelectedView] = useState("main"); // Controla la vista seleccionada
@@ -36,6 +39,9 @@ const Pages = ({ pi }) => {
 
   const handleMenuClick = (view) => {
     setSelectedView(view);
+    if (view == "main"){
+      setBusqueda("init")
+    }
   };
 
   const renderView = () => {
@@ -150,7 +156,9 @@ const Pages = ({ pi }) => {
       </div>
 
       <div className="interfaz">
+      
         {renderView()} {/* Renderiza la vista seleccionada */}
+       
       </div>
     </div>
   );
