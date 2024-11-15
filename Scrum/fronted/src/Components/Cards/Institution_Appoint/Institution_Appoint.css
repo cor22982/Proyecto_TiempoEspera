@@ -1,0 +1,32 @@
+@import "@styles/colors.css";
+.display-items-apoint{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid var(--dv-info);
+}
+
+.reservaciones{
+  height: 10rem;
+  overflow-y: auto;
+}
+
+/* Estilos para el scrollbar */
+.reservaciones::-webkit-scrollbar {
+  width: 10px; 
+}
+
+.reservaciones::-webkit-scrollbar-track {
+  background-color: #f0f0f0;
+  border-radius: 10px; /* Bordes redondeados */
+}
+
+.reservaciones::-webkit-scrollbar-thumb {
+  background-color: #c4c4c4; 
+  border-radius: 10px; 
+}
+
+.reservaciones::-webkit-scrollbar-thumb:hover {
+  background-color: #a0a0a0; /* Color del thumb al pasar el mouse */
+}

@@ -11,6 +11,7 @@ import {
   faPeopleArrows,
   faFolder,
   faBuilding,
+  faCalendar
 } from "@fortawesome/free-solid-svg-icons";
 import "@assets/Login/logotipo.png";
 import Logout from "@pages/Auth/LogOut/LogOut";
@@ -26,6 +27,7 @@ import Tramite from "../Admin/Tramite/Tramite";
 import Institutions from "../Admin/Institutions/Institutions";
 import Colaboradores from "../../User/Empleador/Colaboradores/Colaboradores";
 import Instituciones_E from "../../User/Empleador/Instituciones_E/Instituciones_E";
+import Reservaciones from "../Admin/Reservaciones/Reservaciones";
 const Pages = ({ pi }) => {
   const { token } = useToken();
   const rol = parseJwt(token).rol;
@@ -56,7 +58,8 @@ const Pages = ({ pi }) => {
         return <Institutions />;
       case "colaboradores":
         return <Colaboradores />;
-      
+      case "reservaciones":
+        return <Reservaciones></Reservaciones>
       case "institutions_empleador":
         return <Instituciones_E />;
       default:
@@ -99,6 +102,11 @@ const Pages = ({ pi }) => {
       icon: faPeopleArrows,
       to: "usuarios",
     },
+    {
+      label: "Reservaciones",
+      icon: faCalendar,
+      to: "reservaciones",
+    }
   ];
 
   if (rol === "empleador") {

@@ -17,7 +17,7 @@ function Institution_List({ institutions_items }) {
     <div className="list-institutions">
       {uniqueInstitutions.map((institution) => (
         <div key={institution.id_institutions} className="component-list">
-          <div className="info">
+          <div className="info"> 
             <h3>{institution.name}</h3>
             <p>
               <strong>Dirección:</strong> {institution.adress}
