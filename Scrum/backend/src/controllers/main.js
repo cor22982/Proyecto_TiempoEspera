@@ -410,6 +410,7 @@ app.post('/passwordRequest', async (req, res) =>{
     }
 
     const currentDate = new Date();  // Get the current date and time
+    console.log("Fecha actual",currentDate)
     currentDate.setMinutes(currentDate.getMinutes() + 10);
 
     await transporter.sendMail(mail_options)
