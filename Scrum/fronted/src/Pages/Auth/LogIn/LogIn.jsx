@@ -70,6 +70,9 @@ const Login = ({ onToggle, onLogin, onForgotPassword }) => {
       onLogin();
       return;
     }
+    else{
+      setLoading(false)
+    }
     setErrorMessage("Incorrect user or password");
   };
 
