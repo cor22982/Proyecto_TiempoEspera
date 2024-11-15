@@ -15,8 +15,9 @@ import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequiere
          deleteInstitution, addInstitution, UpdatePassw, UpdateName_Apellido,getUserEmail, getOTPData, 
          deleteOTP, createNewOTP,create_new_relation, modifyUserPassword, getUsers, createNewProcedure, 
          getLastIDPrcedure, getProcedures, deleteAppointment, getInstitutionContactInfo, get_Relation_by_id,
-         addMessage, getMessagesByConversationId, returnInfoAppointments, getMessagerating, appointment_update, getIDSala} from '../database/db.js';
-import { getUserLoginInfo, getAdminLoginInfo } from '../database/auth.js';
+         addMessage, getMessagesByConversationId, returnInfoAppointments, getMessagerating, appointment_update, getIDSala,
+         firstInsert, updatePasos, firstInsertUserDocuments, getPasos, getUserDocuments } from '../database/db.js';
+import { getUserLoginInfo, getAdminLoginInfo} from '../database/auth.js';
 import { generateToken, decodeToken, validateToken } from './jwt.js';
 
 dotenv.config({ path: '../../../../.env' });
@@ -356,7 +357,8 @@ app.post('/create_new_relation', async (req, res) => {
   try {
     const { empleador, usuario } = req.body;
     const id_sala = await getIDSala(empleador)
-    const addition = await create_new_relation(usuario, id_sala);
+    console.log(id_sala[0].id)
+    const addition = await create_new_relation(usuario, id_sala[0].id);
 
     res.status(201).json({ message: 'Relación creada', data: addition });
   } catch (error) {
@@ -798,6 +800,60 @@ app.get('/all_appointments', async (req, res) => {
   }
 });
 
+
+app.post('/firstinsertpasos', async (req, res) =>{
+  try {
+    await firstInsert(req.body.pi, req.body.procedure)
+    res.status(200).json({succes: true});
+  }
+  catch(error){
+    console.error('Error al insertar primero el paso: ', error);
+    res.status(500).json({succes: false });
+  }
+});
+
+app.post('/updatePaso', async (req, res) =>{
+  try {
+    await updatePasos(req.body.pi, req.body.procedure, req.body.paso)
+    res.status(200).json({succes: true});
+  }
+  catch(error){
+    console.error('Error al insertar primero el paso: ', error);
+    res.status(500).json({succes: false });
+  }
+});
+app.post('/insertDocument_User', async (req, res) =>{
+  try {
+    await firstInsertUserDocuments(req.body.pi, req.body.procedure, req.body.document)
+    res.status(200).json({succes: true});
+  }
+  catch(error){
+    console.error('Error al insertar primero el paso: ', error);
+    res.status(500).json({succes: false });
+  }
+});
+
+app.post('/getPasos_user', async (req, res) =>{
+  try {
+    const respuesta = await  getPasos(req.body.pi, req.body.procedure)
+    res.status(200).json({succes: true, respuesta});
+  }
+  catch(error){
+    console.error('Error al obtener pasos: ', error);
+    res.status(500).json({succes: false });
+  }
+});
+
+app.post('/getDocuments_user', async (req, res) =>{
+  try {
+    const respuesta = await  getUserDocuments(req.body.pi, req.body.procedure)
+    res.status(200).json({succes: true, respuesta});
+  }
+  catch(error){
+    console.error('Error al obtener documentos: ', error);
+    res.status(500).json({succes: false });
+  }
+});
 app.use((req, res) => {
   res.status(501).json({ error: 'Método no implementado' });
 });

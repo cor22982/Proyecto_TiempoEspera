@@ -99,7 +99,17 @@ export async function get_Relation_by_id_raw(pi) {
   const result = await conn.query('SELECT empleador, string_agg(usuario, ) FROM the_table where empleador = $1 GROUP BY id')
 }
 export async function get_Relation_by_id(pi) {
-  const result = await conn.query(`select pi, name, encode(perfi_image, 'base64'), email from users join relaciones on relaciones.usuario = pi where relaciones.empleador =$1;`, [pi])
+
+  /*
+  select us.pi, us.name, encode(us.perfil_image, 'base64'), us.email from salas_empleadores s join miembros_salas m on s.id = m.id_salas join users u on u.
+pi = s.empleador join users us on us.pi = m.pi_colaborador where u.pi = $1;
+  */
+  /*
+  select pi, name, encode(perfi_image, 'base64'), email from users join relaciones on relaciones.usuario = pi where relaciones.empleador =$1;
+  
+  */
+  const result = await conn.query(`select us.pi, us.name, encode(us.perfi_image, 'base64'), us.email from salas_empleadores s join miembros_salas m on s.id = m.id_salas join users u on u.
+pi = s.empleador join users us on us.pi = m.pi_colaborador where u.pi = $1;`, [pi])
   return result.rows
 }
 
@@ -111,7 +121,7 @@ export async function getInstitutionByID(id){
 
 
 export async function getProcedureRequierements(id_procedure){
-  const result = await conn.query('SELECT d.name, d.description FROM proceduresdocuments pd JOIN procedures p on pd."id preocedure" = p.id JOIN documents d on pd."id documents" = d.id_document WHERE p.id = $1;', [id_procedure]);
+  const result = await conn.query('SELECT d.name, d.description, d.id_document FROM proceduresdocuments pd JOIN procedures p on pd."id preocedure" = p.id JOIN documents d on pd."id documents" = d.id_document WHERE p.id = $1;', [id_procedure]);
   return result.rows
 }
 
@@ -327,3 +337,79 @@ export async function getIDSala(pi){
   return result.rows
 }
 
+export async function firstInsert(pi, procedure) {
+  const result = await conn.query(`
+    INSERT INTO user_pasos (pi_usuario, id_procedure)
+    VALUES ($1, $2)
+    ON CONFLICT (pi_usuario, id_procedure) DO NOTHING;
+  `, [pi, procedure]);
+  return result.rows;
+}
+
+
+export async function updatePasos(pi, procedure, nuevoPaso) {
+  try {
+    const result = await conn.query(`
+      UPDATE user_pasos
+      SET pasos_completados = array_append(pasos_completados, $3)
+      WHERE pi_usuario = $1 AND id_procedure = $2
+      RETURNING *;
+    `, [pi, procedure, nuevoPaso]);
+
+    if (result.rows.length === 0) {
+      throw new Error('No se encontró el usuario o el procedimiento.');
+    }
+
+    return result.rows;
+  } catch (error) {
+    console.error('Error al actualizar pasos:', error.message);
+    throw error; // Lanzar el error para que el llamado a la función pueda manejarlo
+  }
+}
+
+export async function firstInsertUserDocuments(pi, procedure, documentId) {
+  const result = await conn.query(`
+    INSERT INTO public.user_documents (pi_usuario, id_procedure, id_document)
+    VALUES ($1, $2, $3)
+    ON CONFLICT (pi_usuario, id_procedure, id_document) DO NOTHING;
+  `, [pi, procedure, documentId]);
+
+  return result.rows;
+}
+
+export async function getPasos(pi, procedure) {
+  try {
+    const result = await conn.query(`
+      SELECT pasos_completados
+      FROM user_pasos
+      WHERE pi_usuario = $1 AND id_procedure = $2;
+    `, [pi, procedure]);
+
+    if (result.rows.length === 0) {
+      throw new Error('No se encontraron pasos para el usuario o el procedimiento.');
+    }
+
+    return result.rows[0].pasos_completados; // Devolver solo los pasos completos
+  } catch (error) {
+    console.error('Error al obtener los pasos:', error.message);
+    throw error; // Lanzar el error para que el llamado a la función pueda manejarlo
+  }
+}
+export async function getUserDocuments(pi, procedure) {
+  try {
+    const result = await conn.query(`
+      SELECT id_document
+      FROM user_documents
+      WHERE pi_usuario = $1 AND id_procedure = $2;
+    `, [pi, procedure]);
+
+    if (result.rows.length === 0) {
+      throw new Error('No se encontraron documentos para el usuario o el procedimiento.');
+    }
+
+    return result.rows.map(row => row.id_document); // Devuelve un array de ids de documentos
+  } catch (error) {
+    console.error('Error al obtener los documentos del usuario:', error.message);
+    throw error; // Lanzar el error para que el llamado a la función pueda manejarlo
+  }
+}
