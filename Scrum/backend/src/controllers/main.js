@@ -427,6 +427,7 @@ app.post('/messageRoom', async (req, res) =>{
     res.status(200).json({ message: 'Mensajecreado' });
   }
   catch(error){
+    console.error("Error al crear mensaje: ", error)
     res.status(500).json({message: 'Error al crear el mensaje :(' })
   }
 })
