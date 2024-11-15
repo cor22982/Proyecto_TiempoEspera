@@ -1,4 +1,4 @@
-import InsttutionComponent from "@components/Cards/InstitutionCard";
+import InsttutionComponent from "@components/Cards/InstitutionCard/InstitutionCard";
 import "./HomeSearch.css";
 
 const Principal = ({ ira, datos, setobj, pi }) => {

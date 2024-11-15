@@ -7,6 +7,7 @@ const Label_Input = ({ label_name, onChange, to_Send, value }) => {
   const [show_input, set_ShowInput] = useState(false);
 
   const onPush = async () => {
+    if (value.trim() === "") return; // No enviar si el campo está vacío
     await to_Send();
     set_ShowInput(false); // Cierra el input después de enviar el dato
   };
@@ -26,6 +27,8 @@ const Label_Input = ({ label_name, onChange, to_Send, value }) => {
               onClick={async () => {
                 await onPush();
               }}
+              role="button"
+              aria-label="check"
             >
               <FontAwesomeIcon icon={faCheck} />
             </div>
@@ -34,6 +37,8 @@ const Label_Input = ({ label_name, onChange, to_Send, value }) => {
               onClick={() => {
                 set_ShowInput(false);
               }}
+              role="button"
+              aria-label="cancel"
             >
               <FontAwesomeIcon icon={faX} />
             </div>
@@ -47,6 +52,8 @@ const Label_Input = ({ label_name, onChange, to_Send, value }) => {
             onClick={() => {
               set_ShowInput(true);
             }}
+            role="button"
+            aria-label="edit"
           >
             <FontAwesomeIcon icon={faPen} />
           </div>

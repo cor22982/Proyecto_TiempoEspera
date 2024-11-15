@@ -1,4 +1,4 @@
-import SavedComponent from "@components/Cards/SavedProcedureCard";
+import SavedComponent from "@components/Cards/SavedProcedureCard/SavedProcedureCard";
 import { useState, useEffect } from "react";
 import PopUpSave from "@components/Modals/PopSuave/PopUpSave";
 import useApi from "@hooks/api/useApi";
@@ -15,7 +15,9 @@ const Guardados = ({ pi }) => {
     imagen: "",
     address: "",
   });
-  const { llamadowithoutbody } = useApi(`https://deimoss.web05.lol/userAppointments/${pi}`);
+  const { llamadowithoutbody } = useApi(
+    `https://deimoss.web05.lol/userAppointments/${pi}`
+  );
   const [saved, setSaved] = useState([]);
   const [appointmentToDelete, setAppointmentToDelete] = useState(null);
 
@@ -58,39 +60,47 @@ const Guardados = ({ pi }) => {
 
   // Confirmación de eliminación en el frontend
   const confirmDelete = async () => {
-  console.log("Cita a eliminar:", appointmentToDelete);  // Verifica que 'appointmentToDelete' contiene el ID correcto
+    console.log("Cita a eliminar:", appointmentToDelete); // Verifica que 'appointmentToDelete' contiene el ID correcto
 
-  try {
-    const response = await fetch(`https://deimoss.web05.lol/appointment/${pi}`, {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ appointmentId: appointmentToDelete }), // Asegúrate de que 'appointmentToDelete' tenga el valor correcto
-    });
-
-    const result = await response.json();
-    console.log("Respuesta del servidor:", result);
-
-    if (result.success) {
-      setSaved((prevSaved) =>
-        prevSaved.filter((save) => save["id appointment"] !== appointmentToDelete) // Filtra la cita eliminada
+    try {
+      const response = await fetch(
+        `https://deimoss.web05.lol/appointment/${pi}`,
+        {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ appointmentId: appointmentToDelete }), // Asegúrate de que 'appointmentToDelete' tenga el valor correcto
+        }
       );
-      alert("Cita eliminada con éxito.");
-    } else {
-      console.error("Error al eliminar la cita: operación no exitosa en el backend.");
-      alert("Hubo un error al eliminar la cita.");
-    }
-  } catch (error) {
-    console.error("Error en la solicitud DELETE:", error);
-    alert("Error en la solicitud DELETE.");
-  }
 
-  setShowDelete(false); // Cierra el popup después de confirmar la eliminación
-};
+      const result = await response.json();
+      console.log("Respuesta del servidor:", result);
+
+      if (result.success) {
+        setSaved(
+          (prevSaved) =>
+            prevSaved.filter(
+              (save) => save["id appointment"] !== appointmentToDelete
+            ) // Filtra la cita eliminada
+        );
+        alert("Cita eliminada con éxito.");
+      } else {
+        console.error(
+          "Error al eliminar la cita: operación no exitosa en el backend."
+        );
+        alert("Hubo un error al eliminar la cita.");
+      }
+    } catch (error) {
+      console.error("Error en la solicitud DELETE:", error);
+      alert("Error en la solicitud DELETE.");
+    }
+
+    setShowDelete(false); // Cierra el popup después de confirmar la eliminación
+  };
 
   const cancelDelete = () => {
     setShowDelete(false); // Cerramos el popup sin eliminar
   };
-  
+
   return (
     <div style={{ padding: "10px", gap: "10px" }}>
       {saved.map((save, index) => (
@@ -110,7 +120,7 @@ const Guardados = ({ pi }) => {
               right: "10px",
               cursor: "pointer",
               color: "red",
-              fontSize: "1.5rem"
+              fontSize: "1.5rem",
             }}
             title="Eliminar cita"
           />
