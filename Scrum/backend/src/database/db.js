@@ -121,6 +121,10 @@ export async function getComments(id_institution){
   return result.rows
   
 }
+export async function up_message_like(pi){
+  const result = await conn.query('CALL  increment_likes($1)', [pi]);
+  return result.rows
+}
 
 export async function createComment(username, content, conversation_id){
   const result = await conn.query('INSERT INTO messages (pi, content, conversation_id) VALUES ($1, $2, $3);', [username, content, conversation_id]);
@@ -137,8 +141,8 @@ export async function insertNewRating(institution, rating, pi){
   const result = await conn.query('INSERT INTO user_rating (id_institution, rating, user_pi) VALUES ($1, $2, $3);', [institution, rating, pi]);
   return result.rows
 }
-export async function getUserRating(institution, rating, pi){
-  const result = await conn.query('SELECT user_pi, rating, id_institution FROM user_rating WHERE id_institution = $1 ORDER BY rating;', [institution]);
+export async function getMessagerating(likes){
+  const result = await conn.query('SELECT * FROM messages ORDER BY likes DESC;', [likes]);
   return result.rows
 }
 
@@ -164,8 +168,8 @@ export async function get_appointments(pi){
 
   return formattedRows;
 }
-export async function appointment_update(id, date, time,){
-  const result = await conn.query('UPDATE appointments SET time = $1, date = $2 WHERE pi = $3;', [date, time, id]);
+export async function appointment_update(pi, date, time,){
+  const result = await conn.query('UPDATE appointments SET time = $1, date = $2 WHERE id = $3;', [time, date, pi]);
   return result.rows
 }
 
