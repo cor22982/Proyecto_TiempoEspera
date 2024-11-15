@@ -3,13 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-const Checkbox = ({ name, id, onChange, type, onsearch }) => {
-  const [pressed, setPressed] = useState(false);
+const Checkbox = ({ name, id, onChange, type, onsearch, active, onPress }) => {
+  const [pressed, setPressed] = useState(active || false); // Estado inicial según `active`
 
   const handleClick = () => {
     setPressed(!pressed);
     if (typeof onChange === "function") {
       onChange(id); // Solo ejecuta si es una función
+      onPress(name);
     } else {
       console.error("onChange no es una función válida");
     }
