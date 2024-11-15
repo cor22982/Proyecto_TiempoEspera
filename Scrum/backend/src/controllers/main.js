@@ -15,7 +15,7 @@ import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequiere
          deleteInstitution, addInstitution, UpdatePassw, UpdateName_Apellido,getUserEmail, getOTPData, 
          deleteOTP, createNewOTP,create_new_relation, modifyUserPassword, getUsers, createNewProcedure, 
          getLastIDPrcedure, getProcedures, deleteAppointment, getInstitutionContactInfo, get_Relation_by_id,
-         addMessage, getMessagesByConversationId, returnInfoAppointments, getUserRating, appointment_update} from '../database/db.js';
+         addMessage, getMessagesByConversationId, returnInfoAppointments, getUserRating, appointment_update, getIDSala} from '../database/db.js';
 import { getUserLoginInfo, getAdminLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken, validateToken } from './jwt.js';
 
@@ -346,7 +346,8 @@ app.post('/create_new_relation', async (req, res) => {
   console.log("body", req.body);
   try {
     const { empleador, usuario } = req.body;
-    const addition = await create_new_relation(empleador, usuario );
+    const id_sala = await getIDSala(empleador)
+    const addition = await create_new_relation(usuario, id_sala);
 
     res.status(201).json({ message: 'Relación creada', data: addition });
   } catch (error) {
