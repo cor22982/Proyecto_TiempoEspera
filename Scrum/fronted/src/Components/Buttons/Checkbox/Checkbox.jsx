@@ -1,17 +1,30 @@
 import styles from "./Checkbox.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-const Checkbox = ({ name, id, onChange, type, onsearch }) => {
-  const [pressed, setPressed] = useState(false);
+const Checkbox = ({ name, id, onChange, type, onsearch, active, onPress }) => {
+  const [pressed, setPressed] = useState(active || false);
+
+  // Sincroniza el estado local `pressed` con el valor de `active`
+  useEffect(() => {
+    setPressed(active || false);
+  }, [active]);
 
   const handleClick = () => {
-    setPressed(!pressed);
+    const newPressedState = !pressed;
+    setPressed(newPressedState);
+
+    // Llama a onChange si es una función válida
     if (typeof onChange === "function") {
-      onChange(id); // Solo ejecuta si es una función
+      onChange(id); 
     } else {
       console.error("onChange no es una función válida");
+    }
+
+    // Llama a onPress si es una función válida
+    if (typeof onPress === "function") {
+      onPress(name);
     }
   };
 
@@ -30,7 +43,11 @@ const Checkbox = ({ name, id, onChange, type, onsearch }) => {
         <div
           style={{ cursor: "pointer" }}
           onClick={() => {
-            onsearch(name);
+            if (typeof onsearch === "function") {
+              onsearch(name);
+            } else {
+              console.error("onsearch no es una función válida");
+            }
           }}
         >
           <FontAwesomeIcon icon={faSearch} />
