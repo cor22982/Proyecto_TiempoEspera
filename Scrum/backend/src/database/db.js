@@ -132,7 +132,7 @@ export async function getComments(id_institution){
   
 }
 export async function up_message_like(pi){
-  const result = await conn.query('CALL  increment_likes($1)', [pi]);
+  const result = await conn.query('SELECT increment_likes($1);', [pi]);
   return result.rows
 }
 
