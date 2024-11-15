@@ -860,6 +860,7 @@ app.post('/insertDocument_User', async (req, res) =>{
 
 app.post('/getPasos_user', async (req, res) =>{
   try {
+    await firstInsert(req.body.pi, req.body.procedure)
     const respuesta = await  getPasos(req.body.pi, req.body.procedure)
     res.status(200).json({succes: true, respuesta});
   }
