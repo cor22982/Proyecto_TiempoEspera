@@ -111,7 +111,7 @@ export async function getInstitutionByID(id){
 
 
 export async function getProcedureRequierements(id_procedure){
-  const result = await conn.query('SELECT d.name, d.description FROM proceduresdocuments pd JOIN procedures p on pd."id preocedure" = p.id JOIN documents d on pd."id documents" = d.id_document WHERE p.id = $1;', [id_procedure]);
+  const result = await conn.query('SELECT d.name, d.description, d.id_document FROM proceduresdocuments pd JOIN procedures p on pd."id preocedure" = p.id JOIN documents d on pd."id documents" = d.id_document WHERE p.id = $1;', [id_procedure]);
   return result.rows
 }
 
@@ -120,6 +120,10 @@ export async function getComments(id_institution){
   const result = await conn.query('select u.name, u.lastname, m.content, m.date, m.conversation_id from messages m join conversations c on m.conversation_id = c."id conversation" join users u on m.pi = u.pi where c.id_institution = $1 order by m.date desc;', [id_institution])
   return result.rows
   
+}
+export async function up_message_like(pi){
+  const result = await conn.query('CALL  increment_likes($1)', [pi]);
+  return result.rows
 }
 
 export async function createComment(username, content, conversation_id){
@@ -137,8 +141,8 @@ export async function insertNewRating(institution, rating, pi){
   const result = await conn.query('INSERT INTO user_rating (id_institution, rating, user_pi) VALUES ($1, $2, $3);', [institution, rating, pi]);
   return result.rows
 }
-export async function getUserRating(institution, rating, pi){
-  const result = await conn.query('SELECT user_pi, rating, id_institution FROM user_rating WHERE id_institution = $1 ORDER BY rating;', [institution]);
+export async function getMessagerating(likes){
+  const result = await conn.query('SELECT * FROM messages ORDER BY likes DESC;', [likes]);
   return result.rows
 }
 
@@ -164,8 +168,8 @@ export async function get_appointments(pi){
 
   return formattedRows;
 }
-export async function appointment_update(id, date, time,){
-  const result = await conn.query('UPDATE appointments SET time = $1, date = $2 WHERE pi = $3;', [date, time, id]);
+export async function appointment_update(pi, date, time,){
+  const result = await conn.query('UPDATE appointments SET time = $1, date = $2 WHERE id = $3;', [time, date, pi]);
   return result.rows
 }
 
@@ -323,5 +327,79 @@ export async function getIDSala(pi){
   return result.rows
 }
 
+export async function firstInsert(pi, procedure) {
+  const result = await conn.query(`
+    INSERT INTO user_pasos (pi_usuario, id_procedure)
+    VALUES ($1, $2)
+    ON CONFLICT (pi_usuario, id_procedure) DO NOTHING;
+  `, [pi, procedure]);
+  return result.rows;
+}
 
 
+export async function updatePasos(pi, procedure, nuevoPaso) {
+  try {
+    const result = await conn.query(`
+      UPDATE user_pasos
+      SET pasos_completados = array_append(pasos_completados, $3)
+      WHERE pi_usuario = $1 AND id_procedure = $2
+      RETURNING *;
+    `, [pi, procedure, nuevoPaso]);
+
+    if (result.rows.length === 0) {
+      throw new Error('No se encontró el usuario o el procedimiento.');
+    }
+
+    return result.rows;
+  } catch (error) {
+    console.error('Error al actualizar pasos:', error.message);
+    throw error; // Lanzar el error para que el llamado a la función pueda manejarlo
+  }
+}
+
+export async function firstInsertUserDocuments(pi, procedure, documentId) {
+  const result = await conn.query(`
+    INSERT INTO public.user_documents (pi_usuario, id_procedure, id_document)
+    VALUES ($1, $2, $3)
+    ON CONFLICT (pi_usuario, id_procedure, id_document) DO NOTHING;
+  `, [pi, procedure, documentId]);
+
+  return result.rows;
+}
+
+export async function getPasos(pi, procedure) {
+  try {
+    const result = await conn.query(`
+      SELECT pasos_completados
+      FROM user_pasos
+      WHERE pi_usuario = $1 AND id_procedure = $2;
+    `, [pi, procedure]);
+
+    if (result.rows.length === 0) {
+      throw new Error('No se encontraron pasos para el usuario o el procedimiento.');
+    }
+
+    return result.rows[0].pasos_completados; // Devolver solo los pasos completos
+  } catch (error) {
+    console.error('Error al obtener los pasos:', error.message);
+    throw error; // Lanzar el error para que el llamado a la función pueda manejarlo
+  }
+}
+export async function getUserDocuments(pi, procedure) {
+  try {
+    const result = await conn.query(`
+      SELECT id_document
+      FROM user_documents
+      WHERE pi_usuario = $1 AND id_procedure = $2;
+    `, [pi, procedure]);
+
+    if (result.rows.length === 0) {
+      throw new Error('No se encontraron documentos para el usuario o el procedimiento.');
+    }
+
+    return result.rows.map(row => row.id_document); // Devuelve un array de ids de documentos
+  } catch (error) {
+    console.error('Error al obtener los documentos del usuario:', error.message);
+    throw error; // Lanzar el error para que el llamado a la función pueda manejarlo
+  }
+}
