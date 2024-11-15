@@ -48,16 +48,21 @@ describe("TextMenuLink Component", () => {
   test("debería ignorar clics adicionales si `onClick` es lenta", async () => {
     const handleClick = vi.fn(
       () => new Promise((resolve) => setTimeout(resolve, 1000))
-    );
+    ); // simula onClick lento
     render(<TextMenuLink nombre="Inicio" onClick={handleClick} />);
 
     const container = screen.getByText("Inicio");
 
-    fireEvent.click(container); // primer clic
-    fireEvent.click(container); // segundo clic, debería ignorarse
+    // Primer clic
+    fireEvent.click(container);
 
-    expect(handleClick).toHaveBeenCalledTimes(1); // solo el primer clic cuenta
+    // Segundo clic mientras el primero está pendiente
+    fireEvent.click(container);
 
-    await new Promise((resolve) => setTimeout(resolve, 1200)); // esperar a que el clic lento termine
+    // Verificar que `onClick` solo haya sido llamado una vez
+    expect(handleClick).toHaveBeenCalledTimes(1);
+
+    // Esperar a que se complete la llamada lenta
+    await new Promise((resolve) => setTimeout(resolve, 1200));
   });
 });
