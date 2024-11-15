@@ -10,7 +10,7 @@ const Account = () => {
   const { token } = useToken();
   const [userData, setUserData] = useState(null);
   const [image, setImage] = useState(null);
-  const [datos, setDatos] = useState({ pi: "", data: "" });
+  const [datos, setDatos] = useState({ email: "", telefono: "" }); // Cambia para que tenga propiedades separadas
   const [isEditing, setIsEditing] = useState(false); // Modo de edición
   const [selectedImage, setSelectedImage] = useState(null); // Imagen seleccionada
   const { llamado } = useApi("https://deimoss.web05.lol/user_Update_info");
@@ -73,7 +73,11 @@ const Account = () => {
   };
 
   const UpdateInfo = async (ty) => {
-    const body = { pi: datos.pi, data: datos.data, type: ty };
+    const body = {
+      pi: datos.pi,
+      data: ty === "email" ? datos.email : datos.telefono,
+      type: ty,
+    };
     try {
       const resultado = await llamado(body, "PUT");
       Swal.fire("Éxito", "Información actualizada correctamente", "success");
@@ -93,7 +97,7 @@ const Account = () => {
     }
 
     try {
-      const base64Image = selectedImage.split(",")[1]; // Quitamos el encabezado "data:image/jpeg;base64," o similar
+      const base64Image = selectedImage.split(",")[1];
       const response = await fetch(
         "https://deimoss.web05.lol/user_Update_Image/",
         {
@@ -104,7 +108,7 @@ const Account = () => {
           body: JSON.stringify({
             dpi,
             pi: userData.pi,
-            image: base64Image, // Enviamos la imagen sin el encabezado
+            image: base64Image,
           }),
         }
       );
@@ -115,10 +119,10 @@ const Account = () => {
       if (response.ok) {
         setUserData((prevData) => ({
           ...prevData,
-          imagen_perfil: selectedImage, // Actualizamos la imagen en el estado
+          imagen_perfil: selectedImage,
         }));
-        setImage(selectedImage); // Actualiza la imagen principal
-        setIsEditing(false); // Salimos del modo edición
+        setImage(selectedImage);
+        setIsEditing(false);
         Swal.fire("Éxito", "Imagen actualizada correctamente", "success");
       } else {
         Swal.fire(
@@ -135,8 +139,8 @@ const Account = () => {
   };
 
   const cancelEdit = () => {
-    setSelectedImage(null); // Limpiamos la imagen seleccionada
-    setIsEditing(false); // Salimos del modo edición
+    setSelectedImage(null);
+    setIsEditing(false);
   };
 
   return (
@@ -212,8 +216,8 @@ const Account = () => {
             </p>
             <Label_Input
               label_name={userData.email || "-No hay email-"}
-              value={datos.data}
-              onChange={(value) => setValue("data", value)}
+              value={datos.email} // Cambiado a datos.email
+              onChange={(value) => setValue("email", value)}
               to_Send={() => {
                 UpdateInfo("email");
               }}
@@ -232,11 +236,11 @@ const Account = () => {
             </p>
             <Label_Input
               label_name={userData.telephone || "-No hay telefono-"}
-              value={datos.data}
+              value={datos.telefono} // Cambiado a datos.telefono
               on_open={() => {
-                setValue("data", "");
+                setValue("telefono", "");
               }}
-              onChange={(value) => setValue("data", value)}
+              onChange={(value) => setValue("telefono", value)}
               to_Send={() => {
                 UpdateInfo("telephone");
               }}
