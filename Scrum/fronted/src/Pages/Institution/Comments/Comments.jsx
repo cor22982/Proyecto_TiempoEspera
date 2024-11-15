@@ -1,6 +1,6 @@
 import TextArea from "@components/Inputs/TextArea";
 import styles from "./Comments.module.css";
-import Coment from "@components/Inputs/Coment";
+import Coment from "@components/Inputs/Coment/Coment";
 import useApi from "@hooks/api/useApi";
 import { useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
