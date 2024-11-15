@@ -212,7 +212,7 @@ const Account = () => {
             }}
           >
             <p>
-              <strong>Email:</strong>
+              <strong>Email: </strong>
             </p>
             <Label_Input
               label_name={userData.email || "-No hay email-"}
@@ -232,7 +232,7 @@ const Account = () => {
             }}
           >
             <p>
-              <strong>Telefono:</strong>
+              <strong>Teléfono: </strong>
             </p>
             <Label_Input
               label_name={userData.telephone || "-No hay telefono-"}
