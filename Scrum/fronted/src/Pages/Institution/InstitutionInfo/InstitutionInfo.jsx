@@ -92,13 +92,21 @@ const Tramite = ({ institucion }) => {
         <div className={styles.infoItem}>
           <div className={styles.infoTitulo}>Teléfono</div>
           <div className={styles.infoDato}>
-            <span className={styles.textBold}>{institucion.telefono}</span>
+            <span className={styles.textBold}>
+              {institucion.telefono && institucion.telefono.trim() !== ""
+                ? institucion.telefono
+                : "No disponible"}
+            </span>
           </div>
         </div>
         <div className={styles.infoItem}>
           <div className={styles.infoTitulo}>Horarios</div>
           <div className={styles.infoDato}>
-            <span className={styles.textBold}>{institucion.horario}</span>
+            <span className={styles.textBold}>
+              {institucion.horario.includes("null")
+                ? "Sin horario específico"
+                : institucion.horario}
+            </span>
           </div>
         </div>
       </div>
