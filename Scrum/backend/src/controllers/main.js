@@ -832,7 +832,7 @@ app.post('/insertDocument_User', async (req, res) =>{
   }
 });
 
-app.post('/getDocuments_user', async (req, res) =>{
+app.post('/getPasos_user', async (req, res) =>{
   try {
     const respuesta = await  getPasos(req.body.pi, req.body.procedure)
     res.status(200).json({succes: true, respuesta});
@@ -843,7 +843,7 @@ app.post('/getDocuments_user', async (req, res) =>{
   }
 });
 
-app.post('/getPasos_user', async (req, res) =>{
+app.post('/getDocuments_user', async (req, res) =>{
   try {
     const respuesta = await  getUserDocuments(req.body.pi, req.body.procedure)
     res.status(200).json({succes: true, respuesta});
