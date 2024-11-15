@@ -16,7 +16,7 @@ import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequiere
          deleteOTP, createNewOTP,create_new_relation, modifyUserPassword, getUsers, createNewProcedure, 
          getLastIDPrcedure, getProcedures, deleteAppointment, getInstitutionContactInfo, get_Relation_by_id,
          addMessage, getMessagesByConversationId, returnInfoAppointments, getMessagerating, appointment_update, getIDSala,
-         firstInsert, updatePasos, firstInsertUserDocuments, getPasos, getUserDocuments } from '../database/db.js';
+         firstInsert, updatePasos, firstInsertUserDocuments, getPasos, getUserDocuments, getUserRooms } from '../database/db.js';
 import { getUserLoginInfo, getAdminLoginInfo} from '../database/auth.js';
 import { generateToken, decodeToken, validateToken } from './jwt.js';
 
@@ -371,6 +371,16 @@ app.post('/create_new_relation', async (req, res) => {
     res.status(500).json({ message: 'Error: no se pudo crear la relación' });
   }
 });
+
+app.get('/userRooms/:pi', async(req, res) =>{
+  try {
+    res.status(200).json(await getUserRooms(req.params.pi))
+  }
+  catch(error){
+    console.error('ERROR :((')
+    res.status(500).json({ message: 'Error: no se pudo hallar la información' })
+  }
+})
 
 app.get('/contactInfo', async(req, res) =>{
   try {

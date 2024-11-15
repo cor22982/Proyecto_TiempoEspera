@@ -413,3 +413,8 @@ export async function getUserDocuments(pi, procedure) {
     throw error; // Lanzar el error para que el llamado a la función pueda manejarlo
   }
 }
+
+export async function getUserRooms(user_pi){
+  const result = await conn.query('select distinct id_salas from miembros salas where pi_colaborador = $1', [user_pi])
+  return result.rows
+}
