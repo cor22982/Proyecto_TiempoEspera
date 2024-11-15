@@ -3,7 +3,7 @@ import Principal from "@pages/Home/HomeSearch/HomeSearch";
 import useApi from "@hooks/api/useApi";
 import { useState, useEffect } from "react";
 import Informacion from "@pages/Institution/InstitutionRoutes";
-import SearchInput from "@components/Inputs/SearchInput";
+import SearchInput from "@components/Inputs/SearchInput/SearchInput";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const Page_Main = ({ pi }) => {
