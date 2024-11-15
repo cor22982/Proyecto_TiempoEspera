@@ -151,8 +151,8 @@ export async function create_new_appointment(date, time, procedure, pi){
   const result = await conn.query('CALL  create_appointment($1, $2, $3, $4)', [date, time, procedure, pi]);
   return result.rows
 }
-export async function create_new_relation(empleador, usuario){
-  const result = await conn.query('insert into relaciones (empleador, usuario) values ($1, $2);', [empleador, usuario]);
+export async function create_new_relation(usuario, id_sala){
+  const result = await conn.query('insert into miembros_salas (id_salas, pi_colaborador) values ($1, $2);', [id_sala, usuario]);
   return result.rowCount;
 }
 export async function get_appointments(pi){
@@ -322,3 +322,4 @@ export async function getIDSala(pi){
   const result = await conn.query('SELECT id from salas_empleadores where empleador = $1', [pi])
   return result.rows
 }
+
