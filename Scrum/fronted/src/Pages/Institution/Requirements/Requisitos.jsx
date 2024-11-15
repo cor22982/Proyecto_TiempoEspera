@@ -61,12 +61,10 @@ const Requisitos = ({ data, ira }) => {
 
 
   // FUNCIONES
-  const callFirstInsert = async () => {
-    
+  const callInsertDocumento = async (item) => {
     try {
-
-      console.log(pasos_vistos)
-      console.log(docs_vistos)
+      const body = { pi: dpi, procedure: id_procedure , document: item };
+      const response = await insertDocuments(body,"POST")
     } catch (error) {
       console.error("Error en firinsert:", error);
     }
@@ -76,6 +74,7 @@ const Requisitos = ({ data, ira }) => {
     ira(true)
     console.log(name)
   };
+  
   
 
   return (
@@ -87,17 +86,21 @@ const Requisitos = ({ data, ira }) => {
 
       <h4 className={styles.heading}>Documentos</h4>
       {requirements.map((req, index) => {
-        const isActive = docs_vistos.some((doc) => doc=== req.id_document);
-        return (
-          <Checkbox
-            key={index}
-            name={req.name}
-            type={true}
-            onsearch={handleCheckboxChange}
-            active={isActive}
-          />
-        );
-      })}
+  const isActive = docs_vistos.some((doc) => doc === req.id_document);
+  return (
+    <Checkbox
+      key={index}
+      name={req.name}
+      type={true}
+      onChange={callInsertDocumento} // Pasa la función para manejar cambios
+      onPress={(name) => console.log(`Pressed: ${name}`)} // Opcional: para manejar el estado del nombre
+      id={req.id_document}
+      onsearch={handleCheckboxChange}
+      active={isActive} // Define si está activo inicialmente
+    />
+  );
+})}
+
       
     </div>
   );
