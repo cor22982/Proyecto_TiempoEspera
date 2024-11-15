@@ -16,7 +16,7 @@ import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequiere
          deleteOTP, createNewOTP,create_new_relation, modifyUserPassword, getUsers, createNewProcedure, 
          getLastIDPrcedure, getProcedures, deleteAppointment, getInstitutionContactInfo, get_Relation_by_id,
          addMessage, getMessagesByConversationId, returnInfoAppointments, getMessagerating, appointment_update, getIDSala,
-         firstInsert, updatePasos, firstInsertUserDocuments, getPasos, getUserDocuments, getUserRooms, up_message_like } from '../database/db.js';
+         firstInsert, updatePasos, firstInsertUserDocuments, getPasos, getUserDocuments, getUserRooms, up_message_like, createNewMessageInRoom } from '../database/db.js';
 import { getUserLoginInfo, getAdminLoginInfo} from '../database/auth.js';
 import { generateToken, decodeToken, validateToken } from './jwt.js';
 
@@ -423,10 +423,11 @@ app.get('/get_message_rating', async (req, res) => {
 
 app.post('/messageRoom', async (req, res) =>{
   try{
-    
+    await createNewMessageInRoom(req.body.id, req.body.content, req.body.pi, req.body.image)
+    res.status(200).json({ message: 'Mensajecreado' });
   }
   catch(error){
-
+    res.status(500).json({message: 'Error al crear el mensaje :(' })
   }
 })
 
