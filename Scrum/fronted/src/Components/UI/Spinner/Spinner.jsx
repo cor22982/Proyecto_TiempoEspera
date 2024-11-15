@@ -1,13 +1,12 @@
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import './Spinner.css'
+import {CircularProgress } from "@mui/material";
 function Spinner() {
   return (
     <div className="loading-spinner">
-      <FontAwesomeIcon icon={faSpinner} className="spinner" />
+      <CircularProgress></CircularProgress>
     </div>
   )
-}
+} 
 
 export default Spinner
