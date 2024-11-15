@@ -1,4 +1,4 @@
-import PopUp from "@components/Modals/MessagePopUp";
+import PopUp from "@components/Modals/MessagePopUp/MessagePopUp";
 import styles from "./PopUpSave.module.css"; // Importa las clases CSS Modules
 
 function PopUpSave({

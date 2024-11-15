@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import PopUp from "@components/Modals/MessagePopUp";
+import PopUp from "@components/Modals/MessagePopUp/MessagePopUp";
 import Swal from "sweetalert2";
 import useApi from "@hooks/api/useApi";
 import { Button, TextField, CircularProgress } from "@mui/material";
