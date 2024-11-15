@@ -9,7 +9,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const Page_Main = ({ pi }) => {
   const { busqueda, setBusqueda } = useBusqueda();
-  
+
   const [pantalla, setPantalla] = useState(true);
   const { llamadowithoutbody } = useApi(
     `https://deimoss.web05.lol/institutions/${busqueda}`
@@ -67,7 +67,7 @@ const Page_Main = ({ pi }) => {
 
       setDatos(response);
       setSeeScren(true);
-      console.log("Nuevo estado de `datos` después de setDatos:", response);
+      // console.log("Nuevo estado de `datos` después de setDatos:", response);
     } catch (e) {
       console.log("Error en la solicitud:", e);
       setDatos([]);

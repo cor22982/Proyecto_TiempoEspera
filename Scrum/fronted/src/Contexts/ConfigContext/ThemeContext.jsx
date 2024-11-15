@@ -6,11 +6,11 @@ export const ThemeProvider = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const savedTheme = localStorage.getItem("isDarkMode");
     const initialMode = savedTheme ? JSON.parse(savedTheme) : false;
-    console.log(
-      `Inicializando ThemeContext. Modo en localStorage: ${savedTheme}, Modo inicial: ${
-        initialMode ? "Oscuro" : "Claro"
-      }`
-    );
+    // console.log(
+    //   `Inicializando ThemeContext. Modo en localStorage: ${savedTheme}, Modo inicial: ${
+    //     initialMode ? "Oscuro" : "Claro"
+    //   }`
+    // );
     return initialMode;
   });
 
@@ -25,9 +25,9 @@ export const ThemeProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    console.log(
-      `Aplicando modo de tema. Modo actual: ${isDarkMode ? "Oscuro" : "Claro"}`
-    );
+    // console.log(
+    //   `Aplicando modo de tema. Modo actual: ${isDarkMode ? "Oscuro" : "Claro"}`
+    // );
     if (isDarkMode) {
       document.body.classList.add("darkMode");
     } else {

@@ -52,8 +52,8 @@ const Comentarios = ({ data }) => {
         return;
       }
 
-      const responseData = await response.json();
-      console.log("Comentario enviado:", responseData);
+      // const responseData = await response.json();
+      // console.log("Comentario enviado:", responseData);
 
       setContenido("");
       setComents(await llamadowithoutbody("GET"));
