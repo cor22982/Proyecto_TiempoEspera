@@ -15,7 +15,7 @@ import TextInputIcon from "@components/Inputs/TextInput/TextInputIcon";
 import useFormLogin from "@hooks/forms/useFormLogin";
 import styles from "./LogIn.module.css";
 
-const Login = ({ onToggle, onLogin }) => {
+const Login = ({ onToggle, onLogin, onForgotPassword }) => {
   const [formState, setFormState] = useState({
     pi: "",
     type_user: "",
@@ -140,6 +140,23 @@ const Login = ({ onToggle, onLogin }) => {
             >
               Registrate aquí
             </div>
+            
+          </div>
+          <div className={styles.loginRegisterContainer}>
+            <div className={styles.textInfoRegisterContainer}>
+              ¿Perdiste tu contraseña?
+            </div>
+            <div
+              className={styles.textRegisterContainer}
+              onClick={onForgotPassword}
+              style={{
+                cursor: "pointer",
+                textDecoration: "underline",
+              }}
+            >
+             Olvide la contraseña
+            </div>
+            
           </div>
 
           <div className={styles.loginButtonContainer}>
