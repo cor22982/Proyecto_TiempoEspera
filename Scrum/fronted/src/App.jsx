@@ -1,8 +1,6 @@
-// app.jsx
-
 import React, { useEffect, useState, useContext } from "react";
 import "./App.css";
-import Logo from "@components/UI/AnimatedLogo";
+import Logo from "@components/UI/AnimatedLogo/AnimatedLogo";
 import { TokenProvider } from "@hooks/auth/useToken";
 import Indice from "@pages/AppRouter";
 import OneSignal from "react-onesignal";

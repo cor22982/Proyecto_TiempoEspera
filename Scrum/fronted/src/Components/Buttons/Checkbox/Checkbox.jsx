@@ -8,7 +8,11 @@ const Checkbox = ({ name, id, onChange, type, onsearch }) => {
 
   const handleClick = () => {
     setPressed(!pressed);
-    onChange(id); // Pass the institution ID to the onChange function
+    if (typeof onChange === "function") {
+      onChange(id); // Solo ejecuta si es una función
+    } else {
+      console.error("onChange no es una función válida");
+    }
   };
 
   return (
@@ -23,7 +27,12 @@ const Checkbox = ({ name, id, onChange, type, onsearch }) => {
 
       {/* Mostrar el icono solo si 'type' existe */}
       {type && (
-        <div style={{cursor: 'pointer'}} onClick={() => {onsearch(name)}}>
+        <div
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            onsearch(name);
+          }}
+        >
           <FontAwesomeIcon icon={faSearch} />
         </div>
       )}

@@ -1,6 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styles from "./Image.module.css";
+import ImageDefault from "@assets/default_banner_institution.jpg";
 
 const ImageComponent = ({ src, alt, onClick }) => {
   const handleClick = () => {
@@ -11,15 +11,9 @@ const ImageComponent = ({ src, alt, onClick }) => {
 
   return (
     <div className={styles.imageContainer} onClick={handleClick}>
-      <img src={src} alt={alt} className={styles.image} />
+      <img src={src || ImageDefault} alt={alt} className={styles.image} />
     </div>
   );
-};
-
-ImageComponent.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  src: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
 };
 
 export default ImageComponent;
