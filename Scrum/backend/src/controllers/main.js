@@ -357,6 +357,7 @@ app.post('/create_new_relation', async (req, res) => {
   try {
     const { empleador, usuario } = req.body;
     const id_sala = await getIDSala(empleador)
+    console.log(id_sala)
     const addition = await create_new_relation(usuario, id_sala);
 
     res.status(201).json({ message: 'Relación creada', data: addition });
