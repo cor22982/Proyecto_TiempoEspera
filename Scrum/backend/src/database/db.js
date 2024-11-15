@@ -418,3 +418,8 @@ export async function getUserRooms(user_pi){
   const result = await conn.query('SELECT distinct id_salas FROM miembros_salas WHERE pi_colaborador = $1', [user_pi])
   return result.rows
 }
+
+export async function createNewMessageInRoom(id_sala, content, user_pi, image){
+  const result = await conn.query('insert into mensages_salas (id_sala, content, user_pi, image_url) values ($1, $2, $3, $4)', [id_sala, content, user_pi, image])
+  return result.rows
+}

@@ -421,6 +421,15 @@ app.get('/get_message_rating', async (req, res) => {
   }
 });
 
+app.post('/messageRoom', async (req, res) =>{
+  try{
+    
+  }
+  catch(error){
+
+  }
+})
+
 
 
 app.post('/passwordRequest', async (req, res) =>{
