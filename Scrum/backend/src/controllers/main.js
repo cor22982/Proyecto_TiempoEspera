@@ -548,33 +548,48 @@ app.get('/userAppointments/:pi', async (req, res) =>{
   }
 });
 
-app.post('/confirmPasswordChange', async (req, res) =>{
+app.post('/confirmPasswordChange', async (req, res) => {
   try {
-    const otpData = await getOTPData(req.body.pi)
-    console.log(otpData)
-    console.log(otpData[0].exp_date)
+    const otpData = await getOTPData(req.body.pi);  // Obtén los datos del OTP
+    console.log(otpData);
 
-    if (!otpData){
-      res.status(404).send({'succes': false, 'message': 'No tienes un código de verificación'})
+    // Busca el OTP en el array para obtener el correcto
+    const otp = otpData.find(item => item.otp === req.body.otp);
+
+    if (!otp) {
+      return res.status(404).send({ 'success': false, 'message': 'No tienes un código de verificación válido' });
     }
-    if(new Date(otpData[0].exp_date).getTime() < Date.now()){
-      res.status(404).send({'succes': false, 'message': 'Tu código de verificación ha expirado'})
+
+    // Verificar si el código ha expirado
+    const currentDate = new Date();
+    const timezoneOffset = currentDate.getTimezoneOffset();
+    currentDate.setMinutes(currentDate.getMinutes() - timezoneOffset);  // Ajusta la hora para la zona horaria local
+
+    if (new Date(otp.exp_date).getTime() < currentDate.getTime()) {
+      return res.status(404).send({ 'success': false, 'message': 'Tu código de verificación ha expirado' });
     }
-    if(req.body.otp != otpData[0].otp){
-      res.status(404).send({'succes': false, 'message': 'Tu código de verificación es incorrecto'})
+
+    // Verificar si el OTP es correcto
+    if (req.body.otp !== otp.otp) {
+      return res.status(404).send({ 'success': false, 'message': 'Tu código de verificación es incorrecto' });
     }
+
+    // Modificar la contraseña
     await modifyUserPassword(md5(req.body.password), req.body.pi);
+    
+    // Eliminar el OTP
     const deleteResult = await deleteOTP(req.body.otp, req.body.pi);
     if (deleteResult === 0) {
-      console.warn('No OTP record was deleted');
-    } 
-    res.status(200).send({'succes': true, 'message': 'Tu contraseña fue modificada'})
-  }
-  catch(error){
+      console.warn('No se eliminó el registro del OTP');
+    }
+
+    res.status(200).send({ 'success': true, 'message': 'Tu contraseña fue modificada' });
+  } catch (error) {
     console.error('Error al confirmar la contraseña :(', error);
-    res.status(500).json({'succes': false})
+    res.status(500).json({ 'success': false });
   }
 });
+
 
 app.get('/userInfo/:pi', async(req, res)=>{
   try{
