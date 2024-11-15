@@ -1,5 +1,5 @@
 import styles from "./InstitutionRoutes.module.css";
-import MenuOption from "@components/Navs/TextMenuLink";
+import MenuOption from "@components/Navs/TextMenuLink/TextMenuLink";
 import Dashboard from "@pages/Institution/InstitutionInfo/InstitutionDataProvider";
 import Comentarios from "@pages/Institution/Comments/Comments";
 import Requisitos from "@pages/Institution/Requirements/Requisitos";
