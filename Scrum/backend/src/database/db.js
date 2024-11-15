@@ -327,3 +327,42 @@ export async function getIDSala(pi){
   return result.rows
 }
 
+export async function firstInsert(pi, procedure) {
+  const result = await conn.query(`
+    INSERT INTO user_pasos (pi_usuario, id_procedure)
+    VALUES ($1, $2)
+    ON CONFLICT (pi_usuario, id_procedure) DO NOTHING;
+  `, [pi, procedure]);
+  return result.rows;
+}
+
+
+export async function updatePasos(pi, procedure, nuevoPaso) {
+  try {
+    const result = await conn.query(`
+      UPDATE user_pasos
+      SET pasos_completados = array_append(pasos_completados, $3)
+      WHERE pi_usuario = $1 AND id_procedure = $2
+      RETURNING *;
+    `, [pi, procedure, nuevoPaso]);
+
+    if (result.rows.length === 0) {
+      throw new Error('No se encontró el usuario o el procedimiento.');
+    }
+
+    return result.rows;
+  } catch (error) {
+    console.error('Error al actualizar pasos:', error.message);
+    throw error; // Lanzar el error para que el llamado a la función pueda manejarlo
+  }
+}
+
+export async function firstInsertUserDocuments(pi, procedure, documentId) {
+  const result = await conn.query(`
+    INSERT INTO public.user_documents (pi_usuario, id_procedure, id_document)
+    VALUES ($1, $2, $3)
+    ON CONFLICT (pi_usuario, id_procedure, id_document) DO NOTHING;
+  `, [pi, procedure, documentId]);
+
+  return result.rows;
+}
