@@ -108,7 +108,7 @@ pi = s.empleador join users us on us.pi = m.pi_colaborador where u.pi = $1;
   select pi, name, encode(perfi_image, 'base64'), email from users join relaciones on relaciones.usuario = pi where relaciones.empleador =$1;
   
   */
-  const result = await conn.query(`select us.pi, us.name, encode(us.perfil_image, 'base64'), us.email from salas_empleadores s join miembros_salas m on s.id = m.id_salas join users u on u.
+  const result = await conn.query(`select us.pi, us.name, encode(us.perfi_image, 'base64'), us.email from salas_empleadores s join miembros_salas m on s.id = m.id_salas join users u on u.
 pi = s.empleador join users us on us.pi = m.pi_colaborador where u.pi = $1;`, [pi])
   return result.rows
 }
