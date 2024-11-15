@@ -15,8 +15,9 @@ import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequiere
          deleteInstitution, addInstitution, UpdatePassw, UpdateName_Apellido,getUserEmail, getOTPData, 
          deleteOTP, createNewOTP,create_new_relation, modifyUserPassword, getUsers, createNewProcedure, 
          getLastIDPrcedure, getProcedures, deleteAppointment, getInstitutionContactInfo, get_Relation_by_id,
-         addMessage, getMessagesByConversationId} from '../database/db.js';
-import { getUserLoginInfo, getAdminLoginInfo } from '../database/auth.js';
+         addMessage, getMessagesByConversationId, returnInfoAppointments, getMessagerating, appointment_update, getIDSala,
+         firstInsert, updatePasos, firstInsertUserDocuments, getPasos, getUserDocuments, getUserRooms, up_message_like, createNewMessageInRoom } from '../database/db.js';
+import { getUserLoginInfo, getAdminLoginInfo} from '../database/auth.js';
 import { generateToken, decodeToken, validateToken } from './jwt.js';
 
 dotenv.config({ path: '../../../../.env' });
@@ -249,6 +250,17 @@ app.post('/login', async (req, res) => {
     if (!isPassword(userLoginInfo.password, req.body.password)) {
       return res.status(401).json({ success: false, message: 'Contraseña incorrecta' });
     }
+    let result = await getUserEmail(req.body.pi)
+    if (result[0].email){
+      const mail_options = {
+        from: 'deimosgt502@gmail.com',       
+        to: result[0].email,          
+        subject: 'Nuevo inicio de sesión',    
+        text: 'Has hecho un nuevo inicio de sesión',  
+        html: `<h1>Nuevo inicio de sesión</p>` 
+      }
+      await transporter.sendMail(mail_options)
+    }
     res.status(200).json({ success: true, message: 'Inicio de sesión exitoso', acces_token: generateToken({ dpi: req.body.pi, rol: req.body.rol }) });
   } catch (error) {
     console.error('Error en el inicio de sesión:', error);
@@ -331,11 +343,27 @@ app.post('/comment', async (req, res) => {
     res.status(500).send('Error del servidor :(');
   }
 });
+app.post('/up_message_like', async (req, res) => {
+  try {
+    const { pi } = req.body;
+    if (!pi) {
+      return res.status(400).json({ message: 'El campo `pi` es requerido' });
+    }
+
+    const result = await up_message_like(pi);
+    res.status(200).json({ success: true, data: result });
+  } catch (error) {
+    console.error('Error en /up_message_like:', error);
+    res.status(500).json({ message: 'Ocurrió un error en el servidor' });
+  }
+});
 app.post('/create_new_relation', async (req, res) => {
   console.log("body", req.body);
   try {
     const { empleador, usuario } = req.body;
-    const addition = await create_new_relation(empleador, usuario );
+    const id_sala = await getIDSala(empleador)
+    console.log(id_sala[0].id)
+    const addition = await create_new_relation(usuario, id_sala[0].id);
 
     res.status(201).json({ message: 'Relación creada', data: addition });
   } catch (error) {
@@ -343,6 +371,16 @@ app.post('/create_new_relation', async (req, res) => {
     res.status(500).json({ message: 'Error: no se pudo crear la relación' });
   }
 });
+
+app.get('/userRooms/:pi', async(req, res) =>{
+  try {
+    res.status(200).json(await getUserRooms(req.params.pi))
+  }
+  catch(error){
+    console.error('ERROR :((')
+    res.status(500).json({ message: 'Error: no se pudo hallar la información' })
+  }
+})
 
 app.get('/contactInfo', async(req, res) =>{
   try {
@@ -374,6 +412,26 @@ app.get('/rating/:id_institution', async (req, res) => {
   }
 });
 
+app.get('/get_message_rating', async (req, res) => {
+  try {
+    const result = await getMessagerating();
+    res.status(200).json({ success: true, data: result});
+  } catch (error) {
+    res.status(500).json({ message: "error al buscar  ratings" });
+  }
+});
+
+app.post('/messageRoom', async (req, res) =>{
+  try{
+    await createNewMessageInRoom(req.body.id, req.body.content, req.body.pi, req.body.image)
+    res.status(200).json({ message: 'Mensajecreado' });
+  }
+  catch(error){
+    console.error("Error al crear mensaje: ", error)
+    res.status(500).json({message: 'Error al crear el mensaje :(' })
+  }
+})
+
 
 
 app.post('/passwordRequest', async (req, res) =>{
@@ -389,6 +447,9 @@ app.post('/passwordRequest', async (req, res) =>{
     }
 
     const currentDate = new Date();  // Get the current date and time
+    const timezoneOffset = currentDate.getTimezoneOffset();
+    currentDate.setMinutes(currentDate.getMinutes() - timezoneOffset);
+    console.log("Fecha actual",currentDate)
     currentDate.setMinutes(currentDate.getMinutes() + 10);
 
     await transporter.sendMail(mail_options)
@@ -524,33 +585,48 @@ app.get('/userAppointments/:pi', async (req, res) =>{
   }
 });
 
-app.post('/confirmPasswordChange', async (req, res) =>{
+app.post('/confirmPasswordChange', async (req, res) => {
   try {
-    const otpData = await getOTPData(req.body.pi)
-    console.log(otpData)
-    console.log(otpData[0].exp_date)
+    const otpData = await getOTPData(req.body.pi);  // Obtén los datos del OTP
+    console.log(otpData);
 
-    if (!otpData){
-      res.status(404).send({'succes': false, 'message': 'No tienes un código de verificación'})
+    // Busca el OTP en el array para obtener el correcto
+    const otp = otpData.find(item => item.otp === req.body.otp);
+
+    if (!otp) {
+      return res.status(404).send({ 'success': false, 'message': 'No tienes un código de verificación válido' });
     }
-    if(new Date(otpData[0].exp_date).getTime() < Date.now()){
-      res.status(404).send({'succes': false, 'message': 'Tu código de verificación ha expirado'})
+
+    // Verificar si el código ha expirado
+    const currentDate = new Date();
+    const timezoneOffset = currentDate.getTimezoneOffset();
+    currentDate.setMinutes(currentDate.getMinutes() - timezoneOffset);  // Ajusta la hora para la zona horaria local
+
+    if (new Date(otp.exp_date).getTime() < currentDate.getTime()) {
+      return res.status(404).send({ 'success': false, 'message': 'Tu código de verificación ha expirado' });
     }
-    if(req.body.otp != otpData[0].otp){
-      res.status(404).send({'succes': false, 'message': 'Tu código de verificación es incorrecto'})
+
+    // Verificar si el OTP es correcto
+    if (req.body.otp !== otp.otp) {
+      return res.status(404).send({ 'success': false, 'message': 'Tu código de verificación es incorrecto' });
     }
+
+    // Modificar la contraseña
     await modifyUserPassword(md5(req.body.password), req.body.pi);
+    
+    // Eliminar el OTP
     const deleteResult = await deleteOTP(req.body.otp, req.body.pi);
     if (deleteResult === 0) {
-      console.warn('No OTP record was deleted');
-    } 
-    res.status(200).send({'succes': true, 'message': 'Tu contraseña fue modificada'})
-  }
-  catch(error){
+      console.warn('No se eliminó el registro del OTP');
+    }
+
+    res.status(200).send({ 'success': true, 'message': 'Tu contraseña fue modificada' });
+  } catch (error) {
     console.error('Error al confirmar la contraseña :(', error);
-    res.status(500).json({'succes': false})
+    res.status(500).json({ 'success': false });
   }
 });
+
 
 app.get('/userInfo/:pi', async(req, res)=>{
   try{
@@ -612,6 +688,24 @@ app.put('/user_Update_info', async(req, res)=>{
     res.status(500).send('ERROR :(')
   }
 });
+
+app.put('/appointment_update', async (req, res) => {
+  try {
+    const { pi, date, time } = req.body;
+    const result = await appointment_update(pi, date, time);
+    if (result.length > 0) {
+      console.log("Se actualizó la información de la cita");
+      res.status(200).json({ message: "Cita actualizada correctamente" });
+    } else {
+      console.log("No se encontró una cita con ese ID");
+      res.status(404).json({ message: "Cita no encontrada" });
+    }
+  } catch (error) {
+    console.log('Error al actualizar la cita :(', error);
+    res.status(500).send('ERROR :(');
+  }
+});
+
 app.put ('/user_Update_passw',validateRequest, async(req, res)=>{
   try {
     const result = await UpdatePassw(req.body.pi ,req.body.passw);
@@ -621,6 +715,7 @@ app.put ('/user_Update_passw',validateRequest, async(req, res)=>{
     res.status(500).send('ERROR :(')
   }
 });
+
 
 app.delete('/user/:pi', async(req, res) =>{
   try {
@@ -721,6 +816,71 @@ app.get('/all_procedures', async (req, res) => {
   }
 });
 
+app.get('/all_appointments', async (req, res) => {
+  try {
+    res.status(200).json(await returnInfoAppointments());
+  }
+  catch(error){
+    console.error('Error en la búsqueda de reservas:', error);
+    res.status(500).send('Error del servidor :(');
+  }
+});
+
+
+app.post('/firstinsertpasos', async (req, res) =>{
+  try {
+    await firstInsert(req.body.pi, req.body.procedure)
+    res.status(200).json({succes: true});
+  }
+  catch(error){
+    console.error('Error al insertar primero el paso: ', error);
+    res.status(500).json({succes: false });
+  }
+});
+
+app.post('/updatePaso', async (req, res) =>{
+  try {
+    await updatePasos(req.body.pi, req.body.procedure, req.body.paso)
+    res.status(200).json({succes: true});
+  }
+  catch(error){
+    console.error('Error al insertar primero el paso: ', error);
+    res.status(500).json({succes: false });
+  }
+});
+app.post('/insertDocument_User', async (req, res) =>{
+  try {
+    await firstInsertUserDocuments(req.body.pi, req.body.procedure, req.body.document)
+    res.status(200).json({succes: true});
+  }
+  catch(error){
+    console.error('Error al insertar primero el paso: ', error);
+    res.status(500).json({succes: false });
+  }
+});
+
+app.post('/getPasos_user', async (req, res) =>{
+  try {
+    await firstInsert(req.body.pi, req.body.procedure)
+    const respuesta = await  getPasos(req.body.pi, req.body.procedure)
+    res.status(200).json({succes: true, respuesta});
+  }
+  catch(error){
+    console.error('Error al obtener pasos: ', error);
+    res.status(500).json({succes: false });
+  }
+});
+
+app.post('/getDocuments_user', async (req, res) =>{
+  try {
+    const respuesta = await  getUserDocuments(req.body.pi, req.body.procedure)
+    res.status(200).json({succes: true, respuesta});
+  }
+  catch(error){
+    console.error('Error al obtener documentos: ', error);
+    res.status(500).json({succes: false });
+  }
+});
 app.use((req, res) => {
   res.status(501).json({ error: 'Método no implementado' });
 });

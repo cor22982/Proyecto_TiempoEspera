@@ -108,7 +108,17 @@ export async function get_Relation_by_id_raw(pi) {
   const result = await conn.query('SELECT empleador, string_agg(usuario, ) FROM the_table where empleador = $1 GROUP BY id')
 }
 export async function get_Relation_by_id(pi) {
-  const result = await conn.query(`select pi, name, encode(perfi_image, 'base64'), email from users join relaciones on relaciones.usuario = pi where relaciones.empleador =$1;`, [pi])
+
+  /*
+  select us.pi, us.name, encode(us.perfil_image, 'base64'), us.email from salas_empleadores s join miembros_salas m on s.id = m.id_salas join users u on u.
+pi = s.empleador join users us on us.pi = m.pi_colaborador where u.pi = $1;
+  */
+  /*
+  select pi, name, encode(perfi_image, 'base64'), email from users join relaciones on relaciones.usuario = pi where relaciones.empleador =$1;
+  
+  */
+  const result = await conn.query(`select us.pi, us.name, encode(us.perfi_image, 'base64'), us.email from salas_empleadores s join miembros_salas m on s.id = m.id_salas join users u on u.
+pi = s.empleador join users us on us.pi = m.pi_colaborador where u.pi = $1;`, [pi])
   return result.rows
 }
 
@@ -120,7 +130,7 @@ export async function getInstitutionByID(id){
 
 
 export async function getProcedureRequierements(id_procedure){
-  const result = await conn.query('SELECT d.name, d.description FROM proceduresdocuments pd JOIN procedures p on pd."id preocedure" = p.id JOIN documents d on pd."id documents" = d.id_document WHERE p.id = $1;', [id_procedure]);
+  const result = await conn.query('SELECT d.name, d.description, d.id_document FROM proceduresdocuments pd JOIN procedures p on pd."id preocedure" = p.id JOIN documents d on pd."id documents" = d.id_document WHERE p.id = $1;', [id_procedure]);
   return result.rows
 }
 
@@ -129,6 +139,10 @@ export async function getComments(id_institution){
   const result = await conn.query('select u.name, u.lastname, m.content, m.date, m.conversation_id from messages m join conversations c on m.conversation_id = c."id conversation" join users u on m.pi = u.pi where c.id_institution = $1 order by m.date desc;', [id_institution])
   return result.rows
   
+}
+export async function up_message_like(pi){
+  const result = await conn.query('SELECT increment_likes($1);', [pi]);
+  return result.rows
 }
 
 export async function createComment(username, content, conversation_id){
@@ -146,6 +160,10 @@ export async function insertNewRating(institution, rating, pi){
   const result = await conn.query('INSERT INTO user_rating (id_institution, rating, user_pi) VALUES ($1, $2, $3);', [institution, rating, pi]);
   return result.rows
 }
+export async function getMessagerating(){
+  const result = await conn.query('SELECT * FROM messages ORDER BY likes DESC;');
+  return result.rows
+}
 
 export async function getRating(id_institution){
   const result = await conn.query('SELECT rating FROM intitutions WHERE id_institutions = $1;', [id_institution]);
@@ -156,8 +174,8 @@ export async function create_new_appointment(date, time, procedure, pi){
   const result = await conn.query('CALL  create_appointment($1, $2, $3, $4)', [date, time, procedure, pi]);
   return result.rows
 }
-export async function create_new_relation(empleador, usuario){
-  const result = await conn.query('insert into relaciones (empleador, usuario) values ($1, $2);', [empleador, usuario]);
+export async function create_new_relation(usuario, id_sala){
+  const result = await conn.query('insert into miembros_salas (id_salas, pi_colaborador) values ($1, $2);', [id_sala, usuario]);
   return result.rowCount;
 }
 export async function get_appointments(pi){
@@ -168,6 +186,10 @@ export async function get_appointments(pi){
   }));
 
   return formattedRows;
+}
+export async function appointment_update(pi, date, time,){
+  const result = await conn.query('UPDATE appointments SET time = $1, date = $2 WHERE id = $3;', [time, date, pi]);
+  return result.rows
 }
 
 export async function getprocedure_id(id_procedure, institution) {
@@ -298,5 +320,115 @@ export async function getProcedures(){
 
 export async function getInstitutionContactInfo(){
   const result = await conn.query('SELECT id_institutions, name, telefono, imagen from intitutions;')
+  return result.rows
+}
+
+
+export async function returnInfoAppointments(){
+  const result = await conn.query(`
+    SELECT i.name AS institution_name,
+       i.imagen as institution_imagen,
+       i.id_institutions as institution_id,
+       p.name AS procedure_name,
+       a.date AS appointment_date,
+       a.time AS appointment_time
+    FROM appointments a
+    JOIN institutionsprocedures ip ON a."id institution procedure" = ip."id institution procedure"
+    JOIN intitutions i ON ip."id intitution" = i.id_institutions
+    JOIN procedures p ON ip."id procedure" = p.id
+    ORDER BY i.name, p.name, a.date, a.time;
+    `)
+  return result.rows
+}
+
+export async function getIDSala(pi){
+  const result = await conn.query('SELECT id from salas_empleadores where empleador = $1', [pi])
+  return result.rows
+}
+
+export async function firstInsert(pi, procedure) {
+  const result = await conn.query(`
+    INSERT INTO user_pasos (pi_usuario, id_procedure)
+    VALUES ($1, $2)
+    ON CONFLICT (pi_usuario, id_procedure) DO NOTHING;
+  `, [pi, procedure]);
+  return result.rows;
+}
+
+
+export async function updatePasos(pi, procedure, nuevoPaso) {
+  try {
+    const result = await conn.query(`
+      UPDATE user_pasos
+      SET pasos_completados = array_append(pasos_completados, $3)
+      WHERE pi_usuario = $1 AND id_procedure = $2
+      RETURNING *;
+    `, [pi, procedure, nuevoPaso]);
+
+    if (result.rows.length === 0) {
+      throw new Error('No se encontró el usuario o el procedimiento.');
+    }
+
+    return result.rows;
+  } catch (error) {
+    console.error('Error al actualizar pasos:', error.message);
+    throw error; // Lanzar el error para que el llamado a la función pueda manejarlo
+  }
+}
+
+export async function firstInsertUserDocuments(pi, procedure, documentId) {
+  const result = await conn.query(`
+    INSERT INTO public.user_documents (pi_usuario, id_procedure, id_document)
+    VALUES ($1, $2, $3)
+    ON CONFLICT (pi_usuario, id_procedure, id_document) DO NOTHING;
+  `, [pi, procedure, documentId]);
+
+  return result.rows;
+}
+
+export async function getPasos(pi, procedure) {
+  try {
+    const result = await conn.query(`
+      SELECT pasos_completados
+      FROM user_pasos
+      WHERE pi_usuario = $1 AND id_procedure = $2;
+    `, [pi, procedure]);
+
+    if (result.rows.length === 0) {
+      throw new Error('No se encontraron pasos para el usuario o el procedimiento.');
+    }
+
+    return result.rows[0].pasos_completados; // Devolver solo los pasos completos
+  } catch (error) {
+    console.error('Error al obtener los pasos:', error.message);
+    throw error; // Lanzar el error para que el llamado a la función pueda manejarlo
+  }
+}
+export async function getUserDocuments(pi, procedure) {
+  try {
+    const result = await conn.query(`
+      SELECT id_document
+      FROM user_documents
+      WHERE pi_usuario = $1 AND id_procedure = $2;
+    `, [pi, procedure]);
+
+    if (result.rows.length === 0) {
+      throw new Error('No se encontraron documentos para el usuario o el procedimiento.');
+    }
+
+    return result.rows.map(row => row.id_document); // Devuelve un array de ids de documentos
+  } catch (error) {
+    console.error('Error al obtener los documentos del usuario:', error.message);
+    throw error; // Lanzar el error para que el llamado a la función pueda manejarlo
+  }
+}
+
+export async function getUserRooms(user_pi){
+  const result = await conn.query('SELECT distinct id_salas FROM miembros_salas WHERE pi_colaborador = $1', [user_pi])
+  return result.rows
+}
+
+export async function createNewMessageInRoom(id_sala, content, user_pi, image){
+  const result = await conn.query('insert into mensages_salas (id_sala, content, user_pi, image_url) values ($1, $2, $3, $4)', [id_sala, content, user_pi, image])
   return result.rows
 }
