@@ -151,8 +151,8 @@ export async function insertNewRating(institution, rating, pi){
   const result = await conn.query('INSERT INTO user_rating (id_institution, rating, user_pi) VALUES ($1, $2, $3);', [institution, rating, pi]);
   return result.rows
 }
-export async function getMessagerating(likes){
-  const result = await conn.query('SELECT * FROM messages ORDER BY likes DESC;', [likes]);
+export async function getMessagerating(){
+  const result = await conn.query('SELECT * FROM messages ORDER BY likes DESC;');
   return result.rows
 }
 
