@@ -410,6 +410,8 @@ app.post('/passwordRequest', async (req, res) =>{
     }
 
     const currentDate = new Date();  // Get the current date and time
+    const timezoneOffset = currentDate.getTimezoneOffset();
+    currentDate.setMinutes(currentDate.getMinutes() - timezoneOffset);
     console.log("Fecha actual",currentDate)
     currentDate.setMinutes(currentDate.getMinutes() + 10);
 
