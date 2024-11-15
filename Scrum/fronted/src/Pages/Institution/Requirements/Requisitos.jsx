@@ -2,12 +2,14 @@ import useApi from "@hooks/api/useApi";
 import Checkbox from "@components/Buttons/Checkbox/Checkbox";
 import { useEffect, useState } from "react";
 import styles from "./Requisitos.module.css";
+import useBusqueda from "@hooks/busqueda/useBusqueda";
 
 const Requisitos = ({ data }) => {
   const { id_procedure } = data;
   const { llamadowithoutbody } = useApi(
     `https://deimoss.web05.lol/requirements/${id_procedure}`
   );
+  const { busqueda, setBusqueda } = useBusqueda();  
   const [requirements, setRequirements] = useState([]);
   const [pasos, setPasos] = useState([]);
 
@@ -21,6 +23,13 @@ const Requisitos = ({ data }) => {
     fetchData();
   }, [llamadowithoutbody]);
 
+
+  const handleCheckboxChange = (name) => {
+    setBusqueda(name); // Establecer el nombre del documento como la búsqueda
+    console.log(name)
+  };
+  
+
   return (
     <div className={styles.container}>
       <h4 className={styles.heading}>Pasos</h4>
@@ -30,7 +39,11 @@ const Requisitos = ({ data }) => {
 
       <h4 className={styles.heading}>Documentos</h4>
       {requirements.map((req, index) => (
-        <Checkbox key={index} name={req.name + " (" + req.description + ")"} />
+        <Checkbox 
+          key={index} 
+          name={req.name + " (" + req.description + ")"} 
+          type= {true}
+          onsearch={handleCheckboxChange}/>
       ))}
     </div>
   );

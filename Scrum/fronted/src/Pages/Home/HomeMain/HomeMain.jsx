@@ -1,13 +1,15 @@
 import styles from "./HomeMain.module.css"; // Importar como CSS Modules
 import Principal from "@pages/Home/HomeSearch/HomeSearch";
 import useApi from "@hooks/api/useApi";
+import useBusqueda from "@hooks/busqueda/useBusqueda";
 import { useState, useEffect } from "react";
 import Informacion from "@pages/Institution/InstitutionRoutes";
 import SearchInput from "@components/Inputs/SearchInput/SearchInput";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const Page_Main = ({ pi }) => {
-  const [busqueda, setBusqueda] = useState("");
+  const { busqueda, setBusqueda } = useBusqueda();
+  
   const [pantalla, setPantalla] = useState(true);
   const { llamadowithoutbody } = useApi(
     `https://deimoss.web05.lol/institutions/${busqueda}`

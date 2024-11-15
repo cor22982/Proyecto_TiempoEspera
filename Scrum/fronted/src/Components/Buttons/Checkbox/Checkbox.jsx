@@ -1,7 +1,9 @@
 import styles from "./Checkbox.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-const Checkbox = ({ name, id, onChange }) => {
+const Checkbox = ({ name, id, onChange, type, onsearch }) => {
   const [pressed, setPressed] = useState(false);
 
   const handleClick = () => {
@@ -18,6 +20,13 @@ const Checkbox = ({ name, id, onChange }) => {
         onClick={handleClick}
       ></button>
       <p className={styles["titulo-checkbox"]}>{name}</p>
+
+      {/* Mostrar el icono solo si 'type' existe */}
+      {type && (
+        <div style={{cursor: 'pointer'}} onClick={() => {onsearch(name)}}>
+          <FontAwesomeIcon icon={faSearch} />
+        </div>
+      )}
     </div>
   );
 };
