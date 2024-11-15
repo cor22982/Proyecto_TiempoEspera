@@ -415,6 +415,6 @@ export async function getUserDocuments(pi, procedure) {
 }
 
 export async function getUserRooms(user_pi){
-  const result = await conn.query('select distinct id_salas from miembros salas where pi_colaborador = $1', [user_pi])
+  const result = await conn.query('SELECT distinct id_salas FROM miembros_salas WHERE pi_colaborador = $1', [user_pi])
   return result.rows
 }
