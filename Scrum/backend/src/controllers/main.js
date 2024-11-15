@@ -15,8 +15,9 @@ import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequiere
          deleteInstitution, addInstitution, UpdatePassw, UpdateName_Apellido,getUserEmail, getOTPData, 
          deleteOTP, createNewOTP,create_new_relation, modifyUserPassword, getUsers, createNewProcedure, 
          getLastIDPrcedure, getProcedures, deleteAppointment, getInstitutionContactInfo, get_Relation_by_id,
-         addMessage, getMessagesByConversationId, returnInfoAppointments, getMessagerating, appointment_update, getIDSala} from '../database/db.js';
-import { getUserLoginInfo, getAdminLoginInfo, firstInsert, updatePasos, firstInsertUserDocuments } from '../database/auth.js';
+         addMessage, getMessagesByConversationId, returnInfoAppointments, getMessagerating, appointment_update, getIDSala,
+         firstInsert, updatePasos, firstInsertUserDocuments } from '../database/db.js';
+import { getUserLoginInfo, getAdminLoginInfo} from '../database/auth.js';
 import { generateToken, decodeToken, validateToken } from './jwt.js';
 
 dotenv.config({ path: '../../../../.env' });
