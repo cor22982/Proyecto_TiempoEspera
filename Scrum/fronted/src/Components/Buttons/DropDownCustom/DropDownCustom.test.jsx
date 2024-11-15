@@ -1,6 +1,5 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import Dropdowncustom from "./DropDownCustom";
-import styles from "./DropDownCustom.module.css";
 import { expect, vi } from "vitest";
 
 describe("Componente Dropdowncustom", () => {

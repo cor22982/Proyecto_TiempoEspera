@@ -85,4 +85,18 @@ describe("Componente DeletuserCard", () => {
     const deleteIconContainer = screen.getByRole("button", { hidden: true });
     expect(deleteIconContainer).toHaveStyle({ "--icon-color": "red" });
   });
+  it("debería renderizar correctamente cuando falta información del usuario", () => {
+    render(
+      <DeletuserCard
+        name_user=""
+        dpi_user=""
+        type_user="Admin"
+        imagen_src=""
+        onDelete={() => {}}
+      />
+    );
+
+    // Verifica que los campos vacíos no provoquen errores
+    expect(screen.getByText("Tipo: Admin")).toBeInTheDocument();
+  });
 });
