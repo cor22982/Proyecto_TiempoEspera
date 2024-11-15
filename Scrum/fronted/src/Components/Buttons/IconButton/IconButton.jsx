@@ -4,6 +4,7 @@ import styles from "./IconButton.module.css";
 function IconButton({ icono, onclick, color, texto }) {
   return (
     <div
+      role="button"
       onClick={onclick}
       className={styles["icon_button-container"]}
       style={{ "--ib-color": color }}
