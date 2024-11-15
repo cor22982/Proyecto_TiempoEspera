@@ -38,7 +38,16 @@ export async function addMessage(content, pi, conversation_id, imageUrl = null, 
 export async function getMessagesByConversationId(conversation_id) {
   try {
     const result = await conn.query(
-      `SELECT u.name, u.lastname, m.content, m.date, m.conversation_id, m.image_url, m.pi
+      `SELECT 
+         m.id_message,
+         m.content,
+         m.date,
+         m.pi,
+         m.conversation_id,
+         m.image_url,
+         m.likes,
+         u.name,
+         u.lastname
        FROM messages m
        JOIN users u ON m.pi = u.pi
        WHERE m.conversation_id = $1
