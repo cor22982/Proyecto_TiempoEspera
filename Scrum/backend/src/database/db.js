@@ -366,3 +366,40 @@ export async function firstInsertUserDocuments(pi, procedure, documentId) {
 
   return result.rows;
 }
+
+export async function getPasos(pi, procedure) {
+  try {
+    const result = await conn.query(`
+      SELECT pasos_completados
+      FROM user_pasos
+      WHERE pi_usuario = $1 AND id_procedure = $2;
+    `, [pi, procedure]);
+
+    if (result.rows.length === 0) {
+      throw new Error('No se encontraron pasos para el usuario o el procedimiento.');
+    }
+
+    return result.rows[0].pasos_completados; // Devolver solo los pasos completos
+  } catch (error) {
+    console.error('Error al obtener los pasos:', error.message);
+    throw error; // Lanzar el error para que el llamado a la función pueda manejarlo
+  }
+}
+export async function getUserDocuments(pi, procedure) {
+  try {
+    const result = await conn.query(`
+      SELECT id_document
+      FROM user_documents
+      WHERE pi_usuario = $1 AND id_procedure = $2;
+    `, [pi, procedure]);
+
+    if (result.rows.length === 0) {
+      throw new Error('No se encontraron documentos para el usuario o el procedimiento.');
+    }
+
+    return result.rows.map(row => row.id_document); // Devuelve un array de ids de documentos
+  } catch (error) {
+    console.error('Error al obtener los documentos del usuario:', error.message);
+    throw error; // Lanzar el error para que el llamado a la función pueda manejarlo
+  }
+}

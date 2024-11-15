@@ -16,7 +16,7 @@ import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequiere
          deleteOTP, createNewOTP,create_new_relation, modifyUserPassword, getUsers, createNewProcedure, 
          getLastIDPrcedure, getProcedures, deleteAppointment, getInstitutionContactInfo, get_Relation_by_id,
          addMessage, getMessagesByConversationId, returnInfoAppointments, getMessagerating, appointment_update, getIDSala,
-         firstInsert, updatePasos, firstInsertUserDocuments } from '../database/db.js';
+         firstInsert, updatePasos, firstInsertUserDocuments, getPasos, getUserDocuments } from '../database/db.js';
 import { getUserLoginInfo, getAdminLoginInfo} from '../database/auth.js';
 import { generateToken, decodeToken, validateToken } from './jwt.js';
 
@@ -828,6 +828,28 @@ app.post('/insertDocument_User', async (req, res) =>{
   }
   catch(error){
     console.error('Error al insertar primero el paso: ', error);
+    res.status(500).json({succes: false });
+  }
+});
+
+app.post('/getDocuments_user', async (req, res) =>{
+  try {
+    const respuesta = await  getPasos(req.body.pi, req.body.procedure)
+    res.status(200).json({succes: true, respuesta});
+  }
+  catch(error){
+    console.error('Error al obtener pasos: ', error);
+    res.status(500).json({succes: false });
+  }
+});
+
+app.post('/getPasos_user', async (req, res) =>{
+  try {
+    const respuesta = await  getUserDocuments(req.body.pi, req.body.procedure)
+    res.status(200).json({succes: true, respuesta});
+  }
+  catch(error){
+    console.error('Error al obtener documentos: ', error);
     res.status(500).json({succes: false });
   }
 });
