@@ -344,14 +344,19 @@ app.post('/comment', async (req, res) => {
   }
 });
 app.post('/up_message_like', async (req, res) => {
-  const { pi } = req.body;  
   try {
+    const { pi } = req.body;
+    if (!pi) {
+      return res.status(400).json({ message: 'El campo `pi` es requerido' });
+    }
+
     const result = await up_message_like(pi);
-    res.status(200).json({  message: 'comentario up, exitosamente'});
+    res.status(200).json({ success: true, data: result });
   } catch (error) {
-    res.status(500).json({ message: 'froma no ampliada' });
+    console.error('Error en /up_message_like:', error);
+    res.status(500).json({ message: 'Ocurrió un error en el servidor' });
   }
-})
+});
 app.post('/create_new_relation', async (req, res) => {
   console.log("body", req.body);
   try {
