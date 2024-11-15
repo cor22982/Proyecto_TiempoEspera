@@ -1,15 +1,5 @@
 import React from "react";
-import {
-  faArrowLeft,
-  faArrowRight,
-  faUser,
-  faHome,
-  faSave,
-  faGear,
-  faBell,
-  faRightFromBracket,
-  faFire,
-} from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./SideBar.module.css";
 
@@ -33,6 +23,7 @@ export function Sidebar({
       <button className={styles.sidebarButton} onClick={ModSidebaropen}>
         <FontAwesomeIcon icon={sidebarOpen ? faArrowLeft : faArrowRight} />
       </button>
+
       <div
         className={`${styles.logoContent} ${
           !sidebarOpen ? styles.logoCollapsed : ""
