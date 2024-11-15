@@ -317,3 +317,8 @@ export async function returnInfoAppointments(){
     `)
   return result.rows
 }
+
+export async function getIDSala(pi){
+  const result = await conn.query('SELECT id from salas_empleadores where empleador = $1', [pi])
+  return result.rows
+}
