@@ -1,8 +1,17 @@
-import { useState } from 'react';
+import React, { createContext, useState, useContext } from 'react';
 
-const useBusqueda = () => {
-  const [busqueda, setBusqueda] = useState('');
-  return { busqueda, setBusqueda };
+const BusquedaContext = createContext();
+
+export const useBusqueda = () => {
+  return useContext(BusquedaContext);
 };
 
-export default useBusqueda;
+export const BusquedaProvider = ({ children }) => {
+  const [busqueda, setBusqueda] = useState("");
+  
+  return (
+    <BusquedaContext.Provider value={{ busqueda, setBusqueda }}>
+      {children}
+    </BusquedaContext.Provider>
+  );
+};

@@ -1,7 +1,7 @@
 import styles from "./HomeMain.module.css"; // Importar como CSS Modules
 import Principal from "@pages/Home/HomeSearch/HomeSearch";
 import useApi from "@hooks/api/useApi";
-import useBusqueda from "@hooks/busqueda/useBusqueda";
+import { useBusqueda } from "@hooks/busqueda/useBusqueda";
 import { useState, useEffect } from "react";
 import Informacion from "@pages/Institution/InstitutionRoutes";
 import SearchInput from "@components/Inputs/SearchInput/SearchInput";
@@ -9,7 +9,9 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const Page_Main = ({ pi }) => {
   const { busqueda, setBusqueda } = useBusqueda();
-
+  useEffect(() => {
+    setBusqueda("init");
+  }, []);
   const [pantalla, setPantalla] = useState(true);
   const { llamadowithoutbody } = useApi(
     `https://deimoss.web05.lol/institutions/${busqueda}`
@@ -45,7 +47,7 @@ const Page_Main = ({ pi }) => {
   }, []); // Solo se ejecuta una vez al montar el componente
 
   useEffect(() => {
-    if (busqueda.trim() !== "") {
+    if (busqueda.trim() !== "" && busqueda !== "init") {
       fetchData();
     }
   }, [busqueda]);
@@ -67,7 +69,6 @@ const Page_Main = ({ pi }) => {
 
       setDatos(response);
       setSeeScren(true);
-      // console.log("Nuevo estado de `datos` después de setDatos:", response);
     } catch (e) {
       console.log("Error en la solicitud:", e);
       setDatos([]);
@@ -97,15 +98,7 @@ const Page_Main = ({ pi }) => {
         ) : (
           <>
             {pantalla ? (
-              seeScreens ? (
-                <Principal
-                  ira={setPantalla}
-                  datos={datos}
-                  setobj={setobject_datos}
-                  pi={pi}
-                  setSearch={setBusqueda}
-                />
-              ) : (
+              busqueda === "init" ? (
                 <div className={styles.tramitesContainer}>
                   <h1>Trámites más comunes</h1>
                   <div className={styles.tramitesGrid}>
@@ -143,6 +136,16 @@ const Page_Main = ({ pi }) => {
                     </div>
                   </div>
                 </div>
+              ) : (
+                seeScreens && (
+                  <Principal
+                    ira={setPantalla}
+                    datos={datos}
+                    setobj={setobject_datos}
+                    pi={pi}
+                    setSearch={setBusqueda}
+                  />
+                )
               )
             ) : (
               <Informacion data={object_datos} ira={setPantalla} />

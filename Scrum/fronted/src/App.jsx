@@ -4,6 +4,7 @@ import Logo from "@components/UI/AnimatedLogo/AnimatedLogo";
 import { TokenProvider } from "@hooks/auth/useToken";
 import Indice from "@pages/AppRouter";
 import OneSignal from "react-onesignal";
+import { BusquedaProvider } from "@hooks/busqueda/useBusqueda";
 import {
   ThemeProvider,
   ThemeContext,
@@ -33,6 +34,7 @@ function App() {
 
   return (
     <TokenProvider>
+      <BusquedaProvider>
       <ThemeProvider>
         <FontProvider>
           <FontSizeProvider>
@@ -40,6 +42,7 @@ function App() {
           </FontSizeProvider>
         </FontProvider>
       </ThemeProvider>
+      </BusquedaProvider>
     </TokenProvider>
   );
 }
