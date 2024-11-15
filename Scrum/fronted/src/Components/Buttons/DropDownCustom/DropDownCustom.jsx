@@ -28,13 +28,15 @@ const Dropdowncustom = ({ nombre, lista, onChange }) => {
         <DropdownToggle className={styles["dropdown-toggle"]}>
           {tituloSeleccionado}
         </DropdownToggle>
-        <DropdownMenu className={styles["dropdown-menu"]}>
-          {lista.map((item, index) => (
-            <DropdownItem key={index} onClick={() => seleccionarItem(item)}>
-              {item}
-            </DropdownItem>
-          ))}
-        </DropdownMenu>
+        {lista.length > 0 && (
+          <DropdownMenu className={styles["dropdown-menu"]}>
+            {lista.map((item, index) => (
+              <DropdownItem key={index} onClick={() => seleccionarItem(item)}>
+                {item}
+              </DropdownItem>
+            ))}
+          </DropdownMenu>
+        )}
       </Dropdown>
     </div>
   );
