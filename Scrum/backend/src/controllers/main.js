@@ -249,6 +249,17 @@ app.post('/login', async (req, res) => {
     if (!isPassword(userLoginInfo.password, req.body.password)) {
       return res.status(401).json({ success: false, message: 'Contraseña incorrecta' });
     }
+    let result = await getUserEmail(req.body.pi)
+    if (result[0].email){
+      const mail_options = {
+        from: 'deimosgt502@gmail.com',       
+        to: result[0].email,          
+        subject: 'Nuevo inicio de sesión',    
+        text: 'Has hecho un nuevo inicio de sesión',  
+        html: `<h1>Nuevo inicio de sesión</p>` 
+      }
+      await transporter.sendMail(mail_options)
+    }
     res.status(200).json({ success: true, message: 'Inicio de sesión exitoso', acces_token: generateToken({ dpi: req.body.pi, rol: req.body.rol }) });
   } catch (error) {
     console.error('Error en el inicio de sesión:', error);
