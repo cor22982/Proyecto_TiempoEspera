@@ -30,7 +30,13 @@ const TextInputIcon = ({
 
   return (
     <div className={styles.inputIcon}>
-      {icon && <FontAwesomeIcon className={styles.iconFont} icon={icon} />}
+      {icon && (
+        <FontAwesomeIcon
+          className={styles.iconFont}
+          icon={icon}
+          data-testid="icon-static"
+        />
+      )}
       <input
         type={inputType}
         name={name}
@@ -44,6 +50,7 @@ const TextInputIcon = ({
           className={styles.iconFontCondition}
           icon={iconOnClick}
           onClick={handleIconClick}
+          data-testid="icon-clickable"
         />
       )}
     </div>
