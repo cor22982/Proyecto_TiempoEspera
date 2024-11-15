@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import styles from "./InstitutionCard.module.css";
+import DefaultImage from "@assets/default_institution.jpeg";
 
 const InsttutionComponent = ({
   name,
@@ -8,14 +9,18 @@ const InsttutionComponent = ({
   tiempo,
   procedimiento,
 }) => {
+  const displayedImage = image || DefaultImage; // Usa la imagen predeterminada si image es null o vacío
+
   return (
     <div className={styles.container} onClick={onClick}>
       <div className={styles.imagenContainer}>
         <img
-          src={image}
+          src={displayedImage}
           alt="institution"
           className={styles.institutionImage}
-          onClick={onClick}
+          onError={(e) => {
+            e.target.src = DefaultImage;
+          }}
         />
       </div>
 
@@ -32,9 +37,10 @@ const InsttutionComponent = ({
 
 InsttutionComponent.propTypes = {
   name: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  image: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   tiempo: PropTypes.string.isRequired,
+  procedimiento: PropTypes.string,
 };
 
 export default InsttutionComponent;

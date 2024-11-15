@@ -1,6 +1,8 @@
 import React from "react";
 import "../Institution_List/Institution_List.css";
 import "./Institution_Appoint.css";
+import ImageDefault from "@assets/default_institution.jpeg";
+
 function Institution_Appoint({ name, imagen_inst, list_appointments }) {
   return (
     <div className="display-items-apoint">
@@ -13,9 +15,15 @@ function Institution_Appoint({ name, imagen_inst, list_appointments }) {
           {list_appointments.map((appointment, index) => (
             <div
               key={index}
-              style={{ display: "flex", flexDirection: "row", gap: "1rem" }}
+              className="appointment-item"
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                gap: "1rem",
+                flexWrap: "wrap",
+              }}
             >
-              <p>Tramite: {appointment.procedure_name}</p>
+              <p>Trámite: {appointment.procedure_name}</p>
               <p>Hora: {appointment.appointment_time.substring(0, 5)}</p>
               <p>
                 Fecha:{" "}
@@ -28,7 +36,13 @@ function Institution_Appoint({ name, imagen_inst, list_appointments }) {
         </div>
       </div>
       <div className="image-container">
-        <img src={imagen_inst} alt={imagen_inst} />
+        <img
+          src={imagen_inst || ImageDefault}
+          alt={`Imagen de ${name}`}
+          onError={(e) => {
+            e.target.src = ImageDefault;
+          }}
+        />
       </div>
     </div>
   );
