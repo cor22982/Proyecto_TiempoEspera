@@ -25,7 +25,7 @@
 /* Estilo de cada comentario */
 .coment {
   padding: 10px;
-  border-bottom: 1px solid red;
+  border-bottom: 1px solid var(--dv-search);
   margin-bottom: 10px;
 }
 
@@ -115,4 +115,29 @@
 .collapsedText {
   font-weight: bold;
   color: var(--highlight-text);
+}
+
+/* Botón de Like */
+.likeContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.likeIcon {
+  font-size: 1.5em;
+  color: var(--ct-icons);
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.likeIcon:hover {
+  transform: scale(1.2);
+  color: var(--primary);
+}
+
+.likeCount {
+  margin-left: 8px;
+  font-weight: bold;
+  color: var(--text-secondary);
 }

@@ -4,7 +4,11 @@ import Coment from "@components/Inputs/Coment/Coment";
 import useApi from "@hooks/api/useApi";
 import { useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStarHalfAlt, faStar } from "@fortawesome/free-solid-svg-icons";
+import {
+  faStarHalfAlt,
+  faStar,
+  faThumbsUp,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Comentarios = ({ data }) => {
   const { llamadowithoutbody } = useApi(
@@ -14,7 +18,7 @@ const Comentarios = ({ data }) => {
   const [conver, setConver] = useState(null);
   const [contenido, setContenido] = useState("");
   const [rating, setRating] = useState(0);
-  const [highlightedComment, setHighlightedComment] = useState(null); // Nuevo estado para el mensaje con más likes
+  const [highlightedComment, setHighlightedComment] = useState(null); // Mensaje con más likes
   const [isExpanded, setIsExpanded] = useState(false); // Estado para controlar la expansión
   const contentRef = useRef(null); // Ref para el contenido del mensaje destacado
 
@@ -33,7 +37,7 @@ const Comentarios = ({ data }) => {
         const result = await response.json();
 
         if (result.success) {
-          setHighlightedComment(result.data); // Guardamos el mensaje con más likes
+          setHighlightedComment(result.data); // Mensaje con más likes
         } else {
           console.error("Error al obtener el mensaje con más likes:", result);
         }
@@ -73,7 +77,7 @@ const Comentarios = ({ data }) => {
 
       setContenido("");
       setComents(await llamadowithoutbody("GET"));
-      fetchHighlightedComment(); // Actualizar el comentario destacado después de enviar un nuevo comentario
+      fetchHighlightedComment(); // Actualizar comentario destacado
     } catch (error) {
       console.error("Error en postComent:", error);
     }
@@ -124,6 +128,33 @@ const Comentarios = ({ data }) => {
     setIsExpanded(!isExpanded);
   };
 
+  // Nueva función para manejar el like
+  const handleLike = async (idMessage) => {
+    try {
+      const response = await fetch(
+        "https://deimoss.web05.lol/up_message_like",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+          body: JSON.stringify({ pi: idMessage }),
+        }
+      );
+
+      if (response.ok) {
+        const updatedComents = await llamadowithoutbody("GET"); // Actualiza la lista de comentarios
+        setComents(updatedComents);
+        fetchHighlightedComment(); // Actualiza el comentario destacado
+      } else {
+        console.error("Error al dar like:", await response.text());
+      }
+    } catch (error) {
+      console.error("Error en handleLike:", error);
+    }
+  };
+
   return (
     <div className={styles.comentariosContainerInstitution}>
       <div className={styles.rating}>{calcularEstrellas()}</div>
@@ -159,23 +190,34 @@ const Comentarios = ({ data }) => {
                 )}
                 coment={highlightedComment.content}
                 imageUrl={highlightedComment.image_url}
+                likes={highlightedComment.likes}
+                onLike={() => handleLike(highlightedComment.id_message)}
               />
             ) : (
               <div className={styles.collapsedText}>Mensaje Destacado</div>
             )}
           </div>
         )}
-        {coments
-          .filter((com) => com.id_message !== highlightedComment?.id_message)
-          .map((com, index) => (
+        {coments.map((com, index) => (
+          <div key={index} className={styles.coment}>
             <Coment
-              key={index}
               from={`${com.name} ${com.lastname}`}
               date={com.date.substring(0, com.date.indexOf("T"))}
               coment={com.content}
               imageUrl={com.image_url}
+              likes={com.likes}
+              onLike={() => handleLike(com.id_message)}
             />
-          ))}
+            <div className={styles.likeContainer}>
+              <FontAwesomeIcon
+                icon={faThumbsUp}
+                onClick={() => handleLike(com.id_message)}
+                className={styles.likeIcon}
+              />
+              <span className={styles.likeCount}>{com.likes}</span>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
