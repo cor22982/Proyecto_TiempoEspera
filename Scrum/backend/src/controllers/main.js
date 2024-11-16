@@ -15,7 +15,7 @@ import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequiere
          deleteInstitution, addInstitution, UpdatePassw, UpdateName_Apellido,getUserEmail, getOTPData, 
          deleteOTP, createNewOTP,create_new_relation, modifyUserPassword, getUsers, createNewProcedure, 
          getLastIDPrcedure, getProcedures, deleteAppointment, getInstitutionContactInfo, get_Relation_by_id,
-         addMessage, getMessagesByConversationId, returnInfoAppointments, getMessagerating, appointment_update, getIDSala,
+         addMessage, getMessagesByConversationId, returnInfoAppointments, getMessageRating, appointment_update, getIDSala,
          firstInsert, updatePasos, firstInsertUserDocuments, getPasos, getUserDocuments, getUserRooms, up_message_like, createNewMessageInRoom } from '../database/db.js';
 import { getUserLoginInfo, getAdminLoginInfo} from '../database/auth.js';
 import { generateToken, decodeToken, validateToken } from './jwt.js';
