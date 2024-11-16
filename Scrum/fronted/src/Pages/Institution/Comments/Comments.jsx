@@ -14,6 +14,7 @@ const Comentarios = ({ data }) => {
   const [conver, setConver] = useState(null);
   const [contenido, setContenido] = useState("");
   const [rating, setRating] = useState(0);
+  const [highlightedComment, setHighlightedComment] = useState(null); // Nuevo estado para el mensaje con más likes
   const [isExpanded, setIsExpanded] = useState(false); // Estado para controlar la expansión
   const contentRef = useRef(null); // Ref para el contenido del mensaje destacado
 
@@ -24,8 +25,26 @@ const Comentarios = ({ data }) => {
       setComents(coment);
     };
 
+    const fetchHighlightedComment = async () => {
+      try {
+        const response = await fetch(
+          `https://deimoss.web05.lol/get_message_rating/${data.id_conversation}`
+        );
+        const result = await response.json();
+
+        if (result.success) {
+          setHighlightedComment(result.data); // Guardamos el mensaje con más likes
+        } else {
+          console.error("Error al obtener el mensaje con más likes:", result);
+        }
+      } catch (error) {
+        console.error("Error en fetchHighlightedComment:", error);
+      }
+    };
+
     fetchData();
-  }, [llamadowithoutbody]);
+    fetchHighlightedComment();
+  }, [llamadowithoutbody, data.id_conversation]);
 
   const postComent = async (texto, imagen) => {
     const formData = new FormData();
@@ -52,11 +71,9 @@ const Comentarios = ({ data }) => {
         return;
       }
 
-      // const responseData = await response.json();
-      // console.log("Comentario enviado:", responseData);
-
       setContenido("");
       setComents(await llamadowithoutbody("GET"));
+      fetchHighlightedComment(); // Actualizar el comentario destacado después de enviar un nuevo comentario
     } catch (error) {
       console.error("Error en postComent:", error);
     }
@@ -103,12 +120,6 @@ const Comentarios = ({ data }) => {
     return stars;
   };
 
-  const latestComment = coments.reduce((latest, current) => {
-    return new Date(current.date) > new Date(latest.date) ? current : latest;
-  }, coments[0]);
-
-  // console.log("Comentario destacado:", latestComment);
-
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);
   };
@@ -125,7 +136,7 @@ const Comentarios = ({ data }) => {
       />
       <br />
       <div className={styles.coments}>
-        {latestComment && (
+        {highlightedComment && (
           <div
             ref={contentRef}
             className={`${styles.highlightedComment} ${
@@ -140,14 +151,14 @@ const Comentarios = ({ data }) => {
           >
             {isExpanded ? (
               <Coment
-                key={"latest"}
-                from={`${latestComment.name} ${latestComment.lastname}`}
-                date={latestComment.date.substring(
+                key={"highlighted"}
+                from={`${highlightedComment.name} ${highlightedComment.lastname}`}
+                date={highlightedComment.date.substring(
                   0,
-                  latestComment.date.indexOf("T")
+                  highlightedComment.date.indexOf("T")
                 )}
-                coment={latestComment.content}
-                imageUrl={latestComment.image_url}
+                coment={highlightedComment.content}
+                imageUrl={highlightedComment.image_url}
               />
             ) : (
               <div className={styles.collapsedText}>Mensaje Destacado</div>
@@ -155,7 +166,7 @@ const Comentarios = ({ data }) => {
           </div>
         )}
         {coments
-          .filter((com) => com !== latestComment)
+          .filter((com) => com.id_message !== highlightedComment?.id_message)
           .map((com, index) => (
             <Coment
               key={index}
