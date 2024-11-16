@@ -21,6 +21,7 @@ export async function UpdatePassw(pi, password) {
   const result = await conn.query(`UPDATE users SET password = decode($2, 'base64') where id = $1 ; `, [pi, password]);
   
 }
+
 export async function addInstitution(name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud) {
   try {
     // Contar el número de registros actuales en la tabla
@@ -62,6 +63,13 @@ export async function getProcedureInfo(name){
  
 export async function getAllInstitutionInfo(){
   const result = await conn.query('SELECT * FROM intitutions;');
+  return result.rows
+}
+export async function get_Relation_by_id_raw(pi) {
+  const result = await conn.query('SELECT empleador, string_agg(usuario, ) FROM the_table where empleador = $1 GROUP BY id')
+}
+export async function get_Relation_by_id(pi) {
+  const result = await conn.query(`select pi, name, encode(perfi_image, 'base64'), email from users join relaciones on relaciones.usuario = pi where relaciones.empleador =$1;`, [pi])
   return result.rows
 }
 
@@ -109,7 +117,10 @@ export async function create_new_appointment(date, time, procedure, pi){
   const result = await conn.query('CALL  create_appointment($1, $2, $3, $4)', [date, time, procedure, pi]);
   return result.rows
 }
-
+export async function create_new_relation(empleador, usuario){
+  const result = await conn.query('insert into relaciones (empleador, usuario) values ($1, $2);', [empleador, usuario]);
+  return result.rowCount;
+}
 export async function get_appointments(pi){
   const result = await conn.query('select a.date::DATE, a.time::TIME, i.imagen, i.name as institution_name, i.hora_cierre, i.adress,p.name from appointments a join userappointments us on us."id appointment" = a.id join institutionsprocedures ip on a."id institution procedure" = ip."id institution procedure" join intitutions i on i.id_institutions = ip."id intitution" join procedures p on p.id = ip."id procedure" where us.pi = $1 and a.date >= CURRENT_DATE;', [pi]);
   const formattedRows = result.rows.map(row => ({
@@ -246,7 +257,7 @@ export async function getProcedures(){
   return result.rows
 }
 
-export async function getInstitutionContactInfo(id){
-  const result = await conn.query('SELECT telefono from intitutions WHERE id_institutions = $1;', [id])
+export async function getInstitutionContactInfo(){
+  const result = await conn.query('SELECT id_institutions, name, telefono, imagen from intitutions;')
   return result.rows
 }

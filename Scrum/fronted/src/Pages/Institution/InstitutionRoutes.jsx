@@ -75,6 +75,7 @@ const Informacion = ({ data, ira }) => {
           nombre="Agendar"
           onClick={() => setSelectedSection("agendar")}
         />
+        {/* Mostrar este menú solo si el rol es 'empleador' */}
         {rol === "empleador" && (
           <MenuOption
             nombre="Agendar Empleador"

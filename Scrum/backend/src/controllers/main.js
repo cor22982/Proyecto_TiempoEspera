@@ -9,7 +9,7 @@ import { register, getProcedureInfo, getAllInstitutionInfo, getProcedureRequiere
   getInstitutionByID, getComments, createComment, getsteps, getUserByPi, getRating, 
   insertNewRating, create_new_appointment, get_appointments, getprocedure_id, getUserData, deleteUser, UpdateImage
 , getStatistics, getUserBday, get_documents, UpdateEmail_telephone, deleteInstitution, addInstitution, UpdatePassw, UpdateName_Apellido,
-getUserEmail, getOTPData, deleteOTP, createNewOTP, modifyUserPassword, getUsers, createNewProcedure, getLastIDPrcedure, getProcedures, deleteAppointment, getInstitutionContactInfo} from '../database/db.js';
+getUserEmail, getOTPData, deleteOTP, createNewOTP,create_new_relation, modifyUserPassword, getUsers, createNewProcedure, getLastIDPrcedure, getProcedures, deleteAppointment, getInstitutionContactInfo, get_Relation_by_id} from '../database/db.js';
 import { getUserLoginInfo, getAdminLoginInfo } from '../database/auth.js';
 import { generateToken, decodeToken, validateToken } from './jwt.js';
 import * as OneSignalLib from '@onesignal/node-onesignal';
@@ -44,6 +44,8 @@ const transporter = nodemailer.createTransport({
 
 
 
+
+
 const client = new OneSignalLib.DefaultApi(configuration);
 
 app.use(express.json());
@@ -67,6 +69,27 @@ const validateRequest = (req, res, next) => {
   return next();
 };
 
+/*
+
+    const OTP = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000
+    const result = await getUserEmail(req.body.pi)
+    const mail_options = {
+      from: 'deimosgt502@gmail.com',       
+      to: result[0].email,          
+      subject: 'Cambio de contrraseña',    
+      text: 'Has solicitado un cambio de contraseña, este es tu código de verificación',  
+      html: `<h1>Tu código de verificación es: </h1><p>${OTP}</p>` 
+    }
+
+    const currentDate = new Date();  // Get the current date and time
+    currentDate.setMinutes(currentDate.getMinutes() + 10);
+
+    await transporter.sendMail(mail_options)
+
+*/
+const sendNotificaton = async () => {
+  
+}
 
 app.get('/', (req, res) => {
   res.send('Hello from API PROYECTO DEIMOS');
@@ -82,6 +105,7 @@ app.post('/register', validateRequest, async (req, res) => {
 });
 
 app.post('/institution_add', async(req, res) => {
+  console.log("body", req.body);
   const {name, adress, hora_apertura, hora_cierre, telefono, Imagen, longitud, latitud} =req.body;
   let respuesta;
   try {
@@ -241,6 +265,38 @@ app.post('/comment', async (req, res) => {
     res.status(500).send('Error del servidor :(');
   }
 });
+app.post('/create_new_relation', async (req, res) => {
+  console.log("body", req.body);
+  try {
+    const { empleador, usuario } = req.body;
+    const addition = await create_new_relation(empleador, usuario );
+
+    res.status(201).json({ message: 'Relación creada', data: addition });
+  } catch (error) {
+    console.error('Error en crear relación', error);
+    res.status(500).json({ message: 'Error: no se pudo crear la relación' });
+  }
+});
+
+app.get('/contactInfo', async(req, res) =>{
+  try {
+    res.status(200).json(await getInstitutionContactInfo())
+  }
+  catch (error){
+    console.error('Error al obtener los datos de contacto :(', error);
+    res.status(500).json({succes:false})
+  }
+})
+
+app.get('/relations/:pi', async (req, res) => {
+  try {
+    res.status(200).json(await get_Relation_by_id(req.params.pi));
+  }
+  catch(error){
+    console.error('Error al obtener los datos que buscas :(', error);
+    res.status(500).send('ERROR :((');
+  }
+});
 
 app.get('/rating/:id_institution', async (req, res) => {
   try {
@@ -342,6 +398,56 @@ app.post('/newAppointment', async (req, res) => {
 
 });
 
+app.post('/newAppointment_byEmpleador', async (req, res) => {
+  try {
+      // Asegúrate de que req.body.pi es un arreglo
+      const piList = req.body.pi_list; // Lista de PI
+
+      // Verifica que piList sea un arreglo y no esté vacío
+      if (!Array.isArray(piList) || piList.length === 0) {
+          return res.status(400).json({ succes: false, error: 'La lista de PI está vacía o no es un arreglo.' });
+      }
+
+      // Obtener el ID del procedimiento una sola vez
+      const procedureId = await getprocedure_id(req.body.id_procedure, req.body.institution);
+
+      // Iterar sobre cada PI y crear la cita
+      for (const pi of piList) {
+          await create_new_appointment(req.body.date, req.body.time, procedureId, pi);
+
+          // Creación de una notificación
+          const result = await getInstitutionByID(req.body.institution);
+          const name_i = result[0].name;
+          const notification = new OneSignalLib.Notification();
+          notification.app_id = ONESIGNAL_APP_ID;
+          notification.included_segments = ['All']; // Enviar a todos los usuarios
+          notification.target_channel = 'push';
+          notification.headings = {
+              en: 'Appointment Scheduled',
+              es: 'Tienes una cita',
+          };
+
+          notification.contents = {
+              en: `You have an appointment today at ${req.body.time} on ${name_i}`,
+              es: `Tienes una cita hoy a las ${req.body.time} en ${name_i}`,
+          };
+
+          const [year, month, day] = req.body.date.split('-');
+          const dateString = `${year}-${month}-${day} ${req.body.time}:00 GMT-0600`;
+          notification.send_after = dateString;
+
+          // Enviar la notificación solo si es necesario
+          const response = await client.createNotification(notification);
+      }
+
+      res.status(200).json({ succes: true, message: 'Citas creadas y notificaciones enviadas.' });
+  } catch (error) {
+      console.error('Error al hacer una nueva reservación :(', error);
+      res.status(500).json({ succes: false, error: error.message });
+  }
+});
+
+
 app.get('/userAppointments/:pi', async (req, res) =>{
   try {
     res.status(200).json(await get_appointments(req.params.pi));
@@ -361,7 +467,7 @@ app.post('/confirmPasswordChange', async (req, res) =>{
     if (!otpData){
       res.status(404).send({'succes': false, 'message': 'No tienes un código de verificación'})
     }
-    if(Date(otpData[0].exp_date).getTime() < Date.now()){
+    if(new Date(otpData[0].exp_date).getTime() < Date.now()){
       res.status(404).send({'succes': false, 'message': 'Tu código de verificación ha expirado'})
     }
     if(req.body.otp != otpData[0].otp){
@@ -548,16 +654,6 @@ app.get('/all_procedures', async (req, res) => {
     res.status(500).send('Error del servidor :(');
   }
 });
-
-app.get('/contactInfo/:id', async(req, res) =>{
-  try {
-    res.status(200).json(await getInstitutionContactInfo(req.params.id))
-  }
-  catch (error){
-    console.error('Error al obtener los datos de contacto :(', error);
-    res.status(500).json({succes:false})
-  }
-})
 
 app.use((req, res) => {
   res.status(501).json({ error: 'Método no implementado' });
