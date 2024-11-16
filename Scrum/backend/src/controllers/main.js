@@ -412,14 +412,20 @@ app.get('/rating/:id_institution', async (req, res) => {
   }
 });
 
-app.get('/get_message_rating', async (req, res) => {
+app.get('/get_message_rating/:conversation_id', async (req, res) => {
   try {
-    const result = await getMessagerating();
-    res.status(200).json({ success: true, data: result});
+    const { conversation_id } = req.params; // Obtener el conversation_id de los parámetros de la ruta
+    const result = await getMessageRating(conversation_id); // Pasar conversation_id a la función
+    if (!result) {
+      return res.status(404).json({ success: false, message: "No se encontró un mensaje con más likes en esta conversación." });
+    }
+    res.status(200).json({ success: true, data: result });
   } catch (error) {
-    res.status(500).json({ message: "error al buscar  ratings" });
+    console.error('Error en /get_message_rating:', error.message);
+    res.status(500).json({ success: false, message: "Error al buscar ratings" });
   }
 });
+
 
 app.post('/messageRoom', async (req, res) =>{
   try{

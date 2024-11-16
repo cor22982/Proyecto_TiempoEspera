@@ -160,10 +160,33 @@ export async function insertNewRating(institution, rating, pi){
   const result = await conn.query('INSERT INTO user_rating (id_institution, rating, user_pi) VALUES ($1, $2, $3);', [institution, rating, pi]);
   return result.rows
 }
-export async function getMessagerating(){
-  const result = await conn.query('SELECT * FROM messages ORDER BY likes DESC;');
-  return result.rows
+export async function getMessageRating(conversation_id) {
+  try {
+    const result = await conn.query(
+      `SELECT 
+         m.id_message,
+         m.content,
+         m.date,
+         m.pi,
+         m.conversation_id,
+         m.image_url,
+         m.likes,
+         u.name,
+         u.lastname
+       FROM messages m
+       JOIN users u ON m.pi = u.pi
+       WHERE m.conversation_id = $1
+       ORDER BY m.likes DESC
+       LIMIT 1;`,
+      [conversation_id]
+    );
+    return result.rows[0]; // Retornar solo el mensaje con más likes
+  } catch (error) {
+    console.error('Error en getMessageRating:', error.message);
+    throw error;
+  }
 }
+
 
 export async function getRating(id_institution){
   const result = await conn.query('SELECT rating FROM intitutions WHERE id_institutions = $1;', [id_institution]);
