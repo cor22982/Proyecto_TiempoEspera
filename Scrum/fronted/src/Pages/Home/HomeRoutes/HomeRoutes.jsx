@@ -11,7 +11,7 @@ import {
   faPeopleArrows,
   faFolder,
   faBuilding,
-  faCalendar
+  faCalendar,
 } from "@fortawesome/free-solid-svg-icons";
 
 import "@assets/Login/logotipo.png";
@@ -39,8 +39,8 @@ const Pages = ({ pi }) => {
 
   const handleMenuClick = (view) => {
     setSelectedView(view);
-    if (view == "main"){
-      setBusqueda("init")
+    if (view == "main") {
+      setBusqueda("");
     }
   };
 
@@ -65,7 +65,7 @@ const Pages = ({ pi }) => {
       case "colaboradores":
         return <Colaboradores />;
       case "reservaciones":
-        return <Reservaciones></Reservaciones>
+        return <Reservaciones></Reservaciones>;
       case "institutions_empleador":
         return <Instituciones_E />;
       default:
@@ -89,7 +89,6 @@ const Pages = ({ pi }) => {
       icon: faSave,
       to: "guardados",
     },
-
   ];
 
   const linksArray_Admin = [
@@ -112,20 +111,22 @@ const Pages = ({ pi }) => {
       label: "Reservaciones",
       icon: faCalendar,
       to: "reservaciones",
-    }
+    },
   ];
 
   if (rol === "empleador") {
-    linksArray.push({
-      label: "Colaboradores",
-      icon: faPeopleArrows,
-      to: "colaboradores",
-    },
-    {
-      label: "Instituciones",
-      icon: faBuilding,
-      to: "institutions_empleador",
-    });
+    linksArray.push(
+      {
+        label: "Colaboradores",
+        icon: faPeopleArrows,
+        to: "colaboradores",
+      },
+      {
+        label: "Instituciones",
+        icon: faBuilding,
+        to: "institutions_empleador",
+      }
+    );
   }
   const secondarylinksArray = [
     {
@@ -156,9 +157,7 @@ const Pages = ({ pi }) => {
       </div>
 
       <div className="interfaz">
-      
         {renderView()} {/* Renderiza la vista seleccionada */}
-       
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 const Page_Main = ({ pi }) => {
   const { busqueda, setBusqueda } = useBusqueda();
   useEffect(() => {
-    setBusqueda("init");
+    setBusqueda("");
   }, []);
   const [pantalla, setPantalla] = useState(true);
   const { llamadowithoutbody } = useApi(
@@ -47,7 +47,7 @@ const Page_Main = ({ pi }) => {
   }, []); // Solo se ejecuta una vez al montar el componente
 
   useEffect(() => {
-    if (busqueda.trim() !== "" && busqueda !== "init") {
+    if (busqueda.trim() !== "" && busqueda !== "") {
       fetchData();
     }
   }, [busqueda]);
@@ -98,7 +98,7 @@ const Page_Main = ({ pi }) => {
         ) : (
           <>
             {pantalla ? (
-              busqueda === "init" ? (
+              busqueda === "" ? (
                 <div className={styles.tramitesContainer}>
                   <h1>Trámites más comunes</h1>
                   <div className={styles.tramitesGrid}>
