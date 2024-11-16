@@ -11,7 +11,6 @@ const Requisitos = ({ data, ira }) => {
   const { llamadowithoutbody } = useApi(
     `https://deimoss.web05.lol/requirements/${id_procedure}`
   );
-  const { llamado: firinsert } = useApi(`https://deimoss.web05.lol/firstinsertpasos`);
   const { llamado: updatePaso } = useApi(`https://deimoss.web05.lol/updatePaso`);
   const { llamado: insertDocuments } = useApi(`https://deimoss.web05.lol/insertDocument_User`);
   const { llamado: getPasos } = useApi(`https://deimoss.web05.lol/getPasos_user`);
@@ -74,30 +73,49 @@ const Requisitos = ({ data, ira }) => {
     ira(true)
     console.log(name)
   };
+
+  const callInsertPaso = async (item) => {
+    try {
+      const body = { pi: dpi, procedure: id_procedure , paso: item };
+      const response = await updatePaso(body,"POST")
+    } catch (error) {
+      console.error("Error en updatear pasos", error);
+    }
+  };
+  
   
   
 
   return (
     <div className={styles.container}>
       <h4 className={styles.heading}>Pasos</h4>
-      {pasos.map((paso, index) => (
-        <Checkbox key={index} name={paso} />
-      ))}
+      {pasos.map((paso, index) => {
+        const isActive = pasos_vistos.some((visto) => visto === paso);
+        return (
+          <Checkbox 
+              key={index} 
+              name={paso}
+              onPress={callInsertPaso}
+              active={isActive}
+              />
+        )
+        
+      })}
 
       <h4 className={styles.heading}>Documentos</h4>
       {requirements.map((req, index) => {
-  const isActive = docs_vistos.some((doc) => doc === req.id_document);
-  return (
-    <Checkbox
-      key={index}
-      name={req.name}
-      type={true}
-      onChange={callInsertDocumento} // Pasa la función para manejar cambios
-      onPress={(name) => console.log(`Pressed: ${name}`)} // Opcional: para manejar el estado del nombre
-      id={req.id_document}
-      onsearch={handleCheckboxChange}
-      active={isActive} // Define si está activo inicialmente
-    />
+        const isActive = docs_vistos.some((doc) => doc === req.id_document);
+        return (
+          <Checkbox
+            key={index}
+            name={req.name}
+            type={true}
+            onChange={callInsertDocumento} // Pasa la función para manejar cambios
+            onPress={(name) => console.log(`Pressed: ${name}`)} // Opcional: para manejar el estado del nombre
+            id={req.id_document}
+            onsearch={handleCheckboxChange}
+            active={isActive} // Define si está activo inicialmente
+          />
   );
 })}
 
